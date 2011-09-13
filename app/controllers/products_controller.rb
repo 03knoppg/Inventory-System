@@ -25,7 +25,8 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
-
+    @all_categories = Category.all
+    @associated_categories = @product.categories
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }
@@ -35,12 +36,22 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    @associated_categories = @product.categories
+
+
+
   end
 
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(params[:product])
+
+    categories = Category.find(params[:new_categories_ids])
+
+    @product.categories = categories
+
+    logger.info("+++++++++++++++++++++++++++found categories #{@product.categories}")
 
     respond_to do |format|
       if @product.save
