@@ -1,0 +1,19 @@
+<h1>Listing categories</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <!--<th>Parent</th>       </-->
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+   <%print_categories(0,0)%>
+   <%= @s.html_safe %>
+
+</table>
+
+<br />
+
+<%= link_to 'New Category', new_category_path %>
