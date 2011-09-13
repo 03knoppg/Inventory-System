@@ -1,20 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>ID:</b>
-  <%= @category.id %>
-</p>
-
-<p>
-  <b>Parent:</b>
-  <%= @category.parent_id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @category.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<table>
+  <tr>
+    <th><b>ID:</b></th>
+    <th><b>Name:</b></th>
+    <th><b>Parent ID:</b></th>
+  </tr>
+  <tr>
+    <td align="center"><%= @category.id %></td>
+    <td align="center"><%= @category.name %></td>
+    <td align="center"><%= @category.parent_id %></td>
+  </tr>
+  <tr><td><p></p></td></tr>
+  <tr>
+    <td>
+     <%= button_to "Edit", edit_category_path(@category), :method => :get %>
+    </td>
+    <td>
+     <%= button_to "Back", categories_path, :method => :get %>
+    </td>
+  </tr>
+</table>

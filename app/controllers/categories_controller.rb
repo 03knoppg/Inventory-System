@@ -18,9 +18,10 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   # GET /categories/1.json
+  #Function to show selected category
   def show
     @category = Category.find(params[:id])
-
+    @all_categories =  Category.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @category }
@@ -29,6 +30,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   # GET /categories/new.json
+  #Function
   def new
     @category = Category.new
     @all_categories =  Category.all
@@ -40,12 +42,15 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
+  #Function to edit a category
   def edit
     @category = Category.find(params[:id])
+    @all_categories =  Category.all
   end
 
   # POST /categories
   # POST /categories.json
+  #Funtion to create a category
   def create
 
     @category = Category.new(params[:category])
@@ -63,6 +68,7 @@ class CategoriesController < ApplicationController
 
   # PUT /categories/1
   # PUT /categories/1.json
+  #Function to update a category
   def update
     @category = Category.find(params[:id])
 
@@ -79,6 +85,7 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1
   # DELETE /categories/1.json
+  #Function to destroy a category
   def destroy
     @category = Category.find(params[:id])
     @all_categories =  Category.all
@@ -93,6 +100,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  #Function to destroy a parent category and its children
   def destroy_category(category)
     logger.info("+++++++++++++++++++++++++++destroy_category category #{category.name}")
     if(category == nil || category.id == nil)
@@ -107,9 +115,8 @@ class CategoriesController < ApplicationController
     category.destroy
   end
 
-   def sort_categories()
-
-
+  #Function to sort the categories array
+   def sort_categories
     logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_categories}")
 
     for cat in @all_categories
