@@ -7,9 +7,15 @@
     <th align="left">Categories:</th>
   </tr>
   <tr>
-    <td><%= @product.name %></td>
-    <td><%= @product.description %></td>
-    <td><%= %></td>
+    <td valign="top"><%= @product.name %></td>
+    <td valign="top"><%= @product.description %></td>
+    <td><table>
+      <% @associated_categories = @product.categories
+        for cat in @associated_categories%>
+          <tr><td><%= cat.name %></td></tr>
+          <% end %>
+        </table>
+    </td>
   </tr>
   <tr><td><p></p></td></tr>
   <tr>

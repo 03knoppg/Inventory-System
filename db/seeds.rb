@@ -11,14 +11,14 @@ Product.delete_all
 
 all = Category.create(name:"All")
 bedroom = Category.create(name:"Bedroom", parent_id:all.id)
-bedroom = Category.create(name:"Living Room", parent_id:all.id)
+livingroom = Category.create(name:"Living Room", parent_id:all.id)
 
 
-Product.create(name:"Comfy chair", description:"Very soft chair")
-Product.create(name:"Hard chair", description:"Very hard chair")
-Product.create(name:"Big chair", description:"Very big chair")
-Product.create(name:"Small chair", description:"Very small chair")
-Product.create(name:"Comfy bed", description:"Very soft bed")
-Product.create(name:"Hard bed", description:"Very hard bed")
-Product.create(name:"Big bed", description:"Very big bed")
-Product.create(name:"Small bed", description:"Very small bed")
+Product.create(name:"Comfy chair", description:"Very soft chair").categories=[bedroom, livingroom]
+Product.create(name:"Hard chair", description:"Very hard chair").categories=[livingroom]
+Product.create(name:"Big chair", description:"Very big chair").categories=[bedroom, livingroom]
+Product.create(name:"Small chair", description:"Very small chair").categories=[bedroom]
+Product.create(name:"Comfy bed", description:"Very soft bed").categories=[bedroom]
+Product.create(name:"Hard bed", description:"Very hard bed").categories=[bedroom]
+Product.create(name:"Big bed", description:"Very big bed").categories=[bedroom]
+Product.create(name:"Small bed", description:"Very small bed").categories=[bedroom]
