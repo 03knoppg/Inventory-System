@@ -10,18 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <!--<div class="field">
-    <#%= flabel :parent_id %><br />
-    <#%= f.number_field :parent_id %>
-  </div>-->
-
-               Parent:
+               Parent
 
   <div class ="field">
     <select name="category[parent_id]">
       <% @all_categories.each do |category| %>
-      <option value= "<%=category.id %>"><%= category.name%></option>
+      <option value= "<%=category.id %>"<% if(@category.parent_id == category.id) %>
+            selected = true;
+          <% end %>>
+        <%= category.name%></option>
       <% end %>
     </select>
   </div>
