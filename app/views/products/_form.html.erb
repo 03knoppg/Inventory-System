@@ -1,46 +1,49 @@
 <%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-    <div>
-         Categories
-
-        <select size="5" multiple="multiple" name="new_categories_ids[]">
-            <%for cat in @all_categories
-                if(cat.parent_id == nil)
-                    next
-                end%>
-              <option value= "<%=cat.id %>" <% if(@associated_categories.include?(cat)) %> selected=true<% end %>> <%= cat.name%></option>
-
-              <% end %>
-        </select>
-    </div>
-
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div>
     <div class="field">
-      <%= f.label "Categories"%>
-      <Select><option></option></Select>
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
     </div>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <br/>
+    <div>
+      <%= f.label "Categories" %> <br/>
+
+      <select size="5" multiple="multiple" name="new_categories_ids[]">
+
+        <% for cat in @all_categories
+               if (cat.parent_id == nil)
+                   next
+               end %>
+            <option value="<%= cat.id %>"
+                    <% if (@associated_categories.include?(cat)) %> selected=true
+            <% end %>> <%= cat.name %></option>
+
+        <% end %>
+      </select>
+    </div>
+    <br/>
+
+
+    <div class="field">
+      <%= f.label :description %>
+      <br/>
+      <%= f.text_field :description %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

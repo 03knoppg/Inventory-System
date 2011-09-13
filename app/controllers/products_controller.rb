@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @associated_categories = @product.categories
+    @all_categories = Category.all
 
 
 
