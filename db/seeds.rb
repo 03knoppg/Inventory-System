@@ -8,10 +8,14 @@
 
 Category.delete_all
 Product.delete_all
+Attribute.delete_all
+Property.delete_all
+Component.delete_all
 
 all = Category.create(name:"All")
 bedroom = Category.create(name:"Bedroom", parent_id:all.id)
 livingroom = Category.create(name:"Living Room", parent_id:all.id)
+garage = Category.create(name:"Garage", parent_id:all.id)
 
 
 Product.create(name:"Comfy chair", description:"Very soft chair").categories=[bedroom, livingroom]
@@ -22,3 +26,16 @@ Product.create(name:"Comfy bed", description:"Very soft bed").categories=[bedroo
 Product.create(name:"Hard bed", description:"Very hard bed").categories=[bedroom]
 Product.create(name:"Big bed", description:"Very big bed").categories=[bedroom]
 Product.create(name:"Small bed", description:"Very small bed").categories=[bedroom]
+car = Product.create(name:"Car", description:"Fast car")
+car.categories=[garage]
+
+all_component = Component.create(name:"All", description:"Root component", parent_id:nil)
+door = Component.create(name:"Door", description:"Good door", parent_id:all_component.id)
+door.products=[car]
+
+colour = Attribute.create(name:"Colour", description:"The colour")
+door.attributes = [colour]
+
+blue = Property.create(field_type:"string", value:"Blue")
+green = Property.create(field_type:"string", value:"Green")
+colour.properties = [blue,green]

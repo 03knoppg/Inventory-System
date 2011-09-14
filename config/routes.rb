@@ -1,4 +1,10 @@
 TestDBRubymineProject::Application.routes.draw do
+  resources :properties
+
+  resources :attributes
+
+  resources :components
+
   resources :products
 
   resources :categories

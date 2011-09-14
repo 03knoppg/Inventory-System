@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909173706) do
+ActiveRecord::Schema.define(:version => 20110914174229) do
+
+  create_table "attributes", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attributes_components", :id => false, :force => true do |t|
+    t.integer "attribute_id"
+    t.integer "component_id"
+  end
+
+  create_table "attributes_products", :id => false, :force => true do |t|
+    t.integer "attribute_id"
+    t.integer "product_id"
+  end
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -25,9 +42,30 @@ ActiveRecord::Schema.define(:version => 20110909173706) do
     t.integer "product_id"
   end
 
+  create_table "components", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "components_products", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "product_id"
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "properties", :force => true do |t|
+    t.string   "field_type"
+    t.string   "value"
+    t.integer  "attribute_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
