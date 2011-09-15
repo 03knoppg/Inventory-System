@@ -3,6 +3,12 @@ class ComponentsController < ApplicationController
   # GET /components.json
   def index
     @components = Component.all
+    @tmp_array = []
+    @all_components =  Component.all
+    @all_components_hash = {}
+    @sc = ""
+
+    sort_components()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,6 +41,7 @@ class ComponentsController < ApplicationController
   # GET /components/1/edit
   def edit
     @component = Component.find(params[:id])
+    @all_components =  Component.all
   end
 
   # POST /components
@@ -78,6 +85,31 @@ class ComponentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to components_url }
       format.json { head :ok }
+    end
+  end
+
+   #Function to sort the components array
+   def sort_components
+    logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_components}")
+
+    for com in @all_components
+
+
+      if(com.parent_id == nil)
+         @all_components_hash[0] = [com]
+
+      else
+
+        if(@all_components_hash[com.parent_id] == nil)
+          @all_components_hash[com.parent_id] = []
+        end
+
+        @all_components_hash[com.parent_id].push(com)
+      end
+    end
+
+    for key in @all_components_hash.keys
+      @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end
   end
 end

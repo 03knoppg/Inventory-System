@@ -2,26 +2,18 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Parent</th>
+    <th align="left">Name</th>
+    <!--<th>Description</th>
+    <th>Parent</th>-->
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @components.each do |component| %>
-  <tr>
-    <td><%= component.name %></td>
-    <td><%= component.description %></td>
-    <td><%= component.parent_id %></td>
-    <td><%= link_to 'Show', component %></td>
-    <td><%= link_to 'Edit', edit_component_path(component) %></td>
-    <td><%= link_to 'Destroy', component, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  <%print_components(0,0)%>
+  <%= @sc.html_safe %>
 </table>
 
 <br />
 
-<%= link_to 'New Component', new_component_path %>
+<%= button_to "New Component", new_component_path, :method => :get %>

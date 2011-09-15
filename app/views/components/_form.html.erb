@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
+             Parent
+
+  <div class ="field">
+    <select name="component[parent_id]">
+
+      <% @all_components.each do |component| %>
+      <option value= "<%=component.id %>"<% if(@component.parent_id == component.id) %>
+            selected = true;
+          <% end %>>
+        <%= component.name%></option>
+      <% end %>
+    </select>
+  </div>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :parent_id %><br />
-    <%= f.number_field :parent_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

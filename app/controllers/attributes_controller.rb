@@ -3,6 +3,8 @@ class AttributesController < ApplicationController
   # GET /attributes.json
   def index
     @attributes = Attribute.all
+    @all_attributes =  Attribute.all
+    @sa = " "
 
     respond_to do |format|
       format.html # index.html.erb

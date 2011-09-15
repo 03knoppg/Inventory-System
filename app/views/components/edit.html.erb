@@ -1,6 +1,13 @@
-<h1>Editing component</h1>
+<h1>Editing Component</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @component %> |
-<%= link_to 'Back', components_path %>
+<table>
+  <tr>
+    <td>
+       <%= button_to "Show", {:action => "show", :id => @component.id }, :method => :get %>
+    </td>
+    <td>
+       <%= button_to "Back", component_path, :method => :get %>
+    </td>
+  </tr>
+</table>

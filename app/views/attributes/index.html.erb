@@ -2,24 +2,17 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @attributes.each do |attribute| %>
-  <tr>
-    <td><%= attribute.name %></td>
-    <td><%= attribute.description %></td>
-    <td><%= link_to 'Show', attribute %></td>
-    <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
-    <td><%= link_to 'Destroy', attribute, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+ <% print_attributes %>
+  <%= @sa.html_safe %>
 </table>
 
 <br />
 
-<%= link_to 'New Attribute', new_attribute_path %>
+<%= button_to "New Attribute", new_attribute_path, :method => :get %>

@@ -1,15 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @attribute.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @attribute.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_attribute_path(@attribute) %> |
-<%= link_to 'Back', attributes_path %>
+<table>
+  <tr>
+    <th align="left">Name:</th>
+    <th align="left">Description:</th>
+    <th align="left">Components:</th>
+    <th align="left">Products:</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= @attribute.name %></td>
+    <td valign="top"><%= @attribute.description %></td>
+     <td><table>
+      <% associated_components = @attribute.components
+        for com in associated_components%>
+          <tr><td><%= com.name %></td></tr>
+          <% end %>
+        </table>
+    </td>
+    <td><table>
+        <% if(@associated_components == nil) %>
+            <% associated_products = @attribute.products
+                for prod in associated_products%>
+                <tr><td><%= prod.name %></td></tr>
+                <% end %>
+        <% else %>
+            <% for com in @associated_components
+                associated_component_products = com.products
+                for prod in associated_component_products %>
+                <tr><td><%= prod.name %></td></tr>
+                <% end %>
+            <%end%>
+        <%end%>
+        </table>
+    </td>
+  </tr>
+  <tr><td><p></p></td></tr>
+  <tr>
+    <td>
+     <%= button_to "Edit", edit_attribute_path(@attribute), :method => :get %>
+    </td>
+    <td>
+     <%= button_to "Back", attributes_path, :method => :get %>
+    </td>
+  </tr>
+</table>
