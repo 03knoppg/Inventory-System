@@ -1,5 +1,5 @@
 TestDBRubymineProject::Application.routes.draw do
-  resources :value_fields
+  resources :valuefields
 
   resources :ValuesController
 

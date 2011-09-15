@@ -9,35 +9,78 @@
 Category.delete_all
 Product.delete_all
 Attribute.delete_all
-ValueField.delete_all
+Valuefield.delete_all
 Component.delete_all
 
 all = Category.create(name:"All")
-bedroom = Category.create(name:"Bedroom", parent_id:all.id)
-livingroom = Category.create(name:"Living Room", parent_id:all.id)
-garage = Category.create(name:"Garage", parent_id:all.id)
+toronto = Category.create(name:"Toronto", parent_id:all.id)
+montreal = Category.create(name:"Montreal", parent_id:all.id)
+vancouver = Category.create(name:"Vancouver", parent_id:all.id)
+fakestreet = Category.create(name:"123 Fake Street", parent_id:toronto.id)
+somewhere = Category.create(name:"555 Somewhere Road", parent_id:toronto.id)
+nowhere = Category.create(name:"In the middle", parent_id:toronto.id)
 
+u222 = Product.create(name:"Unit 222", description:"One bedroom")
+u434 = Product.create(name:"Unit 434", description:"Bachelor")
+u544 = Product.create(name:"Unit 544", description:"Two Bedroom")
+u13  = Product.create(name:"Unit 13", description:"Who would live here?")
 
-Product.create(name:"Comfy chair", description:"Very soft chair").categories=[bedroom, livingroom]
-Product.create(name:"Hard chair", description:"Very hard chair").categories=[livingroom]
-Product.create(name:"Big chair", description:"Very big chair").categories=[bedroom, livingroom]
-Product.create(name:"Small chair", description:"Very small chair").categories=[bedroom]
-Product.create(name:"Comfy bed", description:"Very soft bed").categories=[bedroom]
-Product.create(name:"Hard bed", description:"Very hard bed").categories=[bedroom]
-Product.create(name:"Big bed", description:"Very big bed").categories=[bedroom]
-Product.create(name:"Small bed", description:"Very small bed").categories=[bedroom]
-car = Product.create(name:"Car", description:"Fast car")
-car.categories=[garage]
+all_component = Component.create(name:"All", description:"Root component")
+bedroom = Component.create(name:"Bedroom", description:"Nice bedroom")
+livingroom = Component.create(name:"Living room", description:"Big living room")
+kitchen = Component.create(name:"Kitchen", description:"Functional kitchen")
 
-
-all_component = Component.create(name:"All", description:"Root component", parent_id:nil)
-door = Component.create(name:"Door", description:"Good door", parent_id:all_component.id)
-door.products=[car]
+bed = Component.create(name:"Bed", description:"Big bed")
+chair = Component.create(name:"Chair", description:"Soft chair")
+couch1 = Component.create(name:"Hide-a-bed", description:"Hide-a-bed")
+couch2 = Component.create(name:"Love seat", description:"Love seat")
+fridge = Component.create(name:"Fridge", description:"Fridge")
+stove = Component.create(name:"Stove", description:"Stove")
 
 colour = Attribute.create(name:"Colour", description:"The colour", field_type:"string")
-door.attributes = [colour]
+bedsize = Attribute.create(name:"Bed size", description:"The size of the bed", field_type:"string")
+size =  Attribute.create(name:"Size", description:"Vague size of item", field_type:"string")
 
-blue = ValueField.create(field_value:"Blue")
-green = ValueField.create(field_value:"Green")
-colour.value_fields = [blue,green]
-car.value_fields =[blue,green]
+blue = Valuefield.create(fieldvalue:"Blue")
+green = Valuefield.create(fieldvalue:"Green")
+red = Valuefield.create(fieldvalue:"Red")
+yellow = Valuefield.create(fieldvalue:"Yellow")
+
+king = Valuefield.create(fieldvalue:"King")
+queen = Valuefield.create(fieldvalue:"Queen")
+double = Valuefield.create(fieldvalue:"Double")
+
+big = Valuefield.create(fieldvalue:"Big")
+small = Valuefield.create(fieldvalue:"Small")
+
+#toronto.categories = [fakestreet. somewhere, nowhere]
+
+fakestreet.products = [u222]
+somewhere.products = [u434,u544,u13]
+
+
+u222.components=[bedroom, livingroom, kitchen]
+u434.components=[livingroom, kitchen]
+u544.components=[bedroom, bedroom, livingroom, kitchen]
+u13.components=[kitchen, kitchen, kitchen]
+
+bedroom.components = [bed, chair]
+livingroom.components = [chair, bed, couch1, couch2]
+kitchen.components = [fridge, stove]
+
+bed.attributes = [colour, bedsize]
+chair.attributes = [colour]
+couch1.attributes = [colour,size]
+couch2.attributes = [colour,size]
+fridge.attributes = [colour]
+stove.attributes = [colour]
+
+u222.valuefields = [big]
+u434.valuefields = [small]
+u544.valuefields = [big]
+u13.valuefields = [small]
+
+
+colour.valuefields = [blue, green, red, yellow]
+bedsize.valuefields = [king, queen, double]
+size.valuefields = [big, small]

@@ -1,0 +1,23 @@
+<h1>Listing valuefields</h1>
+
+<table>
+  <tr>
+    <th>Fieldvalue</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @valuefields.each do |valuefield| %>
+  <tr>
+    <td><%= valuefield.fieldvalue %></td>
+    <td><%= link_to 'Show', valuefield %></td>
+    <td><%= link_to 'Edit', edit_valuefield_path(valuefield) %></td>
+    <td><%= link_to 'Destroy', valuefield, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Valuefield', new_valuefield_path %>

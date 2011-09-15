@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914213233) do
+ActiveRecord::Schema.define(:version => 20110915162154) do
 
   create_table "attributes", :force => true do |t|
     t.string   "name"
@@ -24,11 +24,6 @@ ActiveRecord::Schema.define(:version => 20110914213233) do
   create_table "attributes_components", :id => false, :force => true do |t|
     t.integer "attribute_id"
     t.integer "component_id"
-  end
-
-  create_table "attributes_products", :id => false, :force => true do |t|
-    t.integer "attribute_id"
-    t.integer "product_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -46,9 +41,13 @@ ActiveRecord::Schema.define(:version => 20110914213233) do
   create_table "components", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "components_components", :id => false, :force => true do |t|
+    t.integer "component_parent_id"
+    t.integer "component_child_id"
   end
 
   create_table "components_products", :id => false, :force => true do |t|
@@ -63,10 +62,14 @@ ActiveRecord::Schema.define(:version => 20110914213233) do
     t.datetime "updated_at"
   end
 
-  create_table "value_fields", :force => true do |t|
-    t.string   "field_value"
+  create_table "products_valuefields", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "valuefield_id"
+  end
+
+  create_table "valuefields", :force => true do |t|
+    t.string   "fieldvalue"
     t.integer  "attribute_id"
-    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
