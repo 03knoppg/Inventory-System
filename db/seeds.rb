@@ -9,7 +9,7 @@
 Category.delete_all
 Product.delete_all
 Attribute.delete_all
-Property.delete_all
+ValueField.delete_all
 Component.delete_all
 
 all = Category.create(name:"All")
@@ -29,13 +29,15 @@ Product.create(name:"Small bed", description:"Very small bed").categories=[bedro
 car = Product.create(name:"Car", description:"Fast car")
 car.categories=[garage]
 
+
 all_component = Component.create(name:"All", description:"Root component", parent_id:nil)
 door = Component.create(name:"Door", description:"Good door", parent_id:all_component.id)
 door.products=[car]
 
-colour = Attribute.create(name:"Colour", description:"The colour")
+colour = Attribute.create(name:"Colour", description:"The colour", field_type:"string")
 door.attributes = [colour]
 
-blue = Property.create(field_type:"string", value:"Blue")
-green = Property.create(field_type:"string", value:"Green")
-colour.properties = [blue,green]
+blue = ValueField.create(field_value:"Blue")
+green = ValueField.create(field_value:"Green")
+colour.value_fields = [blue,green]
+car.value_fields =[blue,green]

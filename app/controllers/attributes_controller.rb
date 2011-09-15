@@ -25,6 +25,7 @@ class AttributesController < ApplicationController
   # GET /attributes/new.json
   def new
     @attribute = Attribute.new
+    @all_attributes = Attribute.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class AttributesController < ApplicationController
   # GET /attributes/1/edit
   def edit
     @attribute = Attribute.find(params[:id])
+    @all_attributes = Attribute.all
   end
 
   # POST /attributes

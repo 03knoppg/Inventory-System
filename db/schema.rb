@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914174229) do
+ActiveRecord::Schema.define(:version => 20110914213233) do
 
   create_table "attributes", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "field_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,10 +63,10 @@ ActiveRecord::Schema.define(:version => 20110914174229) do
     t.datetime "updated_at"
   end
 
-  create_table "properties", :force => true do |t|
-    t.string   "field_type"
-    t.string   "value"
+  create_table "value_fields", :force => true do |t|
+    t.string   "field_value"
     t.integer  "attribute_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

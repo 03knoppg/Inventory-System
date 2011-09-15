@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  field_value: MyString
+  attribute_id: 1
+  product_id: 1
+
+two:
+  field_value: MyString
+  attribute_id: 1
+  product_id: 1

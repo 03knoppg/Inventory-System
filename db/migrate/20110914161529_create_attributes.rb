@@ -3,6 +3,7 @@ class CreateAttributes < ActiveRecord::Migration
     create_table :attributes do |t|
       t.string :name
       t.string :description
+      t.string :field_type
 
       t.timestamps
     end
