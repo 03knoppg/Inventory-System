@@ -64,6 +64,8 @@ u434.components=[livingroom, kitchen]
 u544.components=[bedroom, bedroom, livingroom, kitchen]
 u13.components=[kitchen, kitchen, kitchen]
 
+all_component.components = [bedroom, livingroom, kitchen]
+
 bedroom.components = [bed, chair]
 livingroom.components = [chair, bed, couch1, couch2]
 kitchen.components = [fridge, stove]
