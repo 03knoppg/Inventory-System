@@ -10,7 +10,19 @@
       </ul>
     </div>
   <% end %>
+     <div class ="field">
+    <select name="valuefield[attribute]">
 
+    <% logger.info(@all_attributes.inspect)
+
+       for att in @all_attributes %>
+      <option value= "<%=att.id %>"<% if(@valuefield.attribute == att) %>
+            selected = true;
+          <% end %>>
+        <%= att.name%></option>
+      <% end %>
+    </select>
+  </div>
   <div class="field">
     <%= f.label :fieldvalue %><br />
     <%= f.text_field :fieldvalue %>

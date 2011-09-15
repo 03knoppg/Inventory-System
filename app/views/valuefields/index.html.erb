@@ -8,13 +8,20 @@
     <th></th>
   </tr>
 
-<% @valuefields.each do |valuefield| %>
-  <tr>
-    <td><%= valuefield.fieldvalue %></td>
-    <td><%= link_to 'Show', valuefield %></td>
-    <td><%= link_to 'Edit', edit_valuefield_path(valuefield) %></td>
-    <td><%= link_to 'Destroy', valuefield, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+<% @all_atrributes.each do |att| %>
+      <tr>
+        <td>
+          <b><%=att.name%></b>
+        </td>
+      </tr>
+      <%for val in att.valuefields %>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= val.fieldvalue %></td>
+        <td><%= link_to 'Show', val %></td>
+        <td><%= link_to 'Edit', edit_valuefield_path(val) %></td>
+        <td><%= link_to 'Destroy', val, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
 <% end %>
 </table>
 

@@ -4,34 +4,20 @@
   <tr>
     <th align="left">Name:</th>
     <th align="left">Description:</th>
-    <th align="left">Components:</th>
-    <th align="left">Products:</th>
+    <th align="left">Values:</th>
   </tr>
   <tr>
-    <td valign="top"><%= @attribute.name %></td>
-    <td valign="top"><%= @attribute.description %></td>
-     <td><table>
-      <% associated_components = @attribute.components
-        for com in associated_components%>
-          <tr><td><%= com.name %></td></tr>
-          <% end %>
-        </table>
-    </td>
-    <td><table>
-        <% if(@associated_components == nil) %>
-            <% associated_products = @attribute.products
-                for prod in associated_products%>
-                <tr><td><%= prod.name %></td></tr>
-                <% end %>
-        <% else %>
-            <% for com in @associated_components
-                associated_component_products = com.products
-                for prod in associated_component_products %>
-                <tr><td><%= prod.name %></td></tr>
-                <% end %>
-            <%end%>
+    <td valign="top" rowspan=<%=@associated_values.length%>> <%= @attribute.name %></td>
+    <td valign="top" rowspan=<%=@associated_values.length%>> <%= @attribute.description %></td>
+     <td>
+
+    <% if(@associated_values != nil) %>
+        <% for val in @associated_values %>
+            <%= val.fieldvalue %></td></tr><tr><td>
+            <% end %>
         <%end%>
-        </table>
+
+
     </td>
   </tr>
   <tr><td><p></p></td></tr>
@@ -44,3 +30,5 @@
     </td>
   </tr>
 </table>
+
+<%= button_to "New Value", new_valuefield_path, :method => :get %>

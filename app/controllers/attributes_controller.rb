@@ -16,6 +16,7 @@ class AttributesController < ApplicationController
   # GET /attributes/1.json
   def show
     @attribute = Attribute.find(params[:id])
+    @associated_values = @attribute.valuefields
 
     respond_to do |format|
       format.html # show.html.erb

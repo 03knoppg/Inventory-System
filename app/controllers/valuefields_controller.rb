@@ -3,6 +3,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields.json
   def index
     @valuefields = Valuefield.all
+    @all_attributes = Attribute.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +26,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/new.json
   def new
     @valuefield = Valuefield.new
+    @all_attributes = Attribute.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +37,14 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1/edit
   def edit
     @valuefield = Valuefield.find(params[:id])
+    @all_attributes = Attribute.all
   end
 
   # POST /valuefields
   # POST /valuefields.json
   def create
     @valuefield = Valuefield.new(params[:valuefield])
+    @all_attributes = Attribute.all
 
     respond_to do |format|
       if @valuefield.save
