@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915162154) do
+ActiveRecord::Schema.define(:version => 20110915181332) do
 
   create_table "attributes", :force => true do |t|
     t.string   "name"
@@ -19,11 +19,6 @@ ActiveRecord::Schema.define(:version => 20110915162154) do
     t.string   "field_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "attributes_components", :id => false, :force => true do |t|
-    t.integer "attribute_id"
-    t.integer "component_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -53,6 +48,11 @@ ActiveRecord::Schema.define(:version => 20110915162154) do
   create_table "components_products", :id => false, :force => true do |t|
     t.integer "component_id"
     t.integer "product_id"
+  end
+
+  create_table "components_valuefields", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "valuefield_id"
   end
 
   create_table "products", :force => true do |t|
