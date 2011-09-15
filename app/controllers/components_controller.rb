@@ -93,7 +93,7 @@ class ComponentsController < ApplicationController
     logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_components}")
 
     for com in @all_components
-
+      associated_components = @component.components
 
       if(com.parent_id == nil)
          @all_components_hash[0] = [com]
