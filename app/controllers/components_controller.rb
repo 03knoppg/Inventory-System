@@ -94,13 +94,11 @@ class ComponentsController < ApplicationController
 
     @all_components_copy = []
     for com in @all_components
-     if(@all_components_hash[com] == nil)
-          @all_components_hash[com] = []
-        end
 
-        @all_components_hash[com].push(com.components)
-     for all_com_copy in com.components
-        @all_components_copy.push(all_com_copy)
+        @all_components_hash[com]= (com.components)
+
+        for all_com_copy in com.components
+          @all_components_copy.push(all_com_copy)
         end
     end
     @all_components_copy = @all_components - @all_components_copy
