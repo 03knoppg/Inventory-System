@@ -90,26 +90,24 @@ class ComponentsController < ApplicationController
 
    #Function to sort the components array
    def sort_components
-    logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_components}")
+    #logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_components}")
 
+    @all_components_copy = []
     for com in @all_components
-      associated_components = @component.components
-
-      if(com.parent_id == nil)
-         @all_components_hash[0] = [com]
-
-      else
-
-        if(@all_components_hash[com.parent_id] == nil)
-          @all_components_hash[com.parent_id] = []
+     if(@all_components_hash[com] == nil)
+          @all_components_hash[com] = []
         end
 
-        @all_components_hash[com.parent_id].push(com)
-      end
+        @all_components_hash[com].push(com.components)
+     for all_com_copy in com.components
+        @all_components_copy.push(all_com_copy)
+        end
     end
-
+    @all_components_copy = @all_components - @all_components_copy
+    #logger.info("@@@@@@@all components copy #{@all_components_copy}")
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end
-  end
+     #logger.info("##########all components hash #{@all_components_hash}")
+   end
 end
