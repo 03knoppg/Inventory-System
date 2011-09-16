@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Fieldvalue:</b>
+  <b>Attribute:</b>
+  <%parent =  @valuefield.attribute %>
+  <%= parent.name %>
+  (<%= parent.field_type %>)
+</p>
+<p>
+  <b>Value:</b>
   <%= @valuefield.fieldvalue %>
 </p>
 

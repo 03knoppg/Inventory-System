@@ -26,9 +26,11 @@
                if (cat.parent_id == nil)
                    next
                end %>
-            <option value="<%= cat.id %>"
-                    <% if (@associated_categories.include?(cat)) %> selected=true
-            <% end %>> <%= cat.name %></option>
+            <option
+                value="<%= cat.id %>"
+                    <% if (@associated_categories.include?(cat)) %> selected=true <% end %>>
+              <%= cat.name %>
+            </option>
 
         <% end %>
       </select>

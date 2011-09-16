@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Category.delete_all
-Product.delete_all
-Attribute.delete_all
-Valuefield.delete_all
-Component.delete_all
+Category.destroy_all
+Product.destroy_all
+Attribute.destroy_all
+Valuefield.destroy_all
+Component.destroy_all
 
 all = Category.create(name:"All")
 toronto = Category.create(name:"Toronto", parent_id:all.id)

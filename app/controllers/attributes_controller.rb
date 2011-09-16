@@ -78,6 +78,19 @@ class AttributesController < ApplicationController
   # DELETE /attributes/1.json
   def destroy
     @attribute = Attribute.find(params[:id])
+
+
+    for val in @attribute.valuefields
+      for prod in val.products
+
+        prod.valuefields.destroy(val)
+
+      end
+
+      val.destroy
+
+    end
+
     @attribute.destroy
 
     respond_to do |format|

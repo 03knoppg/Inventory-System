@@ -27,6 +27,7 @@ class ValuefieldsController < ApplicationController
   def new
     @valuefield = Valuefield.new
     @all_attributes = Attribute.all
+    @abc = params
 
     respond_to do |format|
       format.html # new.html.erb
@@ -78,6 +79,7 @@ class ValuefieldsController < ApplicationController
   def destroy
     @valuefield = Valuefield.find(params[:id])
     @valuefield.destroy
+    logger.info("YES IT DID")
 
     respond_to do |format|
       format.html { redirect_to valuefields_url }
