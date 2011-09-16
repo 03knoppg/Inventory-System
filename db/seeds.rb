@@ -41,17 +41,17 @@ colour = Attribute.create(name:"Colour", description:"The colour", field_type:"s
 bedsize = Attribute.create(name:"Bed size", description:"The size of the bed", field_type:"string")
 size =  Attribute.create(name:"Size", description:"Vague size of item", field_type:"string")
 
-blue = Valuefield.create(fieldvalue:"Blue")
-green = Valuefield.create(fieldvalue:"Green")
-red = Valuefield.create(fieldvalue:"Red")
-yellow = Valuefield.create(fieldvalue:"Yellow")
+#blue = Valuefield.create(fieldvalue:"Blue")
+#green = Valuefield.create(fieldvalue:"Green")
+#red = Valuefield.create(fieldvalue:"Red")
+#yellow = Valuefield.create(fieldvalue:"Yellow")
 
-king = Valuefield.create(fieldvalue:"King")
-queen = Valuefield.create(fieldvalue:"Queen")
-double = Valuefield.create(fieldvalue:"Double")
+#king = Valuefield.create(fieldvalue:"King")
+#queen = Valuefield.create(fieldvalue:"Queen")
+#double = Valuefield.create(fieldvalue:"Double")
 
-big = Valuefield.create(fieldvalue:"Big")
-small = Valuefield.create(fieldvalue:"Small")
+#big = Valuefield.create(fieldvalue:"Big")
+#small = Valuefield.create(fieldvalue:"Small")
 
 #toronto.categories = [fakestreet. somewhere, nowhere]
 
@@ -64,25 +64,106 @@ u434.components=[livingroom, kitchen]
 u544.components=[bedroom, bedroom, livingroom, kitchen]
 u13.components=[kitchen, kitchen, kitchen]
 
+u222.attributes = [size]
+u434.attributes = [size]
+u544.attributes = [size]
+u13.attributes = [size]
+
+
+bedroom.attributes = []
+livingroom.attributes = []
+kitchen.attributes = []
+
+bed.attributes = [bedsize, colour]
+chair.attributes = [colour]
+couch1.attributes = [size, colour]
+couch2.attributes = [size, colour]
+fridge.attributes = [colour]
+stove.attributes = [colour]
+
+
 all_component.components = [bedroom, livingroom, kitchen]
 
 bedroom.components = [bed, chair]
 livingroom.components = [chair, bed, couch1, couch2]
 kitchen.components = [fridge, stove]
 
-bed.valuefields = [blue, king]
-chair.valuefields = [green]
-couch1.valuefields = [yellow,big]
-couch2.valuefields = [red,small]
-fridge.valuefields = [red]
-stove.valuefields = [green]
 
-u222.valuefields = [big]
-u434.valuefields = [small]
-u544.valuefields = [big]
-u13.valuefields = [small]
+blueBed = Valuefield.create(fieldvalue:"Blue")
+blueBed.attribute = colour
+blueBed.component = bed
+blueBed.save
+
+kingBed = Valuefield.create(fieldvalue:"King")
+kingBed.attribute = bedsize
+kingBed.component = bed
+kingBed.save
 
 
-colour.valuefields = [blue, green, red, yellow]
-bedsize.valuefields = [king, queen, double]
-size.valuefields = [big, small]
+
+greenChair = Valuefield.create(fieldvalue:"Green")
+greenChair.attribute = colour
+greenChair.component = chair
+ greenChair.save
+
+
+yellowCouch1 = Valuefield.create(fieldvalue:"Yellow")
+yellowCouch1.attribute = colour
+yellowCouch1.component = couch1
+yellowCouch1.save
+
+bigCouch1 = Valuefield.create(fieldvalue:"Big")
+bigCouch1.attribute = bedsize
+bigCouch1.component = couch1
+bigCouch1.save
+
+
+
+
+redCouch2 = Valuefield.create(fieldvalue:"Yellow")
+redCouch2.attribute = colour
+redCouch2.component = couch2
+redCouch2.save
+
+smallCouch2 = Valuefield.create(fieldvalue:"Small")
+smallCouch2.attribute = bedsize
+smallCouch2.component = couch2
+smallCouch2.save
+
+red_fridge= Valuefield.create(fieldvalue:"Red")
+red_fridge.attribute = colour
+red_fridge.component = fridge
+red_fridge.save
+
+
+green_stove= Valuefield.create(fieldvalue:"Green")
+green_stove.attribute = colour
+green_stove.component = stove
+green_stove.save
+
+big_u222 = Valuefield.create(fieldvalue:"Big")
+big_u222.attribute = size
+big_u222.product = u222
+big_u222.save
+
+small_u434 = Valuefield.create(fieldvalue:"Small")
+small_u434.attribute = size
+small_u434.product = u434
+small_u434.save
+
+big_u544 = Valuefield.create(fieldvalue:"Big")
+big_u544.attribute = size
+big_u544.product = u544
+big_u544.save
+
+big_u13 = Valuefield.create(fieldvalue:"Small")
+big_u13.attribute = size
+big_u13.product = u13
+big_u13.save
+
+
+
+
+#colour.valuefields = [blue, green, red, yellow]
+#bedsize.valuefields = [king, queen, double]
+#size.valuefields = [big, small]

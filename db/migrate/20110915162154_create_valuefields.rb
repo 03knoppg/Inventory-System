@@ -3,6 +3,8 @@ class CreateValuefields < ActiveRecord::Migration
     create_table :valuefields do |t|
       t.string :fieldvalue
       t.integer :attribute_id
+      t.integer :product_id
+      t.integer :component_id
 
       t.timestamps
     end
