@@ -102,7 +102,7 @@ class CategoriesController < ApplicationController
 
   #Function to destroy a parent category and its children
   def destroy_category(category)
-    logger.info("+++++++++++++++++++++++++++destroy_category category #{category.name}")
+    #logger.info("+++++++++++++++++++++++++++destroy_category category #{category.name}")
     if(category == nil || category.id == nil)
         return
     end
@@ -117,7 +117,7 @@ class CategoriesController < ApplicationController
 
   #Function to sort the categories array
    def sort_categories
-    logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_categories}")
+    #logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_categories}")
 
     for cat in @all_categories
 
@@ -143,7 +143,7 @@ class CategoriesController < ApplicationController
       @all_categories_hash[key].sort!{|x,y| x.name <=> y.name}
     end
 
-      logger.info("+++++++++++++++++++++++++++Sort_category end #{@all_categories_hash}")
+      #logger.info("+++++++++++++++++++++++++++Sort_category end #{@all_categories_hash}")
   end
 
 end

@@ -14,19 +14,20 @@
              Parent
 
   <div class ="field">
-    <select name="component[parent_id]">
+       <select size="5" multiple="multiple" name="new_components_ids[]">
+        <% for comp in @all_components  %>
+            <option value="<%= comp.id %>"
+                    <% if (@associated_components.include?(comp)) %> selected=true
+            <% end %>> <%= comp.name %></option>
 
-      <% @all_components.each do |component| %>
-      <option value= "<%=component.id %>"<% if(@component.parent_id == component.id) %>
-            selected = true;
-          <% end %>>
-        <%= component.name%></option>
-      <% end %>
-    </select>
+        <% end %>
+      </select>
   </div>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %><br />
+    <%= f.label :description %><br/>
+    <%= f.text_field :description %>
   </div>
   <div class="actions">
     <%= f.submit %>

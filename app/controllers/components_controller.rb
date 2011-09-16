@@ -20,6 +20,7 @@ class ComponentsController < ApplicationController
   # GET /components/1.json
   def show
     @component = Component.find(params[:id])
+    @all_components =  Component.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +32,8 @@ class ComponentsController < ApplicationController
   # GET /components/new.json
   def new
     @component = Component.new
-
+    @all_components = Component.all
+    @associated_components = []
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @component }
@@ -42,12 +44,18 @@ class ComponentsController < ApplicationController
   def edit
     @component = Component.find(params[:id])
     @all_components =  Component.all
+    @associated_components = @component.component_parents
   end
 
   # POST /components
   # POST /components.json
   def create
     @component = Component.new(params[:component])
+
+    components = Component.find(params[:new_components_ids])
+    for comp in components
+       comp.components.push(@component)
+    end
 
     respond_to do |format|
       if @component.save
@@ -78,9 +86,14 @@ class ComponentsController < ApplicationController
 
   # DELETE /components/1
   # DELETE /components/1.json
+   #Function to destroy a component
   def destroy
     @component = Component.find(params[:id])
-    @component.destroy
+    @all_components =  Component.all
+    @all_components_hash = {}
+    #sort_components_for_delete()
+    destroy_component(@component)
+
 
     respond_to do |format|
       format.html { redirect_to components_url }
@@ -88,10 +101,22 @@ class ComponentsController < ApplicationController
     end
   end
 
+  #Function to destroy a parent component and its children
+  def destroy_component(component)
+    if(component == nil || component.id == nil)
+        return
+    end
+
+      for child in component.components
+        if(child.component_parents.length < 2)
+          destroy_component(child)
+        end
+      end
+    component.destroy
+  end
+
    #Function to sort the components array
    def sort_components
-    #logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_components}")
-
     @all_components_copy = []
     for com in @all_components
 
@@ -102,10 +127,29 @@ class ComponentsController < ApplicationController
         end
     end
     @all_components_copy = @all_components - @all_components_copy
-    #logger.info("@@@@@@@all components copy #{@all_components_copy}")
+
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end
-     #logger.info("##########all components hash #{@all_components_hash}")
    end
+
+   #Function to sort the categories array
+   def sort_components_for_delete
+
+    for comp in @all_components
+      if(comp == nil)
+         @all_components_hash[0] = [comp]
+      else
+        if(@all_components_hash[comp.parent_id] == nil)
+          @all_components_hash[comp.parent_id] = []
+        end
+
+        @all_components_hash[comp.parent_id].push(comp)
+      end
+    end
+
+    for key in @all_components_hash.keys
+      @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
+    end
+  end
 end

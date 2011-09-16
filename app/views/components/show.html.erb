@@ -3,12 +3,19 @@
   <tr>
     <th><b>ID:</b></th>
     <th><b>Name:</b></th>
-    <th><b>Parent ID:</b></th>
+    <th>Description:</th>
+    <th><b>Parent Name:</b></th>
   </tr>
   <tr>
     <td align="center"><%= @component.id %></td>
     <td align="center"><%= @component.name %></td>
-    <td align="center"><%= @component.parent_id %></td>
+    <td align="center"><%= @component.description %></td>
+    <td><table>
+      <% parents = @component.component_parents%>
+      <% for par in parents%>
+      <tr><td><%= par.name %></td></tr>
+          <%end%>
+    </table></td>
   </tr>
   <tr><td><p></p></td></tr>
   <tr>

@@ -58,7 +58,7 @@ class ProductsController < ApplicationController
 
     @product.categories = categories
 
-    logger.info("+++++++++++++++++++++++++++found categories #{@product.categories}")
+    #logger.info("+++++++++++++++++++++++++++found categories #{@product.categories}")
 
     respond_to do |format|
       if @product.save
