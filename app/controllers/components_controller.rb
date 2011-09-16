@@ -91,7 +91,6 @@ class ComponentsController < ApplicationController
     @component = Component.find(params[:id])
     @all_components =  Component.all
     @all_components_hash = {}
-    #sort_components_for_delete()
     destroy_component(@component)
 
 
