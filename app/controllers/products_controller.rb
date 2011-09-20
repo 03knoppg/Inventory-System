@@ -73,7 +73,8 @@ class ProductsController < ApplicationController
   #Function to update products
   def update
     @product = Product.find(params[:id])
-
+    categories = Category.find(params[:new_categories_ids])
+    @product.categories = categories
     respond_to do |format|
       if @product.update_attributes(params[:product])
 

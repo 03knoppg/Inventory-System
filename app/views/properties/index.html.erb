@@ -1,0 +1,20 @@
+
+<h1>Listing properties</h1>
+
+<table>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+ <% print_properties %>
+  <%= @sa.html_safe %>
+</table>
+<br />
+
+<%= button_to 'New Property', new_property_path, :method=> :get %>
+<br />
+<%= button_to "Back to Main Menu", "/", :method => :get %>

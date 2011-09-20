@@ -60,24 +60,24 @@
 
                <p/>
 
-   <b>Attributes</b>
+   <b>Properties</b>
 <%if(valuefields.length > 0) %>
 <table>
   <tr>
-    <th><b>Attribute:</b></th>
+    <th><b>Property:</b></th>
     <th><b>Value:</b></th>
   </tr>
   <%for val in valuefields%>
-      <% attribute = val.attribute %>
+      <% property = val.property %>
       <tr>
-        <td> <%= link_to("#{attribute.name} (#{attribute.field_type}) ", attribute) %> </td>
+        <td> <%= link_to("#{property.name} (#{property.field_type}) ", property) %> </td>
         <td> <%= link_to(val.fieldvalue, val) %> </td>
       </tr>
       <%end%>
 </table>
     <%else%>
-    <br/>No attributes
+    <br/>No properties
 <%end%>
 
 
-<%= button_to "New Attribute", new_attribute_path, :method => :get %>
+<%= button_to "New Property", new_property_path, :method => :get %>

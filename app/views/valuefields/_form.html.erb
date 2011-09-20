@@ -36,16 +36,16 @@
       </select>
     </div>
 
-    <%= f.label "Attribute" %><br />
+    <%= f.label "Property" %><br />
     <div class ="field">
-      <select name="attribute_id[]">
+      <select name="property_id[]">
 
 
-        <%for att in @all_attributes %>
-            <option value= "<%=att.id %>"<% if(@valuefield.attribute == att) %>
+        <%for prop in @all_properties %>
+            <option value= "<%=prop.id %>"<% if(@valuefield.property == prop) %>
                     selected = true;
-                    <% end %>>
-              <%= att.name%> (<%=att.field_type%>)</option>
+                    <% end %> >
+              <%= prop.name%> (<%=prop.field_type%>)</option>
         <% end %>
       </select>
     </div>
