@@ -4,17 +4,11 @@
   <tr>
     <th align="left">Name:</th>
     <th align="left">Description:</th>
-    <th align="left">Categories:</th>
   </tr>
   <tr>
     <td valign="top"><%= @product.name %></td>
     <td valign="top"><%= @product.description %></td>
-    <td><table>
-      <% @associated_categories = @product.categories
-        for cat in @associated_categories%>
-          <tr><td><%= cat.name %></td></tr>
-          <% end %>
-        </table>
+    <td>
     </td>
   </tr>
   <tr><td><p></p></td></tr>
@@ -27,3 +21,62 @@
     </td>
   </tr>
 </table>
+
+<table>
+    <th align="left">Categories:</th>
+
+      <%  for cat in  @product.categories%>
+          <tr><td><%= link_to cat.name, cat %></td></tr>
+          <% end %>
+</table>
+
+                <p/>
+
+<%
+   components = @product.components
+   if(components.length > 0) %>
+<table>
+  <tr>
+    <th><b>Component:</b></th>
+    <th><b>Description:</b></th>
+
+  </tr>
+  <%for comp in components%>
+      <tr>
+        <td> <%= link_to("#{comp.name}", comp) %> </td>
+        <td> <%= comp.description %> </td>
+      </tr>
+      <%end%>
+</table>
+    <%else%>
+    <br/>No Components
+<%end%>
+
+<%= button_to "New Component", new_component_path, :method => :get %>
+
+               <p/>
+
+
+<%
+   valuefields = @product.valuefields
+   if(valuefields.length > 0) %>
+<table>
+  <tr>
+    <th><b>Attribute:</b></th>
+    <th><b>Value:</b></th>
+
+  </tr>
+  <%for val in valuefields%>
+      <% attribute = val.attribute %>
+      <tr>
+        <td> <%= link_to("#{attribute.name} (#{attribute.field_type}) ", attribute) %> </td>
+        <td> <%= link_to(val.fieldvalue, val) %> </td>
+      </tr>
+      <%end%>
+</table>
+    <%else%>
+    <br/>No attributes
+<%end%>
+
+<%= button_to "New Attribute", new_attribute_path, :method => :get %>
+

@@ -11,25 +11,58 @@
     </div>
   <% end %>
 
-             Parent
+             Parents
 
-  <div class ="field">
-       <select size="5" multiple="multiple" name="new_components_ids[]">
-        <% for comp in @all_components  %>
-            <option value="<%= comp.id %>"
-                    <% if (@associated_components.include?(comp)) %> selected=true
-            <% end %>> <%= comp.name %></option>
+    <% if(@all_products.length == 0)%>
+        No Eligable Components or Products Available
+    <%else%>
+        <div class ="field">
+           <select size="10" multiple="multiple" name="new_components_ids[]">
+             <%for prod in @all_products%>
+                 <%@pt = ""%>
+                 <%parent_table(prod, 0)%>
+                <%=@pt.html_safe%>
+             <%end%>
+           </select>
+        </div>
+    <%end%>
 
-        <% end %>
-      </select>
-  </div>
-  <div class="field">
+
+
+               <p/>
+<b>Attributes</b>
+<% valuefields = @component.valuefields%>
+    <%if(valuefields.length ==0)%>
+        <br/>No Attributes Available
+        <%else%>
+<table>
+  <tr>
+    <th><b>Value<%if(valuefields.length > 1)%>s<%end%>:</b></th>
+    <th><b>Type:</b></th>
+  </tr>
+  <%for val in valuefields%>
+      <% attribute = val.attribute %>
+      <tr>
+        <td> <%= link_to(val.fieldvalue, val) %> </td>
+        <td> <%= link_to("#{attribute.name} (#{attribute.field_type}) ", attribute) %> </td>
+      </tr>
+      <%end%>
+</table>
+        <%end%>
+
+
+    <p/>
+     <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %><br />
-    <%= f.label :description %><br/>
+    <%= f.text_field :name %>
+  </div>
+     <div class="field">
+    <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
-  <div class="actions">
+<div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+

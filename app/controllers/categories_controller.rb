@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
   #Function to show selected category
   def show
     @category = Category.find(params[:id])
+    @parent = @category.parent_id ? Category.find(@category.parent_id) : nil
     @all_categories =  Category.all
     respond_to do |format|
       format.html # show.html.erb

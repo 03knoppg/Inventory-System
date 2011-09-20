@@ -1,5 +1,8 @@
 <h1>Listing categories</h1>
-
+<%print_categories(0,-1)%>
+ <%if(@s.length == 0)%>
+      <br/> No Categories Available
+      <%else%>
 <table>
   <tr>
     <!--<th>ID</th>-->
@@ -9,11 +12,12 @@
     <th></th>
     <th></th>
   </tr>
-   <%print_categories(0,0)%>
+
+
    <%= @s.html_safe %>
-
 </table>
+              <%end%>
 
-<br />
+<p />
 
 <%= button_to "New Category", new_category_path, :method => :get %>

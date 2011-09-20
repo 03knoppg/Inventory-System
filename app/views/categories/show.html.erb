@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 <table>
   <tr>
-    <th><b>ID:</b></th>
     <th><b>Name:</b></th>
-    <th><b>Parent ID:</b></th>
+    <th><b>Parent:</b></th>
   </tr>
   <tr>
-    <td align="center"><%= @category.id %></td>
     <td align="center"><%= @category.name %></td>
-    <td align="center"><%= @category.parent_id %></td>
+    <td align="center"><%if(@parent != nil)%><%= link_to @parent.name, @parent %><%end%></td>
   </tr>
   <tr><td><p></p></td></tr>
   <tr>
@@ -20,3 +18,29 @@
     </td>
   </tr>
 </table>
+   <p/>
+ <b> Products </b>
+<p/>
+<%
+    all_products = Product.all
+    if(all_products.length == 0)%>
+      No Products Available
+    <%else
+        all_products.sort!{|x,y| x.name <=> y.name}  #sort alphabetically  %>
+        <table>
+          <tr>
+            <th>Name:</th>
+            <th>Description:</th>
+          </tr>
+        <%for prod in all_products%>
+          <tr>
+              <td> <%=link_to prod.name, prod%> </td>
+              <td> <%="#{prod.description}" %></td>
+
+          </tr>
+        <%end%>
+        </table>
+    <%end%>
+
+
+<%= button_to "New Product", new_product_path, :method => :get %>

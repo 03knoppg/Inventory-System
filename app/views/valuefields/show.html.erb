@@ -3,7 +3,7 @@
 <p>
   <b>Attribute:</b>
   <%parent =  @valuefield.attribute %>
-  <%= parent.name %>
+  <%= link_to parent.name, parent %>
   (<%= parent.field_type %>)
 </p>
 <p>
@@ -11,6 +11,21 @@
   <%= @valuefield.fieldvalue %>
 </p>
 
+<p/>
 
-<%= link_to 'Edit', edit_valuefield_path(@valuefield) %> |
-<%= link_to 'Back', valuefields_path %>
+<%
+   product = @valuefield.product
+   component = @valuefield.component
+   if(product != nil) %>
+
+    Product:  <br/>
+<%= link_to product.name, product %>
+              <%else%>
+    Component:<br/>
+<%= link_to component.name, component %>
+<%end%>
+
+<p/>
+
+<%= button_to 'Edit', edit_valuefield_path(@valuefield), :method => :get %>
+<%= button_to 'Back', valuefields_path, :method => :get %>

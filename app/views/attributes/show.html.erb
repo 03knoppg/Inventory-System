@@ -4,23 +4,13 @@
   <tr>
     <th align="left">Name:</th>
     <th align="left">Description:</th>
-    <th align="left">Values:</th>
+    <!--th align="left">Values:</th-->
   </tr>
   <tr>
-    <td valign="top" rowspan=<%=@associated_values.length%>> <%= @attribute.name %></td>
-    <td valign="top" rowspan=<%=@associated_values.length%>> <%= @attribute.description %></td>
-     <td>
-
-    <% if(@associated_values != nil) %>
-        <% for val in @associated_values %>
-            <%= val.fieldvalue %></td></tr><tr><td>
-            <% end %>
-        <%end%>
+    <td valign="top" > <%= @attribute.name %></td>
+    <td valign="top" > <%= @attribute.description %></td>
 
 
-    </td>
-  </tr>
-  <tr><td><p></p></td></tr>
   <tr>
     <td>
      <%= button_to "Edit", edit_attribute_path(@attribute), :method => :get %>
@@ -31,5 +21,35 @@
   </tr>
 </table>
 
-<%= button_to "New Value", new_valuefield_path,  :method => :get %>
+</p>
+
+<b>Values</b>
+
+<%if(@attribute.valuefields.length ==0) %>
+    <br/>No Values Defined
+    <%else%>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th>Product / Component</th>
+  </tr>
+  <%for val in @attribute.valuefields %>
+      <tr>
+        <td><%= link_to val.fieldvalue, val %></td>
+        <td> <%= if (val.product != nil)
+                     link_to val.product.name, val.product
+                 else
+                      link_to val.component.name, val.component
+                end%>
+              </td>
+      </tr>
+
+  <%end%>
+</table>
+<%end%>
+
+<p/>
+<%= button_to "New Value", new_valuefield_path, :method => :get %>
+
 

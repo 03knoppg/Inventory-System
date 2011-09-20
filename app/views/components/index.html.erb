@@ -1,5 +1,5 @@
 <h1>Listing components</h1>
-
+<%if(@all_components.length > 0)    %>
 <table>
   <tr>
     <th align="left">Name</th>
@@ -8,10 +8,20 @@
     <th></th>
   </tr>
 
-  <% print_components(@all_components_copy[0], 0)%>
+  <%
+
+           for comp in @all_components.sort!
+               if(comp.component_parents.length == 0)
+                print_components(comp, 0)
+               end
+     end
+
+    %>
   <%= @sc.html_safe %>
 </table>
-
-<br />
+<%else%>
+    <br/>No Components Available
+<%end%>
+<p />
 
 <%= button_to "New Component", new_component_path, :method => :get %>

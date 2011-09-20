@@ -1,21 +1,18 @@
 <p id="notice"><%= notice %></p>
+
+<% parents = @component.products + @component.component_parents%>
+<% valuefields = @component.valuefields%>
+
+
  <table>
   <tr>
-    <th><b>ID:</b></th>
     <th><b>Name:</b></th>
     <th>Description:</th>
-    <th><b>Parent Name:</b></th>
   </tr>
   <tr>
-    <td align="center"><%= @component.id %></td>
-    <td align="center"><%= @component.name %></td>
-    <td align="center"><%= @component.description %></td>
-    <td><table>
-      <% parents = @component.component_parents%>
-      <% for par in parents%>
-      <tr><td><%= par.name %></td></tr>
-          <%end%>
-    </table></td>
+    <td rowspan="<%=valuefields.length%>" align="center"><%= @component.name %></td>
+    <td rowspan="<%=valuefields.length%>" align="center"><%= @component.description %></td>
+
   </tr>
   <tr><td><p></p></td></tr>
   <tr>
@@ -27,3 +24,60 @@
     </td>
   </tr>
 </table>
+
+                  <p/>
+
+<table>
+  <tr><th><b>Parent<%if(parents.length > 1)%>s<%end%>:</b></th></tr>
+  <%for par in parents%>
+      <tr><td>
+    <%= link_to(par.name, par) %>
+      </td></tr>
+      <%end%>
+</table>
+
+               <p/>
+
+
+   <b>Components</b>
+<% components = @component.components
+   if(components.length > 0) %>
+<table>
+  <tr>
+    <th><b>Component:</b></th>
+    <th><b>Description:</b></th>
+  </tr>
+  <%for comp in components%>
+      <tr>
+        <td> <%= link_to("#{comp.name} ", comp) %> </td>
+        <td> <%= comp.description %> </td>
+      </tr>
+      <%end%>
+</table>
+    <%else%>
+    <br/>No Components
+<%end%>
+
+               <p/>
+
+   <b>Attributes</b>
+<%if(valuefields.length > 0) %>
+<table>
+  <tr>
+    <th><b>Attribute:</b></th>
+    <th><b>Value:</b></th>
+  </tr>
+  <%for val in valuefields%>
+      <% attribute = val.attribute %>
+      <tr>
+        <td> <%= link_to("#{attribute.name} (#{attribute.field_type}) ", attribute) %> </td>
+        <td> <%= link_to(val.fieldvalue, val) %> </td>
+      </tr>
+      <%end%>
+</table>
+    <%else%>
+    <br/>No attributes
+<%end%>
+
+
+<%= button_to "New Attribute", new_attribute_path, :method => :get %>

@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Fieldvalue</th>
+    <th>Component or Product</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,15 +12,18 @@
 <% @all_attributes.each do |att| %>
       <tr>
         <td>
-          <b><%=att.name%></b>
+          <b><%=link_to att.name, att%></b>
         </td>
       </tr>
       <%for val in att.valuefields %>
       <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= val.fieldvalue %></td>
-        <td><%= link_to 'Show', val %></td>
-        <td><%= link_to 'Edit', edit_valuefield_path(val) %></td>
-        <td><%= link_to 'Destroy', val, confirm: 'Are you sure?', method: :delete %></td>
+        <td><%= val.component != nil ? link_to(val.component.name, val.component) : link_to(val.product.name, val.product)%></td>
+        <td><%= button_to "Show", {:action => "show", :id => val.id }, :method => :get %></td>
+        <td><%= button_to 'Edit', edit_valuefield_path(val) , :method => :get%></td>
+        <td><%= button_to "Delete", { :action => "destroy", :id => val.id }, :confirm => "Are You sure?", :method => :delete %></td>
+
+
       </tr>
     <% end %>
 <% end %>
@@ -27,4 +31,4 @@
 
 <br />
 
-<%= link_to 'New Valuefield', new_valuefield_path %>
+<%= button_to 'New Valuefield', new_valuefield_path, :method => :get %>

@@ -19,6 +19,9 @@
     <br/>
     <div>
       <%= f.label "Categories" %> <br/>
+      <%if(@all_categories.length < 2)%>
+          <br/> No Categories available
+          <%else%>
 
       <select size="5" multiple="multiple" name="new_categories_ids[]">
 
@@ -34,6 +37,7 @@
 
         <% end %>
       </select>
+          <%end%>
     </div>
     <br/>
 

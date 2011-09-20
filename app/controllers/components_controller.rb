@@ -31,9 +31,11 @@ class ComponentsController < ApplicationController
   # GET /components/new
   # GET /components/new.json
   def new
+
     @component = Component.new
-    @all_components = Component.all
-    @associated_components = []
+    @all_products = Product.all
+
+    @parent_cps = @component.component_parents + @component.products
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @component }
@@ -52,10 +54,27 @@ class ComponentsController < ApplicationController
   def create
     @component = Component.new(params[:component])
 
-    components = Component.find(params[:new_components_ids])
-    for comp in components
-       comp.components.push(@component)
+    logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
+
+
+    if(params[:new_components_ids] != nil)
+      logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
+
+      for id in params[:new_components_ids]
+        logger.info("\n\nID:" + id + "\n\n\n")
+        id = Integer(id)
+         if(id < 0) #Component ids are set to negative values to differentiate from Product ids
+           c = Component.find((id + 1) * -1)
+           @component.component_parents.push(c)
+         else
+           p = Product.find(id)
+           @component.products.push(p)
+         end
+
+      end
     end
+
+
 
     respond_to do |format|
       if @component.save
@@ -116,16 +135,11 @@ class ComponentsController < ApplicationController
 
    #Function to sort the components array
    def sort_components
-    @all_components_copy = []
+
     for com in @all_components
 
         @all_components_hash[com]= (com.components)
-
-        for all_com_copy in com.components
-          @all_components_copy.push(all_com_copy)
-        end
     end
-    @all_components_copy = @all_components - @all_components_copy
 
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}

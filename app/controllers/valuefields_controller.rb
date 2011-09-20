@@ -27,7 +27,8 @@ class ValuefieldsController < ApplicationController
   def new
     @valuefield = Valuefield.new
     @all_attributes = Attribute.all
-    @abc = params
+
+    @all_prods_comps = Product.all + Component.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +40,7 @@ class ValuefieldsController < ApplicationController
   def edit
     @valuefield = Valuefield.find(params[:id])
     @all_attributes = Attribute.all
+    @all_prods_comps = Product.all + Component.all
   end
 
   # POST /valuefields
@@ -46,6 +48,19 @@ class ValuefieldsController < ApplicationController
   def create
     @valuefield = Valuefield.new(params[:valuefield])
     @all_attributes = Attribute.all
+
+    prod_comp = Integer(params[:prod_comp_id][0])
+
+    logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+    if(prod_comp < 0)       #Product id is negative to differentiate from component
+      @valuefield.product = Product.find(-(prod_comp+1))
+    elsif
+      @valuefield.component = Component.find(prod_comp)
+    else
+      logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
+    end
+
+    @valuefield.attribute = Attribute.find(Integer(params[:attribute_id][0]))
 
     respond_to do |format|
       if @valuefield.save
