@@ -13,8 +13,7 @@ module ProductsHelper
         @sp+= "<td> #{button_to "Show", {:action => "show", :id => prod.id }, :method => :get}\n"
         @sp+= "<td> #{button_to "Edit", edit_product_path(prod), :method => :get}\n"
         @sp+= "<td> #{button_to "Delete", { :action => "destroy", :id => prod.id }, :confirm => "Are You sure?", :method => :delete}\n"
-
-      @sp+= "</tr>\n"
+        @sp+= "</tr>\n"
     end
   end
 end
