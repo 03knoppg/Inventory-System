@@ -13,7 +13,7 @@
     <% end %>
 
 
-    <%=f.label "Path"%>
+    <%=f.label "Path(names)"%>
     <div class ="field">
 
       <select name="path[]">
@@ -22,6 +22,14 @@
 
     </div>
 
+    <%=f.label "Path (ids)"%>
+    <div class ="field">
+
+      <select name="path[]">
+        <%=get_paths_as_select_id.html_safe%>
+      </select>
+
+    </div>
 
 
     <h1>OR</h1>

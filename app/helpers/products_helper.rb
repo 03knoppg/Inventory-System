@@ -17,37 +17,5 @@ module ProductsHelper
     end
   end
 
-   def build_products
-
-    for prod in Product.all
-      if(prod.components.length > 0)
-        for comp in prod.components
-          print_permuted_products(comp, prod.name + "|")
-        end
-      end
-    end
-  end
-
-  def print_permuted_products(component, path)
-
-    path += component.name
-
-    if(component.components.length != 0)
-      path +=  "|"
-      for child in component.components
-        print_permuted_products(child, path)
-      end
-    else
-      logger.info(path + "\n")
-    end
-  end
-
-   def add_test_price(path)
-    #price = Valuefield.new()
-    #price.permutation = true;
-    #price.path = path
-    #price.fieldvalue = "$200"
-
-  end
 
 end
