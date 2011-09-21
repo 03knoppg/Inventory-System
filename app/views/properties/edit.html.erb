@@ -1,6 +1,13 @@
 <h1>Editing property</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @property %> |
-<%= link_to 'Back', properties_path %>
+ <table>
+  <tr>
+    <td>
+       <%= button_to "Show", {:action => "show", :id => @property.id }, :method => :get %>
+    </td>
+    <td>
+       <%= button_to "Back", properties_path, :method => :get %>
+    </td>
+  </tr>
+</table>

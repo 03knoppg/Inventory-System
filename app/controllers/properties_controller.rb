@@ -81,9 +81,6 @@ class PropertiesController < ApplicationController
     @property.destroy
 
     for val in @property.valuefields
-      for prod in val.products
-        prod.valuefields.destroy(val)
-      end
       val.destroy
     end
     @property.destroy

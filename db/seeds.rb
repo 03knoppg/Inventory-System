@@ -22,6 +22,7 @@ fluid = Category.create(name:"Fluid", parent_id:chair.id)
 #Products
 task = Product.create(name:"Task Chair", description:"Fluid Task Chair")
 stool = Product.create(name:"Stool Chair", description:"Fluid Stool Chair")
+basicTask = Product.create(name:"Basic Chair", description:"Fluid Basic Task Chair")
 
 #Groups
 arm = Group.create(name:"Chair Arm")
@@ -42,13 +43,16 @@ basicStool = Component.create(name:"Basic Stool", description:"Chair with Basic 
 #Component Group - Mesh
 backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:mesh.id)
 seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:mesh.id)
+basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:mesh.id)
 
 #Categories_Products - association table
-fluid.products = [task, stool]
+fluid.products = [task, stool, basicTask]
 
 #Components_Products - association table
 task.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, backMesh, seatMesh]
 stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStool, backMesh, seatMesh]
+basicTask.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
+backMesh.components = [basicBackMesh]
 
 #Properties
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
@@ -60,6 +64,9 @@ openMeshEbonyBack = Valuefield.create(fieldvalue:"Open Back Mesh Ebony", propert
 openMeshCobaltBack = Valuefield.create(fieldvalue:"Open Back Mesh Cobalt", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSilicaBack = Valuefield.create(fieldvalue:"Open Back Mesh Silica", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSandstoneBack = Valuefield.create(fieldvalue:"Open Back Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+
+#Belongs to Component "basicBackMesh"
+fluidBasicMeshBlackBack= Valuefield.create(fieldvalue:"Fluid Basic Back Mesh Black", property_id:colour.id, product_id:nil, component_id:basicBackMesh.id)
 
 #Belongs to Component "seatMesh"
 closedMeshBlackWhiteSeat = Valuefield.create(fieldvalue:"Closed Seat Mesh Black/White", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
