@@ -6,6 +6,73 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+#All Seating Test Seed
+#Destroy Tables
+Category.destroy_all
+Product.destroy_all
+Property.destroy_all
+Valuefield.destroy_all
+Component.destroy_all
+
+#Categories
+all = Category.create(name:"All")
+chair = Category.create(name:"Chair", parent_id:all.id)
+fluid = Category.create(name:"Fluid", parent_id:chair.id)
+
+#Products
+task = Product.create(name:"Task Chair", description:"Fluid Task Chair")
+stool = Product.create(name:"Stool Chair", description:"Fluid Stool Chair")
+
+#Groups
+arm = Group.create(name:"Chair Arm")
+control = Group.create(name:"Chair Tilt Control")
+mesh = Group.create(name:"Chair Mesh")
+
+#Components
+#Component Group - Arm
+noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id)
+task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
+multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
+twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
+#Component Group - Control
+deluxeSynchroTilt = Component.create(name:"Deluxe Synchro Tilt", description:"Chair with Deluxe Synchro Tilt", group_id:control.id)
+deluxeSynchroTiltWBackAngle = Component.create(name:"Deluxe Synchro Tilt with Back Angle", description:"Chair with Deluxe Synchro Tilt w/ back angle", group_id:control.id)
+synchroTilt = Component.create(name:"Synchro Tilt", description:"Chair with Synchro Tilt", group_id:control.id)
+basicStool = Component.create(name:"Basic Stool", description:"Chair with Basic Stool", group_id:control.id)
+#Component Group - Mesh
+backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:mesh.id)
+seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:mesh.id)
+
+#Categories_Products - association table
+fluid.products = [task, stool]
+
+#Components_Products - association table
+task.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, backMesh, seatMesh]
+stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStool, backMesh, seatMesh]
+
+#Properties
+colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
+
+#ValueFields
+#Belongs to Component "backMesh"
+closedMeshBlackWhiteBack = Valuefield.create(fieldvalue:"Closed Back Mesh Black/White", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+openMeshEbonyBack = Valuefield.create(fieldvalue:"Open Back Mesh Ebony", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+openMeshCobaltBack = Valuefield.create(fieldvalue:"Open Back Mesh Cobalt", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+openMeshSilicaBack = Valuefield.create(fieldvalue:"Open Back Mesh Silica", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+openMeshSandstoneBack = Valuefield.create(fieldvalue:"Open Back Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+
+#Belongs to Component "seatMesh"
+closedMeshBlackWhiteSeat = Valuefield.create(fieldvalue:"Closed Seat Mesh Black/White", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
+openMeshEbonySeat = Valuefield.create(fieldvalue:"Open Seat Mesh Ebony", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
+openMeshCobaltSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Cobalt", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
+openMeshSilicaSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Silica", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
+openMeshSandstoneSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
+
+
+
+
+#_______Original Test Seed
+=begin
 Category.destroy_all
 Product.destroy_all
 Property.destroy_all
@@ -19,6 +86,7 @@ vancouver = Category.create(name:"Vancouver", parent_id:all.id)
 fakestreet = Category.create(name:"123 Fake Street", parent_id:toronto.id)
 somewhere = Category.create(name:"555 Somewhere Road", parent_id:toronto.id)
 nowhere = Category.create(name:"In the middle", parent_id:toronto.id)
+
 
 u222 = Product.create(name:"Unit 222", description:"One bedroom")
 u434 = Product.create(name:"Unit 434", description:"Bachelor")
@@ -167,3 +235,4 @@ big_u13.save
 #colour.valuefields = [blue, green, red, yellow]
 #bedsize.valuefields = [king, queen, double]
 #size.valuefields = [big, small]
+=end

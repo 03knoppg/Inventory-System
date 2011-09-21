@@ -1,4 +1,6 @@
 TestDBRubymineProject::Application.routes.draw do
+  resources :groups
+
   resources :properties
 
   resources :valuefields
