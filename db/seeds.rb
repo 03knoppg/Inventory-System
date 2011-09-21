@@ -27,7 +27,6 @@ basicTask = Product.create(name:"Basic Chair", description:"Fluid Basic Task Cha
 #Groups
 arm = Group.create(name:"Chair Arm")
 control = Group.create(name:"Chair Tilt Control")
-mesh = Group.create(name:"Chair Mesh")
 
 #Components
 #Component Group - Arm
@@ -40,10 +39,11 @@ deluxeSynchroTilt = Component.create(name:"Deluxe Synchro Tilt", description:"Ch
 deluxeSynchroTiltWBackAngle = Component.create(name:"Deluxe Synchro Tilt with Back Angle", description:"Chair with Deluxe Synchro Tilt w/ back angle", group_id:control.id)
 synchroTilt = Component.create(name:"Synchro Tilt", description:"Chair with Synchro Tilt", group_id:control.id)
 basicStool = Component.create(name:"Basic Stool", description:"Chair with Basic Stool", group_id:control.id)
-#Component Group - Mesh
-backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:mesh.id)
-seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:mesh.id)
-basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:mesh.id)
+
+#Component - no grouping
+backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:nil)
+seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:nil)
+basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
 
 #Categories_Products - association table
 fluid.products = [task, stool, basicTask]
