@@ -24,7 +24,7 @@ module ComponentsHelper
     end
 
     if (@parent_cps.include?(cp))
-      @pt += "endselected=true"
+      @pt += "selected=true"
     end
 
     @pt+= ">\n"

@@ -1,6 +1,13 @@
 <h1>Editing valuefield</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @valuefield %> |
-<%= link_to 'Back', valuefields_path %>
+ <table>
+  <tr>
+    <td>
+       <%= button_to "Show", {:action => "show", :id => @valuefield.id }, :method => :get %>
+    </td>
+    <td>
+       <%= button_to "Back", valuefields_path, :method => :get %>
+    </td>
+  </tr>
+</table>

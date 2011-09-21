@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
     @all_categories_hash = {}
     @s = ""
 
-    sort_categories()
+    sort_categories
 
     respond_to do |format|
       format.html # index.html.erb
@@ -94,7 +94,6 @@ class CategoriesController < ApplicationController
     sort_categories()
     destroy_category(@category)
 
-
     respond_to do |format|
       format.html { redirect_to categories_url }
       format.json { head :ok }
@@ -119,7 +118,6 @@ class CategoriesController < ApplicationController
   #Function to sort the categories array
    def sort_categories
     #logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_categories}")
-
     for cat in @all_categories
 
 
@@ -146,5 +144,4 @@ class CategoriesController < ApplicationController
 
       #logger.info("+++++++++++++++++++++++++++Sort_category end #{@all_categories_hash}")
   end
-
 end
