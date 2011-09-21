@@ -27,7 +27,7 @@ class ValuefieldsController < ApplicationController
   def new
     @valuefield = Valuefield.new
     @all_properties = Property.all
-
+    @paths = ""
     @all_prods_comps = Product.all + Component.all
 
     respond_to do |format|

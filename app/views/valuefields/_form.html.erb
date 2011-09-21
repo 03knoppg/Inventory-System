@@ -11,6 +11,22 @@
           </ul>
         </div>
     <% end %>
+
+
+    <%=f.label "Path"%>
+    <div class ="field">
+
+      <select name="path[]">
+        <%=get_paths_as_select.html_safe%>
+      </select>
+
+    </div>
+
+
+
+    <h1>OR</h1>
+
+
     <%= f.label "Product or Component" %><br />
     <div class ="field">
       <select name="prod_comp_id[]">
