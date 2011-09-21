@@ -8,7 +8,7 @@
 
 Category.destroy_all
 Product.destroy_all
-Attribute.destroy_all
+Property.destroy_all
 Valuefield.destroy_all
 Component.destroy_all
 
@@ -37,9 +37,9 @@ couch2 = Component.create(name:"Love seat", description:"Love seat")
 fridge = Component.create(name:"Fridge", description:"Fridge")
 stove = Component.create(name:"Stove", description:"Stove")
 
-colour = Attribute.create(name:"Colour", description:"The colour", field_type:"string")
-bedsize = Attribute.create(name:"Bed size", description:"The size of the bed", field_type:"string")
-size =  Attribute.create(name:"Size", description:"Vague size of item", field_type:"string")
+colour = Property.create(name:"Colour", description:"The colour", field_type:"string")
+bedsize = Property.create(name:"Bed size", description:"The size of the bed", field_type:"string")
+size =  Property.create(name:"Size", description:"Vague size of item", field_type:"string")
 
 #blue = Valuefield.create(fieldvalue:"Blue")
 #green = Valuefield.create(fieldvalue:"Green")
@@ -64,22 +64,22 @@ u434.components=[livingroom, kitchen]
 u544.components=[bedroom, bedroom, livingroom, kitchen]
 u13.components=[kitchen, kitchen, kitchen]
 
-u222.attributes = [size]
-u434.attributes = [size]
-u544.attributes = [size]
-u13.attributes = [size]
+u222.properties = [size]
+u434.properties = [size]
+u544.properties = [size]
+u13.properties = [size]
 
 
-bedroom.attributes = []
-livingroom.attributes = []
-kitchen.attributes = []
+bedroom.properties = []
+livingroom.properties = []
+kitchen.properties = []
 
-bed.attributes = [bedsize, colour]
-chair.attributes = [colour]
-couch1.attributes = [size, colour]
-couch2.attributes = [size, colour]
-fridge.attributes = [colour]
-stove.attributes = [colour]
+bed.properties = [bedsize, colour]
+chair.properties = [colour]
+couch1.properties = [size, colour]
+couch2.properties = [size, colour]
+fridge.properties = [colour]
+stove.properties = [colour]
 
 
 all_component.components = [bedroom, livingroom, kitchen]
@@ -90,30 +90,30 @@ kitchen.components = [fridge, stove]
 
 
 blueBed = Valuefield.create(fieldvalue:"Blue")
-blueBed.attribute = colour
+blueBed.property = colour
 blueBed.component = bed
 blueBed.save
 
 kingBed = Valuefield.create(fieldvalue:"King")
-kingBed.attribute = bedsize
+kingBed.property = bedsize
 kingBed.component = bed
 kingBed.save
 
 
 
 greenChair = Valuefield.create(fieldvalue:"Green")
-greenChair.attribute = colour
+greenChair.property = colour
 greenChair.component = chair
  greenChair.save
 
 
 yellowCouch1 = Valuefield.create(fieldvalue:"Yellow")
-yellowCouch1.attribute = colour
+yellowCouch1.property = colour
 yellowCouch1.component = couch1
 yellowCouch1.save
 
 bigCouch1 = Valuefield.create(fieldvalue:"Big")
-bigCouch1.attribute = bedsize
+bigCouch1.property = bedsize
 bigCouch1.component = couch1
 bigCouch1.save
 
@@ -121,43 +121,43 @@ bigCouch1.save
 
 
 redCouch2 = Valuefield.create(fieldvalue:"Yellow")
-redCouch2.attribute = colour
+redCouch2.property = colour
 redCouch2.component = couch2
 redCouch2.save
 
 smallCouch2 = Valuefield.create(fieldvalue:"Small")
-smallCouch2.attribute = bedsize
+smallCouch2.property = bedsize
 smallCouch2.component = couch2
 smallCouch2.save
 
 red_fridge= Valuefield.create(fieldvalue:"Red")
-red_fridge.attribute = colour
+red_fridge.property = colour
 red_fridge.component = fridge
 red_fridge.save
 
 
 green_stove= Valuefield.create(fieldvalue:"Green")
-green_stove.attribute = colour
+green_stove.property = colour
 green_stove.component = stove
 green_stove.save
 
 big_u222 = Valuefield.create(fieldvalue:"Big")
-big_u222.attribute = size
+big_u222.property = size
 big_u222.product = u222
 big_u222.save
 
 small_u434 = Valuefield.create(fieldvalue:"Small")
-small_u434.attribute = size
+small_u434.property = size
 small_u434.product = u434
 small_u434.save
 
 big_u544 = Valuefield.create(fieldvalue:"Big")
-big_u544.attribute = size
+big_u544.property = size
 big_u544.product = u544
 big_u544.save
 
 big_u13 = Valuefield.create(fieldvalue:"Small")
-big_u13.attribute = size
+big_u13.property = size
 big_u13.product = u13
 big_u13.save
 

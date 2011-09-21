@@ -1,9 +1,9 @@
 TestDBRubymineProject::Application.routes.draw do
+  resources :properties
+
   resources :valuefields
 
   resources :ValuesController
-
-  resources :attributes
 
   resources :components
 

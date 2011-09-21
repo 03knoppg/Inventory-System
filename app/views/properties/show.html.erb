@@ -7,16 +7,16 @@
     <!--th align="left">Values:</th-->
   </tr>
   <tr>
-    <td valign="top" > <%= @attribute.name %></td>
-    <td valign="top" > <%= @attribute.description %></td>
+    <td valign="top" > <%= @property.name %></td>
+    <td valign="top" > <%= @property.description %></td>
 
 
   <tr>
     <td>
-     <%= button_to "Edit", edit_attribute_path(@attribute), :method => :get %>
+     <%= button_to "Edit", edit_property_path(@property), :method => :get %>
     </td>
     <td>
-     <%= button_to "Back", attributes_path, :method => :get %>
+     <%= button_to "Back", properties_path, :method => :get %>
     </td>
   </tr>
 </table>
@@ -25,7 +25,7 @@
 
 <b>Values</b>
 
-<%if(@attribute.valuefields.length ==0) %>
+<%if(@property.valuefields.length ==0) %>
     <br/>No Values Defined
     <%else%>
 
@@ -34,7 +34,7 @@
     <th>Value</th>
     <th>Product / Component</th>
   </tr>
-  <%for val in @attribute.valuefields %>
+  <%for val in @property.valuefields %>
       <tr>
         <td><%= link_to val.fieldvalue, val %></td>
         <td> <%= if (val.product != nil)
@@ -51,5 +51,3 @@
 
 <p/>
 <%= button_to "New Value", new_valuefield_path, :method => :get %>
-
-

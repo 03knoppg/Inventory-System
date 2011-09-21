@@ -19,10 +19,11 @@
   </tr>
 </table>
    <p/>
+
  <b> Products </b>
 <p/>
 <%
-    all_products = Product.all
+    all_products = @category.products
     if(all_products.length == 0)%>
       No Products Available
     <%else

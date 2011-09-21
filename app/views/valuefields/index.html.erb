@@ -9,13 +9,13 @@
     <th></th>
   </tr>
 
-<% @all_attributes.each do |att| %>
+<% @all_properties.each do |prop| %>
       <tr>
         <td>
-          <b><%=link_to att.name, att%></b>
+          <b><%=link_to prop.name, prop%></b>
         </td>
       </tr>
-      <%for val in att.valuefields %>
+      <%for val in prop.valuefields %>
       <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= val.fieldvalue %></td>
         <td><%= val.component != nil ? link_to(val.component.name, val.component) : link_to(val.product.name, val.product)%></td>
@@ -32,3 +32,5 @@
 <br />
 
 <%= button_to 'New Valuefield', new_valuefield_path, :method => :get %>
+<br />
+<%= button_to "Back to Main Menu", "/", :method => :get %>

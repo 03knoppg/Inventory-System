@@ -45,8 +45,10 @@ class ComponentsController < ApplicationController
   # GET /components/1/edit
   def edit
     @component = Component.find(params[:id])
+    @all_products = Product.all
     @all_components =  Component.all
     @associated_components = @component.component_parents
+    @parent_cps = @component.component_parents + @component.products
   end
 
   # POST /components
@@ -92,6 +94,33 @@ class ComponentsController < ApplicationController
   def update
     @component = Component.find(params[:id])
 
+    logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
+
+    component_parents_val = @component.component_parents
+    component_products_val = @component.products
+    for comp in component_parents_val
+      comp.components.delete(@component)
+    end
+    for prod in component_products_val
+      prod.components.delete(@component)
+    end
+
+    if(params[:new_components_ids] != nil)
+      logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
+
+      for id in params[:new_components_ids]
+        logger.info("\n\nID:" + id + "\n\n\n")
+        id = Integer(id)
+         if(id < 0) #Component ids are set to negative values to differentiate from Product ids
+           c = Component.find((id + 1) * -1)
+           component_parents_val.push(c)
+         else
+           p = Product.find(id)
+           component_products_val.push(p)
+         end
+
+      end
+    end
     respond_to do |format|
       if @component.update_attributes(params[:component])
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }

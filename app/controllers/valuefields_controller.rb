@@ -3,7 +3,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields.json
   def index
     @valuefields = Valuefield.all
-    @all_attributes = Attribute.all
+    @all_properties = Property.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/new.json
   def new
     @valuefield = Valuefield.new
-    @all_attributes = Attribute.all
+    @all_properties = Property.all
 
     @all_prods_comps = Product.all + Component.all
 
@@ -39,7 +39,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1/edit
   def edit
     @valuefield = Valuefield.find(params[:id])
-    @all_attributes = Attribute.all
+    @all_properties = Property.all
     @all_prods_comps = Product.all + Component.all
   end
 
@@ -47,7 +47,7 @@ class ValuefieldsController < ApplicationController
   # POST /valuefields.json
   def create
     @valuefield = Valuefield.new(params[:valuefield])
-    @all_attributes = Attribute.all
+    #@all_properties = Property.all
 
     prod_comp = Integer(params[:prod_comp_id][0])
 
@@ -60,7 +60,7 @@ class ValuefieldsController < ApplicationController
       logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
     end
 
-    @valuefield.attribute = Attribute.find(Integer(params[:attribute_id][0]))
+    @valuefield.property = Property.find(Integer(params[:property_id][0]))
 
     respond_to do |format|
       if @valuefield.save
@@ -77,6 +77,21 @@ class ValuefieldsController < ApplicationController
   # PUT /valuefields/1.json
   def update
     @valuefield = Valuefield.find(params[:id])
+
+    prod_comp = Integer(params[:prod_comp_id][0])
+    @valuefield.product = nil
+    @valuefield.component = nil
+
+    logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+    if(prod_comp < 0)       #Product id is negative to differentiate from component
+      @valuefield.product = Product.find(-(prod_comp+1))
+    elsif
+      @valuefield.component = Component.find(prod_comp)
+    else
+      logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
+    end
+
+    @valuefield.property = Property.find(Integer(params[:property_id][0]))
 
     respond_to do |format|
       if @valuefield.update_attributes(params[:valuefield])
