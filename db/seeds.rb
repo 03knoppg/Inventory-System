@@ -52,7 +52,6 @@ fluid.products = [task, stool, basicTask]
 task.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, backMesh, seatMesh]
 stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStool, backMesh, seatMesh]
 basicTask.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
-backMesh.components = [basicBackMesh]
 
 #Properties
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
