@@ -2,6 +2,7 @@ class Component < ActiveRecord::Base
   has_and_belongs_to_many :properties
   has_and_belongs_to_many :products
   has_many :valuefields
+  belongs_to :group
 
 
    has_and_belongs_to_many :components,
