@@ -13,6 +13,7 @@ Product.destroy_all
 Property.destroy_all
 Valuefield.destroy_all
 Component.destroy_all
+Group.destroy_all
 
 #Categories
 all = Category.create(name:"All")
@@ -23,6 +24,9 @@ fluid = Category.create(name:"Fluid", parent_id:chair.id)
 task = Product.create(name:"Task Chair", description:"Fluid Task Chair")
 stool = Product.create(name:"Stool Chair", description:"Fluid Stool Chair")
 basicTask = Product.create(name:"Basic Chair", description:"Fluid Basic Task Chair")
+basicStool = Product.create(name:"Basic Stool Chair", description:"Fluid Basic Stool Chair")
+side = Product.create(name:"Side Chair", description:"Fluid Side Chair")
+basicSide = Product.create(name:"Basic Side Chair", description:"Fluid Basic Side Chair")
 
 #Groups
 arm = Group.create(name:"Chair Arm")
@@ -34,27 +38,34 @@ noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_i
 task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
 multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
 twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
+withArm = Component.create(name:"with Arm", description:"Side Chair with Arms", group_id:arm.id)
+
 #Component Group - Control
 deluxeSynchroTilt = Component.create(name:"Deluxe Synchro Tilt", description:"Chair with Deluxe Synchro Tilt", group_id:control.id)
 deluxeSynchroTiltWBackAngle = Component.create(name:"Deluxe Synchro Tilt with Back Angle", description:"Chair with Deluxe Synchro Tilt w/ back angle", group_id:control.id)
 synchroTilt = Component.create(name:"Synchro Tilt", description:"Chair with Synchro Tilt", group_id:control.id)
-basicStool = Component.create(name:"Basic Stool", description:"Chair with Basic Stool", group_id:control.id)
+basicStoolControl = Component.create(name:"Basic Stool", description:"Chair with Basic Stool", group_id:control.id)
 
 #Component - no grouping
 backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:nil)
 seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:nil)
 basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
+frameFinish = Component.create(name:"Frame Finish", description:"Chair Frame Finish", group_id:nil)
 
 #Categories_Products - association table
-fluid.products = [task, stool, basicTask]
+fluid.products = [task, stool, basicTask, basicStool, side, basicSide]
 
 #Components_Products - association table
 task.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, backMesh, seatMesh]
-stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStool, backMesh, seatMesh]
+stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStoolControl, backMesh, seatMesh]
 basicTask.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
+basicStool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
+side.components = [noArm, withArm, backMesh, frameFinish]
+basicSide.components = [noArm, withArm, basicBackMesh, frameFinish]
 
 #Properties
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
+finish = Property.create(name:"Finish", description:"Product/Component Finish", field_type:"string")
 
 #ValueFields
 #Belongs to Component "backMesh"
@@ -74,7 +85,10 @@ openMeshCobaltSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Cobalt", prope
 openMeshSilicaSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Silica", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
 openMeshSandstoneSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:seatMesh.id)
 
-
+#Belongs to Component "frameFinish"
+frameFinishSilver = Valuefield.create(fieldvalue:"Silver Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
+frameFinishBlack = Valuefield.create(fieldvalue:"Black Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
+frameFinishMetallicGunmetal = Valuefield.create(fieldvalue:"Metallic Gunmetal Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
 
 
 #_______Original Test Seed
