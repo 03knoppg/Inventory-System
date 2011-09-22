@@ -9,9 +9,17 @@
    <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-   <body>
-
- <div class="container">
+<body>
+<div class="container">
+ <div class="containerLinks">
+  <nav class="round">
+    <ul>
+        <li><a href="/">Main Menu</a></li>|
+        <li><a href="#">Administration</a></li>|
+        <li><a href="#">Sign out</a></li>
+    </ul>
+  </nav>
+</div>
 
 <%= yield %>
 
