@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+ <h1>Viewing Component</h1>
 
 <% parents = @component.products + @component.component_parents%>
 <% valuefields = @component.valuefields%>
@@ -35,6 +36,18 @@
       </td></tr>
       <%end%>
 </table>
+
+<p/>
+
+
+ <b>Group</b><br/>
+  <% group = @component.group
+ if(group != nil) %>
+<%= link_to("#{group.name} ", group) %>
+  <%else%>
+  No Group
+  <%end%>
+
 
                <p/>
 

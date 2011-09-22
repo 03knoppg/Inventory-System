@@ -47,18 +47,28 @@ class ValuefieldsController < ApplicationController
   # POST /valuefields.json
   def create
     @valuefield = Valuefield.new(params[:valuefield])
-    #@all_properties = Property.all
 
-    prod_comp = Integer(params[:prod_comp_id][0])
+    logger.info("\n\n\n #{params[:prod_comp_id].inspect} \n #{params[:path].inspect}")
 
-    logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
-    if(prod_comp < 0)       #Product id is negative to differentiate from component
-      @valuefield.product = Product.find(-(prod_comp+1))
-    elsif
-      @valuefield.component = Component.find(prod_comp)
+    path = params[:path]
+
+    prod_comp = Integer(params[:prod_comp_id])
+
+
+    if(prod_comp != -1)
+
+      logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+      if(prod_comp < 0)       #Product id is negative to differentiate from component
+        @valuefield.product = Product.find(-(prod_comp+1))
+      elsif
+        @valuefield.component = Component.find(prod_comp)
+      else
+        logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
+      end
     else
-      logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
+      @valuefield.path = path
     end
+
 
     @valuefield.property = Property.find(Integer(params[:property_id][0]))
 

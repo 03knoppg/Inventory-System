@@ -13,31 +13,23 @@
     <% end %>
 
 
-    <%=f.label "Path(names)"%>
+    <%=f.label "Product"%>
     <div class ="field">
 
-      <select name="path[]">
+      <select name="path">
+        <option selected="true"  value="-1">No Selection</option>
         <%=get_paths_as_select.html_safe%>
       </select>
 
     </div>
 
-    <%=f.label "Path (ids)"%>
-    <div class ="field">
-
-      <select name="path[]">
-        <%=get_paths_as_select_id.html_safe%>
-      </select>
-
-    </div>
-
-
     <h1>OR</h1>
 
 
-    <%= f.label "Product or Component" %><br />
+    <%= f.label "Product Category or Component" %><br />
     <div class ="field">
-      <select name="prod_comp_id[]">
+      <select name="prod_comp_id">
+        <option selected="true" value="-1">No Selection</option>
 
 <!--Product id is negative to differentiate from component-->
         <% parent_comp = @valuefield.component
@@ -60,9 +52,10 @@
       </select>
     </div>
 
+       <hr/>
     <%= f.label "Property" %><br />
     <div class ="field">
-      <select name="property_id[]">
+      <select name="property_id">
 
 
         <%for prop in @all_properties %>
@@ -73,7 +66,6 @@
         <% end %>
       </select>
     </div>
-
 
     <div class="field">
       <%= f.label "Value" %><br />

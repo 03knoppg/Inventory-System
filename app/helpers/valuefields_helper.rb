@@ -25,12 +25,19 @@ module ValuefieldsHelper
         end
       end
 
-      path = "<option>" + prod.name + "|"
+      path = "<option value=\"~\">" + prod.name + "|"
 
 
       print_permuted_components(groups_hash, path, 0)
-
+      get_paths_as_select_id
     end
+
+    for id in @paths_id.split("~")
+    #logger.info("\n\n IIIIIIIIIIIIIIIIIIIIIIIIIIIII" + "#{id}" + "\n\n\n\n")
+
+      @paths.sub!("~",id)
+    end
+
 
     return @paths
   end
@@ -65,7 +72,6 @@ module ValuefieldsHelper
       vals_hash[val.property.name].push(val)
     end
 
-    #logger.info("\n\n IIIIIIIIIIIIIIIIIIIIIIIIIIIII" + "#{vals_hash.inspect}" + "\n\n\n\n")
     print_permuted_values(vals_hash, path, 0, component_group_hash, comp_depth)
 
   end
@@ -97,7 +103,7 @@ module ValuefieldsHelper
   #       PATH WITH ID
      def get_paths_as_select_id
 
-  @paths = ""
+  @paths_id = ""
     for prod in Product.all
 
 
@@ -116,14 +122,15 @@ module ValuefieldsHelper
         end
       end
 
-      path = "<option>" + "p" + "#{prod.id}" + "|"
 
+     # path = "<option>" + "p" + "#{prod.id}" + "|"
+      path = "p" + "#{prod.id}" + "|"
 
       print_permuted_components_id(groups_hash, path, 0)
 
     end
 
-    return @paths
+    return @paths_id
   end
 
   def print_permuted_components_id(component_group_hash, path, comp_depth)
@@ -168,7 +175,7 @@ module ValuefieldsHelper
 
     if(value_depth == value_group_hash.keys.length)
       if(comp_depth == component_group_hash.keys.length)
-         @paths += path + "</option>\n"
+         @paths_id += path + "~"
          return
       end
 
@@ -184,6 +191,23 @@ module ValuefieldsHelper
 
   end
 
+  def id_path_to_name_path(id_path)
+
+    name_path = "<p>"
+
+    for id in id_path.split("|")
+      if(id[0] == 'p')
+        name_path += "<b> #{Product.find(id[1..(id.length)]).name} </b><br/>"
+      elsif(id[0] == 'c')
+        name_path += "<br/><b>#{Component.find(id[1..(id.length)]).name}</b>"
+      elsif(id[0] == "v")
+        name_path += "  #{Valuefield.find(id[1..(id.length)]).fieldvalue}"
+      end
+    end
+
+    return name_path + "<p/>"
+
+  end
 
 end
 

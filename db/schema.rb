@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20110921143220) do
     t.integer  "property_id"
     t.integer  "product_id"
     t.integer  "component_id"
+    t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+ <h1>Viewing Valuefield</h1>
 
 <p>
   <b>Property:</b>
@@ -16,13 +17,17 @@
 <%
    product = @valuefield.product
    component = @valuefield.component
+   path = @valuefield.path
    if(product != nil) %>
 
     Product:  <br/>
 <%= link_to product.name, product %>
-              <%else%>
+              <%elsif(component!=nil)%>
     Component:<br/>
 <%= link_to component.name, component %>
+    <%else%>
+    Path:<br/>
+    <%= id_path_to_name_path(path).html_safe%>
 <%end%>
 
 <p/>

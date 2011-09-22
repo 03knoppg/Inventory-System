@@ -34,6 +34,7 @@ class ComponentsController < ApplicationController
 
     @component = Component.new
     @all_products = Product.all
+    @all_groups = Group.all
 
     @parent_cps = @component.component_parents + @component.products
     respond_to do |format|
@@ -49,6 +50,8 @@ class ComponentsController < ApplicationController
     @all_components =  Component.all
     @associated_components = @component.component_parents
     @parent_cps = @component.component_parents + @component.products
+    @all_groups = Group.all
+
   end
 
   # POST /components
@@ -56,14 +59,17 @@ class ComponentsController < ApplicationController
   def create
     @component = Component.new(params[:component])
 
-    logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
+    #logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
 
+    if(params[:new_group_id] != nil)
+      @component.group = Group.find(Integer(params[:new_group_id]))
+    end
 
     if(params[:new_components_ids] != nil)
-      logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
+      #logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
 
       for id in params[:new_components_ids]
-        logger.info("\n\nID:" + id + "\n\n\n")
+        #logger.info("\n\nID:" + id + "\n\n\n")
         id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
            c = Component.find((id + 1) * -1)
@@ -94,7 +100,12 @@ class ComponentsController < ApplicationController
   def update
     @component = Component.find(params[:id])
 
-    logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
+    @component.group = nil
+    if(params[:new_group_id] != nil)
+      @component.group = Group.find(Integer(params[:new_group_id]))
+    end
+
+    #logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
 
     component_parents_val = @component.component_parents
     component_products_val = @component.products
@@ -106,10 +117,10 @@ class ComponentsController < ApplicationController
     end
 
     if(params[:new_components_ids] != nil)
-      logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
+      #logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
 
       for id in params[:new_components_ids]
-        logger.info("\n\nID:" + id + "\n\n\n")
+        #logger.info("\n\nID:" + id + "\n\n\n")
         id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
            c = Component.find((id + 1) * -1)

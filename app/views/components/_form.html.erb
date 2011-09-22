@@ -34,7 +34,7 @@
         No Groups Availaable
     <%else%>
            <div class ="field">
-           <select size="5" name="new_group_id[]">
+           <select size="5" name="new_group_id">
              <%for group in @all_groups%>
                  <option value = "<%=group.id%>" <%if(@component.group_id == group.id)%> selected = "true"<%end%>>
                     <%= group.name %>

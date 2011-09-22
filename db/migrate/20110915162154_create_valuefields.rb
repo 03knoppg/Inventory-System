@@ -5,6 +5,7 @@ class CreateValuefields < ActiveRecord::Migration
       t.integer :property_id
       t.integer :product_id
       t.integer :component_id
+      t.string :path
 
       t.timestamps
     end

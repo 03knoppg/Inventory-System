@@ -1,10 +1,36 @@
 <p id="notice"><%= notice %></p>
-
+   <h1>Viewing Group</h1>
 <p>
   <b>Name:</b>
   <%= @group.name %>
 </p>
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= button_to 'Edit', edit_group_path(@group), {:method=>:get, :display=>"inline"}%>
+<%= button_to 'Back', groups_path, {:method=>:get, :display=>"inline"}%>
+
+
+
+  </p>
+
+<%
+   components = @group.components
+   if(components.length > 0) %>
+<table>
+  <tr>
+    <th><b>Component:</b></th>
+    <th><b>Description:</b></th>
+
+  </tr>
+  <%for comp in components%>
+      <tr>
+        <td> <%= link_to("#{comp.name}", comp) %> </td>
+        <td> <%= comp.description %> </td>
+      </tr>
+      <%end%>
+</table>
+    <%else%>
+    <br/>No Components
+<%end%>
+
+<%= button_to "New Component", new_component_path, :method => :get %>
