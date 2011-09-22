@@ -1,0 +1,18 @@
+<h1>Add Value</h1>
+
+Category
+
+<%print_categories(0,-1)%>
+<%if(@s.length == 0)%>
+   <br/> No Categories Available
+<%else%>
+<table>
+  <tr>
+    <th align="left">Name</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  <%= @s.html_safe %>
+</table>
+<%end%>
+
+<p />
