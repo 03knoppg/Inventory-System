@@ -3,6 +3,9 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
+    @all_groups = Group.all
+    @all_components = Component.all
+    @sg = ""
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,6 +15,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.json
+  #Function to show groups
   def show
     @group = Group.find(params[:id])
 
@@ -23,6 +27,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   # GET /groups/new.json
+  #Function for new groups
   def new
     @group = Group.new
 
@@ -33,12 +38,14 @@ class GroupsController < ApplicationController
   end
 
   # GET /groups/1/edit
+  #Function to edit groups
   def edit
     @group = Group.find(params[:id])
   end
 
   # POST /groups
   # POST /groups.json
+  #Function to create groups
   def create
     @group = Group.new(params[:group])
 
@@ -55,6 +62,7 @@ class GroupsController < ApplicationController
 
   # PUT /groups/1
   # PUT /groups/1.json
+  #Function to update groups
   def update
     @group = Group.find(params[:id])
 
@@ -71,6 +79,7 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1
   # DELETE /groups/1.json
+  #Function to delete groups
   def destroy
     @group = Group.find(params[:id])
     @group.destroy

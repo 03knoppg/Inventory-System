@@ -4,6 +4,7 @@ class ValuefieldsController < ApplicationController
   def index
     @valuefields = Valuefield.all
     @all_properties = Property.all
+    @all_valuefields = Valuefield.all
 
     respond_to do |format|
       format.html # index.html.erb

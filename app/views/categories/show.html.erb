@@ -1,48 +1,25 @@
 <p id="notice"><%= notice %></p>
  <h1>Viewing Category</h1>
+ <%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
 <table>
   <tr>
-    <th><b>Name:</b></th>
-    <th><b>Parent:</b></th>
+    <th align="left">Category Name:</th>
+    <th align="left">Category Parent:</th>
   </tr>
   <tr>
-    <td align="center"><%= @category.name %></td>
-    <td align="center"><%if(@parent != nil)%><%= link_to @parent.name, @parent %><%end%></td>
-  </tr>
-  <tr><td><p></p></td></tr>
-  <tr>
-    <td>
-     <%= button_to "Edit", edit_category_path(@category), :method => :get %>
-    </td>
-    <td>
-     <%= button_to "Back", categories_path, :method => :get %>
-    </td>
+    <td><%= @category.name %></td>
+    <td><%if(@parent != nil)%><%= link_to @parent.name, @parent %><%end%></td>
   </tr>
 </table>
-   <p/>
 
- <b> Products </b>
-<p/>
-<%
-    all_products = @category.products
-    if(all_products.length == 0)%>
-      No Products Available
-    <%else
-        all_products.sort!{|x,y| x.name <=> y.name}  #sort alphabetically  %>
-        <table>
-          <tr>
-            <th>Name:</th>
-            <th>Description:</th>
-          </tr>
-        <%for prod in all_products%>
-          <tr>
-              <td> <%=link_to prod.name, prod%> </td>
-              <td> <%="#{prod.description}" %></td>
-
-          </tr>
-        <%end%>
-        </table>
-    <%end%>
-
-
+<h4> Products related to this Category </h4>
 <%= button_to "New Product", new_product_path, :method => :get %>
+<% for cat in @all_categories %>
+ <% print_related_products(cat) %>
+ <%end%>
+<table>
+
+<%= @srp.html_safe %>
+
+</table>
+<br class="clear" />

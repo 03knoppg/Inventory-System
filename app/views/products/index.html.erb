@@ -1,19 +1,22 @@
-<h1>Listing products</h1>
-
-<table>
-  <tr>
-    <th align="left">Name</th>
-    <th align="left">Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% print_products %>
-  <%= @sp.html_safe %>
-</table>
-
-<br />
-
+<!--Products Index Page - uses application.html.erb for template. -->
+<h1>Listing Products</h1>
+<!--Button to create a new product -->
 <%= button_to "New Product", new_product_path, :method => :get %>
-<br />
-<%= button_to "Back to Main Menu", "/", :method => :get %>
+
+ <!--if length > 0 print groups -->
+<%if(@all_products.length > 0)    %>
+    <table title="Current Products">
+        <tr><th colspan="4"><h4>Current Products</h4></th></tr>
+        <tr>
+            <th align="left">Name</th>
+            <th align="left">Description</th>
+            <th align="left">Actions</th>
+            <th align="left">Grouped Components</th>
+        </tr>
+        <% print_products %>
+        <%= @sp.html_safe %>
+<%else%>
+        <tr><td><h4>No Products Available</h4></td></tr>
+<%end%>
+</table>
+<br class="clear" />

@@ -1,20 +1,23 @@
+<!--Properties Index Page - uses application.html.erb for template. -->
+<h1>Listing Properties</h1>
+<!--Button to create a new property -->
+<%= button_to "New Property", new_property_path, :method => :get %>
 
-<h1>Listing properties</h1>
-
-<table>
-  <tr>
-    <th align="left">Name</th>
-    <th align="left">Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
- <% print_properties %>
-  <%= @sa.html_safe %>
+ <!--if length > 0 print properties -->
+<%if(@all_properties.length > 0)    %>
+    <table title="Current Properties">
+        <tr><th colspan="5"><h4>Current Properties</h4></th></tr>
+        <tr>
+            <th align="left">Name</th>
+            <th align="left">Description</th>
+            <th align="left">Field Type</th>
+            <th align="left">Actions</th>
+            <th align="left">Grouped Value Fields</th>
+        </tr>
+        <% print_properties %>
+        <%= @sa.html_safe %>
+<%else%>
+        <tr><td><h4>No Properties Available</h4></td></tr>
+<%end%>
 </table>
-<br />
-
-<%= button_to 'New Property', new_property_path, :method=> :get %>
-<br />
-<%= button_to "Back to Main Menu", "/", :method => :get %>
+<br class="clear" />

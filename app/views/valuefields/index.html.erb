@@ -1,36 +1,20 @@
-<h1>Listing valuefields</h1>
-
-<table>
-  <tr>
-    <th>Fieldvalue</th>
-    <th>Component or Product</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @all_properties.each do |prop| %>
-      <tr>
-        <td>
-          <b><%=link_to prop.name, prop%></b>
-        </td>
-      </tr>
-      <%for val in prop.valuefields %>
-      <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= val.fieldvalue %></td>
-        <td><%= val.component != nil ? link_to(val.component.name, val.component) : link_to(val.product.name, val.product)%></td>
-        <td><%= button_to "Show", {:action => "show", :id => val.id }, :method => :get %></td>
-        <td><%= button_to 'Edit', edit_valuefield_path(val) , :method => :get%></td>
-        <td><%= button_to "Delete", { :action => "destroy", :id => val.id }, :confirm => "Are You sure?", :method => :delete %></td>
-
-
-      </tr>
-    <% end %>
-<% end %>
+<!--Properties Index Page - uses application.html.erb for template. -->
+<h1>Listing Value Fields</h1>
+<!--Button to create a new value field -->
+<%= button_to "New Value Field", new_valuefield_path, :method => :get %>
+ <!--if length > 0 print field values -->
+<%if(@all_valuefields.length > 0)    %>
+    <table title="Current Field Values">
+        <tr><th colspan="3"><h4>Current Field Values</h4></th></tr>
+        <tr>
+            <th align="left">Field Value</th>
+            <th align="left">Actions</th>
+            <th align="left">Component or Product</th>
+        </tr>
+        <% print_value_fields %>
+        <%= @sfv.html_safe %>
+<%else%>
+        <tr><td><h4>No Field Values Available</h4></td></tr>
+<%end%>
 </table>
-
-<br />
-
-<%= button_to 'New Valuefield', new_valuefield_path, :method => :get %>
-<br />
-<%= button_to "Back to Main Menu", "/", :method => :get %>
+<br class="clear" />

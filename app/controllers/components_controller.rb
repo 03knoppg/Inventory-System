@@ -1,3 +1,4 @@
+#Controller class for components
 class ComponentsController < ApplicationController
   # GET /components
   # GET /components.json
@@ -18,6 +19,7 @@ class ComponentsController < ApplicationController
 
   # GET /components/1
   # GET /components/1.json
+  #Function to show components
   def show
     @component = Component.find(params[:id])
     @all_components =  Component.all
@@ -30,6 +32,7 @@ class ComponentsController < ApplicationController
 
   # GET /components/new
   # GET /components/new.json
+  #Function for new components
   def new
 
     @component = Component.new
@@ -44,6 +47,7 @@ class ComponentsController < ApplicationController
   end
 
   # GET /components/1/edit
+  #Function to edit components
   def edit
     @component = Component.find(params[:id])
     @all_products = Product.all
@@ -56,20 +60,15 @@ class ComponentsController < ApplicationController
 
   # POST /components
   # POST /components.json
+  #Function to create components
   def create
     @component = Component.new(params[:component])
-
-    #logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
-
     if(params[:new_group_id] != nil)
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
     if(params[:new_components_ids] != nil)
-      #logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
-
       for id in params[:new_components_ids]
-        #logger.info("\n\nID:" + id + "\n\n\n")
         id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
            c = Component.find((id + 1) * -1)
@@ -78,11 +77,8 @@ class ComponentsController < ApplicationController
            p = Product.find(id)
            @component.products.push(p)
          end
-
       end
     end
-
-
 
     respond_to do |format|
       if @component.save
@@ -97,18 +93,17 @@ class ComponentsController < ApplicationController
 
   # PUT /components/1
   # PUT /components/1.json
+  #Function to update components
   def update
     @component = Component.find(params[:id])
-
     @component.group = nil
     if(params[:new_group_id] != nil)
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
-    #logger.info("\n\nPARAMS:" + params.inspect + "\n\n\n")
-
     component_parents_val = @component.component_parents
     component_products_val = @component.products
+
     for comp in component_parents_val
       comp.components.delete(@component)
     end
@@ -117,10 +112,7 @@ class ComponentsController < ApplicationController
     end
 
     if(params[:new_components_ids] != nil)
-      #logger.info("\n\nIN HERE" + params[:new_components_ids].inspect + "\n\n\n")
-
       for id in params[:new_components_ids]
-        #logger.info("\n\nID:" + id + "\n\n\n")
         id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
            c = Component.find((id + 1) * -1)
@@ -129,9 +121,9 @@ class ComponentsController < ApplicationController
            p = Product.find(id)
            component_products_val.push(p)
          end
-
       end
     end
+
     respond_to do |format|
       if @component.update_attributes(params[:component])
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }
@@ -164,23 +156,19 @@ class ComponentsController < ApplicationController
     if(component == nil || component.id == nil)
         return
     end
-
-      for child in component.components
-        if(child.component_parents.length < 2)
-          destroy_component(child)
-        end
+    for child in component.components
+      if(child.component_parents.length < 2)
+        destroy_component(child)
       end
+    end
     component.destroy
   end
 
    #Function to sort the components array
    def sort_components
-
     for com in @all_components
-
         @all_components_hash[com]= (com.components)
     end
-
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end
@@ -188,7 +176,6 @@ class ComponentsController < ApplicationController
 
    #Function to sort the categories array
    def sort_components_for_delete
-
     for comp in @all_components
       if(comp == nil)
          @all_components_hash[0] = [comp]
@@ -196,11 +183,9 @@ class ComponentsController < ApplicationController
         if(@all_components_hash[comp.parent_id] == nil)
           @all_components_hash[comp.parent_id] = []
         end
-
         @all_components_hash[comp.parent_id].push(comp)
       end
     end
-
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end

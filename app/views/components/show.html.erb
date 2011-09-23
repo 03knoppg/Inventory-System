@@ -1,96 +1,51 @@
+<!--Component Show Page -->
 <p id="notice"><%= notice %></p>
- <h1>Viewing Component</h1>
-
-<% parents = @component.products + @component.component_parents%>
-<% valuefields = @component.valuefields%>
-
-
- <table>
-  <tr>
-    <th><b>Name:</b></th>
-    <th>Description:</th>
-  </tr>
-  <tr>
-    <td rowspan="<%=valuefields.length%>" align="center"><%= @component.name %></td>
-    <td rowspan="<%=valuefields.length%>" align="center"><%= @component.description %></td>
-
-  </tr>
-  <tr><td><p></p></td></tr>
-  <tr>
-    <td>
-     <%= button_to "Edit", edit_component_path(@component), :method => :get %>
-    </td>
-    <td>
-     <%= button_to "Back", components_path, :method => :get %>
-    </td>
-  </tr>
-</table>
-
-                  <p/>
+<h1>Viewing Component</h1>
+<%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
 
 <table>
-  <tr><th><b>Parent<%if(parents.length > 1)%>s<%end%>:</b></th></tr>
-  <%for par in parents%>
-      <tr><td>
-    <%= link_to(par.name, par) %>
-      </td></tr>
-      <%end%>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+  </tr>
+  <tr>
+    <td><%= @component.name %></td>
+    <td><%= @component.description %></td>
+  </tr>
 </table>
 
-<p/>
+<h4> Parents related to this Component </h4>
+<% print_component_parents %>
+<table>
+  <tr><th align="Left">Parent Name</th></tr>
+  <%= @part.html_safe %>
+</table>
 
-
- <b>Group</b><br/>
-  <% group = @component.group
- if(group != nil) %>
-<%= link_to("#{group.name} ", group) %>
+<h4>Group the Component Belongs to</h4>
+<% group = @component.group %>
+<table>
+  <tr><th align="left">Group Name</th></tr>
+  <% if(group != nil) %>
+      <tr><td><%= link_to("#{group.name} ", group) %></td></tr>
   <%else%>
-  No Group
+      <tr><td>No Groups Available</td></tr>
   <%end%>
+</table>
 
+<h4>Component Children</h4>
+<% print_component_child %>
+<table>
+  <tr><th align="left">Child Name</th></tr>
+  <%= @ch.html_safe %>
+</table>
 
-               <p/>
-
-
-   <b>Components</b>
-<% components = @component.components
-   if(components.length > 0) %>
+<h4>Field Values & Properties related to this Component</h4>
+<% print_values_related %>
 <table>
   <tr>
-    <th><b>Component:</b></th>
-    <th><b>Description:</b></th>
+    <th align="left">Field Value</th>
+    <th align="left">Property</th>
   </tr>
-  <%for comp in components%>
-      <tr>
-        <td> <%= link_to("#{comp.name} ", comp) %> </td>
-        <td> <%= comp.description %> </td>
-      </tr>
-      <%end%>
+  <%= @pp.html_safe %>
 </table>
-    <%else%>
-    <br/>No Components
-<%end%>
-
-               <p/>
-
-   <b>Properties</b>
-<%if(valuefields.length > 0) %>
-<table>
-  <tr>
-    <th><b>Property:</b></th>
-    <th><b>Value:</b></th>
-  </tr>
-  <%for val in valuefields%>
-      <% property = val.property %>
-      <tr>
-        <td> <%= link_to("#{property.name} (#{property.field_type}) ", property) %> </td>
-        <td> <%= link_to(val.fieldvalue, val) %> </td>
-      </tr>
-      <%end%>
-</table>
-    <%else%>
-    <br/>No properties
-<%end%>
-
-
-<%= button_to "New Property", new_property_path, :method => :get %>
+<br class="clear" />

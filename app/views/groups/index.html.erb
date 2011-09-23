@@ -1,23 +1,23 @@
-<h1>Listing groups</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= group.name %></td>
-    <td><%= button_to 'Show', group, :method => :get %></td>
-    <td><%= button_to 'Edit', edit_group_path(group), :method => :get %></td>
-    <td><%= button_to 'Destroy', group, confirm: 'Are you sure?', method: :delete , :method => :get%></td>
-  </tr>
-<% end %>
+<!--Groups Index Page - uses application.html.erb for template. -->
+<h1>Listing Groups</h1>
+<!--Button to create a new group -->
+<%= button_to 'New Group', new_group_path, :method => :get %>
+<!--if length > 0 print groups -->
+<%if(@all_groups.length > 0)    %>
+    <table title="Current Groups">
+        <tr><th colspan="3"><h4>Current Groups</h4></th></tr>
+        <tr>
+            <th align="left">Name</th>
+            <th align="left">Actions</th>
+            <th align="left">Grouped Components</th>
+        </tr>
+        <% for group in @all_groups %>
+            <!-- Call to function print_groups located in groups_helper.rb -->
+            <% print_groups(group) %>
+        <%end%>
+        <%= @sg.html_safe %>
+<%else%>
+        <tr><td><h4>No Groups Available</h4></td></tr>
+<%end%>
 </table>
-
-<br />
-
-<%= button_to 'New Group', new_group_path, method: :delete , :method => :get %>
+<br class="clear" />

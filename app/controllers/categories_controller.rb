@@ -1,3 +1,4 @@
+#Controller file for Categories
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
@@ -31,7 +32,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   # GET /categories/new.json
-  #Function
+  #Function for new category
   def new
     @category = Category.new
     @all_categories =  Category.all
@@ -102,46 +103,37 @@ class CategoriesController < ApplicationController
 
   #Function to destroy a parent category and its children
   def destroy_category(category)
-    #logger.info("+++++++++++++++++++++++++++destroy_category category #{category.name}")
+    #if category and id are nil return, else destroy all children of category then destroy parent.
     if(category == nil || category.id == nil)
         return
     end
-
     if(@all_categories_hash[category.id] != nil)
       for child in @all_categories_hash[category.id]
+        #calls itself to destroy children.
        destroy_category(child)
       end
     end
+    #destroy parent category
     category.destroy
   end
 
   #Function to sort the categories array
    def sort_categories
-    #logger.info("+++++++++++++++++++++++++++ Sort_category begin #{@all_categories}")
+    #loop to sort categories parents and children
     for cat in @all_categories
-
-
-      if(cat.parent_id == nil)
+     #if category parent id == nill then hash = current category else if parent id of category = nil then parent id hash is nil
+     if(cat.parent_id == nil)
          @all_categories_hash[0] = [cat]
-
-      else
-
-        #logger.info("+++++++++++++++++++++++++++I'm looking for this: #{cat}")
-
-        if(@all_categories_hash[cat.parent_id] == nil)
+     else
+       if(@all_categories_hash[cat.parent_id] == nil)
           @all_categories_hash[cat.parent_id] = []
         end
-
         @all_categories_hash[cat.parent_id].push(cat)
       end
     end
-
-    #logger.info("+++++++++++++++++++++++++++I'm looking for this: #{@all_categories_hash.inspect}")
-
+    #Sort loop for categories
     for key in @all_categories_hash.keys
       @all_categories_hash[key].sort!{|x,y| x.name <=> y.name}
     end
-
-      #logger.info("+++++++++++++++++++++++++++Sort_category end #{@all_categories_hash}")
   end
 end
