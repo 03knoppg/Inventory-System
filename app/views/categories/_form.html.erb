@@ -1,33 +1,45 @@
 <%= form_for(@category) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+    <% if @category.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
-      <ul>
-      <% @category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-               Parent
-
-  <div class ="field">
-    <select name="category[parent_id]">
-
-      <% @all_categories.each do |category| %>
-      <option value= "<%=category.id %>"<% if(@category.parent_id == category.id) %>
-            selected = true;
-          <% end %>>
-        <%= category.name%></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+          <ul>
+            <% @category.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table>
+      <tr>
+        <th align="left">Parent</th>
+        <th align="left">Name</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td style="width: 200px">
+          <div class ="field">
+            <select name="category[parent_id]">
+              <% @all_categories.each do |category| %>
+                  <option value= "<%=category.id %>"<% if(@category.parent_id == category.id) %>
+                          selected = true;
+                          <% end %>>
+                    <%= category.name%></option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :name %>
+          </div>
+          </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
 <% end %>
+</td>
+</tr>
+</table>
+<br class="clear" />

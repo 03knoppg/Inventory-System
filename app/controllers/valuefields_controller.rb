@@ -7,7 +7,7 @@ class ValuefieldsController < ApplicationController
     @all_valuefields = Valuefield.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # mainmenu.html.erb
       format.json { render json: @valuefields }
     end
   end

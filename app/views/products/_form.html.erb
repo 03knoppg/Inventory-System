@@ -10,46 +10,53 @@
           </ul>
         </div>
     <% end %>
+    <table>
+      <tr>
+        <th align="left">Name</th>
+        <th align="left">Description</th>
+        <th align="left">Categories</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td style="width: 200px">
+          <div class ="field">
+            <%= f.text_field :name %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :description %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%if(@all_categories.length < 2)%>
+                <br/> No Categories available
+            <%else%>
 
-    <div class="field">
-      <%= f.label :name %>
-      <br/>
-      <%= f.text_field :name %>
-    </div>
-    <br/>
-    <div>
-      <%= f.label "Categories" %> <br/>
-      <%if(@all_categories.length < 2)%>
-          <br/> No Categories available
-          <%else%>
+                <select size="5" multiple="multiple" name="new_categories_ids[]" style="width: 100px">
 
-      <select size="5" multiple="multiple" name="new_categories_ids[]">
+                  <% for cat in @all_categories
+                         if (cat.parent_id == nil)
+                             next
+                         end %>
+                      <option
+                      value="<%= cat.id %>"
+                      <% if (@associated_categories.include?(cat)) %> selected=true <% end %>>
+                        <%= cat.name %>
+                      </option>
 
-        <% for cat in @all_categories
-               if (cat.parent_id == nil)
-                   next
-               end %>
-            <option
-                value="<%= cat.id %>"
-                    <% if (@associated_categories.include?(cat)) %> selected=true <% end %>>
-              <%= cat.name %>
-            </option>
-
-        <% end %>
-      </select>
-          <%end%>
-    </div>
-    <br/>
-
-
-    <div class="field">
-      <%= f.label :description %>
-      <br/>
-      <%= f.text_field :description %>
-    </div>
-
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+                  <% end %>
+                </select>
+            <%end%>
+          </div>
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
 <% end %>
+</td>
+</tr>
+</table>
+<br class="clear" />

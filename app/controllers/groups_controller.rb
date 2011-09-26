@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     @sg = ""
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # mainmenu.html.erb
       format.json { render json: @groups }
     end
   end

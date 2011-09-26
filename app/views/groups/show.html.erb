@@ -15,7 +15,7 @@
 <table>
   <tr><th>Name</th></tr>
   <% for comp in components %>
-    <tr><td><%= link_to(comp.name) %></td></tr>
+    <tr><td><%= link_to(comp.name, comp) %></td></tr>
  <%end%>
 </table>
 <br class="clear" />

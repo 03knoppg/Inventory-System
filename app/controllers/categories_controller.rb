@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     sort_categories
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # mainmenu.html.erb
       format.json { render json: @categories }
     end
   end

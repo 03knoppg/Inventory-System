@@ -1,6 +1,9 @@
-<h1>Editing group</h1>
-
+<h1>Editing Group</h1>
+ <table>
+  <tr>
+    <td>
+       <%= button_to 'Show Group', {:action => "show", :id => @group.id } , :method => :get %>
+    </td>
+  </tr>
+</table>
 <%= render 'form' %>
-
-<%= button_to 'Show', @group , :method => :get%>
-<%= button_to 'Back', groups_path, :method => :get %>

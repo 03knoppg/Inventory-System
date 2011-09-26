@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
     @sa = " "
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # mainmenu.html.erb
       format.json { render json: @properties }
     end
   end

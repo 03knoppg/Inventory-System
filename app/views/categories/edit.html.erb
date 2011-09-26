@@ -1,15 +1,12 @@
-<h1>Editing category</h1>
-
-<%= render 'form' %>
+<h1>Editing Category</h1>
 <table>
   <tr>
     <td>
-       <%= button_to "Show", {:action => "show", :id => @category.id }, :method => :get %>
-    </td>
-    <td>
-       <%= button_to "Back", categories_path, :method => :get %>
+      <%= button_to "Show Category", {:action => "show", :id => @category.id }, :method => :get %>
     </td>
   </tr>
 </table>
+<%= render 'form' %>
+
 
 

@@ -67,6 +67,14 @@ basicSide.components = [noArm, withArm, basicBackMesh, frameFinish]
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
 finish = Property.create(name:"Finish", description:"Product/Component Finish", field_type:"string")
 
+  #products_properties
+
+#components_properties
+backMesh.properties = [colour]
+seatMesh.properties = [colour]
+basicBackMesh.properties = [colour]
+frameFinish.properties = [finish]
+
 #ValueFields
 #Belongs to Component "backMesh"
 closedMeshBlackWhiteBack = Valuefield.create(fieldvalue:"Closed Back Mesh Black/White", property_id:colour.id, product_id:nil, component_id:backMesh.id)

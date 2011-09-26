@@ -1,54 +1,25 @@
-<p id="notice"><%= notice %></p>
+ <p id="notice"><%= notice %></p>
  <h1>Viewing Property</h1>
-
+ <%= button_to "Edit Property", edit_property_path(@property), :method => :get %>
 <table>
   <tr>
-    <th align="left">Name:</th>
-    <th align="left">Description:</th>
-    <!--th align="left">Values:</th-->
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th align="left">field type</th>
   </tr>
   <tr>
-    <td valign="top" > <%= @property.name %></td>
-    <td valign="top" > <%= @property.description %></td>
-
-
-  <tr>
-    <td>
-     <%= button_to "Edit", edit_property_path(@property), :method => :get %>
-    </td>
-    <td>
-     <%= button_to "Back", properties_path, :method => :get %>
-    </td>
+    <td><%= @property.name %></td>
+    <td><%= @property.description %></td>
+    <td><%= @property.field_type %></td>
   </tr>
 </table>
 
-</p>
-
-<b>Values</b>
-
-<%if(@property.valuefields.length ==0) %>
-    <br/>No Values Defined
-    <%else%>
-
+<h4> Value Fields related to this Group </h4>
+<% vf = @property.valuefields %>
 <table>
-  <tr>
-    <th>Value</th>
-    <th>Product / Component</th>
-  </tr>
-  <%for val in @property.valuefields %>
-      <tr>
-        <td><%= link_to val.fieldvalue, val %></td>
-        <td> <%= if (val.product != nil)
-                     link_to val.product.name, val.product
-                 else
-                      link_to val.component.name, val.component
-                end%>
-              </td>
-      </tr>
-
-  <%end%>
+  <tr><th>Name</th></tr>
+  <% for v in vf %>
+    <tr><td><%= link_to(v.fieldvalue, v) %></td></tr>
+ <%end%>
 </table>
-<%end%>
-
-<p/>
-<%= button_to "New Value", new_valuefield_path, :method => :get %>
+<br class="clear" />

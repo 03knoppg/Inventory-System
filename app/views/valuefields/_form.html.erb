@@ -11,34 +11,39 @@
           </ul>
         </div>
     <% end %>
+    <table>
+      <tr>
+        <th align="left" colspan="3">Product Path</th>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class ="field">
+            <select name="path">
+              <option selected="true"  value="-1">No Selection</option>
+              <%=get_paths_as_select.html_safe%>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td align="left" colspan="3"><h2>OR</h2></td>
+      </tr>
+      <tr>
+        <th align="left" colspan="3">Product, Category or Component</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <select name="prod_comp_id">
+              <option selected="true" value="-1">No Selection</option>
+              <!--Product id is negative to differentiate from component-->
+              <% parent_comp = @valuefield.component
+                 parent_prod = @valuefield.product
 
-
-    <%=f.label "Product"%>
-    <div class ="field">
-
-      <select name="path">
-        <option selected="true"  value="-1">No Selection</option>
-        <%=get_paths_as_select.html_safe%>
-      </select>
-
-    </div>
-
-    <h1>OR</h1>
-
-
-    <%= f.label "Product Category or Component" %><br />
-    <div class ="field">
-      <select name="prod_comp_id">
-        <option selected="true" value="-1">No Selection</option>
-
-<!--Product id is negative to differentiate from component-->
-        <% parent_comp = @valuefield.component
-           parent_prod = @valuefield.product
-
-           for pc in @all_prods_comps %>
-            <option value=
-            <%if(pc.is_a?(Product))%>
-                "<%="#{(-pc.id)-1}"%>"
+                 for pc in @all_prods_comps %>
+                  <option value=
+                            <%if(pc.is_a?(Product))%>
+                                  "<%="#{(-pc.id)-1}"%>"
             <%else%>
                  "<%=pc.id%>"
             <%end%>
@@ -48,32 +53,43 @@
             <% end %>
 
                 ><%= pc.name%> </option>
-        <% end %>
-      </select>
-    </div>
-
-       <hr/>
-    <%= f.label "Property" %><br />
-    <div class ="field">
-      <select name="property_id">
-
-
-        <%for prop in @all_properties %>
-            <option value= "<%=prop.id %>"<% if(@valuefield.property == prop) %>
-                    selected = true;
-                    <% end %> >
-              <%= prop.name%> (<%=prop.field_type%>)</option>
-        <% end %>
-      </select>
-    </div>
-
-    <div class="field">
-      <%= f.label "Value" %><br />
-      <%= f.text_field :fieldvalue %>
-    </div>
-
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
+              <% end %>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td align="left"><h2>AND</h2></td>
+      </tr>
+      <tr>
+        <th align="left">Property</th>
+        <th align="left">Value</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <select name="property_id">
+              <%for prop in @all_properties %>
+                  <option value= "<%=prop.id %>"<% if(@valuefield.property == prop) %>
+                          selected = true;
+                          <% end %> >
+                    <%= prop.name%> (<%=prop.field_type%>)</option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :fieldvalue %>
+          </div>
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </td>
+      </tr>
+    </table>
+<%end%>
+<br class="clear" />
