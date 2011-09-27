@@ -1,18 +1,112 @@
 <h1>Add Value</h1>
 
-Category
 
-<%print_categories(0,-1)%>
-<%if(@s.length == 0)%>
-   <br/> No Categories Available
+
+
+<p>
+  <label id="cat_id"></label>
+</p>
+
+
+
+
+<label id="type">Category</label>
+<br/>
+<%
+   categories = Category.all
+   if(categories.length == 0)%>
+    <br/> No Categories Available
 <%else%>
-<table>
-  <tr>
-    <th align="left">Name</th>
-    <th colspan="3">Actions</th>
-  </tr>
-  <%= @s.html_safe %>
-</table>
+    <div id ="category_select_area">
+      <select size="5" id = "category_select_box">
+        <%for cat in categories%>
+            <option value="<%= @type %><%= cat.id %>">
+
+              <%=cat.name%>
+
+            </option>
+        <%end%>
+      </select>
+    </div>
 <%end%>
 
-<p />
+ Product
+<div id="product_select_area">
+
+</div>
+Component
+<div id="component_select_area">
+
+</div>
+Valuefield
+<div id="valuefield_select_area">
+
+</div>
+
+<script type="text/javascript">
+
+
+    jQuery(function($) {
+        $('#cart123 p').replaceWith("<%= escape_javascript(render :partial => 'fill_select') %>");
+    });
+
+</script>
+
+
+<script type="text/javascript">
+
+    jQuery(function($) {
+        // dummy example... ignore
+        $('#prod_select123').live('click',
+                function () {
+                    $.getScript(this.href, this.val());
+                    return false;
+                }
+        );
+
+        // prod_select ajax get function
+        $('select').live('click',function () {
+            $.get("/admin/addvalue", {path: $('#cat_id').html(), item: $(this).val()}, null, 'script');
+            return false;
+        });
+    });
+
+
+
+</script>
+<script type="text/javascript">
+    var tables = document.getElementById("tables")
+
+
+    function add_product_select(id){
+
+
+
+
+        table = "<select size=\"5\">";
+
+
+    <% for prod in Category.find(6).products %>
+        table +=    "<option><%= prod.name %></option>";
+    <% end %>
+
+
+        table += "</select>";
+
+
+        //tables.innerHTML += table;
+
+    }
+
+</script>
+
+
+
+<% form_tag url_for(:action => "addvalue"), :id => "tool-form", :remote => true do  %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+
+<% #  link_to "Add to cart", :url => {:action => "addvalue", :id => 1},  :remote => true %>

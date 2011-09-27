@@ -17,6 +17,7 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "admin/home"
   get "admin/addvalue"
+  post "admin/addvalue"
 
   match 'admin', :to => 'admin#home'
 

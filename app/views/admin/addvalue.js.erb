@@ -1,0 +1,63 @@
+
+
+//raw method prevents html escaping
+
+
+o = "";
+
+<%if(@items != nil)%>
+    o += "<select size=\"5\" id = \"product_select_box\">";
+    <%for item in @items%>
+      o += "<option id=\"select_options\" value=\"<%= @type %><%= item.id %>\">";
+          <%if(@type != "v")%>
+            o += "<%=item.name%>"
+          <%else%>
+            o += "<%=item.fieldvalue%>"
+          <%end%>
+
+      o += "</option>";
+    <%end%>
+    o += "</select>";
+<%end%>
+//$('#product_select_area').html(o);
+
+if("<%=@type%>" == "p"){
+    make_table("product_select_area","table");
+} else if("<%=@type%>" == "c"){
+    make_table("component_select_area","table");
+} else if("<%=@type%>" == "v"){
+    make_table("valuefield_select_area","table");
+}
+
+
+$('#cat_id').html("<%=@path%>");
+
+
+
+<%if(@type == "c")%>
+//$('#product_select_box').attr("enabled", "false");
+<%end%>
+
+function make_table(where,id){
+
+   o = "";
+
+<%if(@items != nil)%>
+    o += "<select size=\"5\" id = \"" + <%@type%>+id +"\">";
+    <%for item in @items%>
+      o += "<option value=\"<%= @type %><%= item.id %>\">";
+          <%if(@type != "v")%>
+            o += "<%=item.name%>"
+          <%else%>
+            o += "<%=item.fieldvalue%>"
+          <%end%>
+
+      o += "</option>";
+    <%end%>
+    o += "</select>";
+<%end%>
+$('#'+where).html(o);
+
+}
+
+
