@@ -66,14 +66,9 @@
       <tr>
         <td>
           <div class ="field">
-            <select name="property_id">
-              <%for prop in @all_properties %>
-                  <option value= "<%=prop.id %>"<% if(@valuefield.property == prop) %>
-                          selected = true;
-                          <% end %> >
-                    <%= prop.name%> (<%=prop.field_type%>)</option>
-              <% end %>
-            </select>
+
+             <%= text_field_tag 'property',  @valuefield.property.name, :disabled => true %>
+
           </div>
         </td>
         <td>

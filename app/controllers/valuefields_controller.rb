@@ -55,14 +55,20 @@ class ValuefieldsController < ApplicationController
 
     prod_comp = Integer(params[:prod_comp_id])
 
+    property =  Property.find(Integer(params[:property_id][0]))
+    @valuefield.property = property
 
     if(prod_comp != -1)
 
       logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
       if(prod_comp < 0)       #Product id is negative to differentiate from component
-        @valuefield.product = Product.find(-(prod_comp+1))
+        product =  Product.find(-(prod_comp+1))
+        @valuefield.product = product
+        product.properties.push(property)
       elsif
-        @valuefield.component = Component.find(prod_comp)
+        component =   Component.find(prod_comp)
+        @valuefield.component = component
+        component.properties.push(property)
       else
         logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
       end
@@ -71,7 +77,6 @@ class ValuefieldsController < ApplicationController
     end
 
 
-    @valuefield.property = Property.find(Integer(params[:property_id][0]))
 
     respond_to do |format|
       if @valuefield.save
@@ -89,15 +94,23 @@ class ValuefieldsController < ApplicationController
   def update
     @valuefield = Valuefield.find(params[:id])
 
-    prod_comp = Integer(params[:prod_comp_id][0])
+    prod_comp = Integer(params[:prod_comp_id])
     @valuefield.product = nil
     @valuefield.component = nil
 
     logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
     if(prod_comp < 0)       #Product id is negative to differentiate from component
       @valuefield.product = Product.find(-(prod_comp+1))
+      product = Product.find(-(prod_comp+1))
+       property =  Property.find(Integer(params[:property_id][0]))
+      @valuefield.property = property
+      product.properties.push(property)
     elsif
       @valuefield.component = Component.find(prod_comp)
+      property =  Property.find(Integer(params[:property_id][0]))
+      component = Component.find(prod_comp)
+      @valuefield.property = property
+      component.properties.push(property)
     else
       logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
     end

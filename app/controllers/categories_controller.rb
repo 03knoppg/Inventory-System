@@ -48,6 +48,11 @@ class CategoriesController < ApplicationController
   def edit
     @category = Category.find(params[:id])
     @all_categories =  Category.all
+    @child_categories = []
+    remove_children(@all_categories, @category)
+
+    @all_categories = @all_categories - @child_categories
+
   end
 
   # POST /categories
@@ -115,6 +120,15 @@ class CategoriesController < ApplicationController
     end
     #destroy parent category
     category.destroy
+  end
+
+  def remove_children(categories, category)
+     for cat in categories
+      if(cat.parent_id == category.id)
+         @child_categories.push(cat)
+         remove_children(categories, cat)
+      end
+    end
   end
 
   #Function to sort the categories array

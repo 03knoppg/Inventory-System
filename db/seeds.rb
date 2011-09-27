@@ -51,6 +51,10 @@ backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", gro
 seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:nil)
 basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
 frameFinish = Component.create(name:"Frame Finish", description:"Chair Frame Finish", group_id:nil)
+#test for component_components
+childComponent = Component.create(name: "childComponent", description: "Child of parent", group_id: nil)
+backMesh.components = [childComponent]
+
 
 #Categories_Products - association table
 fluid.products = [task, stool, basicTask, basicStool, side, basicSide]
@@ -74,6 +78,7 @@ backMesh.properties = [colour]
 seatMesh.properties = [colour]
 basicBackMesh.properties = [colour]
 frameFinish.properties = [finish]
+childComponent.properties = [colour]
 
 #ValueFields
 #Belongs to Component "backMesh"
