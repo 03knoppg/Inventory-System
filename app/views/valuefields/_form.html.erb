@@ -1,3 +1,11 @@
+<div id="button_div">
+   <%=button_to 'Create by Incremental Path', admin_addvalue_path, :method => :get%>
+   <button id="other_button">Create by Component or Product</button>
+   <button id="path_button">Create by Path</button>
+   </div>
+
+
+
 <%= form_for(@valuefield) do |f| %>
     <% if @valuefield.errors.any? %>
 
@@ -11,6 +19,15 @@
           </ul>
         </div>
     <% end %>
+
+
+
+
+
+
+
+
+<div id="path_div">
     <table>
       <tr>
         <th align="left" colspan="3">Product Path</th>
@@ -25,9 +42,13 @@
           </div>
         </td>
       </tr>
-      <tr>
-        <td align="left" colspan="3"><h2>OR</h2></td>
-      </tr>
+  </table>
+</div>
+
+
+
+<div id="other_div">
+  <table>
       <tr>
         <th align="left" colspan="3">Product or Component</th>
       </tr>
@@ -55,9 +76,10 @@
           </div>
         </td>
       </tr>
-      <tr>
-        <td align="left"><h2>AND</h2></td>
-      </tr>
+      </table>
+  </div>
+    <div id="property_div">
+    <table>
       <tr>
         <th align="left">Property</th>
         <th align="left">Value</th>
@@ -88,5 +110,32 @@
         </td>
       </tr>
     </table>
+</div>
 <%end%>
 <br class="clear" />
+
+
+<script type="text/javascript">
+    jQuery(function($) {
+        $('#other_div').hide();
+        $('#path_div').hide();
+        $('#property_div').hide();
+
+
+        $('#path_button').click(function () {
+            //$('#path_div').style.visibility="visible";// show/hide
+            $('#path_div').show();
+            $('#button_div').hide();
+            $('#property_div').show();
+
+        });
+        $('#other_button').click(function () {
+            $('#other_div').show();
+            $('#button_div').hide();
+            $('#property_div').show();
+        });
+    });
+
+
+
+</script>

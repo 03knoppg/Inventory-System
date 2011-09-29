@@ -9,7 +9,8 @@ class AdminController < ApplicationController
     @categories = Category.all
     @all_categories =  Category.all
     @all_categories_hash = {}
-    @s = ""
+    @all_properties = Property.all
+    @valuefield = Valuefield.new
 
 
     if(params[:item] == nil)
@@ -19,22 +20,19 @@ class AdminController < ApplicationController
 
     else
 
+      @path = params[:path]
 
-      @path = params[:path] + params[:item]+ "|"
+      choice = params[:item]
 
 
-      #logger.info("\n\n\n\n\n SSSSSSSSSSSSSSSSSSSSSSSSSSSSS #{params[:path]}\n\n\n\n\n")
+      path = update_path(@path, choice)
 
-      next_table(@path)
+      next_table(path)
 
 
     end
 
-
-
-
-
-    sort_categories
+    @path = path
 
     respond_to do |format|
       format.html
@@ -43,57 +41,194 @@ class AdminController < ApplicationController
 
   end
 
-  def next_table(path)
+  def create
 
-    split = path.split("|")
+    @valuefield = Valuefield.new(params[:valuefield])
 
-    chosen_properties = []
+    logger.info("\n\n\n #{params[:path].inspect}")
 
-    while(split.last.start_with?("v"))
-      v_id = split.last[1..split.last.length]
-      split.pop
-      chosen_properties.push(Valuefield.find(v_id).property.id)
+    path = params[:path]
+
+
+    property =  Property.find(Integer(params[:property_id]))
+    @valuefield.property = property
+
+
+    @valuefield.path = path
+
+
+
+
+    respond_to do |format|
+      if @valuefield.save
+        format.html { redirect_to @valuefield, notice: 'Valuefield was successfully created.' }
+        format.json { render json: @valuefield, status: :created, location: @valuefield }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @valuefield.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_path(path, choice)
+
+    if( choice.start_with?("a") )
+      if(path != "")
+        path += "|"
+      end
+      path += choice + "|p"
+
+      for product in Category.find(choice[1..choice.length]).products
+        path += ":#{product.id}"
+      end
+
+      return path
     end
 
-    item_type = split.last[0]
-    item_id = split.last[1..split.last.length]
+
+    path = path.split("|")
+    #logger.info("\n\n\n #{choice} #{path}\n\n\n\n\n")
+
+    for part in path
+
+                                                                         #TODO bug here: c2 will match c:20
+      if(part[0] == choice[0] && part.match(":#{choice[1..choice.length]}") != nil) #insert component + valuefields + choices here
+        if(choice.start_with?("p"))
+          comp = Product.find(choice[1..choice.length])
+        elsif(choice.start_with?("c"))
+          comp = Component.find(choice[1..choice.length])
+        else #valuefield
+           index = path.index(part)
+
+          path[index] = "#{choice}"
+          return path.join("|")
+
+        end
+
+        child_hash = sort_component_children(comp.components)
+
+        comp_entry = generate_entry(child_hash,"c")
+
+
+        valuefield_hash = sort_valuefield_children(comp.valuefields)
+
+        #logger.info("\n\n\n\n\n Comp:#{comp.inspect} vfs:#{comp.valuefields} \n\n\n\n\n\n")
+        debug_hash(valuefield_hash)
+
+        val_entry = generate_entry(valuefield_hash,"v")
+
+
+        index = path.index(part)
+
+        path[index] = comp_entry
+        path.insert(index, val_entry)
+        path.insert(index, "#{choice}")        #      choice | val_entry | comp_entry
+
+
+        path.delete("")
+        return path.join("|")
+
+      end
+    end
+    logger.info("\n\n\n\n\n no match found \n\n\n\n\n\n")
+  end
+
+  def generate_entry(hash,type)
+    entry = []
+    for group in hash.keys
+      if(group != "no_group")
+        group_group = "#{type}"
+        for child_comp in hash[group]
+          group_group += ":#{child_comp.id}"
+        end
+        entry.push(group_group)
+      else
+        for child_comp in hash[group]
+            entry.push("#{type}:#{child_comp.id}")
+        end
+      end
+
+    end
+    #logger.info("\n\n\n\n\n entry:#{entry} join:#{entry.join("|")} \n\n\n\n\n\n")
+    entry.join("|")
+  end
+
+  def sort_component_children(children)
+
+    hash = {"no_group"=>[]}
+
+    for child in children
+      if(child.group == nil)
+        hash["no_group"].push(child)
+      else
+        if (!hash.key?(child.group))
+          hash[child.group] = []
+        end
+
+        hash[child.group].push(child)
+      end
+    end
+
+    hash
+  end
+
+  def sort_valuefield_children(children)
+     hash = {"no_group"=>[]}
+
+    for child in children
+      if(child.property == nil)
+        hash["no_group"].push(child)
+      else
+        if (!hash.key?(child.property))
+          hash[child.property] = []
+        end
+
+        hash[child.property].push(child)
+      end
+    end
+
+    hash
+  end
+
+
+  def next_table(path)
+
+    split_path = path.split("|")
+
+    item = nil
+
+    for part in split_path
+       if(part[1] == ":")
+         item = part
+         break
+       end
+    end
+
+    if(item == nil) #ALL DONE
+      @type = "DONE"
+      return
+    end
+
+
+
+    item_type = item[0]
 
     if(item_type == "a") #category
+      item_id = item[1..split_path.last.length]
       @items = Category.find(item_id).products
-      @type = "p"
+      @type = "a"
+    elsif(item_type == "v") #valuefield
+      @items  = find_next_choices(item)
+      @type = "v"
 
     elsif(item_type == "p") #product
-      @items  = Product.find(item_id).components
-      @type = "c"
+      @items  = find_next_choices(item)
+      @type = "p" #assume products dont contain valuefields for now
 
     else #component
-      all_valuefields = Component.find(item_id).valuefields
-      all_valuefields_hash = {}
-
-      for valuefield in all_valuefields
-         if(!all_valuefields_hash.has_key?(valuefield.property.id))
-            all_valuefields_hash[valuefield.property.id] = []
-         end
-        all_valuefields_hash[valuefield.property.id].push(valuefield)
-      end
-
-      for property_id in chosen_properties
-        all_valuefields_hash.delete(property_id)
-      end
-
-
-         #need to choose another valuefield
-      if(!all_valuefields_hash.empty?)
-        @items = all_valuefields_hash.shift[1]
-        @type = "v"
-
-
-      else             #need to choose next component
-
-        @items = Component.find(item_id).components
+        @items = find_next_choices(item)
         @type = "c"
 
-      end
 
 
     end
@@ -101,6 +236,29 @@ class AdminController < ApplicationController
 
   end
 
+
+  def find_next_choices(path_arg)
+
+    items = []
+    type = path_arg[0]
+    part = path_arg[2..path_arg.length].split(":") #remove leading type and :
+
+    for element in part
+
+        if(type == "c")
+          items.push Component.find(element)
+        elsif(type == "v")
+          items.push Valuefield.find(element)
+        elsif(type == "p")
+          items.push Product.find(element)
+        end
+
+    end
+
+    return items
+
+
+  end
 
 
 
@@ -139,6 +297,16 @@ class AdminController < ApplicationController
   end
 
 
+  def debug_hash(hash)
+    logger.info("\n\n\n\n\n\n\nHASH:\n\n")
+    for key in hash.keys
+      logger.info("#{key.inspect}\n")
+      for val in hash[key]
+        logger.info("#{val.inspect}\n")
+      end
+    end
 
+
+  end
 
 end

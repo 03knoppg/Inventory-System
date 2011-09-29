@@ -49,18 +49,19 @@ class ValuefieldsController < ApplicationController
   def create
     @valuefield = Valuefield.new(params[:valuefield])
 
-    logger.info("\n\n\n #{params[:prod_comp_id].inspect} \n #{params[:path].inspect}")
+    logger.info("\n\n\n PATH#{params.inspect}")
 
     path = params[:path]
+    if(!params[:prod_comp_id] == nil)
+      prod_comp = Integer(params[:prod_comp_id])
+    end
 
-    prod_comp = Integer(params[:prod_comp_id])
-
-    property =  Property.find(Integer(params[:property_id][0]))
+    property =  Property.find(Integer(params[:property_id]))
     @valuefield.property = property
 
-    if(prod_comp != -1)
+    if(path == nil)
 
-      logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+      #logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
       if(prod_comp < 0)       #Product id is negative to differentiate from component
         product =  Product.find(-(prod_comp+1))
         @valuefield.product = product
