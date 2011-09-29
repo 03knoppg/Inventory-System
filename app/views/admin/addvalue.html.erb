@@ -18,7 +18,7 @@
 
   <h2>Path</h2>
   <%= text_field_tag 'valuefield_path',  "", {:disabled => true, :style => "width: 100%"}%>
-  <%= text_field_tag 'valuefield_path',  "", {:hidden => true, :style => "width: 100%"}%>
+  <%= text_field_tag 'valuefield_path_hidden',  "", {:hidden => true, :style => "width: 100%"}%>
 
 
 
@@ -98,7 +98,6 @@
         </td>
         <td>
           <div class="actions">
-            <!--input disabled="disabled" id="button" name="commit" type="submit" value="Create Valuefield" /-->
             <%= f.submit :id => "button", :disabled => "true"%>
           </div>
         </td>
@@ -132,19 +131,17 @@
                 }
         );
 
-        $('button').click(
-                function () {
-
-                    $('#path').removeAttr("disabled");
-                   // $.post("/valuefields", {item: $(this).val()}, null,'html');
-                }
-        );
 
         // prod_select ajax get function
         $('select').live('click',function () {
-            $.get("/admin/addvalue", {path: $('#valuefield_path').attr("value"), item: $(this).val()}, null, 'script');
+            $.get("/admin/addvalue", {path: $('#valuefield_path_hidden').attr("value"), item: $(this).val()}, null, 'script');
             return false;
         });
+
+
+$('#valuefield_path').attr("value","");
+$('#valuefield_path_hidden').attr("value","");
+$('#valuefield_path_hidden').attr("value","");
     });
 
 

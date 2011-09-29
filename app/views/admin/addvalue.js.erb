@@ -4,7 +4,6 @@
 
 
 
-
 if("<%=@type%>" == "p"){
     make_table("product_select_area");
     $('#valuefield_select_area').html("")
@@ -19,9 +18,12 @@ if("<%=@type%>" == "p"){
     $('select').attr("disabled","");
 
     $('#button').removeAttr("disabled","");
+
+    $('#prop_select').removeAttr("disabled");
 }
 
 $('#valuefield_path').attr("value","<%=@path%>");
+$('#valuefield_path_hidden').attr("value","<%=@path%>");
 
 
 
