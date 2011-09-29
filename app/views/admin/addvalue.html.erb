@@ -1,47 +1,113 @@
+<%= form_for(@valuefield) do |f| %>
+    <% if @valuefield.errors.any? %>
+
+        <div id="error_explanation">
+          <h2><%= pluralize(@valuefield.errors.count, "error") %> prohibited this valuefield from being saved:</h2>
+
+          <ul>
+            <% @valuefield.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
 <h1>Add Value</h1>
 
 
 
-
-<p>
-  <label id="cat_id"></label>
-</p>
-
+  <h2>Path</h2>
+  <%= text_field_tag 'valuefield_path',  "", {:disabled => true, :style => "width: 100%"}%>
+  <%= text_field_tag 'valuefield_path',  "", {:hidden => true, :style => "width: 100%"}%>
 
 
 
-<label id="type">Category</label>
-<br/>
-<%
+
+<table>
+  <tr>
+    <th width="25%">
+      Category
+    </th>
+    <th width="25%">
+      Product
+    </th>
+    <th width="25%">
+      Component
+    </th>
+    <th width="25%">
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%
    categories = Category.all
    if(categories.length == 0)%>
     <br/> No Categories Available
-<%else%>
-    <div id ="category_select_area">
-      <select size="5" id = "category_select_box">
-        <%for cat in categories%>
-            <option value="<%= @type %><%= cat.id %>">
+    <%else%>
+        <div id ="category_select_area">
+          <select style="width: 100%" size="5" id = "category_select_box">
+            <%for cat in categories%>
+                <%if(!cat.products.empty?)%>
+                <option value="<%= @type %><%= cat.id %>">
 
-              <%=cat.name%>
+                  <%=cat.name%>
 
-            </option>
-        <%end%>
-      </select>
-    </div>
-<%end%>
+                </option>
+                <%end %>
+            <%end%>
+          </select>
+        </div>
+    <%end%>
+    </td>
+    <td>
+        <div id="product_select_area"></div>
+    </td>
+    <td>
+        <div id="component_select_area"></div>
+    </td>
+    <td>
+        <div id="valuefield_select_area"></div>
+    </td>
+  </tr>
+</table>
 
- Product
-<div id="product_select_area">
-
+<br/>
+   <div id="property_div">
+    <table>
+      <tr>
+        <th align="left">Property</th>
+        <th align="left">Value</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <select id ="prop_select" name="property_id">
+              <%for prop in @all_properties %>
+                  <option value= "<%=prop.id %>">
+                    <%= prop.name%> (<%=prop.field_type%>)</option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :fieldvalue %>
+          </div>
+        </td>
+        <td>
+          <div class="actions">
+            <!--input disabled="disabled" id="button" name="commit" type="submit" value="Create Valuefield" /-->
+            <%= f.submit :id => "button", :disabled => "true"%>
+          </div>
+        </td>
+      </tr>
+    </table>
 </div>
-Component
-<div id="component_select_area">
 
-</div>
-Valuefield
-<div id="valuefield_select_area">
 
-</div>
+
 
 <script type="text/javascript">
 
@@ -56,6 +122,8 @@ Valuefield
 <script type="text/javascript">
 
     jQuery(function($) {
+
+
         // dummy example... ignore
         $('#prod_select123').live('click',
                 function () {
@@ -64,9 +132,17 @@ Valuefield
                 }
         );
 
+        $('button').click(
+                function () {
+
+                    $('#path').removeAttr("disabled");
+                   // $.post("/valuefields", {item: $(this).val()}, null,'html');
+                }
+        );
+
         // prod_select ajax get function
         $('select').live('click',function () {
-            $.get("/admin/addvalue", {path: $('#cat_id').html(), item: $(this).val()}, null, 'script');
+            $.get("/admin/addvalue", {path: $('#valuefield_path').attr("value"), item: $(this).val()}, null, 'script');
             return false;
         });
     });
@@ -74,39 +150,18 @@ Valuefield
 
 
 </script>
-<script type="text/javascript">
-    var tables = document.getElementById("tables")
-
-
-    function add_product_select(id){
 
 
 
-
-        table = "<select size=\"5\">";
-
-
-    <% for prod in Category.find(6).products %>
-        table +=    "<option><%= prod.name %></option>";
-    <% end %>
-
-
-        table += "</select>";
-
-
-        //tables.innerHTML += table;
-
-    }
-
-</script>
-
-
-
-<% form_tag url_for(:action => "addvalue"), :id => "tool-form", :remote => true do  %>
-    <%= label_tag(:q, "Search for:") %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
+<div id="submit_button">
+    <% form_tag url_for(:action => "addvalue"), :id => "tool-form", :remote => true, do  %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
 <% end %>
+</div>
 
 
 <% #  link_to "Add to cart", :url => {:action => "addvalue", :id => 1},  :remote => true %>
+
+<%end%>
