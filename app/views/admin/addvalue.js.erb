@@ -20,6 +20,8 @@ if("<%=@type%>" == "p"){
     $('#button').removeAttr("disabled","");
 
     $('#prop_select').removeAttr("disabled");
+
+    $('select').attr("style","width: 100%");
 }
 
 $('#valuefield_path').attr("value","<%=@path%>");
@@ -29,16 +31,16 @@ $('#valuefield_path_hidden').attr("value","<%=@path%>");
 
 
 
-
 function make_table(where){
 
     $('select').attr("disabled","");
-
+    $('select').attr("style","width: 100%");
     $('#prop_select').removeAttr("disabled");
+
    o = "";
 
     <%if(@items != nil)%>
-        o += "<select style='width: 100%' size=\"5\" id = \""+"\">";
+        o += "<select style='width: 100%; border: 2px solid blue' size=\"5\" id = \""+"\">";
         <%for item in @items%>
           o += "<option value=\"<%= @type %><%= item.id %>\">";
               <%if(@type != "v")%>

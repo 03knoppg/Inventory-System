@@ -22,7 +22,6 @@
 
 
 
-
 <table>
   <tr>
     <th width="25%">
@@ -46,7 +45,7 @@
     <br/> No Categories Available
     <%else%>
         <div id ="category_select_area">
-          <select style="width: 100%" size="5" id = "category_select_box">
+          <select style="width: 100%; border: 2px solid blue" size="5" id = "category_select_box">
             <%for cat in categories%>
                 <%if(!cat.products.empty?)%>
                 <option value="<%= @type %><%= cat.id %>">
@@ -83,7 +82,7 @@
       <tr>
         <td>
           <div class ="field">
-            <select id ="prop_select" name="property_id">
+            <select style="width: 100%" id ="prop_select" name="property_id">
               <%for prop in @all_properties %>
                   <option value= "<%=prop.id %>">
                     <%= prop.name%> (<%=prop.field_type%>)</option>
@@ -142,6 +141,8 @@
 $('#valuefield_path').attr("value","");
 $('#valuefield_path_hidden').attr("value","");
 $('#valuefield_path_hidden').attr("value","");
+$('#category_select_box').removeAttr("disabled");
+
     });
 
 

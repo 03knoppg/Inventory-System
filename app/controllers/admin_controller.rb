@@ -113,7 +113,7 @@ class AdminController < ApplicationController
         valuefield_hash = sort_valuefield_children(comp.valuefields)
 
         #logger.info("\n\n\n\n\n Comp:#{comp.inspect} vfs:#{comp.valuefields} \n\n\n\n\n\n")
-        debug_hash(valuefield_hash)
+        #debug_hash(valuefield_hash)
 
         val_entry = generate_entry(valuefield_hash,"v")
 
@@ -139,7 +139,10 @@ class AdminController < ApplicationController
       if(group != "no_group")
         group_group = "#{type}"
         for child_comp in hash[group]
-          group_group += ":#{child_comp.id}"
+          if(!(type=="v" && hash[group].length == 1))
+             group_group += ":"
+          end
+          group_group += "#{child_comp.id}"
         end
         entry.push(group_group)
       else
