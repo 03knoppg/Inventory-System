@@ -9,6 +9,7 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @properties }
+      format.xml { render :xml => @properties }
     end
   end
 
@@ -21,6 +22,7 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @property }
+      format.xml { render :xml => @property }
     end
   end
 

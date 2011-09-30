@@ -14,6 +14,7 @@ class ComponentsController < ApplicationController
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @components }
+      format.xml { render :xml => @components }
     end
   end
 
@@ -27,6 +28,7 @@ class ComponentsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @component }
+       format.xml { render :xml => @component }
     end
   end
 

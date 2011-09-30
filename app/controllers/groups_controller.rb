@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @groups }
+      format.xml { render :xml => @groups }
     end
   end
 
@@ -22,6 +23,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }
+      format.xml { render :xml => @group }
     end
   end
 

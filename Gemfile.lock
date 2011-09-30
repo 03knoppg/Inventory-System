@@ -111,6 +111,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   coffee-rails (~> 3.1.0)
   execjs
   jquery-rails

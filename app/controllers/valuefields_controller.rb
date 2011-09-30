@@ -9,6 +9,7 @@ class ValuefieldsController < ApplicationController
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @valuefields }
+       format.xml { render :xml => @valuefields }
     end
   end
 
@@ -20,6 +21,7 @@ class ValuefieldsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @valuefield }
+      format.xml { render :xml => @valuefield }
     end
   end
 

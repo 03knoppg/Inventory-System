@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<products type="array">
+<% (1..10).each do |x| %>
+
+<product>
+  <id type="integer"><%= x %></id>
+  <name>Hello World</name>
+  <description>Fluid Stool Chair <%= x %> </description>
+  <created-at type="datetime">2011-09-29T14:14:17Z</created-at>
+  <updated-at type="datetime">2011-09-29T14:14:17Z</updated-at>
+</product>
+<% end %>
+
+</products>
