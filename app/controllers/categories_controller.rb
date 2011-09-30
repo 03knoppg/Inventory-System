@@ -130,7 +130,8 @@ class CategoriesController < ApplicationController
          @child_categories.push(cat)
          remove_children(categories, cat)
       end
-    end
+     end
+    @child_categories.push(category)
   end
 
   #Function to sort the categories array

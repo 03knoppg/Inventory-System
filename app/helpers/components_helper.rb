@@ -33,7 +33,9 @@ module ComponentsHelper
     @pt+= "</option>\n"
 
     for child in cp.components
+      if(child != @component)
         parent_table(child, depth+1)
+        end
     end
   end
 
@@ -72,7 +74,7 @@ module ComponentsHelper
         @pp+= "<tr><td>#{link_to(vf.fieldvalue, vf)}</td><td>#{link_to(vf.property.name, vf.property)}</td></tr>"
       end
     else
-      @pp+="<tr><td>No Values Available</td></tr>"
+      @pp+="<tr><td>No Values Available</td><td>No Properties Available</td></tr>"
     end
   end
 end
