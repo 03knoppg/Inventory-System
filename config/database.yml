@@ -33,5 +33,5 @@ production:
   database: testdb_production
   pool: 5
   username: root
-  password: id3id3
+  password: ID3rackspace
   socket:

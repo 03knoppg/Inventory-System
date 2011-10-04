@@ -1,4 +1,9 @@
 class ProductsController < ApplicationController
+
+  require "gnerator"
+
+
+
   # GET /products
   # GET /products.json
   def index
@@ -6,10 +11,18 @@ class ProductsController < ApplicationController
     @all_products =  Product.all
     @sp = ""
 
+    #Generator.xml_from_path("")
+
+    path = "a4|p2|c10|v2|c14|c11|v9|c1|c9"
+    hash = path_to_hash(path)
+    xml = xml_from_hash(hash.keys[0], hash)
+    write_to_file(xml)
+
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @products }
-      format.xml { render :xml => @products }
+      #format.xml { render :xml => @products }
+      format.xml {  }
     end
   end
 
@@ -101,4 +114,186 @@ class ProductsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+
+  def basic_xml_from_path(path)
+
+
+    s = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<chair>
+<textures>
+   <item type=\"back\" name=\"BT0\">
+       <![CDATA[chairs/textures/Series82_0_19/BT0.png]]>
+   </item>
+   <item type=\"back\" name=\"Type82\">
+       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+   </item>
+   <item type=\"back\" name=\"Base82\">
+       <![CDATA[chairs/textures/Series82_0_19/Base82.png]]>
+   </item>
+   <item type=\"back\" name=\"Casters\">
+       <![CDATA[chairs/textures/Series82_0_19/Casters.png]]>
+   </item>
+   <item type=\"control\" name=\"C19\">
+       <![CDATA[chairs/textures/Series82_0_19/C19.png]]>
+   </item>
+   <item type=\"control\" name=\"S8\">
+       <![CDATA[chairs/textures/Series82_0_19/S8.png]]>
+   </item>
+   <item type=\"back\" name=\"MF\">
+       <![CDATA[chairs/textures/Series82_0_19/MF.png]]>
+   </item>
+   <item type=\"back\" name=\"TW\">
+       <![CDATA[chairs/textures/Series82_0_19/TW.png]]>
+   </item>
+   <item type=\"back\" name=\"T2\">
+       <![CDATA[chairs/textures/Series82_0_19/T2.png]]>
+   </item>
+   <item type=\"back\" name=\"SS\">
+       <![CDATA[chairs/textures/Series82_0_19/SS.png]]>
+   </item>
+   <item type=\"back\" name=\"FM-BMESH\">
+       <![CDATA[chairs/textures/Series82_0_19/FM-BMESH.png]]>
+   </item>
+   <item type=\"option\" name=\"LP\">
+       <![CDATA[chairs/textures/Series82_0_19/LP.png]]>
+   </item>
+   <item type=\"option\" name=\"shadow\">
+       <![CDATA[chairs/textures/Series82_0_19/shadow.png]]>
+   </item>
+</textures>
+<exceptions>
+<item type=\"standard\" name=\"Type82\" blendMode =\"MULTIPLY\" transparent=\"\">
+       <image>
+       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+   </image>
+   </item>
+</exceptions>
+</chair>"
+
+    File.open("/home/franz2/testFile.xml", 'w') {|f| f.write(s) }
+
+
+    #f = File.new("testfile.xml", "r")
+    #send_file(s, :type => "text/xml", :filename => "abc.xml")
+
+
+  end
+
+  def write_to_file(text)
+
+    File.open("/home/franz2/testFile.xml", 'w') {|f| f.write(text) }
+
+
+
+  end
+  
+  
+  def path_to_hash(path)
+    path = path.split("|")
+    hash = {}
+
+    for i in (0..(path.length-1))
+      part = path[i]
+      if(part[0] == "a")
+         hash[Category.find(id_of(part))] = []
+
+      elsif(part[0] == "p")
+        prod = Product.find(id_of(part))
+        hash[prod] = []
+
+        categories = prod.categories
+        for cat in categories
+          if(hash.key?(cat))
+            hash[cat].push(prod)
+          end
+
+        end
+
+
+      elsif(part[0] == "c")
+        comp = Component.find(id_of(part))
+        hash[comp] = []
+
+        parents = comp.component_parents + comp.products
+        for parent in parents
+          if(hash.key?(parent))
+            hash[parent].push(comp)
+          end
+        end
+
+
+      elsif(part[0] == "v")
+        val = Valuefield.find(id_of(part))
+
+        parent = nil
+
+        if(val.product != nil)
+          parent = val.product
+        else
+          parent = val.component
+        end
+
+
+        hash[parent].push(val)
+      end
+    end
+
+    return hash
+
+
+
+  end
+
+  def xml_from_hash(node, hash)
+   xml =""
+
+  category_xml_start = "<Category>"
+  product_xml_start = "<Product>"
+  component_xml_start = "<Component>"
+  valuefield_xml_start = "<Valuefield>"
+
+
+    if(node.is_a?(Category))
+      xml = category_xml_start
+      for child in hash[node]
+        xml += xml_from_hash(child, hash)
+      end
+      xml += "</Category>\n"
+
+    elsif(node.is_a?(Product))
+      xml += product_xml_start
+      for child in hash[node]
+        xml += xml_from_hash(child, hash)
+      end
+      xml += "</Product>\n"
+
+    elsif(node.is_a?(Component))
+      xml += component_xml_start
+      for child in hash[node]
+        xml += xml_from_hash(child, hash)
+      end
+      xml += "</Component>\n"
+
+    elsif(node.is_a?(Valuefield))
+      xml += valuefield_xml_start
+      
+      xml += "</Valuefield>\n"
+
+    end
+
+    return xml
+
+
+  end
+
+
+  
+
+
+  def id_of(part)
+    return part[1..part.length]
+  end
+
+
 end
