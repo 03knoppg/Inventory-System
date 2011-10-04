@@ -6,8 +6,105 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#All Seating Test Seed
+#All Seating Test Seed #2
 #Destroy Tables
+Category.destroy_all
+Product.destroy_all
+Property.destroy_all
+Valuefield.destroy_all
+Component.destroy_all
+Group.destroy_all
+
+ #Categories
+all = Category.create(name:"All")
+chair = Category.create(name:"Chair", parent_id:all.id)
+fluid = Category.create(name:"Fluid", parent_id:chair.id)
+
+#Products
+fluidBasicStool = Product.create(name:"Basic Stool Chair", description:"Fluid Basic Stool Chair")
+
+#Groups
+arm = Group.create(name:"Chair Arm")
+control = Group.create(name:"Chair Tilt Control")
+addOnControl = Group.create(name:"Chair Add-On Control")
+addOnLumbarPlus = Group.create(name:"Chair Add-On Lumbar Plus")
+
+
+#Components
+#Component Group - Arm
+noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id)
+task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
+multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
+twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
+
+#Component Group - Control
+basicStoolControl = Component.create(name:"Basic Stool Control", description:"Chair with Basic Stool Control", group_id:control.id)
+
+#Component Group - Optional Control
+ssControlAddOn = Component.create(name:"Chair Control Add-On", description:"Control Add-On for a chair (Additional to regular controls)", group_id:addOnControl.id)
+ssControlNone = Component.create(name:"Chair Control No Add-On", description:"Control with no Add-On Control for a chair", group_id:addOnControl.id)
+
+#Component Group = Optional Lumbar Plus
+lumbarPlusAddOn = Component.create(name:"Chair Lumbar Add-On", description:"Lumbar Plus Add-on for a chair", group_id:addOnLumbarPlus.id)
+lumbarPlusNone = Component.create(name:"Chair Lumbar No Add-On", description:"Lumbar Plus no Add-On for chair", group_id:addOnLumbarPlus.id)
+
+#Fluid Basic Stool Components - no group - required components for chair
+btoBasicStool = Component.create(name:"Fluid Basic Stool Back", description:"Back type for the Fluid Basic Stool", group_id:nil)
+type82BasicStool = Component.create(name:"Fluid Basic Stool Seat", description:"Seat type for the Fluid Basic Stool", group_id:nil)
+base82BasicStool = Component.create(name:"Fluid Basic Stool Base", description:"Base type for the Fluid Basic Stool", group_id:nil)
+casterBasicStool = Component.create(name:"Fluid Basic Stool Casters", description:"Caster type for the Fluid Basic Stool", group_id:nil)
+basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
+s810Ring = Component.create(name:"Chair Ring", description:"Ring type for a Chair", group_id:nil)
+chairShadow = Component.create(name:"Chair Shadow", description:"Shadow for the Chair Model", group_id:nil)
+
+#Categories_Products - association table
+fluid.products = [fluidBasicStool]
+
+#Components_Products - association table
+fluidBasicStool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStoolControl, basicBackMesh,
+                              s810Ring, chairShadow, btoBasicStool, type82BasicStool, base82BasicStool, casterBasicStool]
+
+#Components_Components - association table
+basicStoolControl.components = [ssControlAddOn, ssControlNone]
+btoBasicStool.components = [lumbarPlusAddOn, lumbarPlusNone]
+
+#Properties
+textures = Property.create(name:"Texture", description:"Product/Component Texture", field_type:"string")
+
+#components_properties
+task2Arm.properties = [textures]
+multiFunctionalArm.properties = [textures]
+twisterArm.properties = [textures]
+basicStoolControl.properties = [textures]
+ssControlAddOn.properties = [textures]
+lumbarPlusAddOn.properties = [textures]
+btoBasicStool.properties = [textures]
+type82BasicStool.properties = [textures]
+base82BasicStool.properties = [textures]
+casterBasicStool.properties = [textures]
+basicBackMesh.properties = [textures]
+s810Ring.properties = [textures]
+chairShadow.properties = [textures]
+
+#Value Field for Textures
+task2ArmTexture = Valuefield.create(fieldvalue:"home/hans2/All Seating Assets/Model Textures/Series82_0_19/Arms/T2_nov14.png", property_id:textures.id, product_id:nil, component_id:task2Arm.id)
+multiFunctionalArm = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Arms/MF.png", property_id:textures.id, product_id:nil, component_id:multiFunctionalArm.id)
+twisterArmTexture = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Arms/TW.png", property_id:textures.id, product_id:nil, component_id:twisterArm.id)
+basicStoolControl = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Controls/C19.png", property_id:textures.id, product_id:nil, component_id:basicStoolControl.id)
+ssControlAddOn = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Controls/ss.png", property_id:textures.id, product_id:nil, component_id:ssControlAddOn.id)
+lumbarPlusAddOn = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Lumbar/LP.png", property_id:textures.id, product_id:nil, component_id:lumbarPlusAddOn.id)
+btoBasicStool = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Backs/BT0nov3.png", property_id:textures.id, product_id:nil, component_id:btoBasicStool.id)
+type82BasicStool = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Seats/Type82.png", property_id:textures.id, product_id:nil, component_id:type82BasicStool.id)
+base82BasicStool = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Bases/Base82.png", property_id:textures.id, product_id:nil, component_id:base82BasicStool.id)
+casterBasicStool = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Casters/Casters.png", property_id:textures.id, product_id:nil, component_id:casterBasicStool.id)
+basicBackMesh = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Back Meshes/FM-BMESH.png", property_id:textures.id, product_id:nil, component_id:basicBackMesh.id)
+s810Ring = Valuefield.create(fieldvalue:"/home/hans2/All Seating Assets/Model Textures/Series82_0_19/Rings/S8.png", property_id:textures.id, product_id:nil, component_id:s810Ring.id)
+chairShadow = Valuefield.create(fieldvalue:"/assets/leopardskin.gif", property_id:textures.id, product_id:nil, component_id:chairShadow.id)
+
+
+#All Seating Test Seed #1
+#Destroy Tables
+=begin
 Category.destroy_all
 Product.destroy_all
 Property.destroy_all
@@ -44,17 +141,13 @@ withArm = Component.create(name:"with Arm", description:"Side Chair with Arms", 
 deluxeSynchroTilt = Component.create(name:"Deluxe Synchro Tilt", description:"Chair with Deluxe Synchro Tilt", group_id:control.id)
 deluxeSynchroTiltWBackAngle = Component.create(name:"Deluxe Synchro Tilt with Back Angle", description:"Chair with Deluxe Synchro Tilt w/ back angle", group_id:control.id)
 synchroTilt = Component.create(name:"Synchro Tilt", description:"Chair with Synchro Tilt", group_id:control.id)
-basicStoolControl = Component.create(name:"Basic Stool", description:"Chair with Basic Stool", group_id:control.id)
+basicStoolControl = Component.create(name:"Basic Stool Control", description:"Chair with Basic Stool Control", group_id:control.id)
 
 #Component - no grouping
 backMesh = Component.create(name:"Back Mesh", description:"Chair Back Mesh", group_id:nil)
 seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", group_id:nil)
 basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
 frameFinish = Component.create(name:"Frame Finish", description:"Chair Frame Finish", group_id:nil)
-#test for component_components
-childComponent = Component.create(name: "childComponent", description: "Child of parent", group_id: nil)
-backMesh.components = [childComponent]
-
 
 #Categories_Products - association table
 fluid.products = [task, stool, basicTask, basicStool, side, basicSide]
@@ -63,14 +156,15 @@ fluid.products = [task, stool, basicTask, basicStool, side, basicSide]
 task.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, backMesh, seatMesh]
 stool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStoolControl, backMesh, seatMesh]
 basicTask.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
-basicStool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle, synchroTilt, basicBackMesh]
+basicStool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, deluxeSynchroTilt, deluxeSynchroTiltWBackAngle,
+                         synchroTilt, basicBackMesh]
 side.components = [noArm, withArm, backMesh, frameFinish]
 basicSide.components = [noArm, withArm, basicBackMesh, frameFinish]
 
 #Properties
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
 finish = Property.create(name:"Finish", description:"Product/Component Finish", field_type:"string")
-textures = Property.create(name:"Texture", description:"Product/Component Texture", field_type:"string") #testing pic path
+textures = Property.create(name:"Texture", description:"Product/Component Texture", field_type:"string")
 
 #products_properties
 
@@ -79,7 +173,6 @@ backMesh.properties = [colour, textures] #textures for testing pic path
 seatMesh.properties = [colour]
 basicBackMesh.properties = [colour]
 frameFinish.properties = [finish]
-childComponent.properties = [colour]
 
 #ValueFields
 #Belongs to Component "backMesh"
@@ -88,8 +181,6 @@ openMeshEbonyBack = Valuefield.create(fieldvalue:"Open Back Mesh Ebony", propert
 openMeshCobaltBack = Valuefield.create(fieldvalue:"Open Back Mesh Cobalt", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSilicaBack = Valuefield.create(fieldvalue:"Open Back Mesh Silica", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSandstoneBack = Valuefield.create(fieldvalue:"Open Back Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:backMesh.id)
-#Test Pics Path
-leopardTexture = Valuefield.create(fieldvalue:"leopardskin.gif", property_id:textures.id, product_id:nil, component_id:backMesh.id)
 
 #Belongs to Component "basicBackMesh"
 fluidBasicMeshBlackBack= Valuefield.create(fieldvalue:"Fluid Basic Back Mesh Black", property_id:colour.id, product_id:nil, component_id:basicBackMesh.id)
@@ -105,6 +196,7 @@ openMeshSandstoneSeat = Valuefield.create(fieldvalue:"Open Seat Mesh Sandstone",
 frameFinishSilver = Valuefield.create(fieldvalue:"Silver Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
 frameFinishBlack = Valuefield.create(fieldvalue:"Black Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
 frameFinishMetallicGunmetal = Valuefield.create(fieldvalue:"Metallic Gunmetal Frame Finish", property_id:finish.id, product_id:nil, component_id:frameFinish.id)
+=end
 
 
 #_______Original Test Seed

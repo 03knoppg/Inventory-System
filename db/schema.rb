@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20110921143220) do
     t.integer  "product_id"
     t.integer  "component_id"
     t.string   "path"
+    t.string   "code_valuefield"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
