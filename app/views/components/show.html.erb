@@ -1,13 +1,12 @@
 <!--Component Show Page -->
 <p id="notice"><%= notice %></p>
-<h1>Viewing Component</h1>
-<%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-
+<h1>Viewing Component: <%=@component.name%></h1>
 <table>
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
-    <th align="left">Texture</th>
+    <th align="left">Model Texture</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @component.name %></td>
@@ -19,17 +18,11 @@
           <%end%>
        <%end%>
     </td>
+    <td><%= button_to "Edit Component", edit_component_path(@component), :method => :get %></td>
   </tr>
 </table>
 
-<h4> Parents related to this Component </h4>
-<% print_component_parents %>
-<table>
-  <tr><th align="Left">Parent Name</th></tr>
-  <%= @part.html_safe %>
-</table>
-
-<h4>Group the Component Belongs to</h4>
+<h4>Group related to <%=@component.name%></h4>
 <% group = @component.group %>
 <table>
   <tr><th align="left">Group Name</th></tr>
@@ -40,14 +33,21 @@
   <%end%>
 </table>
 
-<h4>Component Children</h4>
+<h4> Parent Components related to <%=@component.name%> </h4>
+<% print_component_parents %>
+<table>
+  <tr><th align="Left">Parent Name</th></tr>
+  <%= @part.html_safe %>
+</table>
+
+<h4>Child Components related to <%=@component.name%></h4>
 <% print_component_child %>
 <table>
   <tr><th align="left">Child Name</th></tr>
   <%= @ch.html_safe %>
 </table>
 
-<h4>Field Values & Properties related to this Component</h4>
+<h4>Field Values & Properties related to <%=@component.name%></h4>
 <% print_values_related %>
 <table>
   <tr>

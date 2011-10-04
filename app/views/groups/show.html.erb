@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
  <h1>Viewing Group</h1>
- <%= button_to "Edit Group", edit_group_path(@group), :method => :get %>
 <table>
   <tr>
-    <th align="left">Name:</th>
+    <th align="left">Name</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @group.name %></td>
+    <td><%= button_to "Edit Group", edit_group_path(@group), :method => :get %></td>
   </tr>
 </table>
 

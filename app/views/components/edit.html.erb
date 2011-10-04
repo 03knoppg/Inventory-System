@@ -1,9 +1,3 @@
-<h1>Editing Component</h1>
-<table>
-  <tr>
-    <td>
-       <%= button_to "Show Component", {:action => "show", :id => @component.id }, :method => :get %>
-    </td>
-  </tr>
-</table>
+<h1>Editing Component: <%=@component.name%></h1>
 <%= render 'form' %>
+<%= button_to "Show Component", {:action => "show", :id => @component.id }, :method => :get %>
