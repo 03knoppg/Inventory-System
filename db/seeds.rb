@@ -70,11 +70,12 @@ basicSide.components = [noArm, withArm, basicBackMesh, frameFinish]
 #Properties
 colour = Property.create(name:"Colour", description:"Product/Component Colour", field_type:"string")
 finish = Property.create(name:"Finish", description:"Product/Component Finish", field_type:"string")
+textures = Property.create(name:"Texture", description:"Product/Component Texture", field_type:"string") #testing pic path
 
-  #products_properties
+#products_properties
 
 #components_properties
-backMesh.properties = [colour]
+backMesh.properties = [colour, textures] #textures for testing pic path
 seatMesh.properties = [colour]
 basicBackMesh.properties = [colour]
 frameFinish.properties = [finish]
@@ -87,6 +88,8 @@ openMeshEbonyBack = Valuefield.create(fieldvalue:"Open Back Mesh Ebony", propert
 openMeshCobaltBack = Valuefield.create(fieldvalue:"Open Back Mesh Cobalt", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSilicaBack = Valuefield.create(fieldvalue:"Open Back Mesh Silica", property_id:colour.id, product_id:nil, component_id:backMesh.id)
 openMeshSandstoneBack = Valuefield.create(fieldvalue:"Open Back Mesh Sandstone", property_id:colour.id, product_id:nil, component_id:backMesh.id)
+#Test Pics Path
+leopardTexture = Valuefield.create(fieldvalue:"leopardskin.gif", property_id:textures.id, product_id:nil, component_id:backMesh.id)
 
 #Belongs to Component "basicBackMesh"
 fluidBasicMeshBlackBack= Valuefield.create(fieldvalue:"Fluid Basic Back Mesh Black", property_id:colour.id, product_id:nil, component_id:basicBackMesh.id)

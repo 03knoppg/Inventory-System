@@ -7,10 +7,18 @@
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
+    <th align="left">Texture</th>
   </tr>
   <tr>
     <td><%= @component.name %></td>
     <td><%= @component.description %></td>
+    <td>
+       <%for vf in @component.valuefields%>
+          <%if(vf.property.name == "Texture")%>
+             <%=image_tag("#{vf.fieldvalue}")%>
+          <%end%>
+       <%end%>
+    </td>
   </tr>
 </table>
 

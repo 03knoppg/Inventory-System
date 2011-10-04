@@ -77,5 +77,7 @@ module ComponentsHelper
       @pp+="<tr><td>No Values Available</td><td>No Properties Available</td></tr>"
     end
   end
+
+
 end
 
