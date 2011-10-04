@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  before_filter :require_login
+
+
   require "gnerator"
 
 

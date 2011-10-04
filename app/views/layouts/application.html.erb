@@ -8,19 +8,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="container">
  <div class="containerLinks">
   <nav class="round">
-    <ul>
-        <li><a href="/">Main Menu</a></li>|
-        <li><a href="#">Administration</a></li>|
-        <li><a href="#">Sign out</a></li>
-    </ul>
+     <ul>
+       <%= link_to "Main Menu", "/admin"%> |
+      <% if current_user %>
+        Logged in as <%= current_user.email %>.
+        <%= link_to "Log out", logout_path %>
+      <% else %>
+        <%= link_to "Sign up", signup_path %> |
+        <%= link_to "Log in", login_path %>.
+      <% end %>
+        </ul>
   </nav>
 </div>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+  </div>
 
-<%= yield %>
 
-</div>
 </body>
 </html>
