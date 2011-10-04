@@ -1,9 +1,3 @@
-<h1>Editing Product</h1>
- <table>
-  <tr>
-    <td>
-      <%= button_to "Show Product", {:action => "show", :id => @product.id }, :method => :get %>
-    </td>
-  </tr>
-</table>
+<h1>Editing Product: <%=@product.name%></h1>
 <%= render 'form' %>
+<%= button_to "Show Product", {:action => "show", :id => @product.id }, :method => :get %>

@@ -1,42 +1,52 @@
 <p id="notice"><%= notice %></p>
- <h1>Viewing Valuefield</h1>
+ <h1>Viewing Valuefield: <%=@valuefield.fieldvalue%></h1>
 
-<p>
-  <b>Property:</b>
-  <%parent =  @valuefield.property %>
-  <%= link_to parent.name, parent %>
-  (<%= parent.field_type %>)
-</p>
-<p>
-  <b>Value:</b>
-  <%= @valuefield.fieldvalue %>
-</p>
-
-<p/>
-
-<%
-   product = @valuefield.product
-   component = @valuefield.component
-   path = @valuefield.path
-   if(product != nil) %>
-
-    Product:  <br/>
-<%= link_to product.name, product %>
-              <%elsif(component!=nil)%>
-    Component:<br/>
-<%= link_to component.name, component %>
-    <%else%>
-    Path:<br/>
-    <%= id_path_to_name_path(path).html_safe%>
-<%end%>
-
-<p/>
 <table>
   <tr>
-    <td>
-      <%= button_to 'Edit', edit_valuefield_path(@valuefield), :method => :get %>
-    </td>
+    <th align="left">Value</th>
+    <th align="left">Actions</th>
   </tr>
+  <tr>
+    <td><%= @valuefield.fieldvalue %></td>
+    <td><%= button_to 'Edit Valuefield', edit_valuefield_path(@valuefield), :method => :get %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th align="left">Properties related to <%=@valuefield.fieldvalue%>
+  </tr>
+  <tr>
+    <td><%parent =  @valuefield.property %><%= link_to parent.name, parent %> </td>
+  </tr>
+</table>
+<table>
+<%product = @valuefield.product
+       component = @valuefield.component
+       path = @valuefield.path
+       if(product != nil) %>
+       <tr>
+         <th align="left">Products related to <%=@valuefield.fieldvalue%></th>
+       </tr>
+        <tr>
+           <%= link_to product.name, product %>
+        </tr>
+        <%elsif(component!=nil)%>
+      <tr>
+        <th align="left">Components related to <%=@valuefield.fieldvalue%></th>
+      </tr>
+        <tr>
+          <td><%= link_to component.name, component %></td>
+        </tr>
+        <%else%>
+      <tr>
+        <th align="left">Path related to <%=@valuefield.fieldvalue%></th>
+      </tr>
+        <tr>
+          <td>
+            <%= id_path_to_name_path(path).html_safe%>
+          </td>
+        </tr>
+    <%end%>
 </table>
 
 

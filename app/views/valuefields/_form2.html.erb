@@ -13,10 +13,10 @@
     <% end %>
     <table>
       <tr>
-        <th align="left" colspan="3">Product Path</th>
+        <th align="left">Product Path</th>
       </tr>
       <tr>
-        <td colspan="3">
+        <td>
           <div class ="field">
             <select name="path">
               <option selected="true"  value="-1">No Selection</option>
@@ -25,11 +25,15 @@
           </div>
         </td>
       </tr>
+      </table>
+    <table>
       <tr>
-        <td align="left" colspan="3"><h2>OR</h2></td>
+        <td align="left"><h4>OR</h4></td>
       </tr>
+      </table>
+    <table>
       <tr>
-        <th align="left" colspan="3">Product or Component</th>
+        <th align="left">Product or Component related to <%=@valuefield.fieldvalue%></th>
       </tr>
       <tr>
         <td>
@@ -55,11 +59,15 @@
           </div>
         </td>
       </tr>
+      </table>
+    <table>
       <tr>
-        <td align="left"><h2>AND</h2></td>
+        <td align="left"><h4>AND</h4></td>
       </tr>
+      </table>
+    <table>
       <tr>
-        <th align="left">Property</th>
+        <th align="left">Property related to <%=@valuefield.fieldvalue%></th>
         <th align="left">Value</th>
         <th align="left">Actions</th>
       </tr>

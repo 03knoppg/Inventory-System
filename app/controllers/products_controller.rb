@@ -13,10 +13,12 @@ class ProductsController < ApplicationController
 
     #Generator.xml_from_path("")
 
-    path = "a4|p2|c10|v2|c14|c11|v9|c1|c9"
-    hash = path_to_hash(path)
-    xml = xml_from_hash(hash.keys[0], hash)
-    write_to_file(xml)
+
+    #path = "a4|p2|c10|v2|c14|c11|v9|c1|c9"
+    #hash = path_to_hash(path)
+    #xml = xml_from_hash(hash.keys[0], hash)
+    #write_to_file(xml)
+
 
     respond_to do |format|
       format.html # mainmenu.html.erb
