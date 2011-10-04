@@ -31,10 +31,11 @@ basicSide = Product.create(name:"Basic Side Chair", description:"Fluid Basic Sid
 #Groups
 arm = Group.create(name:"Chair Arm")
 control = Group.create(name:"Chair Tilt Control")
+test_group  = Group.create(name:"Test Group")
 
 #Components
 #Component Group - Arm
-noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id)
+noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id: arm.id)
 task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
 multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
 twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
@@ -52,8 +53,9 @@ seatMesh = Component.create(name:"Seat Mesh", description:"Chair Seat Mesh", gro
 basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
 frameFinish = Component.create(name:"Frame Finish", description:"Chair Frame Finish", group_id:nil)
 #test for component_components
-childComponent = Component.create(name: "childComponent", description: "Child of parent", group_id: nil)
-backMesh.components = [childComponent]
+childComponent = Component.create(name: "childComponent", description: "Child of parent", group_id: test_group.id)
+childComponent2 = Component.create(name: "childComponent", description: "Child of parent", group_id: test_group.id)
+backMesh.components = [childComponent,childComponent2]
 
 
 #Categories_Products - association table

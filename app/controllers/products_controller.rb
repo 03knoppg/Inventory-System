@@ -246,39 +246,38 @@ class ProductsController < ApplicationController
   end
 
   def xml_from_hash(node, hash)
-   xml =""
 
-  category_xml_start = "<Category>"
-  product_xml_start = "<Product>"
-  component_xml_start = "<Component>"
-  valuefield_xml_start = "<Valuefield>"
+
 
 
     if(node.is_a?(Category))
-      xml = category_xml_start
+      #xml = render_to_string(category_path,:action=>"show", :id=>node.id)
+      xml = render_to_string(xml: category_path, :id=>node.id)
+      index = xml.rindex("</")
       for child in hash[node]
-        xml += xml_from_hash(child, hash)
+        xml.insert(index,xml_from_hash(child, hash))
       end
       xml += "</Category>\n"
 
     elsif(node.is_a?(Product))
-      xml += product_xml_start
+      xml = render_to_string(:action => "/products/#{node.id}", :layout => false)
+      index = xml.rindex("</")
       for child in hash[node]
-        xml += xml_from_hash(child, hash)
+        xml.insert(index,xml_from_hash(child, hash))
       end
       xml += "</Product>\n"
 
     elsif(node.is_a?(Component))
-      xml += component_xml_start
+      xml = render_to_string(:action => "/components/#{node.id}", :layout => false)
+      index = xml.rindex("</")
+      index = xml.rindex("</")
       for child in hash[node]
-        xml += xml_from_hash(child, hash)
+        xml.insert(index,xml_from_hash(child, hash))
       end
-      xml += "</Component>\n"
+      xml = "</Component>\n"
 
     elsif(node.is_a?(Valuefield))
-      xml += valuefield_xml_start
-      
-      xml += "</Valuefield>\n"
+      xml = render_to_string(:action => "/valuefields/#{node.id}", :layout => false)
 
     end
 
