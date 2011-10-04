@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20111004182835) do
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
     t.string   "name"
+    t.string   "code_category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20111004182835) do
     t.string   "name"
     t.string   "description"
     t.string   "group_id"
+    t.string   "code_component"
+    t.string   "model_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20111004182835) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "code_product"
+    t.string   "model_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20111004182835) do
     t.integer  "product_id"
     t.integer  "component_id"
     t.string   "path"
+    t.string   "code_valuefield"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

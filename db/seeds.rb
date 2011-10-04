@@ -11,6 +11,15 @@ Property.destroy_all
 Valuefield.destroy_all
 Component.destroy_all
 Group.destroy_all
+User.destroy_all
+
+=begin
+################################################################################################################
+#Users                                                                                                         #
+################################################################################################################
+=end
+brett = User.create(username:"bh", email:"bh@bh.com", password:"bh")
+graham = User.create(username:"gk", email:"gk@gk.com", password:"gk")
 
 =begin
 ################################################################################################################
@@ -83,18 +92,18 @@ textures = Property.create(name:"Texture", description:"Product/Component Textur
 ################################################################################################################
 =end
 task2ArmTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Arms/T2_nov14.png", property_id:textures.id, product_id:nil, component_id:task2Arm.id)
-multiFunctionalArm = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Arms/MF.png", property_id:textures.id, product_id:nil, component_id:multiFunctionalArm.id)
+multiFunctionalArmTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Arms/MF.png", property_id:textures.id, product_id:nil, component_id:multiFunctionalArm.id)
 twisterArmTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Arms/TW.png", property_id:textures.id, product_id:nil, component_id:twisterArm.id)
-basicStoolControl = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Controls/C19.png", property_id:textures.id, product_id:nil, component_id:basicStoolControl.id)
-ssControlAddOn = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Controls/SS.png", property_id:textures.id, product_id:nil, component_id:ssControlAddOn.id)
-lumbarPlusAddOn = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Lumbar/LP.png", property_id:textures.id, product_id:nil, component_id:lumbarPlusAddOn.id)
-btoBasicStool = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Backs/BT0nov3.png", property_id:textures.id, product_id:nil, component_id:btoBasicStool.id)
-type82BasicStool = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Seats/Type82.png", property_id:textures.id, product_id:nil, component_id:type82BasicStool.id)
-base82BasicStool = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Bases/Base82.png", property_id:textures.id, product_id:nil, component_id:base82BasicStool.id)
-casterBasicStool = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Casters/Casters.png", property_id:textures.id, product_id:nil, component_id:casterBasicStool.id)
-basicBackMesh = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Back_Meshes/FM-BMESH.png", property_id:textures.id, product_id:nil, component_id:basicBackMesh.id)
-s810Ring = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Rings/S8.png", property_id:textures.id, product_id:nil, component_id:s810Ring.id)
-chairShadow = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Shadows/shadow.png", property_id:textures.id, product_id:nil, component_id:chairShadow.id)
+basicStoolControlTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Controls/C19.png", property_id:textures.id, product_id:nil, component_id:basicStoolControl.id)
+ssControlAddOnTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Controls/SS.png", property_id:textures.id, product_id:nil, component_id:ssControlAddOn.id)
+lumbarPlusAddOnTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Lumbar/LP.png", property_id:textures.id, product_id:nil, component_id:lumbarPlusAddOn.id)
+btoBasicStoolTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Backs/BT0nov3.png", property_id:textures.id, product_id:nil, component_id:btoBasicStool.id)
+type82BasicStoolTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Seats/Type82.png", property_id:textures.id, product_id:nil, component_id:type82BasicStool.id)
+base82BasicStoolTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Bases/Base82.png", property_id:textures.id, product_id:nil, component_id:base82BasicStool.id)
+casterBasicStoolTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Casters/Casters.png", property_id:textures.id, product_id:nil, component_id:casterBasicStool.id)
+basicBackMeshTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Back_Meshes/FM-BMESH.png", property_id:textures.id, product_id:nil, component_id:basicBackMesh.id)
+s810RingTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Rings/S8.png", property_id:textures.id, product_id:nil, component_id:s810Ring.id)
+chairShadowTexture = Valuefield.create(fieldvalue:"All_Seating_Assets/Model_Textures/Series82_0_19/Shadows/shadow.png", property_id:textures.id, product_id:nil, component_id:chairShadow.id)
 
 =begin
 ################################################################################################################
@@ -142,6 +151,8 @@ chairShadow.properties = [textures]
 #End of Seed #2                                                                                                #
 ################################################################################################################
 =end
+
+
 
 
 =begin
