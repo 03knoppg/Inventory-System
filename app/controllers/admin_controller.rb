@@ -20,9 +20,9 @@ class AdminController < ApplicationController
 
     else
 
-      @path = params[:path]
+      @path = params[:path]    #the permuted path
 
-      choice = params[:item]
+      choice = params[:item]   #the id of the item the user clicked on
 
 
       path = update_path(@path, choice)
@@ -41,23 +41,15 @@ class AdminController < ApplicationController
 
   end
 
+
+  #Create a valuefield associated to a path
   def create
 
     @valuefield = Valuefield.new(params[:valuefield])
 
-    logger.info("\n\n\n #{params[:path].inspect}")
 
-    path = params[:path]
-
-
-    property =  Property.find(Integer(params[:property_id]))
-    @valuefield.property = property
-
-
-    @valuefield.path = path
-
-
-
+    @valuefield.property = Property.find(Integer(params[:property_id]))
+    @valuefield.path = params[:path]
 
     respond_to do |format|
       if @valuefield.save
@@ -70,9 +62,12 @@ class AdminController < ApplicationController
     end
   end
 
+
+
+  #replace the choice group with the selection the user clicked on
   def update_path(path, choice)
 
-    if( choice.start_with?("a") )
+    if( choice.start_with?("a") )   #category was chosen
       if(path != "")
         path += "|"
       end
@@ -87,12 +82,11 @@ class AdminController < ApplicationController
 
 
     path = path.split("|")
-    #logger.info("\n\n\n #{choice} #{path}\n\n\n\n\n")
 
     for part in path
 
-                                                                         #TODO bug here: c2 will match c:20
-      if(part[0] == choice[0] && part.match(":#{choice[1..choice.length]}") != nil) #insert component + valuefields + choices here
+
+      if(part[0] == choice[0] && part.match("#{choice[0]}(:|$)") != nil) #find the part in the path that will be replaced
         if(choice.start_with?("p"))
           comp = Product.find(choice[1..choice.length])
         elsif(choice.start_with?("c"))
@@ -100,29 +94,37 @@ class AdminController < ApplicationController
         else #valuefield
            index = path.index(part)
 
-          path[index] = "#{choice}"
-          return path.join("|")
+          path[index] = "#{choice}"#insert component + valuefields + choices here
+          return path.join("|") #no children so return
 
         end
 
+
+
+
+        #first sort the valuefields for the entry and create a sub path to be inserted
+        valuefield_hash = sort_valuefield_children(comp.valuefields)
+
+
+        val_entry = generate_entry(valuefield_hash,"v")
+
+
+
+
+
+        #then sort the children for the entry and create a sub path to be inserted
         child_hash = sort_component_children(comp.components)
 
         comp_entry = generate_entry(child_hash,"c")
 
 
-        valuefield_hash = sort_valuefield_children(comp.valuefields)
-
-        #logger.info("\n\n\n\n\n Comp:#{comp.inspect} vfs:#{comp.valuefields} \n\n\n\n\n\n")
-        #debug_hash(valuefield_hash)
-
-        val_entry = generate_entry(valuefield_hash,"v")
 
 
         index = path.index(part)
 
         path[index] = comp_entry
         path.insert(index, val_entry)
-        path.insert(index, "#{choice}")        #      choice | val_entry | comp_entry
+        path.insert(index, "#{choice}")        #   insert   ...entry | val_entry | comp_entry...     in proper place
 
 
         path.delete("")
@@ -133,22 +135,24 @@ class AdminController < ApplicationController
     logger.info("\n\n\n\n\n no match found \n\n\n\n\n\n")
   end
 
+
+  #builds a sub path string for an entry
   def generate_entry(hash,type)
     entry = []
     for group in hash.keys
-      if(group != "no_group")
+      if(group == "no_group")  #no_group means all choices are mandatory
+        for child_comp in hash[group]
+            entry.push("#{type}:#{child_comp.id}")
+        end
+      else                    #otherwise choose one of the grouped members
         group_group = "#{type}"
         for child_comp in hash[group]
-          if(!(type=="v" && hash[group].length == 1))
+          if(!(type=="v" && hash[group].length == 1))   #manditory valuefields are not prepended with :
              group_group += ":"
           end
           group_group += "#{child_comp.id}"
         end
         entry.push(group_group)
-      else
-        for child_comp in hash[group]
-            entry.push("#{type}:#{child_comp.id}")
-        end
       end
 
     end
@@ -156,7 +160,7 @@ class AdminController < ApplicationController
     entry.join("|")
   end
 
-  def sort_component_children(children)
+  def sort_component_children(children)      #sorts components into a hash by their group
 
     hash = {"no_group"=>[]}
 
@@ -175,7 +179,7 @@ class AdminController < ApplicationController
     hash
   end
 
-  def sort_valuefield_children(children)
+  def sort_valuefield_children(children)          #sorts valuefields into a hash by their group
      hash = {"no_group"=>[]}
 
     for child in children
@@ -194,7 +198,7 @@ class AdminController < ApplicationController
   end
 
 
-  def next_table(path)
+  def next_table(path)                          #set the items and type to display for the next select table
 
     split_path = path.split("|")
 
@@ -240,7 +244,7 @@ class AdminController < ApplicationController
   end
 
 
-  def find_next_choices(path_arg)
+  def find_next_choices(path_arg)             #populate the items for the next select table
 
     items = []
     type = path_arg[0]
