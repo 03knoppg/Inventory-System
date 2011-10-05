@@ -99,6 +99,7 @@
           <div class="actions">
             <%= f.submit :id => "button", :disabled => "true"%>
           </div>
+          <button id="writebutton">Write to File</button>
         </td>
       </tr>
     </table>
@@ -135,6 +136,12 @@
         $('select').live('click',function () {
             $.get("/admin/addvalue", {path: $('#valuefield_path_hidden').attr("value"), item: $(this).val()}, null, 'script');
             return false;
+        });
+
+        $('#writebutton').click(function(){
+           $.get("/admin/writefile", {path: $('#valuefield_path_hidden').attr("value"), item: $(this).val()}, null);
+            return false;
+
         });
 
 
