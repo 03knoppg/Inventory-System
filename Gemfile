@@ -38,3 +38,4 @@ gem 'therubyracer', :require => 'v8'
 gem 'builder'
 
 gem 'sorcery'
+gem 'paperclip'

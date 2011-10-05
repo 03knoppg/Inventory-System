@@ -59,7 +59,6 @@ class ComponentsController < ApplicationController
     @associated_components = @component.component_parents
     @parent_cps = @component.component_parents + @component.products
     @all_groups = Group.all
-
   end
 
   # POST /components
@@ -193,5 +192,5 @@ class ComponentsController < ApplicationController
     for key in @all_components_hash.keys
       @all_components_hash[key].sort!{|x,y| x.name <=> y.name}
     end
-  end
+   end
 end

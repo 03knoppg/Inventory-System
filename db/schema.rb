@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(:version => 20111005144222) do
     t.string   "name"
     t.string   "description"
     t.string   "group_id"
+    t.string   "code_component"
+    t.string   "model_path"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
