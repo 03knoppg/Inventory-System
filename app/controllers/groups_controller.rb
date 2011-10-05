@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
 
-  before_filter :require_login
 
   # GET /groups
   # GET /groups.json

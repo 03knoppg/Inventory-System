@@ -2,7 +2,6 @@
 class ComponentsController < ApplicationController
 
 
-  before_filter :require_login
   # GET /components
   # GET /components.json
   def index

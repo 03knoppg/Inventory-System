@@ -1,6 +1,12 @@
 TestDBRubymineProject::Application.routes.draw do
 
 
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
@@ -8,10 +14,10 @@ TestDBRubymineProject::Application.routes.draw do
 
 
   resources :users
-  resources :sessions
-  get "secret" => "home#admin", :as => "secret"
 
-  root :to => 'admin#home'
+  resources :sessions
+
+  root :to => 'sessions#new'
 
   resources :groups
 
@@ -26,6 +32,8 @@ TestDBRubymineProject::Application.routes.draw do
   resources :products
 
   resources :categories
+
+  resources :password_resets
 
   get "admin/home"
   get "admin/addvalue"

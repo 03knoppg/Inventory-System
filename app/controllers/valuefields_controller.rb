@@ -1,6 +1,5 @@
 class ValuefieldsController < ApplicationController
 
-  before_filter :require_login
 
   # GET /valuefields
   # GET /valuefields.json

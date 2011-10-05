@@ -1,6 +1,5 @@
 class PropertiesController < ApplicationController
 
-  before_filter :require_login
 
   # GET /properties
   # GET /properties.json
