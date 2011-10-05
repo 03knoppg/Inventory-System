@@ -17,5 +17,8 @@ class Component < ActiveRecord::Base
                           :association_foreign_key => 'component_parent_id',
                           :class_name => 'Component'
 
-
+  has_attached_file :photo,
+                    :styles => {
+                    :thumb=> "100x100#",
+                    :small  => "150x150>" }
 end

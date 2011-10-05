@@ -1,0 +1,114 @@
+<%= form_for(@component, :html => { :multipart => true }) do |f| %>
+    <% if @component.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@component.errors.count, "error") %> prohibited this component from being saved:</h2>
+
+          <ul>
+            <% @component.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table>
+      <tr>
+        <th align="left">Name</th>
+        <th align="left">Description</th>
+        <th align="left">Model Texture</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td style="width: 200px">
+          <div class ="field">
+            <%= f.text_field :name %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :description %>
+          </div>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>
+               <%= image_tag @component.photo.url(:thumb) %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.file_field :photo%>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+<% end %>
+</td>
+</tr>
+<tr>
+  <th align="left">Parent Components</th>
+  <th align="left">Group</th>
+  <th align="left">Properties</th>
+  <th></th>
+</tr>
+<tr>
+  <td>
+    <div class="field">
+      <% if(@all_products.length == 0)%>
+          No Eligable Components or Products Available
+      <%else%>
+          <div class ="field">
+            <select size="10" multiple="multiple" name="new_components_ids[]">
+              <%for prod in @all_products%>
+                  <%@pt = ""%>
+                  <%parent_table(prod, 0)%>
+                  <%=@pt.html_safe%>
+              <%end%>
+            </select>
+          </div>
+      <%end%>
+    </div>
+  </td>
+  <td>
+    <%if(@all_groups.length == 0)%>
+        No Groups Availaable
+    <%else%>
+        <div class ="field">
+          <select size="5" name="new_group_id">
+            <%for group in @all_groups%>
+                <option value = "<%=group.id%>" <%if(@component.group_id == group.id)%> selected = "true"<%end%>>
+                  <%= group.name %>
+                </option>
+            <%end%>
+          </select>
+        </div>
+    <%end%>
+  </td>
+  <td>
+    <% valuefields = @component.valuefields%>
+    <%if(valuefields.length ==0)%>
+        No Properties Available
+    <%else%>
+        <table>
+          <tr>
+            <th><b>Value<%if(valuefields.length > 1)%>s<%end%>:</b></th>
+            <th><b>Type:</b></th>
+          </tr>
+          <%for val in valuefields%>
+              <% property = val.property %>
+              <tr>
+                <td> <%= link_to(val.fieldvalue, val) %> </td>
+                <td> <%= link_to("#{property.name} (#{property.field_type}) ", property) %> </td>
+              </tr>
+          <%end%>
+        </table>
+    <%end%>
+  </td>
+</tr>
+</table>
+<br class="clear" />
+
