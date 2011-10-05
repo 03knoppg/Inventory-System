@@ -2,6 +2,17 @@
 class ComponentsController < ApplicationController
 
 
+  def update_picture
+
+
+    @path = params[:component[:photo]]
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # GET /components
   # GET /components.json
   def index

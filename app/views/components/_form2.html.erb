@@ -32,12 +32,14 @@
           <table>
             <tr>
               <td>
-               <%= image_tag @component.photo.url(:thumb) %>
+               <%= image_tag @component.photo.url(:thumb), :id=>"model_image" %>
               </td>
             </tr>
             <tr>
               <td>
-                <%= f.file_field :photo%>
+
+                <%= f.file_field :photo %>
+
               </td>
             </tr>
           </table>
@@ -112,3 +114,11 @@
 </table>
 <br class="clear" />
 
+<script type="text/javascript">
+  jQuery(function($) {
+     $("#component_photo").change(function(){
+        $.get("/components/update_picture", null, 'script');
+         return false;
+     })
+  });
+</script>

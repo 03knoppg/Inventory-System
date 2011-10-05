@@ -27,6 +27,9 @@ TestDBRubymineProject::Application.routes.draw do
 
   resources :ValuesController
 
+
+  get "components/update_picture"
+
   resources :components
 
   resources :products
@@ -38,6 +41,7 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/home"
   get "admin/addvalue"
   post "admin/addvalue"
+
 
   match 'admin', :to => 'admin#home'
 
