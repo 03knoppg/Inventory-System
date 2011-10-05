@@ -4,6 +4,15 @@ class AdminController < ApplicationController
   def home
   end
 
+  def writefile
+    path = params[:path]    #the permuted path
+
+    hash = path_to_hash(path)
+    xml = xml_from_hash(hash.keys[0], hash)
+    write_to_file("/home/franz2/testFile.xml", xml)
+
+  end
+
   def addvalue
 
     @tmp_array = []
@@ -34,6 +43,8 @@ class AdminController < ApplicationController
     end
 
     @path = path
+
+
 
     respond_to do |format|
       format.html
@@ -313,6 +324,177 @@ class AdminController < ApplicationController
         logger.info("#{val.inspect}\n")
       end
     end
+
+
+  end
+
+
+  def write_to_file(path,text)
+
+    File.open(path, 'w') {|f| f.write(text) }
+
+
+
+  end
+
+
+  def path_to_hash(path)
+    path = path.split("|")
+    hash = {}
+
+    for i in (0..(path.length-1))
+      part = path[i]
+      if(part[0] == "a")
+         hash[Category.find(id_of(part))] = []
+
+      elsif(part[0] == "p")
+        prod = Product.find(id_of(part))
+        hash[prod] = []
+
+        categories = prod.categories
+        for cat in categories
+          if(hash.key?(cat))
+            hash[cat].push(prod)
+          end
+
+        end
+
+
+      elsif(part[0] == "c")
+        comp = Component.find(id_of(part))
+        hash[comp] = []
+
+        parents = comp.component_parents + comp.products
+        for parent in parents
+          if(hash.key?(parent))
+            hash[parent].push(comp)
+          end
+        end
+
+
+      elsif(part[0] == "v")
+        val = Valuefield.find(id_of(part))
+
+        parent = nil
+
+        if(val.product != nil)
+          parent = val.product
+        else
+          parent = val.component
+        end
+
+
+        hash[parent].push(val)
+      end
+    end
+
+    return hash
+
+
+
+  end
+
+  def xml_from_hash(node, hash)
+
+
+
+    xml = xml(node)
+    index = xml.rindex("</")
+    for child in hash[node]
+      xml.insert(index,xml_from_hash(child, hash))
+    end
+
+    return xml
+
+
+  end
+
+
+  def id_of(part)
+    return part[1..part.length]
+  end
+
+  def xml(element)
+
+    xml = "<#{element.class}>"
+
+    for key in element.attributes.keys
+      xml += "<#{key}"
+      if(element.attributes[key].nil?)
+        xml += " nil=\"true\">"
+      else
+        xml += ">#{element.attributes[key]}"
+      end
+      xml += "</#{key}>"
+
+    end
+
+    xml += "</#{element.class}>"
+
+    return xml
+
+  end
+
+    def basic_xml_from_path(path)
+
+
+    s = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<chair>
+<textures>
+   <item type=\"back\" name=\"BT0\">
+       <![CDATA[chairs/textures/Series82_0_19/BT0.png]]>
+   </item>
+   <item type=\"back\" name=\"Type82\">
+       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+   </item>
+   <item type=\"back\" name=\"Base82\">
+       <![CDATA[chairs/textures/Series82_0_19/Base82.png]]>
+   </item>
+   <item type=\"back\" name=\"Casters\">
+       <![CDATA[chairs/textures/Series82_0_19/Casters.png]]>
+   </item>
+   <item type=\"control\" name=\"C19\">
+       <![CDATA[chairs/textures/Series82_0_19/C19.png]]>
+   </item>
+   <item type=\"control\" name=\"S8\">
+       <![CDATA[chairs/textures/Series82_0_19/S8.png]]>
+   </item>
+   <item type=\"back\" name=\"MF\">
+       <![CDATA[chairs/textures/Series82_0_19/MF.png]]>
+   </item>
+   <item type=\"back\" name=\"TW\">
+       <![CDATA[chairs/textures/Series82_0_19/TW.png]]>
+   </item>
+   <item type=\"back\" name=\"T2\">
+       <![CDATA[chairs/textures/Series82_0_19/T2.png]]>
+   </item>
+   <item type=\"back\" name=\"SS\">
+       <![CDATA[chairs/textures/Series82_0_19/SS.png]]>
+   </item>
+   <item type=\"back\" name=\"FM-BMESH\">
+       <![CDATA[chairs/textures/Series82_0_19/FM-BMESH.png]]>
+   </item>
+   <item type=\"option\" name=\"LP\">
+       <![CDATA[chairs/textures/Series82_0_19/LP.png]]>
+   </item>
+   <item type=\"option\" name=\"shadow\">
+       <![CDATA[chairs/textures/Series82_0_19/shadow.png]]>
+   </item>
+</textures>
+<exceptions>
+<item type=\"standard\" name=\"Type82\" blendMode =\"MULTIPLY\" transparent=\"\">
+       <image>
+       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+   </image>
+   </item>
+</exceptions>
+</chair>"
+
+    File.open("/home/franz2/testFile.xml", 'w') {|f| f.write(s) }
+
+
+    #f = File.new("testfile.xml", "r")
+    #send_file(s, :type => "text/xml", :filename => "abc.xml")
 
 
   end

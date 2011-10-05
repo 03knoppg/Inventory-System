@@ -20,6 +20,7 @@ class ValuefieldsController < ApplicationController
   def show
     @valuefield = Valuefield.find(params[:id])
 
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @valuefield }
@@ -145,4 +146,10 @@ class ValuefieldsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+
+
+
+
+
 end
