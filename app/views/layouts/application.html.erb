@@ -11,7 +11,6 @@
 <body>
 <div class="container">
  <div class="containerLinks">
-<%if(request.path != "/login") %>
   <nav class="round">
      <ul>
        <%= link_to "Main Menu", "/admin"%> |
@@ -23,7 +22,6 @@
         <%= link_to "Log in", login_path %>.
       <% end %>
         </ul>
-  <%end%>
   </nav>
 </div>
     <% flash.each do |name, msg| %>

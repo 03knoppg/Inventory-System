@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20111006142740) do
 
-
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
     t.string   "name"
@@ -33,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20111006142740) do
     t.string   "group_id"
     t.string   "code_component"
     t.string   "model_path"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
