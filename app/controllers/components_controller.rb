@@ -1,7 +1,5 @@
 #Controller class for components
 class ComponentsController < ApplicationController
-
-
   # GET /components
   # GET /components.json
   def index

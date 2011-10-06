@@ -3,18 +3,18 @@ module ComponentsHelper
   #Recursive function for display components - finds parents and then children and organizes them in this way to display
   def print_components(comp, depth)
     @sc+= "<tr>\n"
-      @sc+= "<td> #{"-"*depth} #{comp.name}</td>\n"
-      @sc+= "<td> #{button_to "Show", {:controller => :components, :action => "show", :id => comp.id }, :method => :get}\n"
-      @sc+= "#{button_to "Edit", edit_component_path(comp), :method => :get}\n"
-      @sc+= "#{button_to "Delete", {:controller => :components, :action => "destroy", :id => comp.id }, :confirm => confirmation_message(comp, @all_components_hash), :method => :delete}</td>\n"
-      @sc+= "</tr>\n"
+    @sc+= "<td> #{"-"*depth} #{comp.name}</td>\n"
+    @sc+= "<td> #{button_to "Show", {:controller => :components, :action => "show", :id => comp.id }, :method => :get}\n"
+    @sc+= "#{button_to "Edit", edit_component_path(comp), :method => :get}\n"
+    @sc+= "#{button_to "Delete", {:controller => :components, :action => "destroy", :id => comp.id }, :confirm => confirmation_message(comp, @all_components_hash), :method => :delete}</td>\n"
+    @sc+= "</tr>\n"
     for child in @all_components_hash[comp]
       #calls itself to print children
       print_components(child, depth+1)
     end
   end
 
-   #Recursive function for display components - finds parents and then children and organizes them in this way to display
+  #Recursive function for display components - finds parents and then children and organizes them in this way to display
   def parent_table(cp, depth)
 
     if(cp.is_a?(Product))
@@ -35,21 +35,21 @@ module ComponentsHelper
     for child in cp.components
       if(child != @component)
         parent_table(child, depth+1)
-        end
+      end
     end
   end
 
   #Function to print parents related to the component
   def print_component_parents
-     parents = @component.products + @component.component_parents
-     @part = ""
-      if(parents.length > 1)
-        for par in parents
-          @part+="<tr><td>#{link_to(par.name, par)}</td></tr>"
-        end
-      else
-        @part+="<tr><td>No Parents Available</td></tr>"
+    parents = @component.products + @component.component_parents
+    @part = ""
+    if(parents.length > 1)
+      for par in parents
+        @part+="<tr><td>#{link_to(par.name, par)}</td></tr>"
       end
+    else
+      @part+="<tr><td>No Parents Available</td></tr>"
+    end
   end
 
   #Function to print children of component
@@ -78,6 +78,24 @@ module ComponentsHelper
     end
   end
 
+  #Add Photo
+  def add_photo(form_builder)
+    link_to_function "add",:id  => "add_photo" do |page|
+      form_builder.fields_for :photos, Photo.new, :child_index => 'NEW_RECORD' do |photo_form|
+        html = render(:partial => 'photo', :locals => { :f => photo_form })
+        page << "$('add_photo').insert({ before: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
+      end
+    end
+end
+    #Delete Photo
+    def delete_photo(form_builder)
+      if form_builder.object.new_record?
+        link_to_function("Remove this Photo", "this.up('fieldset').remove()")
+      else
+        form_builder.hidden_field(:_delete) +
+            link_to_function("Remove this Photo", "this.up('fieldset').hide(); $(this).previous().value = '1'")
+      end
+    end
 
 end
 

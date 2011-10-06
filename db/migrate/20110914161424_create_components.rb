@@ -6,9 +6,6 @@ class CreateComponents < ActiveRecord::Migration
       t.string :group_id
       t.string :code_component
       t.string :model_path
-      t.string :photo_file_name
-      t.string :photo_content_type
-      t.integer :photo_file_size
 
       t.timestamps
     end
