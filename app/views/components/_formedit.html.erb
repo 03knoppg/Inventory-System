@@ -29,7 +29,22 @@
           </div>
         </td>
         <td>
-           <%= f.file_field :photo%>
+          <table>
+            <tr>
+              <td>
+                <%if(@component.photos != nil)%>
+                  <% @component.photos.each do |photo| %>
+                    <%= image_tag photo.data.url %>
+                    <% end %>
+                    <%end%>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= add_photo(f) %>
+              </td>
+            </tr>
+          </table>
         </td>
         <td>
           <div class="actions">
@@ -101,3 +116,11 @@
 </table>
 <br class="clear" />
 
+<script type="text/javascript">
+  jQuery(function($) {
+     $("#component_photo").change(function(){
+        $.get("/components/update_picture", null, 'script');
+         return false;
+     })
+  });
+</script>

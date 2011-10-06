@@ -1,3 +1,12 @@
+<?php
+$TYPE = $_POST['TYPE'];
+$BACKTYPE = $_POST['BACKTYPE'];
+$CONTROL = $_POST['CONTROL'];
+$ARMS = $_POST['ARMS'];
+$OPTIONS = $_POST['OPTIONS'];
+$FABRIC = $_POST['FABRIC'];
+?>
+
 <%= form_for(@valuefield) do |f| %>
     <% if @valuefield.errors.any? %>
 
@@ -105,7 +114,8 @@
     </table>
 </div>
 
-
+ ARMS
+   <?php echo $ARMS;?>
 
 
 <script type="text/javascript">
@@ -143,6 +153,7 @@
             return false;
 
         });
+
 
 
 $('#valuefield_path').attr("value","");
