@@ -399,8 +399,9 @@ class AdminController < ApplicationController
 
 
     xml = xml(node)
-    index = xml.rindex("</")
     for child in hash[node]
+      index = xml.rindex("</#{child.class}s>")
+
       xml.insert(index,xml_from_hash(child, hash))
     end
 
@@ -427,6 +428,16 @@ class AdminController < ApplicationController
       end
       xml += "</#{key}>"
 
+    end
+
+    if(element.is_a?(Category))
+      xml += "<Products></Products>"
+    elsif(element.is_a?(Product))
+      xml += "<Components></Components>"
+      xml += "<Valuefields></Valuefields>"
+    elsif(element.is_a?(Component))
+      xml += "<Components></Components>"
+      xml += "<Valuefields></Valuefields>"
     end
 
     xml += "</#{element.class}>"
