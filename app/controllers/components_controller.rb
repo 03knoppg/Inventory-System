@@ -114,7 +114,7 @@ class ComponentsController < ApplicationController
 
     if(params[:new_components_ids] != nil)
       for id in params[:new_components_ids]
-        id = Integer(id)
+         id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
            c = Component.find((id + 1) * -1)
            component_parents_val.push(c)

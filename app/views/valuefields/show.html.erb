@@ -4,10 +4,12 @@
 <table>
   <tr>
     <th align="left">Value</th>
+    <th align="left">Code</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @valuefield.fieldvalue %></td>
+    <td><%= @valuefield.code %></td>
     <td><%= button_to 'Edit Valuefield', edit_valuefield_path(@valuefield), :method => :get %></td>
   </tr>
 </table>

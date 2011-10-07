@@ -5,11 +5,13 @@
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
+    <th align="left">Code</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= @product.name %></td>
     <td valign="top"><%= @product.description %></td>
+    <td valign="top"><%= @product.code %></td>
     <td><%= button_to "Edit Product", edit_product_path(@product), :method => :get %></td>
   </tr>
 </table>

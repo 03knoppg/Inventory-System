@@ -5,12 +5,14 @@
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
+    <th align="left">Code</th>
     <th align="left">Model Texture</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @component.name %></td>
     <td><%= @component.description %></td>
+    <td><%= @component.code %></td>
     <td>
        <%= image_tag @component.photo.url(:thumb) %>
     </td>

@@ -30,11 +30,8 @@ ActiveRecord::Schema.define(:version => 20111006142740) do
     t.string   "name"
     t.string   "description"
     t.string   "group_id"
-    t.string   "code_component"
+    t.string   "code"
     t.string   "model_path"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20111006142740) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "code_product"
+    t.string   "code"
     t.string   "model_path"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -125,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20111006142740) do
     t.integer  "product_id"
     t.integer  "component_id"
     t.string   "path"
-    t.string   "code_valuefield"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
