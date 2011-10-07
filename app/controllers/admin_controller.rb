@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 
 
   def home
+
   end
 
   def writefile

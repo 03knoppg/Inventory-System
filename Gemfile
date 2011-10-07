@@ -39,3 +39,5 @@ gem 'builder'
 
 gem 'sorcery'
 gem 'paperclip'
+
+ gem "remotipart", "~> 1.0"

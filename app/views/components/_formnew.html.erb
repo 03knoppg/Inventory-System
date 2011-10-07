@@ -21,36 +21,13 @@
       <tr>
         <td style="width: 200px">
           <div class ="field">
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :required => true %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description %>
+            <%= f.text_field :description, :required => true %>
           </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :code %>
-          </div>
-        </td>
-        <td>
-           <table>
-            <tr>
-              <td>
-                <%if(!@component.photos.empty?)%>
-                  <% @component.photos.each do |photo| %>
-                    <%= image_tag photo.data.url %>
-                    <% end %>
-                    <%end%>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= add_photo(f) %>
-              </td>
-            </tr>
-          </table>
         </td>
         <td>
           <div class="actions">

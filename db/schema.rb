@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006142740) do
+
+ActiveRecord::Schema.define(:version => 20111007162110) do
+
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -57,14 +59,16 @@ ActiveRecord::Schema.define(:version => 20111006142740) do
     t.datetime "updated_at"
   end
 
-  create_table "photos", :force => true do |t|
+  create_table "images", :force => true do |t|
     t.integer  "component_id"
+    t.integer  "product_id"
+    t.integer  "valuefield_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "data_file_name"
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.datetime "data_updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "products", :force => true do |t|

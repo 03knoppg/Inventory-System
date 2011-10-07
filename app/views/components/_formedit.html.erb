@@ -30,29 +30,6 @@
           </div>
         </td>
         <td>
-          <div class="field">
-            <%= f.text_field :description %>
-          </div>
-        </td>
-        <td>
-          <table>
-            <tr>
-              <td>
-                <%if(@component.photos != nil)%>
-                  <% @component.photos.each do |photo| %>
-                    <%= image_tag photo.data.url %>
-                    <% end %>
-                    <%end%>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= add_photo(f) %>
-              </td>
-            </tr>
-          </table>
-        </td>
-        <td>
           <div class="actions">
             <%= f.submit %>
           </div>
