@@ -56,10 +56,8 @@ class ValuefieldsController < ApplicationController
 
     logger.info("\n\n\n PATH#{params.inspect}")
 
-    path = params[:path]
-    if(!params[:prod_comp_id] == nil)
-      prod_comp = Integer(params[:prod_comp_id])
-    end
+    path = params[:valuefield_path_hidden]
+    prod_comp = Integer(params[:prod_comp_id])
 
     property =  Property.find(Integer(params[:property_id]))
     @valuefield.property = property

@@ -1,13 +1,18 @@
 class AdminController < ApplicationController
-    def home
+
+  def home
+
   end
 
   def writefile
+
     path = params[:path]    #the permuted path
 
     hash = path_to_hash(path)
     xml = xml_from_hash(hash.keys[0], hash)
     write_to_file("/home/franz2/testFile.xml", xml)
+    all_seating_texture_xml = all_seating_translation("/home/franz2/test/testFile.xml")
+    write_to_file("/home/franz2/test/all_seating_textures.xml", all_seating_texture_xml)
 
   end
 
@@ -397,9 +402,12 @@ class AdminController < ApplicationController
 
 
     xml = xml(node)
-    index = xml.rindex("</")
-    for child in hash[node]
-      xml.insert(index,xml_from_hash(child, hash))
+    if(hash.key?(node))
+      for child in hash[node]
+        index = xml.rindex("</#{child.class}s>")
+
+        xml.insert(index,xml_from_hash(child, hash))
+      end
     end
 
     return xml
@@ -425,6 +433,16 @@ class AdminController < ApplicationController
       end
       xml += "</#{key}>"
 
+    end
+
+    if(element.is_a?(Category))
+      xml += "<Products></Products>"
+    elsif(element.is_a?(Product))
+      xml += "<Components></Components>"
+      xml += "<Valuefields></Valuefields>"
+    elsif(element.is_a?(Component))
+      xml += "<Components></Components>"
+      xml += "<Valuefields></Valuefields>"
     end
 
     xml += "</#{element.class}>"
@@ -495,6 +513,68 @@ class AdminController < ApplicationController
     #send_file(s, :type => "text/xml", :filename => "abc.xml")
 
 
+    end
+
+
+  def all_seating_translation(path)
+    #get textures
+    all_seating_textures(path)
+
+    #get dae
+
+    #get models
+
+
   end
+
+  def all_seating_textures(path)
+
+    file = File.new( path )
+    doc = Document.new file
+
+    xml = Document.new
+    xml << XMLDecl.default
+
+    chair = Element.new "chair", xml.root
+    textures = Element.new "textures", chair
+
+    result =  "<chair><textures>"
+
+    result +=  find_texture_elements(doc.root)
+
+    result +=  "</textures></chair>"
+
+    return result
+  end
+
+  def find_texture_elements(elt)
+
+    if(!elt.is_a?(Element))
+      return ""
+    end
+
+    result = ""
+
+     if(!elt.attributes.get_attribute("image").nil?)
+      type = elt.name                         #name of component
+      name = elt.attributes.get_attribute["model_path"]     #code_path
+      texture = elt.attributes.get_attribute["image"]       #path to texture
+
+      result +=  "<item type=\"#{type}\" name=\"#{name}\"><![CDATA[#{texture}]]></item>"
+
+
+     end
+
+
+
+    for child in elt.children
+       result += find_texture_elements(child)
+    end
+
+    return result
+
+  end
+
+
 
 end

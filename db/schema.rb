@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20111007162110) do
+
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -32,6 +34,9 @@ ActiveRecord::Schema.define(:version => 20111007162110) do
     t.string   "group_id"
     t.string   "code_component"
     t.string   "model_path"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20111007162110) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",                        :null => false
+    t.string   "username",                                       :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
@@ -109,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20111007162110) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.integer  "failed_logins_count",             :default => 0
+    t.datetime "lock_expires_at"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

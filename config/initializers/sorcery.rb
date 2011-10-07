@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :activity_logging, :reset_password]
+Rails.application.config.sorcery.submodules = [:remember_me, :activity_logging, :reset_password, :brute_force_protection, :session_timeout]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -20,8 +20,8 @@ Rails.application.config.sorcery.configure do |config|
                                                                       # 'redirect_back_or_to'.
 
   # -- session timeout --
-  # config.session_timeout = 3600                                     # how long in seconds to keep the session alive.
-  # config.session_timeout_from_last_action = false                   # use the last action as the beginning of
+   config.session_timeout = 20 * 60                                   # how long in seconds to keep the session alive.
+   config.session_timeout_from_last_action = true                     # use the last action as the beginning of
                                                                       # session timeout.
 
   # -- http_basic_auth --
@@ -166,9 +166,9 @@ Rails.application.config.sorcery.configure do |config|
                                                                                       # user is banned and when it will
                                                                                       # be active again.
 
-    # user.consecutive_login_retries_amount_limit = 50                                # how many failed logins allowed.
+     user.consecutive_login_retries_amount_limit = 3                                  # how many failed logins allowed.
 
-    # user.login_lock_time_period = 60 * 60                                           # how long the user should be
+     user.login_lock_time_period = 60 * 60                                            # how long the user should be
                                                                                       # banned. in seconds. 0 for
                                                                                       # permanent.
 

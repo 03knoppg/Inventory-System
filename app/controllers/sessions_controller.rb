@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def new
+    arms = params[:ARMS]
   end
 
   def create
