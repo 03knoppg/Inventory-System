@@ -1,7 +1,5 @@
 class AdminController < ApplicationController
-
-
-  def home
+    def home
   end
 
   def writefile

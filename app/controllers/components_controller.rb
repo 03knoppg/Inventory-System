@@ -64,7 +64,8 @@ class ComponentsController < ApplicationController
   #Function to create components
   def create
     @component = Component.new(params[:component])
-    if(params[:new_group_id] != nil)
+
+       if(params[:new_group_id] != nil)
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 

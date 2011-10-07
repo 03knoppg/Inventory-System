@@ -1,6 +1,10 @@
 TestDBRubymineProject::Application.routes.draw do
 
 
+  resources :images
+
+  post "images/new" => "images#create"
+
   get "password_resets/create"
 
   get "password_resets/edit"
@@ -10,8 +14,6 @@ TestDBRubymineProject::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-
-
 
   resources :users
 
@@ -26,7 +28,6 @@ TestDBRubymineProject::Application.routes.draw do
   resources :valuefields
 
   resources :ValuesController
-
 
   get "components/update_picture"
 
