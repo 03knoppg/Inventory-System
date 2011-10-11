@@ -1,15 +1,18 @@
 module ImagesHelper
     #Recursive function for display components - finds parents and then children and organizes them in this way to display
-  def components_table(cp, depth)
+  def components_table(cp, depth, image)
 
-    @pt+= "<option value=\"#{cp.id}\">\n"
-    @pt+= "#{"-"*depth}"
+    @pt+= "<option value=\"#{cp.id}\""
+    if(image != nil && image.component == cp)
+      @pt+= "selected = \"true\""
+    end
+    @pt+= ">#{"-"*depth}"
     @pt+= "#{cp.name}"
     @pt+= "</option>\n"
 
     for child in cp.components
       if(child != @component)
-        components_table(child, depth+1)
+        components_table(child, depth+1, image)
       end
     end
   end
@@ -18,7 +21,7 @@ module ImagesHelper
   def print_images
     for img in @all_images
       @sp+= "<tr>\n"
-        @sp+= "<td> #{image_tag(img.picture)} </td>\n"
+        @sp+= "<td> #{image_tag(img.picture.url(:small))} </td>\n"
       if(img.product != nil)
         @sp+= "<td> #{link_to(img.product.name, img.product)} </td>\n"
       else
