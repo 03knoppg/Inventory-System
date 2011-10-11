@@ -9,22 +9,26 @@ class SessionsController < ApplicationController
 
   def new
 
-    args = []
-    args.push(params[:TYPE])
-    args.push(params[:BACKTYPE])
-    args.push(params[:CONTROL])
-    args.push(params[:ARMS])
-    args.push(params[:OPTIONS])
-    args.push(params[:FABRIC])
 
 
-    path = all_seating_path_translator(args)
+    if(params[:TYPE] != nil)
 
-    #hash = path_to_hash(path)
-    xml = xml_from_hash(path.keys[0], path)
-    write_to_file("/home/franz2/test/testFile.xml", xml)
-    all_seating_texture_xml = all_seating_translation("/home/franz2/test/testFile.xml")
-    write_to_file("/home/franz2/test/all_seating_textures.xml", all_seating_texture_xml)
+      args = []
+      args.push(params[:TYPE])
+      args.push(params[:BACKTYPE])
+      args.push(params[:CONTROL])
+      args.push(params[:ARMS])
+      args.push(params[:OPTIONS])
+      args.push(params[:FABRIC])
+      path = all_seating_path_translator(args)
+
+      #hash = path_to_hash(path)
+      xml = xml_from_hash(path.keys[0], path)
+      write_to_file("/home/franz2/test/testFile.xml", xml)
+      all_seating_texture_xml = all_seating_translation("/home/franz2/test/testFile.xml")
+      write_to_file("/home/franz2/test/all_seating_textures.xml", all_seating_texture_xml)
+    end
+
   end
 
   def create
@@ -345,7 +349,7 @@ class SessionsController < ApplicationController
     chair = Element.new "chair", xml.root
     textures = Element.new "textures", chair
 
-    result =  "<chair><textures>"
+    result =  "<?xml version=\"1.0\" encoding=\"utf-8\"?><chair><textures>"
 
     result +=  find_texture_elements(doc.root)
 
@@ -362,10 +366,10 @@ class SessionsController < ApplicationController
 
     result = ""
 
-     if(!elt.attributes.get_attribute("image").nil?)
-      type = elt.name                         #name of component
-      name = elt.attributes.get_attribute["model_path"]     #code_path
-      texture = elt.attributes.get_attribute["image"]       #path to texture
+     if(has_image(elt))
+      name = get_child(elt, "name")                        #name of component
+      type = get_child(elt, "code")          #code_path
+      texture = get_child(elt, "model_path")       #path to texture
 
       result +=  "<item type=\"#{type}\" name=\"#{name}\"><![CDATA[#{texture}]]></item>"
 
@@ -382,6 +386,21 @@ class SessionsController < ApplicationController
 
   end
 
+  def has_image(elt)
+     for child in elt.elements
+       if(child.name == "model_path")
+         return true
+       end
+     end
+    return false
+  end
 
+  def get_child(elt, name)
+    for child in elt.elements
+      if child.name == name
+        return child.text
+      end
+    end
+  end
 
 end
