@@ -1,5 +1,44 @@
 <p id="notice"><%= notice %></p>
+<h1>Viewing Image: <%=@image.picture.picture_file_name%></h1>
 
+<table>
+  <tr>
+    <th align="left">Image</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= image_tag(@image.picture) %></td>
+    <td><%= button_to "Edit Image", edit_image_path(@image), :method => :get %></td>
+  </tr>
+</table>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+<table>
+  <th align="left">Products related to <%=@image.picture.picture_file_name%></th>
+  <tr>
+    <td><%= link_to @image.product, @image %></td>
+  </tr>
+</table>
+<table>
+      <tr>
+        <th align="left"><b>Components related to <%=@image.picture.picture_file_name%></b></th>
+      </tr>
+  <tr>
+            <td> <%= link_to @image.component, @image %> </td>
+          </tr>
+    </table>
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Valuefields related to <%=@image.picture.picture_file_name%></b></th>
+    <th align="left"><b>Value</b></th>
+  </tr>
+
+          <tr>
+            <td> <%= link_to @image.valuefield, @image %> </td>
+          </tr>
+      <%end%>
+  <%else%>
+      <tr><td>No properties</td><td>No value</td></tr>
+  <%end%>
+</table>
+<%= button_to "New Property", new_property_path, :method => :get %>
+

@@ -1,21 +1,22 @@
-<h1>Listing images</h1>
+ <h1>Listing Images</h1>
+<!--Button to create a new product -->
+<%= button_to "New Image", new_image_path, :method => :get %>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @images.each do |image| %>
-  <tr>
-    <td><%= link_to 'Show', image %></td>
-    <td><%= link_to 'Edit', edit_image_path(image) %></td>
-    <td><%= link_to 'Destroy', image, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+ <!--if length > 0 print groups -->
+<%if(@all_images.length > 0)    %>
+    <table title="Current Images">
+        <tr><th colspan="5"><h4>Current Images</h4></th></tr>
+        <tr>
+            <th align="left">Image</th>
+            <th align="left">Product image belongs to</th>
+            <th align="left">Component image belongs to</th>
+            <th align="left">Valuefield image belongs to</th>
+          <th align="left">Actions</th>
+        </tr>
+        <% print_images %>
+        <%= @sp.html_safe %>
+<%else%>
+        <tr><td><h4>No Images Available</h4></td></tr>
+<%end%>
 </table>
-
-<br />
-
-<%= link_to 'New Image', new_image_path %>
+<br class="clear" />
