@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Viewing Image: <%=@image.picture.picture_file_name%></h1>
+<h1>Viewing Image: <%=@image.picture_file_name%></h1>
 
 <table>
   <tr>
@@ -7,38 +7,47 @@
     <th align="left">Actions</th>
   </tr>
   <tr>
-    <td valign="top"><%= image_tag(@image.picture) %></td>
+    <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
     <td><%= button_to "Edit Image", edit_image_path(@image), :method => :get %></td>
   </tr>
 </table>
 
 <table>
-  <th align="left">Products related to <%=@image.picture.picture_file_name%></th>
   <tr>
-    <td><%= link_to @image.product, @image %></td>
+    <th align="left">Products related to <%=@image.picture_file_name%></th>
+  </tr>
+  <tr>
+    <% if(@image.product != nil) %>
+        <td><%= link_to @image.product.name, @image.product %></td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
   </tr>
 </table>
 <table>
-      <tr>
-        <th align="left"><b>Components related to <%=@image.picture.picture_file_name%></b></th>
-      </tr>
   <tr>
-            <td> <%= link_to @image.component, @image %> </td>
-          </tr>
-    </table>
+    <th align="left"><b>Components related to <%=@image.picture_file_name%></b></th>
+  </tr>
+  <tr>
+    <% if(@image.component != nil) %>
+        <td> <%= link_to @image.component.name, @image.component %> </td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
+  </tr>
+</table>
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Valuefields related to <%=@image.picture.picture_file_name%></b></th>
-    <th align="left"><b>Value</b></th>
+    <th align="left"><b>Valuefields related to <%=@image.picture_file_name%></b></th>
   </tr>
 
-          <tr>
-            <td> <%= link_to @image.valuefield, @image %> </td>
-          </tr>
-      <%end%>
-  <%else%>
-      <tr><td>No properties</td><td>No value</td></tr>
-  <%end%>
+  <tr>
+    <% if(@image.valuefield != nil) %>
+        <td> <%= link_to @image.valuefield.fieldvalue, @image.valuefield %> </td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
+  </tr>
 </table>
-<%= button_to "New Property", new_property_path, :method => :get %>
+<%= button_to "New Image", new_image_path, :method => :get %>
 

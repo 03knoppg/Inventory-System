@@ -39,6 +39,10 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
+    @all_products = Product.all
+    @all_components = Component.all
+    @all_valuefields = Valuefield.all
+
   end
 
   # POST /images

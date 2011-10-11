@@ -26,7 +26,7 @@
         </td>
         <td>
           <div class="field">
-            <select size="5" multiple="multiple" name="image[product_id]" style="width: 200px">
+            <select size="5" name="image[product_id]" style="width: 200px">
                   <% for prod in @all_products %>
                       <option value="<%= prod.id %>">
                         <%= prod.name %>
@@ -37,10 +37,10 @@
         </td>
         <td>
           <div class="field">
-                <select size="5" multiple="multiple" name="image[component_id]" style="width: 200px">
+                <select size="5" name="image[component_id]" style="width: 200px">
                   <% for comp in @all_components %>
                        <%@pt = ""%>
-                      <%= components_table(comp, 0) %>
+                      <%= components_table(comp, 0, nil) %>
                        <%=@pt.html_safe%>
                   <% end %>
                 </select>
@@ -48,7 +48,7 @@
         </td>
         <td>
           <div class="field">
-            <select size="5" multiple="multiple" name="image[valuefield_id]" style="width: 200px">
+            <select size="5" name="image[valuefield_id]" style="width: 200px">
               <%for vf in @all_valuefields %>
               <option value=<%= vf.id%>>
                       <%= vf.fieldvalue %>

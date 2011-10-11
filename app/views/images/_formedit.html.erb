@@ -1,0 +1,84 @@
+<%= form_for :image, :html => { :multipart => true } do |f| %>
+    <% if @image.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+          <ul>
+            <% @image.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table>
+      <tr>
+        <th align="left">Select Image:</th>
+        <th align="left">Products</th>
+        <th align="left">Components</th>
+        <th align="left">Valuefields</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td style="width: 200px">
+          <div class ="field" style="padding-bottom: 10px">
+            <%= f.file_field(:picture, :id => "pic", :required => true) %>
+          </div>
+          <div class align="field">
+            <%=image_tag(@image.picture(:small), :id => "img") %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <select size="5" name="image[product_id]" style="width: 200px">
+              <% for prod in @all_products %>
+                  <option value="<%= prod.id %>"<%if(@image.product == prod)%> selected = "true"<%end%>>
+                    <%= prod.name %>
+                  </option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <select size="5" name="image[component_id]" style="width: 200px">
+              <% for comp in @all_components %>
+                  <%@pt = ""%>
+                  <%= components_table(comp, 0, @image) %>
+                  <%=@pt.html_safe%>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <select size="5" name="image[valuefield_id]" style="width: 200px">
+              <%for vf in @all_valuefields %>
+                  <option value="<%= vf.fieldvalue%>"<%if(@image.valuefield.id == vf.id)%> selected = "true"<%end%>>
+                    <%= vf.fieldvalue %>
+                  </option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+<% end %>
+</td>
+</tr>
+</table>
+<br class="clear" />
+
+<!--Script used to remove current image from edit page when user file_field input changes -->
+<script type="text/javascript">
+    jQuery(function($){
+                $('#pic').change(
+                        function(){
+                            $('#img').remove();
+                        }
+                )
+            }
+    )
+</script>
