@@ -23,13 +23,25 @@ class SessionsController < ApplicationController
       path = all_seating_path_translator(args)
 
       #hash = path_to_hash(path)
+
+
       xml = xml_from_hash(path.keys[0], path)
       write_to_file("/home/franz2/test/testFile.xml", xml)
-      all_seating_texture_xml = all_seating_translation("/home/franz2/test/testFile.xml")
-      write_to_file("/home/franz2/test/all_seating_textures.xml", all_seating_texture_xml)
-    end
+
+      #get textures
+      generate_a_s_texture_xml("/home/franz2/test/testFile.xml", "/home/franz2/test/all_seating_textures.xml")
+
+
+      #get dae
+      all_seating_dae("/home/franz2/test/testFile.xml", "/home/franz2/test/all_seating.dea")
+
+      #get models
+
+      end
 
   end
+
+
 
   def create
     user = login(params[:username], params[:password], params[:remember_me])
@@ -45,13 +57,6 @@ class SessionsController < ApplicationController
     logout
     redirect_to root_url, :notice => "Logged out!"
   end
-
-
-
-
-
-
-
 
 
 
@@ -326,22 +331,49 @@ class SessionsController < ApplicationController
 
     end
 
+  def generate_a_s_texture_xml(path, destination)
 
-  def all_seating_translation(path)
-    #get textures
-    all_seating_textures(path)
-
-    #get dae
-
-    #get models
-
-
+    file = File.new(path)
+    doc = Document.new file
+    all_seating_texture_xml = all_seating_textures(doc)
+    write_to_file(destination, all_seating_texture_xml)
   end
 
-  def all_seating_textures(path)
 
-    file = File.new( path )
+  def all_seating_dae(path, destination)
+    file = File.new(path)
     doc = Document.new file
+    result = find_dea_element(doc.root)
+
+    write_to_file(destination, result)
+  end
+
+  def find_dea_element(elt)
+
+    if(!elt.is_a?(Element))
+      return ""
+    end
+
+
+    if(has_element(elt, "data"))
+      data = get_child(elt, "data")       #path to dae
+
+      return data
+
+
+    end
+
+    for child in elt.children
+       return find_texture_elements(child)
+    end
+
+    return result
+  end
+
+
+
+  def all_seating_textures(doc)
+
 
     xml = Document.new
     xml << XMLDecl.default
@@ -366,7 +398,7 @@ class SessionsController < ApplicationController
 
     result = ""
 
-     if(has_image(elt))
+     if(has_element(elt, "model_path"))
       name = get_child(elt, "name")                        #name of component
       type = get_child(elt, "code")          #code_path
       texture = get_child(elt, "model_path")       #path to texture
@@ -386,9 +418,9 @@ class SessionsController < ApplicationController
 
   end
 
-  def has_image(elt)
+  def has_element(elt, type)
      for child in elt.elements
-       if(child.name == "model_path")
+       if(child.name == type)
          return true
        end
      end
@@ -402,5 +434,6 @@ class SessionsController < ApplicationController
       end
     end
   end
+
 
 end
