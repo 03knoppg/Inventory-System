@@ -37,7 +37,7 @@ fluid = Category.create(name:"Fluid", parent_id:chair.id)
 #Products                                                                                                      #
 ################################################################################################################
 =end
-fluidBasicStool = Product.create(name:"Basic Stool Chair", description:"Fluid Basic Stool Chair")
+fluidBasicStool = Product.create(name: "Basic Stool Chair", description: "Fluid Basic Stool Chair", code: "82")
 
 =begin
 ################################################################################################################
@@ -65,30 +65,30 @@ addOnLumbarPlus = Group.create(name:"Chair Add-On Lumbar Plus")
 ################################################################################################################
 =end
 #Component Group - Arm
-noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id)
+noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id, code:"NA")
 task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
 multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
 twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
 
 #Component Group - Control
-basicStoolControl = Component.create(name:"Basic Stool Control", description:"Chair with Basic Stool Control", group_id:control.id)
+basicStoolControl = Component.create(name:"Basic Stool Control", description:"Chair with Basic Stool Control", group_id:control.id, code:"19")
 
 #Component Group - Optional Control
 ssControlAddOn = Component.create(name:"Chair Control Add-On", description:"Control Add-On for a chair (Additional to regular controls)", group_id:addOnControl.id)
 ssControlNone = Component.create(name:"Chair Control No Add-On", description:"Control with no Add-On Control for a chair", group_id:addOnControl.id)
 
 #Component Group = Optional Lumbar Plus
-lumbarPlusAddOn = Component.create(name:"Chair Lumbar Add-On", description:"Lumbar Plus Add-on for a chair", group_id:addOnLumbarPlus.id)
+lumbarPlusAddOn = Component.create(name:"Chair Lumbar Add-On", description:"Lumbar Plus Add-on for a chair", group_id:addOnLumbarPlus.id, code:"LP")
 lumbarPlusNone = Component.create(name:"Chair Lumbar No Add-On", description:"Lumbar Plus no Add-On for chair", group_id:addOnLumbarPlus.id)
 
 #Fluid Basic Stool Components - no group - required components for chair
-btoBasicStool = Component.create(name:"Fluid Basic Stool Back", description:"Back type for the Fluid Basic Stool", group_id:nil)
+btoBasicStool = Component.create(name:"Fluid Basic Stool Back", description:"Back type for the Fluid Basic Stool", group_id:nil, code:"0")
 type82BasicStool = Component.create(name:"Fluid Basic Stool Seat", description:"Seat type for the Fluid Basic Stool", group_id:nil)
 base82BasicStool = Component.create(name:"Fluid Basic Stool Base", description:"Base type for the Fluid Basic Stool", group_id:nil)
 casterBasicStool = Component.create(name:"Fluid Basic Stool Casters", description:"Caster type for the Fluid Basic Stool", group_id:nil)
-basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil)
+basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil, code:"FM-BMESH")
 s810Ring = Component.create(name:"Chair Ring", description:"Ring type for a Chair", group_id:nil)
-chairShadow = Component.create(name:"Chair Shadow", description:"Shadow for the Chair Model", group_id:nil)
+chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil)
 
 =begin
 ################################################################################################################
@@ -105,7 +105,7 @@ fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric
 ################################################################################################################
 =end
 
-f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id)
+f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
 
 =begin
 ################################################################################################################
