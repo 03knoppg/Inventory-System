@@ -4,6 +4,7 @@ class Component < ActiveRecord::Base
   has_many :valuefields
   belongs_to :group
   has_many :images
+  has_many :data_files
 
 
    has_and_belongs_to_many :components,

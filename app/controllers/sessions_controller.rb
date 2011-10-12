@@ -217,10 +217,8 @@ class SessionsController < ApplicationController
           index = xml.rindex("</#{child.class.name}s>")
           xml.insert(index,xml_from_hash(child, hash))
         end
-
-
-
       end
+
     end
 
     return xml
@@ -249,7 +247,36 @@ class SessionsController < ApplicationController
         xml += ">#{element.attributes[key]}"
       end
       xml += "</#{key}>"
+    end
 
+    data = element.data_files
+    for datum in data
+      xml += "<Datafile>"
+      for elt in datum.attributes.keys
+         xml += "<#{elt}"
+        if(datum.attributes[elt].nil?)
+          xml += " nil=\"true\">"
+        else
+          xml += ">#{datum.attributes[elt]}"
+        end
+        xml += "</#{elt}>"
+      end
+      xml += "</Datafile>"
+    end
+
+    images = element.images
+    for image in images
+      xml += "<Image>"
+      for elt in image.attributes.keys
+         xml += "<#{elt}"
+        if(image.attributes[elt].nil?)
+          xml += " nil=\"true\">"
+        else
+          xml += ">#{image.attributes[elt]}"
+        end
+        xml += "</#{elt}>"
+      end
+      xml += "</Image>"
     end
 
     if(element.is_a?(Category))
@@ -359,7 +386,12 @@ class SessionsController < ApplicationController
     doc = Document.new file
     result = find_dae_element(doc.root)
 
-    File.open("/home/franz2/DAE.dae", 'w') {|f| f.write(result) }
+    #read
+
+    #write
+    File.open("/home/franz2/DAE.dae", 'wb') {|f| f.write(data.read) }
+   # File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+
 
     write_to_file(destination, result)
   end
@@ -372,10 +404,12 @@ class SessionsController < ApplicationController
       return ""
     end
 
-    if(has_element(elt, "datafile"))
-      data = get_child(elt, "datafile")
+    if(has_element(elt, "Datafile"))
+      df = elt.elements["Datafile"]
+      id = get_child(df, "id")
 
-      return data                #actual data file
+      data = DataFile.find(id)
+      return data              #actual data file
     end
 
     for child in elt.children
