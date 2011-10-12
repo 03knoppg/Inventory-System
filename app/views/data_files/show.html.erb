@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<h1>Viewing Data File: <%=@data_file.filedata_file_name%></h1>
+
+<table>
+  <tr>
+    <th align="left">Data File</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= text_field_tag("name", @data_file.filedata_file_name, :disabled => true, :size => 30) %></td>
+    <td><%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="left">Products related to <%=@data_file.filedata_file_name%></th>
+  </tr>
+  <tr>
+    <% if(@data_file.product != nil) %>
+        <td><%= link_to @data_file.product.name, @data_file.product %></td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th align="left"><b>Components related to <%=@data_file.filedata_file_name%></b></th>
+  </tr>
+  <tr>
+    <% if(@data_file.component != nil) %>
+        <td> <%= link_to @data_file.component.name, @data_file.component %> </td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
+  </tr>
+</table>
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Valuefields related to <%=@data_file.filedata_file_name%></b></th>
+  </tr>
+
+  <tr>
+    <% if(@data_file.valuefield != nil) %>
+        <td> <%= link_to @data_file.valuefield.fieldvalue, @data_file.valuefield %> </td>
+    <%else%>
+        <td>N/A</td>
+    <%end%>
+  </tr>
+</table>
+<%= button_to "New Data File", new_data_file_path, :method => :get %>
+

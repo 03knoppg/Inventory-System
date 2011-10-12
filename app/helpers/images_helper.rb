@@ -17,7 +17,7 @@ module ImagesHelper
     end
   end
 
-    #Function for displaying images
+  #Function for displaying images
   def print_images
     for img in @all_images
       @sp+= "<tr>\n"

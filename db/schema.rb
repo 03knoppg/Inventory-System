@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007162110) do
+ActiveRecord::Schema.define(:version => 20111012142206) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(:version => 20111007162110) do
   create_table "components_properties", :id => false, :force => true do |t|
     t.integer "component_id"
     t.integer "property_id"
+  end
+
+  create_table "data_files", :force => true do |t|
+    t.integer  "component_id"
+    t.integer  "product_id"
+    t.integer  "valuefield_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "filedata_file_name"
+    t.string   "filedata_content_type"
+    t.integer  "filedata_file_size"
+    t.datetime "filedata_updated_at"
   end
 
   create_table "groups", :force => true do |t|
