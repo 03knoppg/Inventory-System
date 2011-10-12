@@ -36,6 +36,7 @@ class SessionsController < ApplicationController
       all_seating_dae("/home/franz2/test/testFile.xml", "/home/franz2/test/all_seating.dea")
 
       #get models
+      all_seating_texture("/home/franz2/test/testFile.xml", "/home/franz2/test")
 
       end
 
@@ -331,6 +332,19 @@ class SessionsController < ApplicationController
 
     end
 
+
+   def all_seating_texture(path, destination)
+
+     file = File.new(path)
+    doc = Document.new file
+     copy_textures(doc.root)
+
+   end
+
+     def copy_textures(elt)
+
+     end
+
   def generate_a_s_texture_xml(path, destination)
 
     file = File.new(path)
@@ -343,24 +357,25 @@ class SessionsController < ApplicationController
   def all_seating_dae(path, destination)
     file = File.new(path)
     doc = Document.new file
-    result = find_dea_element(doc.root)
+    result = find_dae_element(doc.root)
+
+    File.open("/home/franz2/DAE.dae", 'w') {|f| f.write(result) }
 
     write_to_file(destination, result)
   end
 
-  def find_dea_element(elt)
+
+
+  def find_dae_element(elt)
 
     if(!elt.is_a?(Element))
       return ""
     end
 
+    if(has_element(elt, "datafile"))
+      data = get_child(elt, "datafile")
 
-    if(has_element(elt, "data"))
-      data = get_child(elt, "data")       #path to dae
-
-      return data
-
-
+      return data                #actual data file
     end
 
     for child in elt.children
@@ -399,9 +414,9 @@ class SessionsController < ApplicationController
     result = ""
 
      if(has_element(elt, "model_path"))
-      name = get_child(elt, "name")                        #name of component
-      type = get_child(elt, "code")          #code_path
-      texture = get_child(elt, "model_path")       #path to texture
+      name = get_child(elt, "name")                #name of component
+      type = get_child(elt, "code")                #code_path
+      texture = get_child(elt, "model_path")       #path to texture  TODO: might need to change to static path
 
       result +=  "<item type=\"#{type}\" name=\"#{name}\"><![CDATA[#{texture}]]></item>"
 
