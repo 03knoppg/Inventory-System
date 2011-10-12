@@ -2,10 +2,12 @@
 db/*.sqlite3*
 log/*.log
 *.log
-/tmp/
+tmp/
 doc/
 *.swp
 *~
+public/images/
+public/data_files/
 .project
 .DS_Store
 .idea
