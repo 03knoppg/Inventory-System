@@ -40,6 +40,10 @@ class ComponentsController < ApplicationController
     @component = Component.new
     @all_products = Product.all
     @all_groups = Group.all
+    if(!params[:component_id].nil?)
+      @component_parent = Component.find(params[:component_id])
+    end
+
 
     @parent_cps = @component.component_parents + @component.products
     respond_to do |format|

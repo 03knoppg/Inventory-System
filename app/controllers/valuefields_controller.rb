@@ -36,6 +36,15 @@ class ValuefieldsController < ApplicationController
     @paths = ""
     @all_prods_comps = Product.all + Component.all
 
+    if(!params[:property_id].nil?)
+      @property = Property.find(params[:property_id])
+    end
+
+    if(!params[:component_id].nil?)
+      @component = Component.find(params[:component_id])
+    end
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @valuefield }
@@ -137,7 +146,6 @@ class ValuefieldsController < ApplicationController
   def destroy
     @valuefield = Valuefield.find(params[:id])
     @valuefield.destroy
-    logger.info("YES IT DID")
 
     respond_to do |format|
       format.html { redirect_to valuefields_url }

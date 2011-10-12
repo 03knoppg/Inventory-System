@@ -23,7 +23,7 @@ module ComponentsHelper
       @pt+= "<option value=\"#{-cp.id - 1}\""   #Component ids are set to negative values to differentiate from Product ids
     end
 
-    if (@parent_cps.include?(cp))
+    if (@parent_cps.include?(cp) || @component_parent == cp)
       @pt += "selected=true"
     end
 
@@ -63,6 +63,10 @@ module ComponentsHelper
     else
       @ch+= "<tr><td>No Children Available</td></tr>"
     end
+    #@ch += "<tr><td>#{button_to "New Component", new_component_path, :method => :get}</td></tr>"
+    @ch += "<form method=\"get\" action=\"/components/new\"  class=\"button_to\"><div><input type=\"submit\" value=\"New Child Component\" /></div>
+                    <input type=\"hidden\" name=\"component_id\" value=\"#{@component.id}\" />
+               </form>"
   end
 
   #Function to print field values related to components
@@ -74,8 +78,9 @@ module ComponentsHelper
         @pp+= "<tr><td>#{link_to(vf.fieldvalue, vf)}</td><td>#{link_to(vf.property.name, vf.property)}</td></tr>"
       end
     else
-      @pp+="<tr><td>No Values Available</td><td>No Properties Available</td></tr>"
+      @pp+="<tr><td>No Values Available</td><td></td></tr>"
     end
+    @pp += "<tr><td>#{button_to "New Valuefield", new_valuefield_path, :method => :get}</td></tr>"
   end
 end
 

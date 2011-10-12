@@ -34,6 +34,7 @@ class PropertiesController < ApplicationController
     @property = Property.new
     @all_properties = Property.all
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @property }

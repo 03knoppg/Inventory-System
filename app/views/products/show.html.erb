@@ -35,28 +35,47 @@
             <td> <%= comp.description %> </td>
           </tr>
       <%end%>
+<tr><td><%= button_to "New Component", new_component_path, :method => :get %></td><td></td></tr>
     </table>
 <%else%>
     <br/>No Components
 <%end%>
-<%= button_to "New Component", new_component_path, :method => :get %>
 <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Properties related to <%=@product.name%></b></th>
     <th align="left"><b>Value</b></th>
   </tr>
-  <%valuefields = @product.valuefields
-    if(valuefields.length > 0) %>
-      <%for val in valuefields%>
-          <% property = val.property %>
-          <tr>
-            <td> <%= link_to("#{property.name} (#{property.field_type}) ", property) %> </td>
-            <td> <%= link_to(val.fieldvalue, val) %> </td>
-          </tr>
-      <%end%>
+  <%properties = @product.properties %>
+
+  <% if(!properties.empty?) %>
+    <%for prod in properties %>
+    <%valuefields = prod.valuefields %>
+      <tr><td> <%= link_to("#{prod.name} (#{prod.field_type}) ", prod) %> </td>
+
+        <%if(!valuefields.empty?)%>
+            <td><table>
+            <%for val in valuefields%>
+
+                <tr><td> <%= link_to(val.fieldvalue, val) %> </td></tr>
+
+            <%end%>
+
+             <tr><td> <%= button_to "New #{prod.name} Value", new_valuefield_path %> </td></tr>
+            </table></td>
+        <%else%>
+
+            <td>No valuefields</td>
+        <%end%>
+      </tr>
+   <%end%>
+
   <%else%>
       <tr><td>No properties</td><td>No value</td></tr>
   <%end%>
+
+
+
+<tr><td> <%= button_to "New Property", new_property_path %> </td><td></td></tr>
+
 </table>
-<%= button_to "New Property", new_property_path, :method => :get %>
 
