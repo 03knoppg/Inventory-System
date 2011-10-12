@@ -5,7 +5,6 @@ class CreateComponents < ActiveRecord::Migration
       t.string :description
       t.string :group_id
       t.string :code
-      t.string :model_path
 
       t.timestamps
     end

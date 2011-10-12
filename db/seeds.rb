@@ -4,6 +4,7 @@
 #Begin Seed                                                                                                    #
 ################################################################################################################
 =end
+
 #Destroy Tables
 Category.destroy_all
 Product.destroy_all
@@ -20,17 +21,17 @@ DataFile.destroy_all
 #Users                                                                                                         #
 ################################################################################################################
 =end
-brett = User.create(username:"bh", email:"bh@bh.com", password:"bh")
-graham = User.create(username:"gk", email:"gk@gk.com", password:"gk")
+brett = User.create(username: "bh", email: "bh@bh.com", password: "bh")
+graham = User.create(username: "gk", email: "gk@gk.com", password: "gk")
 
 =begin
 ################################################################################################################
 #Categories                                                                                                    #
 ################################################################################################################
 =end
-all = Category.create(name:"All")
-chair = Category.create(name:"Chair", parent_id:all.id)
-fluid = Category.create(name:"Fluid", parent_id:chair.id)
+all = Category.create(name: "All")
+chair = Category.create(name: "Chair", parent_id: all.id)
+fluid = Category.create(name: "Fluid", parent_id: chair.id)
 
 =begin
 ################################################################################################################
@@ -54,10 +55,10 @@ testDAE.save!
 ################################################################################################################
 =end
 #Groups below represent an "or" choice
-arm = Group.create(name:"Chair Arm")
-control = Group.create(name:"Chair Tilt Control")
-addOnControl = Group.create(name:"Chair Add-On Control")
-addOnLumbarPlus = Group.create(name:"Chair Add-On Lumbar Plus")
+arm = Group.create(name: "Chair Arm")
+control = Group.create(name: "Chair Tilt Control")
+addOnControl = Group.create(name: "Chair Add-On Control")
+addOnLumbarPlus = Group.create(name: "Chair Add-On Lumbar Plus")
 
 =begin
 ################################################################################################################
@@ -65,29 +66,29 @@ addOnLumbarPlus = Group.create(name:"Chair Add-On Lumbar Plus")
 ################################################################################################################
 =end
 #Component Group - Arm
-noArm = Component.create(name:"No Arm", description:"Chair with No Arm", group_id:arm.id, code:"NA")
-task2Arm = Component.create(name:"Task 2 Arm", description:"Chair with Task 2 Arm", group_id:arm.id)
-multiFunctionalArm = Component.create(name:"Multi-Functional Arm", description:"Chair with Multi-Functional Arm", group_id:arm.id)
-twisterArm = Component.create(name:"Twister Arm", description:"Chair with Twister Arm", group_id:arm.id)
+noArm = Component.create(name: "No Arm", description: "Chair with No Arm", group_id: arm.id, code: "NA")
+task2Arm = Component.create(name: "Task 2 Arm", description: "Chair with Task 2 Arm", group_id: arm.id)
+multiFunctionalArm = Component.create(name: "Multi-Functional Arm", description: "Chair with Multi-Functional Arm", group_id: arm.id)
+twisterArm = Component.create(name: "Twister Arm", description: "Chair with Twister Arm", group_id: arm.id)
 
 #Component Group - Control
-basicStoolControl = Component.create(name:"Basic Stool Control", description:"Chair with Basic Stool Control", group_id:control.id, code:"19")
+basicStoolControl = Component.create(name: "Basic Stool Control", description: "Chair with Basic Stool Control", group_id: control.id, code: "19")
 
 #Component Group - Optional Control
-ssControlAddOn = Component.create(name:"Chair Control Add-On", description:"Control Add-On for a chair (Additional to regular controls)", group_id:addOnControl.id)
-ssControlNone = Component.create(name:"Chair Control No Add-On", description:"Control with no Add-On Control for a chair", group_id:addOnControl.id)
+ssControlAddOn = Component.create(name: "Chair Control Add-On", description: "Control Add-On for a chair (Additional to regular controls)", group_id: addOnControl.id)
+ssControlNone = Component.create(name: "Chair Control No Add-On", description: "Control with no Add-On Control for a chair", group_id: addOnControl.id)
 
 #Component Group = Optional Lumbar Plus
-lumbarPlusAddOn = Component.create(name:"Chair Lumbar Add-On", description:"Lumbar Plus Add-on for a chair", group_id:addOnLumbarPlus.id, code:"LP")
-lumbarPlusNone = Component.create(name:"Chair Lumbar No Add-On", description:"Lumbar Plus no Add-On for chair", group_id:addOnLumbarPlus.id)
+lumbarPlusAddOn = Component.create(name: "Chair Lumbar Add-On", description: "Lumbar Plus Add-on for a chair", group_id: addOnLumbarPlus.id, code: "LP")
+lumbarPlusNone = Component.create(name: "Chair Lumbar No Add-On", description: "Lumbar Plus no Add-On for chair", group_id: addOnLumbarPlus.id)
 
 #Fluid Basic Stool Components - no group - required components for chair
-btoBasicStool = Component.create(name:"Fluid Basic Stool Back", description:"Back type for the Fluid Basic Stool", group_id:nil, code:"0")
-type82BasicStool = Component.create(name:"Fluid Basic Stool Seat", description:"Seat type for the Fluid Basic Stool", group_id:nil)
-base82BasicStool = Component.create(name:"Fluid Basic Stool Base", description:"Base type for the Fluid Basic Stool", group_id:nil)
-casterBasicStool = Component.create(name:"Fluid Basic Stool Casters", description:"Caster type for the Fluid Basic Stool", group_id:nil)
-basicBackMesh = Component.create(name:"Basic Back Mesh", description:"Chair Basic Back Mesh", group_id:nil, code:"FM-BMESH")
-s810Ring = Component.create(name:"Chair Ring", description:"Ring type for a Chair", group_id:nil)
+btoBasicStool = Component.create(name: "Fluid Basic Stool Back", description: "Back type for the Fluid Basic Stool", group_id: nil, code: "0")
+type82BasicStool = Component.create(name: "Fluid Basic Stool Seat", description: "Seat type for the Fluid Basic Stool", group_id: nil)
+base82BasicStool = Component.create(name: "Fluid Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
+casterBasicStool = Component.create(name: "Fluid Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
+basicBackMesh = Component.create(name: "Basic Back Mesh", description: "Chair Basic Back Mesh", group_id: nil, code: "FM-BMESH")
+s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil)
 chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil)
 
 =begin
@@ -95,8 +96,6 @@ chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for th
 #Properties                                                                                                    #
 ################################################################################################################
 =end
-#textures = Property.create(name:"Texture", description:"Product/Component Texture", field_type:"string")
-
 fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric", field_type: "string")
 
 =begin
@@ -104,7 +103,6 @@ fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric
 #ValueFields                                                                                                   #
 ################################################################################################################
 =end
-
 f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
 
 =begin
@@ -197,21 +195,10 @@ btoBasicStool.components = [lumbarPlusAddOn, lumbarPlusNone]
 =end
 type82BasicStool.properties = [fabrics]
 
-#task2Arm.properties = [textures]
-#multiFunctionalArm.properties = [textures]
-#twisterArm.properties = [textures]
-#basicStoolControl.properties = [textures]
-#ssControlAddOn.properties = [textures]
-#lumbarPlusAddOn.properties = [textures]
-#btoBasicStool.properties = [textures]
-##base82BasicStool.properties = [textures]
-#casterBasicStool.properties = [textures]
-#basicBackMesh.properties = [textures]
-#s810Ring.properties = [textures]
-#chairShadow.properties = [textures]
 
 =begin
 ################################################################################################################
-#End of Seed                                                                                               #
+#All Seating Test                                                                                              #
+#End of Seed                                                                                                   #
 ################################################################################################################
 =end

@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20111012142206) do
     t.string   "description"
     t.string   "group_id"
     t.string   "code"
-    t.string   "model_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,7 +84,6 @@ ActiveRecord::Schema.define(:version => 20111012142206) do
     t.string   "name"
     t.string   "description"
     t.string   "code"
-    t.string   "model_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

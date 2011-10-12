@@ -4,4 +4,5 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :properties
   has_many :valuefields
   has_many :images
+  has_many :data_files
 end
