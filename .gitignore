@@ -3,11 +3,11 @@ db/*.sqlite3*
 log/*.log
 *.log
 tmp/
+public/images/
+public/data_files/
 doc/
 *.swp
 *~
-public/images/
-public/data_files/
 .project
 .DS_Store
 .idea

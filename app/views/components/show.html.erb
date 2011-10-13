@@ -75,7 +75,7 @@
         <tr><td></td><td>
                <%# button_to "New #{prod.name} Value", new_valuefield_path, :method=>:get%>
                <form method="get" action="/valuefields/new"  class="button_to"><div><input type="submit" value="New <%=prop.name%> Value" /></div>
-                    <input type="hidden" name="property_id" value="<%=prop.id%>" />
+                    <input type="hidden" name="_property_id" value="_<%=prop.id%>" />
                     <input type="hidden" name="component_id" value="<%=@component.id%>" />
                </form>
 
@@ -90,7 +90,7 @@
 
 
 
-<tr><td> <%= button_to "New Property", new_property_path %>
+<tr><td> <%= button_to "New Property", new_property_path, :method => :get %>
 
 </td><td></td></tr>
 

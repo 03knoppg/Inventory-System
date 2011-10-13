@@ -29,13 +29,14 @@ class SessionsController < ApplicationController
       write_to_file("/home/franz2/test/testFile.xml", xml)
 
       #get textures
-      generate_a_s_texture_xml("/home/franz2/test/testFile.xml", "/home/franz2/test/all_seating_textures.xml")
+      generate_a_s_texture_xml("/home/franz2/test/testFile.xml", "/home/franz2/test/")
 
 
       #get dae
-      all_seating_dae("/home/franz2/test/testFile.xml", "/home/franz2/test/all_seating.dea")
+      all_seating_dae("/home/franz2/test/testFile.xml", "/home/franz2/test/")
 
       #get models
+      all_seating_texture("/home/franz2/test/testFile.xml", "/home/franz2/test/")
 
       end
 
@@ -142,7 +143,6 @@ class SessionsController < ApplicationController
     File.open(path, 'w') {|f| f.write(text) }
 
 
-
   end
 
 
@@ -216,10 +216,8 @@ class SessionsController < ApplicationController
           index = xml.rindex("</#{child.class.name}s>")
           xml.insert(index,xml_from_hash(child, hash))
         end
-
-
-
       end
+
     end
 
     return xml
@@ -248,7 +246,36 @@ class SessionsController < ApplicationController
         xml += ">#{element.attributes[key]}"
       end
       xml += "</#{key}>"
+    end
 
+    data = element.data_files
+    for datum in data
+      xml += "<Datafile>"
+      for elt in datum.attributes.keys
+         xml += "<#{elt}"
+        if(datum.attributes[elt].nil?)
+          xml += " nil=\"true\">"
+        else
+          xml += ">#{datum.attributes[elt]}"
+        end
+        xml += "</#{elt}>"
+      end
+      xml += "</Datafile>"
+    end
+
+    images = element.images
+    for image in images
+      xml += "<Image>"
+      for elt in image.attributes.keys
+         xml += "<#{elt}"
+        if(image.attributes[elt].nil?)
+          xml += " nil=\"true\">"
+        else
+          xml += ">#{image.attributes[elt]}"
+        end
+        xml += "</#{elt}>"
+      end
+      xml += "</Image>"
     end
 
     if(element.is_a?(Category))
@@ -331,36 +358,93 @@ class SessionsController < ApplicationController
 
     end
 
+
+   def all_seating_texture(path, destination)
+
+     file = File.new(path)
+     doc = Document.new file
+     copy_textures(doc.root, destination)
+
+   end
+
+   def copy_textures(elt, path)
+     if(!elt.is_a?(Element))
+       return ""
+     end
+
+     if(has_element(elt, "Image"))
+       df = elt.elements["Image"]
+       id = get_child(df, "id")
+
+       data = Image.find(id)
+       copy_image( data, path )             #actual data file
+     end
+
+     for child in elt.children
+       copy_textures(child, path)
+     end
+
+   end
+
+   def copy_image(image, path)
+
+       #:path => ":rails_root/public/:class/:id/:style/:style_:basename.:extension",
+
+    source_path = "#{Rails.root}/public/#{"#{image.class}".tableize}/#{image.id}/original/original_#{image.picture_file_name}"
+
+    #read
+    file = File.open(source_path, "r")
+                  #  :path => ":rails_root/public/:class/:id/:basename.:extension",
+                  #  :url => "/:class/:id/:basename.:extension"
+
+    #write
+    File.open("#{path}/#{image.picture_file_name}", 'wb') {|f| f.write(file.read) }
+   end
+
+
   def generate_a_s_texture_xml(path, destination)
 
     file = File.new(path)
     doc = Document.new file
     all_seating_texture_xml = all_seating_textures(doc)
-    write_to_file(destination, all_seating_texture_xml)
+    write_to_file(destination + "all_seating_textures.xml", all_seating_texture_xml)
   end
 
 
-  def all_seating_dae(path, destination)
-    file = File.new(path)
+  def all_seating_dae(xml_path, destination)
+    file = File.new(xml_path)
     doc = Document.new file
-    result = find_dea_element(doc.root)
+    result = find_dae_element(doc.root)
 
-    write_to_file(destination, result)
+    dae_source_path = "#{Rails.root}/public/#{"#{result.class}".tableize}/#{result.id}/#{result.filedata_file_name}"
+
+    #read
+    file = File.open(dae_source_path, "r")
+                  #  :path => ":rails_root/public/:class/:id/:basename.:extension",
+                  #  :url => "/:class/:id/:basename.:extension"
+
+    #write
+    File.open("#{destination}/#{result.filedata_file_name}", 'wb') {|f| f.write(file.read) }
+   # File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+
+
+    #write_to_file(destination + result.filedata_file_name, result)
   end
 
-  def find_dea_element(elt)
+
+
+  def find_dae_element(elt)
 
     if(!elt.is_a?(Element))
       return ""
     end
 
+    if(has_element(elt, "Datafile"))
+      df = elt.elements["Datafile"]
+      id = get_child(df, "id")
 
-    if(has_element(elt, "data"))
-      data = get_child(elt, "data")       #path to dae
-
-      return data
-
-
+      data = DataFile.find(id)
+      return data              #actual data file
     end
 
     for child in elt.children
@@ -399,9 +483,9 @@ class SessionsController < ApplicationController
     result = ""
 
      if(has_element(elt, "model_path"))
-      name = get_child(elt, "name")                        #name of component
-      type = get_child(elt, "code")          #code_path
-      texture = get_child(elt, "model_path")       #path to texture
+      name = get_child(elt, "name")                #name of component
+      type = get_child(elt, "code")                #code_path
+      texture = get_child(elt, "model_path")       #path to texture  TODO: might need to change to static path
 
       result +=  "<item type=\"#{type}\" name=\"#{name}\"><![CDATA[#{texture}]]></item>"
 

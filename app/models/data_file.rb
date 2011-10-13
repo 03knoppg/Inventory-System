@@ -4,8 +4,8 @@ class DataFile < ActiveRecord::Base
   belongs_to :valuefield
 
   has_attached_file :filedata,
-                    :path => ":rails_root/public/:class/:attachment/:id/:basename.:extension",
-                    :url => "/:class/:attachment/:id/:basename.:extension"
+                    :path => ":rails_root/public/:class/:id/:basename.:extension",
+                    :url => "/:class/:id/:basename.:extension"
 
    validates_attachment_presence :filedata
    validates_attachment_size :filedata, :less_than => 5.megabytes,  :message => 'filesize must be less than 5 MegaBytes'
