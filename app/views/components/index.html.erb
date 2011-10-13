@@ -1,0 +1,26 @@
+ <!--Components Index Page - uses application.html.erb for template. -->
+<h1>Listing Components</h1>
+<!--Button to create a new component -->
+<%= button_to "New Component", new_component_path, :method => :get %>
+<!--if components available print rows and data -->
+<%if(@all_components.length > 0)    %>
+    <table title="Current Components">
+        <tr><th colspan="2"><h4>Current Components</h4></th></tr>
+        <tr>
+            <th align="left">Name</th>
+            <th align="left">Actions</th>
+        </tr>
+        <%
+            for comp in @all_components.sort!
+                if(comp.component_parents.length == 0)
+                #Call to function to print all components in the database - function/method found in components_helper.rb
+                print_components(comp, 0)
+                end
+            end
+         %>
+        <%= @sc.html_safe %>
+<%else%>
+        <tr><td><h4>No Components Available</h4></td></tr>
+<%end%>
+</table>
+<br class="clear" />

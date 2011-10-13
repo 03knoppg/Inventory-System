@@ -1,0 +1,22 @@
+<!--Categories Index Page - uses application.html.erb for template. -->
+<h1>Listing Categories</h1>
+<!--Button to create a new category -->
+<%= button_to "New Category", new_category_path, :method => :get %>
+<!-- Call to function to print all categories in the database - function/method found in categories_helper.rb-->
+<%print_categories(0,-1)%>
+
+<table title="Current Categories">
+  <!--Validation check to see if the string is empty or not. -->
+   <%if(@s.length == 0)%>
+    <tr><td><h4>No Categories Available</h4></td></tr>
+   <%else%>
+    <tr><th colspan="2"><h4>Current Categories</h4></th></tr>
+    <tr>
+        <th align="left">Name</th>
+        <th colspan="3" >Actions</th>
+    </tr>
+    <%= @s.html_safe %>
+   <%end%>
+</table>
+<br class="clear" />
+

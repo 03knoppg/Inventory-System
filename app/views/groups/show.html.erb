@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+ <h1>Viewing Group</h1>
+<table>
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td><%= @group.name %></td>
+    <td><%= button_to "Edit Group", edit_group_path(@group), :method => :get %></td>
+  </tr>
+</table>
+
+<h4> Components related to this Group </h4>
+<% components = @group.components %>
+<table>
+  <tr><th>Name</th></tr>
+  <%if(!components.empty?)%>
+  <% for comp in components %>
+    <tr><td><%= link_to(comp.name, comp) %></td></tr>
+      <%end%>
+      <%else%>
+          <tr><td>No components available</td></tr>
+      <%end%>
+    <tr><td><%=button_to "New Component", new_component_path, :method => :get%></td></tr>
+
+</table>
+<br class="clear" />

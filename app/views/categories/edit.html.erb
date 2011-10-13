@@ -1,0 +1,5 @@
+<h1>Editing Category: <%=@category.name%></h1>
+<%= render 'formedit' %>
+<%= button_to "Show Category", {:action => "show", :id => @category.id }, :method => :get %>
+
+

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+ <h1>Viewing Valuefield: <%=@valuefield.fieldvalue%></h1>
+
+<table>
+  <tr>
+    <th align="left">Value</th>
+    <th align="left">Code</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td><%= @valuefield.fieldvalue %></td>
+    <td><%= @valuefield.code %></td>
+    <td><%= button_to 'Edit Valuefield', edit_valuefield_path(@valuefield), :method => :get %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th align="left">Properties related to <%=@valuefield.fieldvalue%>
+  </tr>
+  <tr>
+    <td><%parent =  @valuefield.property %><%= link_to parent.name, parent %> </td>
+  </tr>
+</table>
+<table>
+<%product = @valuefield.product
+       component = @valuefield.component
+       path = @valuefield.path
+       if(product != nil) %>
+       <tr>
+         <th align="left">Products related to <%=@valuefield.fieldvalue%></th>
+       </tr>
+        <tr>
+           <%= link_to product.name, product %>
+        </tr>
+        <%elsif(component!=nil)%>
+      <tr>
+        <th align="left">Components related to <%=@valuefield.fieldvalue%></th>
+      </tr>
+        <tr>
+          <td><%= link_to component.name, component %></td>
+        </tr>
+        <%else%>
+      <tr>
+        <th align="left">Path related to <%=@valuefield.fieldvalue%></th>
+      </tr>
+        <tr>
+          <td>
+            <%= id_path_to_name_path(path).html_safe%>
+          </td>
+        </tr>
+    <%end%>
+</table>
+
+
