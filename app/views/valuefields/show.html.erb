@@ -50,5 +50,28 @@
         </tr>
     <%end%>
 </table>
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Images related to <%=@valuefield.fieldvalue%></b></th>
+  </tr>
+  <% if(!@all_images.empty?) %>
+      <%vfImages = []%>
+    <%for img in @all_images %>
+          <%if(@valuefield.id == img.valuefield_id)%>
+              <%vfImages.push(img)%>
+          <%end%>
+    <%end%>
+  <%end%>
+      <%if(!vfImages.empty?)%>
+      <tr>
+      <%for ig in vfImages%>
+         <td> <%= link_to(image_tag(ig.picture(:small)), ig) %> </td>
+      <%end%>
+       </tr>
+      <%else%>
+         <tr><td>No Images</td></tr>
+      <%end%>
+         <tr><td> <%= button_to "New Image", new_image_path %> </td></tr>
+</table>
 
 

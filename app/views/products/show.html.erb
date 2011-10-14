@@ -79,3 +79,48 @@
 
 </table>
 
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Images related to <%=@product.name%></b></th>
+  </tr>
+  <% if(!@all_images.empty?) %>
+      <%prodImages = []%>
+    <%for img in @all_images %>
+          <%if(@product.id == img.product_id)%>
+              <%prodImages.push(img)%>
+          <%end%>
+    <%end%>
+  <%end%>
+      <%if(!prodImages.empty?)%>
+      <%for ig in prodImages%>
+         <tr><td> <%= link_to(image_tag(ig.picture), ig) %> </td></tr>
+      <%end%>
+      <%else%>
+         <tr><td>No Images</td></tr>
+      <%end%>
+         <tr><td> <%= button_to "New Image", new_image_path %> </td></tr>
+</table>
+
+ <table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Data Files related to <%=@product.name%></b></th>
+  </tr>
+  <% if(!@all_datafiles.empty?) %>
+      <%proddatafiles = []%>
+    <%for df in @all_datafiles %>
+          <%if(@product.id == df.product_id)%>
+              <%proddatafiles.push(df)%>
+          <%end%>
+    <%end%>
+  <%end%>
+      <%if(!proddatafiles.empty?)%>
+      <%for df in proddatafiles%>
+         <tr><td> <%= link_to(df.filedata_file_name, df) %> </td></tr>
+      <%end%>
+      <%else%>
+         <tr><td>No Images</td></tr>
+      <%end%>
+         <tr><td> <%= button_to "New Data Files", new_data_file_path %> </td></tr>
+</table>
+
+

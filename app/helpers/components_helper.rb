@@ -64,9 +64,9 @@ module ComponentsHelper
       @ch+= "<tr><td>No Children Available</td></tr>"
     end
     #@ch += "<tr><td>#{button_to "New Component", new_component_path, :method => :get}</td></tr>"
-    @ch += "<form method=\"get\" action=\"/components/new\"  class=\"button_to\"><div><input type=\"submit\" value=\"New Child Component\" /></div>
+    @ch += "<tr><td><form method=\"get\" action=\"/components/new\"  class=\"button_to\"><div><input type=\"submit\" value=\"New Child Component\" /></div>
                     <input type=\"hidden\" name=\"component_id\" value=\"#{@component.id}\" />
-               </form>"
+               </form></td></tr>"
   end
 
   #Function to print field values related to components

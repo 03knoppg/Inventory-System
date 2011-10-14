@@ -19,7 +19,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1.json
   def show
     @valuefield = Valuefield.find(params[:id])
-
+    @all_images = Image.all
 
     respond_to do |format|
       format.html # show.html.erb

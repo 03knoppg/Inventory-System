@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @all_products =  Product.all
+    @all_images = Image.all
+
     @sp = ""
 
     #Generator.xml_from_path("")
@@ -29,7 +31,8 @@ class ProductsController < ApplicationController
   #Function to show products
   def show
     @product = Product.find(params[:id])
-
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
 
     respond_to do |format|
       format.html # show.html.erb

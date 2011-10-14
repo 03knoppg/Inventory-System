@@ -6,16 +6,12 @@
     <th align="left">Name</th>
     <th align="left">Description</th>
     <th align="left">Code</th>
-    <th align="left">Model Texture</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @component.name %></td>
     <td><%= @component.description %></td>
     <td><%= @component.code %></td>
-    <td>
-
-    </td>
     <td><%= button_to "Edit Component", edit_component_path(@component), :method => :get %></td>
   </tr>
 </table>
@@ -87,12 +83,30 @@
   <%else%>
       <tr><td>No properties</td><td>No value</td></tr>
   <%end%>
-
-
-
 <tr><td> <%= button_to "New Property", new_property_path, :method => :get %>
-
 </td><td></td></tr>
-
+</table>
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Images related to <%=@component.name%></b></th>
+  </tr>
+  <% if(!@all_images.empty?) %>
+      <%compImages = []%>
+    <%for img in @all_images %>
+          <%if(@component.id == img.component_id)%>
+              <%compImages.push(img)%>
+          <%end%>
+    <%end%>
+  <%end%>
+      <%if(!compImages.empty?)%>
+      <tr>
+      <%for ig in compImages%>
+         <td> <%= link_to(image_tag(ig.picture), ig) %> </td>
+      <%end%>
+       </tr>
+      <%else%>
+         <tr><td>No Images</td></tr>
+      <%end%>
+         <tr><td> <%= button_to "New Image", new_image_path %> </td></tr>
 </table>
 <br class="clear" />

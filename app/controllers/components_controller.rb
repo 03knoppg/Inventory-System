@@ -24,6 +24,7 @@ class ComponentsController < ApplicationController
   def show
     @component = Component.find(params[:id])
     @all_components =  Component.all
+    @all_images = Image.all
 
     respond_to do |format|
       format.html # show.html.erb

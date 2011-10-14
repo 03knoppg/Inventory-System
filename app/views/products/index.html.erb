@@ -2,7 +2,6 @@
 <h1>Listing Products</h1>
 <!--Button to create a new product -->
 <%= button_to "New Product", new_product_path, :method => :get %>
-
  <!--if length > 0 print groups -->
 <%if(@all_products.length > 0)    %>
     <table title="Current Products">
