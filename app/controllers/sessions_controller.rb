@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-     require "rexml/document"
+  require "rexml/document"
   include REXML
   skip_before_filter :require_login, :except => [:destroy]
 
@@ -13,32 +13,33 @@ class SessionsController < ApplicationController
 
     if(params[:TYPE] != nil)
 
-      args = []
-      args.push(params[:TYPE])
-      args.push(params[:BACKTYPE])
-      args.push(params[:CONTROL])
-      args.push(params[:ARMS])
-      args.push(params[:OPTIONS])
-      args.push(params[:FABRIC])
-      path = all_seating_path_translator(args)
+      php_args = []
+      php_args.push(params[:TYPE])
+      php_args.push(params[:BACKTYPE])
+      php_args.push(params[:CONTROL])
+      php_args.push(params[:ARMS])
+      php_args.push(params[:OPTIONS])
+      php_args.push(params[:FABRIC])
 
-      #hash = path_to_hash(path)
+      hash = all_seating_path_translator(php_args)
+      hash = all_seating_expand_hash(hash)
 
+      test_dir = "/home/franz2/test/"
+      generic_xml_path = test_dir + "testFile.xml"
 
-      xml = xml_from_hash(path.keys[0], path)
-      write_to_file("/home/franz2/test/testFile.xml", xml)
+      generic_xml = all_seating_xml_from_hash(hash.keys[0], hash)
+      all_seating_write_to_file(generic_xml_path, generic_xml)
 
       #get textures
-      generate_a_s_texture_xml("/home/franz2/test/testFile.xml", "/home/franz2/test/")
-
+      all_seating_texture_xml(generic_xml_path, test_dir)
 
       #get dae
-      all_seating_dae("/home/franz2/test/testFile.xml", "/home/franz2/test/")
+      all_seating_dae(generic_xml_path, test_dir)
 
       #get models
-      all_seating_texture("/home/franz2/test/testFile.xml", "/home/franz2/test/")
+      all_seating_texture(generic_xml_path, test_dir)
 
-      end
+    end
 
   end
 
@@ -60,49 +61,88 @@ class SessionsController < ApplicationController
   end
 
 
+  def all_seating_expand_hash(hash)
+
+    root = hash.keys[0]
+    children = []
+
+    for childhash in hash[root]
+        all_seating_expand_hash(childhash)
+    end
+
+    if(root.is_a?(Product))
+      children = root.components
+    elsif(root.is_a?(Component))
+      children = root.components + root.valuefields
+    end
+
+    for child in children
+      if(!find(hash[root], child))
+        childhash = {child=>[]}
+        hash[root].push(childhash)
+        all_seating_expand_hash(childhash)
+      end
+
+    end
 
 
 
-   def all_seating_path_translator(args)
-
-      #{"TYPE"=>"82",
-      #"BACKTYPE"=>"0",
-      #"CONTROL"=>"19",
-      #"ARMS"=>"NA",
-      #"OPTIONS"=>"LP,FM-BMESH",
-      #"FABRIC"=>"F4-PCABER"}
-
-     for arg in args
-       if(arg.include?(","))
-        args += arg.split(",")
-        args.delete(arg)
-       end
-     end
-
-     path = []
-     for part in Component.all + Product.all + Valuefield.all
-       for code in args
-         if(part.code == code)
-           path.push(part)
-         end
-       end
-     end
+    return hash
+  end
 
 
-     partials = []
-     while(!path.empty?)
-       build_partial_hash(path, path[0], partials)
-     end
+  def find(ary, obj)
+    for hash in ary
+      if(hash.keys[0].class != obj.class)
+        next
+      elsif(hash.keys[0] == obj )
+        return true
+      elsif(obj.is_a?(Component) && !hash.keys[0].group.nil? && !obj.group.nil? && hash.keys[0].group == obj.group )
+        return true
+      elsif(obj.is_a?(Valuefield) && !hash.keys[0].property.nil? && !obj.property.nil? && hash.keys[0].property == obj.property )
+        return true
+      end
+
+    end
+
+    return false
+  end
+
+
+  def all_seating_path_translator(php_args)
+
+
+    for arg in php_args
+      if(arg.include?(","))
+        php_args += arg.split(",")
+        php_args.delete(arg)
+      end
+    end
+
+    path = []
+    for part in Component.all + Product.all + Valuefield.all
+      for code in php_args
+        if(part.code == code)
+          path.push(part)
+        end
+      end
+    end
+
+
+    partials = []
+    while(!path.empty?)
+      all_seating_build_partial_hash(path, path[0], partials)
+    end
 
     return partials[0]
 
-   end
+  end
 
 
 
 
 
-  def build_partial_hash(path,node,partials)
+  def all_seating_build_partial_hash(path,node,partials)
 
     hash = {node=>[]}
     partials.push(hash)
@@ -138,83 +178,77 @@ class SessionsController < ApplicationController
   end
 
 
-   def write_to_file(path,text)
-
-    File.open(path, 'w') {|f| f.write(text) }
-
-
-  end
-
-
-  def path_to_hash(path)
-    path = path.split("|")
-    hash = {}
-
-    for i in (0..(path.length-1))
-      part = path[i]
-      if(part[0] == "a")
-         hash[Category.find(id_of(part))] = []
-
-      elsif(part[0] == "p")
-        prod = Product.find(id_of(part))
-        hash[prod] = []
-
-        categories = prod.categories
-        for cat in categories
-          if(hash.key?(cat))
-            hash[cat].push(prod)
-          end
-
-        end
-
-
-      elsif(part[0] == "c")
-        comp = Component.find(id_of(part))
-        hash[comp] = []
-
-        parents = comp.component_parents + comp.products
-        for parent in parents
-          if(hash.key?(parent))
-            hash[parent].push(comp)
-          end
-        end
-
-
-      elsif(part[0] == "v")
-        val = Valuefield.find(id_of(part))
-
-        parent = nil
-
-        if(val.product != nil)
-          parent = val.product
-        else
-          parent = val.component
-        end
-
-
-        hash[parent].push(val)
-      end
-    end
-
-    return hash
 
 
 
-  end
+  #def all_seating_path_to_hash(path)
+  #  path = path.split("|")
+  #  hash = {}
+  #
+  #  for i in (0..(path.length-1))
+  #    part = path[i]
+  #    if(part[0] == "a")
+  #      hash[Category.find(all_seating_id_of(part))] = []
+  #
+  #    elsif(part[0] == "p")
+  #      prod = Product.find(all_seating_id_of(part))
+  #      hash[prod] = []
+  #
+  #      categories = prod.categories
+  #      for cat in categories
+  #        if(hash.key?(cat))
+  #          hash[cat].push(prod)
+  #        end
+  #
+  #      end
+  #
+  #
+  #    elsif(part[0] == "c")
+  #      comp = Component.find(all_seating_id_of(part))
+  #      hash[comp] = []
+  #
+  #      parents = comp.component_parents + comp.products
+  #      for parent in parents
+  #        if(hash.key?(parent))
+  #          hash[parent].push(comp)
+  #        end
+  #      end
+  #
+  #
+  #    elsif(part[0] == "v")
+  #      val = Valuefield.find(all_seating_id_of(part))
+  #
+  #      parent = nil
+  #
+  #      if(val.product != nil)
+  #        parent = val.product
+  #      else
+  #        parent = val.component
+  #      end
+  #
+  #
+  #      hash[parent].push(val)
+  #    end
+  #  end
+  #
+  #  return hash
+  #
+  #
+  #end
 
-  def xml_from_hash(node, hash)
 
 
+  def all_seating_xml_from_hash(node, hash)
 
-    xml = xml(node)
+    xml = all_seating_to_xml_string(node)
     if(hash.key?(node))
       for child in hash[node]
         if(child.is_a?(Hash))
           index = xml.rindex("</#{child.keys[0].class.name}s>")
-          xml.insert(index,xml_from_hash(child.keys[0], hash))
+          xml.insert(index,all_seating_xml_from_hash(child.keys[0], child))
         else
           index = xml.rindex("</#{child.class.name}s>")
-          xml.insert(index,xml_from_hash(child, hash))
+          xml.insert(index,all_seating_xml_from_hash(child, hash))
         end
       end
 
@@ -226,11 +260,9 @@ class SessionsController < ApplicationController
   end
 
 
-  def id_of(part)
-    return part[1..part.length]
-  end
 
-  def xml(element)
+
+  def all_seating_to_xml_string(element)
 
     if(element == nil)
       return
@@ -252,7 +284,7 @@ class SessionsController < ApplicationController
     for datum in data
       xml += "<Datafile>"
       for elt in datum.attributes.keys
-         xml += "<#{elt}"
+        xml += "<#{elt}"
         if(datum.attributes[elt].nil?)
           xml += " nil=\"true\">"
         else
@@ -267,7 +299,7 @@ class SessionsController < ApplicationController
     for image in images
       xml += "<Image>"
       for elt in image.attributes.keys
-         xml += "<#{elt}"
+        xml += "<#{elt}"
         if(image.attributes[elt].nil?)
           xml += " nil=\"true\">"
         else
@@ -294,161 +326,87 @@ class SessionsController < ApplicationController
 
   end
 
-    def basic_xml_from_path(path)
 
+  def all_seating_texture(generic_xml_path, destination_path)
 
-    s = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-<chair>
-<textures>
-   <item type=\"back\" name=\"BT0\">
-       <![CDATA[chairs/textures/Series82_0_19/BT0.png]]>
-   </item>
-   <item type=\"back\" name=\"Type82\">
-       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
-   </item>
-   <item type=\"back\" name=\"Base82\">
-       <![CDATA[chairs/textures/Series82_0_19/Base82.png]]>
-   </item>
-   <item type=\"back\" name=\"Casters\">
-       <![CDATA[chairs/textures/Series82_0_19/Casters.png]]>
-   </item>
-   <item type=\"control\" name=\"C19\">
-       <![CDATA[chairs/textures/Series82_0_19/C19.png]]>
-   </item>
-   <item type=\"control\" name=\"S8\">
-       <![CDATA[chairs/textures/Series82_0_19/S8.png]]>
-   </item>
-   <item type=\"back\" name=\"MF\">
-       <![CDATA[chairs/textures/Series82_0_19/MF.png]]>
-   </item>
-   <item type=\"back\" name=\"TW\">
-       <![CDATA[chairs/textures/Series82_0_19/TW.png]]>
-   </item>
-   <item type=\"back\" name=\"T2\">
-       <![CDATA[chairs/textures/Series82_0_19/T2.png]]>
-   </item>
-   <item type=\"back\" name=\"SS\">
-       <![CDATA[chairs/textures/Series82_0_19/SS.png]]>
-   </item>
-   <item type=\"back\" name=\"FM-BMESH\">
-       <![CDATA[chairs/textures/Series82_0_19/FM-BMESH.png]]>
-   </item>
-   <item type=\"option\" name=\"LP\">
-       <![CDATA[chairs/textures/Series82_0_19/LP.png]]>
-   </item>
-   <item type=\"option\" name=\"shadow\">
-       <![CDATA[chairs/textures/Series82_0_19/shadow.png]]>
-   </item>
-</textures>
-<exceptions>
-<item type=\"standard\" name=\"Type82\" blendMode =\"MULTIPLY\" transparent=\"\">
-       <image>
-       <![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
-   </image>
-   </item>
-</exceptions>
-</chair>"
-
-    File.open("/home/franz2/testFile.xml", 'w') {|f| f.write(s) }
-
-
-    #f = File.new("testfile.xml", "r")
-    #send_file(s, :type => "text/xml", :filename => "abc.xml")
-
-
-    end
-
-
-   def all_seating_texture(path, destination)
-
-     file = File.new(path)
-     doc = Document.new file
-     copy_textures(doc.root, destination)
-
-   end
-
-   def copy_textures(elt, path)
-     if(!elt.is_a?(Element))
-       return ""
-     end
-
-     if(has_element(elt, "Image"))
-       df = elt.elements["Image"]
-       id = get_child(df, "id")
-
-       data = Image.find(id)
-       copy_image( data, path )             #actual data file
-     end
-
-     for child in elt.children
-       copy_textures(child, path)
-     end
-
-   end
-
-   def copy_image(image, path)
-
-       #:path => ":rails_root/public/:class/:id/:style/:style_:basename.:extension",
-
-    source_path = "#{Rails.root}/public/#{"#{image.class}".tableize}/#{image.id}/original/original_#{image.picture_file_name}"
-
-    #read
-    file = File.open(source_path, "r")
-                  #  :path => ":rails_root/public/:class/:id/:basename.:extension",
-                  #  :url => "/:class/:id/:basename.:extension"
-
-    #write
-    File.open("#{path}/#{image.picture_file_name}", 'wb') {|f| f.write(file.read) }
-   end
-
-
-  def generate_a_s_texture_xml(path, destination)
-
-    file = File.new(path)
+    file = File.new(generic_xml_path)
     doc = Document.new file
-    all_seating_texture_xml = all_seating_textures(doc)
-    write_to_file(destination + "all_seating_textures.xml", all_seating_texture_xml)
+    all_seating_copy_textures(doc.root, destination_path)
+
   end
 
-
-  def all_seating_dae(xml_path, destination)
-    file = File.new(xml_path)
-    doc = Document.new file
-    result = find_dae_element(doc.root)
-
-    dae_source_path = "#{Rails.root}/public/#{"#{result.class}".tableize}/#{result.id}/#{result.filedata_file_name}"
-
-    #read
-    file = File.open(dae_source_path, "r")
-                  #  :path => ":rails_root/public/:class/:id/:basename.:extension",
-                  #  :url => "/:class/:id/:basename.:extension"
-
-    #write
-    File.open("#{destination}/#{result.filedata_file_name}", 'wb') {|f| f.write(file.read) }
-   # File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
-
-
-    #write_to_file(destination + result.filedata_file_name, result)
-  end
-
-
-
-  def find_dae_element(elt)
-
+  def all_seating_copy_textures(elt, destination_path)
     if(!elt.is_a?(Element))
       return ""
     end
 
-    if(has_element(elt, "Datafile"))
-      df = elt.elements["Datafile"]
-      id = get_child(df, "id")
+    if(!elt.elements["Image"].nil?)
+      df = elt.elements["Image"]
+      id = all_seating_get_child_text(df, "id")
 
-      data = DataFile.find(id)
-      return data              #actual data file
+      image = Image.find(id)
+      source_path = "#{Rails.root}/public/#{"#{image.class}".tableize}/#{image.id}/original/original_#{image.picture_file_name}"
+
+      all_seating_copy_file( source_path, destination_path + "/" + image.picture_file_name  )
     end
 
     for child in elt.children
-       return find_texture_elements(child)
+      all_seating_copy_textures(child, destination_path)
+    end
+
+  end
+
+
+
+  def all_seating_texture_xml(generic_xml_path, destination_path)
+
+    file = File.new(generic_xml_path)
+    doc = Document.new file
+
+    xml =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<chair>\n<textures>"
+    xml +=  all_seating_find_texture_elements(doc.root)
+    xml +=  "\n</textures><exceptions>
+<item type=\"standard\" name=\"Type82\" blendMode =\"MULTIPLY\" transparent=\"\">
+		<image>
+		<![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+
+	</image>
+	</item>
+</exceptions>\n</chair>"
+
+    all_seating_write_to_file(destination_path + "82_0_19.xml", xml)
+  end
+
+
+  def all_seating_dae(generic_xml_path, destination_path)
+    file = File.new(generic_xml_path)
+    doc = Document.new file
+    result = all_seating_find_dae_element(doc.root)
+
+    dae_source_path = "#{Rails.root}/public/#{"#{result.class}".tableize}/#{result.id}/#{result.filedata_file_name}"
+
+    all_seating_copy_file(dae_source_path,"#{destination_path}/#{result.filedata_file_name}")
+
+
+  end
+
+
+
+  def all_seating_find_dae_element(elt)
+
+    if(!elt.is_a?(Element))
+      return nil
+    end
+
+    if(!elt.elements["Datafile"].nil?)
+      df = elt.elements["Datafile"]
+      id = all_seating_get_child_text(df, "id")
+
+      return DataFile.find(id)              #actual dae data file
+    end
+
+    for child in elt.children
+      return all_seating_find_texture_elements(child)
     end
 
     return result
@@ -456,25 +414,7 @@ class SessionsController < ApplicationController
 
 
 
-  def all_seating_textures(doc)
-
-
-    xml = Document.new
-    xml << XMLDecl.default
-
-    chair = Element.new "chair", xml.root
-    textures = Element.new "textures", chair
-
-    result =  "<?xml version=\"1.0\" encoding=\"utf-8\"?><chair><textures>"
-
-    result +=  find_texture_elements(doc.root)
-
-    result +=  "</textures></chair>"
-
-    return result
-  end
-
-  def find_texture_elements(elt)
+  def all_seating_find_texture_elements(elt)
 
     if(!elt.is_a?(Element))
       return ""
@@ -482,41 +422,55 @@ class SessionsController < ApplicationController
 
     result = ""
 
-     if(has_element(elt, "model_path"))
-      name = get_child(elt, "name")                #name of component
-      type = get_child(elt, "code")                #code_path
-      texture = get_child(elt, "model_path")       #path to texture  TODO: might need to change to static path
+    if(elt.name != "Valuefield" && !elt.elements["Image"].nil?)
+      valuefield =  elt.elements["Valuefields"].elements["Valuefield"]
+      type = all_seating_get_child_text(valuefield, "fieldvalue")                #name of component
 
-      result +=  "<item type=\"#{type}\" name=\"#{name}\"><![CDATA[#{texture}]]></item>"
+      texture = all_seating_get_child_text(elt.elements["Image"], "picture_file_name")       #path to texture  TODO: might need to change to static path
+      code = texture.split(".")[0]                #code_path
+
+      result +=  "\n\t<item type=\"#{type}\" name=\"#{code}\">\n\t\t<![CDATA[#{texture}]]></item>\n"
 
 
-     end
+    end
 
 
 
     for child in elt.children
-       result += find_texture_elements(child)
+      result += all_seating_find_texture_elements(child)
     end
 
     return result
 
   end
 
-  def has_element(elt, type)
-     for child in elt.elements
-       if(child.name == type)
-         return true
-       end
-     end
-    return false
-  end
 
-  def get_child(elt, name)
+  def all_seating_get_child_text(elt, name)
     for child in elt.elements
       if child.name == name
         return child.text
       end
     end
+  end
+
+  def all_seating_id_of(part)
+    return part[1..part.length]
+  end
+
+  def all_seating_write_to_file(path,text)
+
+    File.open(path, 'w') {|f| f.write(text) }
+
+  end
+
+
+  def all_seating_copy_file(source_path, destination_path)
+
+    #read
+    image_source = File.open(source_path, "r")
+
+    #write
+    File.open(destination_path, 'wb') {|f| f.write(image_source.read) }
   end
 
 
