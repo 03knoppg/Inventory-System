@@ -67,9 +67,9 @@ addOnLumbarPlus = Group.create(name: "Chair Add-On Lumbar Plus")
 =end
 #Component Group - Arm
 noArm = Component.create(name: "No Arm", description: "Chair with No Arm", group_id: arm.id, code: "NA")
-task2Arm = Component.create(name: "Task 2 Arm", description: "Chair with Task 2 Arm", group_id: arm.id)
-multiFunctionalArm = Component.create(name: "Multi-Functional Arm", description: "Chair with Multi-Functional Arm", group_id: arm.id)
-twisterArm = Component.create(name: "Twister Arm", description: "Chair with Twister Arm", group_id: arm.id)
+task2Arm = Component.create(name: "Task 2 Arm", description: "Chair with Task 2 Arm", group_id: arm.id, code: "T2")
+multiFunctionalArm = Component.create(name: "Multi-Functional Arm", description: "Chair with Multi-Functional Arm", group_id: arm.id, code: "MF")
+twisterArm = Component.create(name: "Twister Arm", description: "Chair with Twister Arm", group_id: arm.id, code: "TW")
 
 #Component Group - Control
 basicStoolControl = Component.create(name: "Basic Stool Control", description: "Chair with Basic Stool Control", group_id: control.id, code: "19")
@@ -117,6 +117,9 @@ casterBasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.i
 ssControlAddOnType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: ssControlAddOn.id, code: "")
 lumbarPlusAddOnType = Valuefield.create(fieldvalue: "option", property_id: type.id, component_id: lumbarPlusAddOn.id, code: "")
 type82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: type82BasicStool.id, code: "")
+multiFunctionalArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: multiFunctionalArm.id, code: "")
+twisterArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: twisterArm.id, code: "")
+task2ArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: task2Arm.id, code: "")
 
 =begin
 ################################################################################################################
