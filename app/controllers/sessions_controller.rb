@@ -368,7 +368,7 @@ class SessionsController < ApplicationController
     xml +=  "\n</textures><exceptions>
 <item type=\"standard\" name=\"Type82\" blendMode =\"MULTIPLY\" transparent=\"\">
 		<image>
-		<![CDATA[chairs/textures/Series82_0_19/Type82.png]]>
+		<![CDATA[Type82.png]]>
 
 	</image>
 	</item>
