@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       hash = all_seating_path_translator(php_args)
       hash = all_seating_expand_hash(hash)
 
-      test_dir = "/home/franz2/test/"
+      test_dir = "/var/www/allseating/bin/chairs/textures/Series82_0_19/"
       generic_xml_path = test_dir + "testFile.xml"
 
       generic_xml = all_seating_xml_from_hash(hash.keys[0], hash)

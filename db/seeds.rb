@@ -216,8 +216,6 @@ type82BasicStool                     ,
 base82BasicStool                      ,
 casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
 
-
-
 =begin
 ################################################################################################################
 #All Seating Test                                                                                              #
