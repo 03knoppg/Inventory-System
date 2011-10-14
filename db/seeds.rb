@@ -88,8 +88,8 @@ type82BasicStool = Component.create(name: "Fluid Basic Stool Seat", description:
 base82BasicStool = Component.create(name: "Fluid Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
 casterBasicStool = Component.create(name: "Fluid Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
 basicBackMesh = Component.create(name: "Basic Back Mesh", description: "Chair Basic Back Mesh", group_id: nil, code: "FM-BMESH")
-s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil)
-chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil)
+s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil, code: "S8")
+chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil, code: "shadow")
 
 =begin
 ################################################################################################################
@@ -97,13 +97,26 @@ chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for th
 ################################################################################################################
 =end
 fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric", field_type: "string")
+type = Property.create(name: "type", description: "type", field_type: "string")
 
 =begin
 ################################################################################################################
 #ValueFields                                                                                                   #
 ################################################################################################################
 =end
-f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
+#f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
+
+btoType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: btoBasicStool.id, code: "")
+backMeshType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: basicBackMesh.id, code: "")
+c19Type = Valuefield.create(fieldvalue: "control", property_id: type.id, component_id: basicStoolControl.id, code: "")
+s8RingType = Valuefield.create(fieldvalue: "control", property_id: type.id, component_id: s810Ring.id, code: "")
+chairShadowType = Valuefield.create(fieldvalue: "option", property_id: type.id, component_id: chairShadow.id, code: "")
+type82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: type82BasicStool.id, code: "")
+base82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: base82BasicStool.id, code: "")
+casterBasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: casterBasicStool.id, code: "")
+ssControlAddOnType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: ssControlAddOn.id, code: "")
+lumbarPlusAddOnType = Valuefield.create(fieldvalue: "option", property_id: type.id, component_id: lumbarPlusAddOn.id, code: "")
+type82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: type82BasicStool.id, code: "")
 
 =begin
 ################################################################################################################
@@ -111,7 +124,7 @@ f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabri
 ################################################################################################################
 =end
 btoBasicStoolImage = Image.create(component_id: btoBasicStool.id)
-btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0nov3.png")
+btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
 btoBasicStoolImage.save!
 
 basicControlImage = Image.create(component_id: basicStoolControl.id)
@@ -162,9 +175,9 @@ chairShadowImage = Image.create(component_id: chairShadow.id)
 chairShadowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/shadow.png")
 chairShadowImage.save!
 
-f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)
-f4_pcaberImage.picture = File.open("/var/www/allseating/bin/chairs/textures/F4-PCABER.jpg")
-f4_pcaberImage.save!
+#f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)                   #TODO reenable this
+#f4_pcaberImage.picture = File.open("/var/www/allseating/bin/chairs/textures/F4-PCABER.jpg")
+#f4_pcaberImage.save!
 
 =begin
 ################################################################################################################
@@ -193,7 +206,16 @@ btoBasicStool.components = [lumbarPlusAddOn, lumbarPlusNone]
 #components_properties - association table                                                                     #
 ################################################################################################################
 =end
-type82BasicStool.properties = [fabrics]
+#type82BasicStool.properties = [fabrics]
+type.components = [btoBasicStool,
+basicBackMesh                    ,
+basicStoolControl                 ,
+s810Ring                           ,
+chairShadow                         ,
+type82BasicStool                     ,
+base82BasicStool                      ,
+casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
+
 
 
 =begin
