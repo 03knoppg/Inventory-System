@@ -11,11 +11,11 @@ TestDBRubymineProject::Application.routes.draw do
 
   #match'/images/:id/edit' => "images#update"
 
-  get "password_resets/create"
+  #get "password_resets/create"
 
-  get "password_resets/edit"
+  #get "password_resets/edit"
 
-  get "password_resets/update"
+  #get "password_resets/update"
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
