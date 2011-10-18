@@ -22,24 +22,29 @@
   </tr>
 </table>
 <table>
-<%product = @valuefield.product
-       component = @valuefield.component
-       path = @valuefield.path
-       if(product != nil) %>
+<%products = @valuefield.products%>
        <tr>
          <th align="left">Products related to <%=@valuefield.fieldvalue%></th>
        </tr>
+       <%if(!products.empty?) %>
         <tr>
            <%= link_to product.name, product %>
         </tr>
-        <%elsif(component!=nil)%>
+      <%end%>
+      </table>
+      <table>
       <tr>
         <th align="left">Components related to <%=@valuefield.fieldvalue%></th>
       </tr>
+        <%if(!components.empty?)%>
         <tr>
           <td><%= link_to component.name, component %></td>
         </tr>
-        <%else%>
+        <%end%>
+        </table>
+<%if(components.empty? && products.empty?)
+path = @valuefield.path%>
+<table>
       <tr>
         <th align="left">Path related to <%=@valuefield.fieldvalue%></th>
       </tr>
@@ -48,8 +53,8 @@
             <%= id_path_to_name_path(path).html_safe%>
           </td>
         </tr>
-    <%end%>
 </table>
+    <%end%>
 <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Images related to <%=@valuefield.fieldvalue%></b></th>

@@ -20,7 +20,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1.json
   def show
     @valuefield = Valuefield.find(params[:id])
-    @all_images = Image.all.sort!{|x,y| x.name <=> y.name}
+    @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
 
     respond_to do |format|
       format.html # show.html.erb
