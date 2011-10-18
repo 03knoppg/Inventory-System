@@ -1,18 +1,15 @@
 module ValuefieldsHelper
   def print_value_fields
     @sfv = ""
-     if(@all_valuefields == nil)
-      return ""
-    end
-    for val in @all_valuefields
-     @sfv+= "<tr>\n"
-        @sfv+= "<td> #{val.fieldvalue} </td>\n"
-        @sfv+= "<td> #{button_to "Show", {:controller => :valuefields, :action => "show", :id => val.id }, :method => :get}\n"
-        @sfv+= "#{button_to "Edit", edit_valuefield_path(val), :method => :get}\n"
-        @sfv+= "#{button_to "Delete", {:controller => :valuefields, :action => "destroy", :id => val.id }, :confirm => "Are You sure?", :method => :delete}</td>\n"
-        @sfv+= "<td>#{val.component != nil ? link_to(val.component.name, val.component) : val.component != nil ? link_to(val.product.name, val.product) : ""}</td>"
-        @sfv+= "</tr>\n"
-    end
+      for val in @all_valuefields
+       @sfv+= "<tr>\n"
+          @sfv+= "<td> #{val.fieldvalue} </td>\n"
+          @sfv+= "<td> #{button_to "Show", {:controller => :valuefields, :action => "show", :id => val.id }, :method => :get}\n"
+          @sfv+= "#{button_to "Edit", edit_valuefield_path(val), :method => :get}\n"
+          @sfv+= "#{button_to "Delete", {:controller => :valuefields, :action => "destroy", :id => val.id }, :confirm => "Are You sure?", :method => :delete}</td>\n"
+          @sfv+= "<td>#{val.component != nil ? link_to(val.component.name, val.component) : val.component != nil ? link_to(val.product.name, val.product) : ""}</td>"
+          @sfv+= "</tr>\n"
+      end
   end
 
   ##########################################################################

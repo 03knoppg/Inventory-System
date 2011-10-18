@@ -49,7 +49,9 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(params[:image])
-
+    @all_products = Product.all
+    @all_components = Component.all
+    @all_valuefields = Valuefield.all
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }

@@ -1,9 +1,6 @@
 module PropertiesHelper
   #Function for displaying products
   def print_properties
-    if(@all_properties == nil)
-      return ""
-    end
     @all_properties.sort!{|x,y| x.name <=> y.name}  #sort alphabetically
     for prop in @all_properties
       @sa+= "<tr>\n"
@@ -27,8 +24,7 @@ module PropertiesHelper
       for vf in property.valuefields
         sgc+= "<tr><td>#{link_to vf.fieldvalue, vf}</td></tr>"
       end
-      sgc+= "</table>"
     end
-    return sgc;
+     sgc+= "</table>"
   end
 end

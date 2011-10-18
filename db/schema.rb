@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012142206) do
+ActiveRecord::Schema.define(:version => 20111018141535) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(:version => 20111012142206) do
   add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+
+  create_table "validations", :force => true do |t|
+    t.string   "extension"
+    t.string   "kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "valuefields", :force => true do |t|
     t.string   "fieldvalue"

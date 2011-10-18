@@ -3,6 +3,8 @@ TestDBRubymineProject::Application.routes.draw do
 
 
 
+  resources :validations
+
   resources :data_files
 
   #post "images/new" => "images#create"

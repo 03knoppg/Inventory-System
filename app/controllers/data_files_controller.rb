@@ -47,7 +47,9 @@ class DataFilesController < ApplicationController
   # POST /data_files.json
   def create
     @data_file = DataFile.new(params[:data_file])
-
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_valuefields = Valuefield.all
     respond_to do |format|
       if @data_file.save
         format.html { redirect_to @data_file, notice: 'Data file was successfully created.' }

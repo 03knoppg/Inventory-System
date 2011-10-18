@@ -15,6 +15,7 @@ Group.destroy_all
 User.destroy_all
 Image.destroy_all
 DataFile.destroy_all
+Validation.destroy_all
 
 =begin
 ################################################################################################################
@@ -23,6 +24,17 @@ DataFile.destroy_all
 =end
 brett = User.create(username: "bh", email: "bh@bh.com", password: "bh")
 graham = User.create(username: "gk", email: "gk@gk.com", password: "gk")
+
+=begin
+################################################################################################################
+#Validations                                                                                                   #
+################################################################################################################
+=end
+jpg = Validation.create(extension: ".jpg", kind: "Image")
+png = Validation.create(extension: ".png", kind: "Image")
+gif = Validation.create(extension: ".gif", kind: "Image")
+dae = Validation.create(extension: ".DAE", kind: "Data File")
+txt = Validation.create(extension: ".txt", kind: "Data File")
 
 =begin
 ################################################################################################################
@@ -218,6 +230,8 @@ chairShadow                         ,
 type82BasicStool                     ,
 base82BasicStool                      ,
 casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
+
+
 
 =begin
 ################################################################################################################
