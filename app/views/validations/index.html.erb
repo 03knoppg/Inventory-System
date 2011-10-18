@@ -1,0 +1,19 @@
+ <!--Validation Index Page - uses application.html.erb for template. -->
+<h1>Listing Validations</h1>
+<!--Button to create a new validation -->
+<%= button_to "New Validation", new_validation_path, :method => :get %>
+ <!--if length > 0 print groups -->
+<%if(@validations.length > 0)    %>
+    <table title="Current Validations">
+        <tr><th colspan="4"><h4>Current Validations</h4></th></tr>
+        <tr>
+            <th align="left">Extension</th>
+            <th align="left">Extension Type</th>
+            <th align="left">Actions</th>
+        </tr>
+        <%= print_validations.html_safe %>
+<%else%>
+        <tr><td><h4>No Validations Available</h4></td></tr>
+<%end%>
+</table>
+<br class="clear" />

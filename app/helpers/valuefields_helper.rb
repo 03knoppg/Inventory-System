@@ -16,6 +16,7 @@ module ValuefieldsHelper
         sfv+= "</tr>\n"
     end
     return sfv
+
   end
 
   ##########################################################################

@@ -1,9 +1,6 @@
 module PropertiesHelper
   #Function for displaying products
   def print_properties
-    if(@all_properties == nil)
-      return ""
-    end
     @all_properties.sort!{|x,y| x.name <=> y.name}  #sort alphabetically
     sa= ""
     for prop in @all_properties

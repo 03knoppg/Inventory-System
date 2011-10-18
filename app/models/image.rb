@@ -1,33 +1,48 @@
+#Class used to validate images
+class ImageValidator < ActiveModel::Validator
+  #Function used to validate images
+  def validate(record)
+    #if statement used for seed file due to paperclip way of seeding
+    if(record.picture_file_name == nil)
+      return true
+    end
+    validations = Validation.all
+    valid = []
+    if(!validations.empty?)
+      for val in validations
+        if(val.kind == "Image")
+          valid.push(val.extension)
+        end
+      end
+    end
+    if(!valid.empty?)
+      answer = valid.include?(record.picture_file_name[-4..-1])
+      if(answer == false)
+        s = ""
+        for v in valid
+          s+= v + " "
+        end
+        record.errors[:base] << "Invalid Image Extension. Accepted extensions are: " + s
+      end
+    end
+    end
+end
+
 class Image < ActiveRecord::Base
   belongs_to :product
   belongs_to :component
   belongs_to :valuefield
 
-  #after_update :delete_pics
-
   has_attached_file :picture, :styles => { :small => "150x150>" , :medium => "300x300>", :large => "600x600>"},
                     :path => ":rails_root/public/:class/:id/:style/:style_:basename.:extension",
                     :url => "/:class/:id/:style/:style_:basename.:extension"
 
-   validates_attachment_presence :picture
-   validates_attachment_size :picture, :less_than => 5.megabytes,  :message => 'filesize must be less than 5 MegaBytes'
-   validates_attachment_content_type :picture, :content_type => ['image/jpeg', 'image/png', 'image/jpg', 'image/bmp', 'image/gif']
-
-  def delete_pics
-    logger.info("**********************************************START delete_pics.")
-    build_path = "#{Rails.root}/public/images/pictures/1/"
-    pic_array = []
-
-    ["small", "medium", "large", "original"].each do |s|
-
-      Dir.glob(build_path + "#{s}/*").each do |i|
-        next if i == "#{s}_C40.png"
-        pic_array << i
-      end
-    end
-
-    logger.info("**********************************************YAH, I DID THIS. #{pic_array.join("\n")}")
-    pic_array.each {|pa| File.delete(pa)}
-  end
+  validates_attachment_presence :picture
+  validates_attachment_size :picture, :less_than => 5.megabytes,  :message => 'must be less than 5 MegaBytes'
+  #Custom image extension validator
+  validates_with ImageValidator
 
 end
+
+
+

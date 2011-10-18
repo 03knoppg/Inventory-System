@@ -39,6 +39,8 @@ class SessionsController < ApplicationController
       #get models
       all_seating_texture(generic_xml_path, test_dir)
 
+      all_seating_copy_file("/home/hans2/public_html/Inventory-System/public/images/14/original/original_F4-PCABER.jpg",test_dir + "F4-PCABER.jpg")
+
     end
 
   end

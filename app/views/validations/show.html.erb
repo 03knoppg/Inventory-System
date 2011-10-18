@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<h1>Viewing Validation: <%=@validation.extension%></h1>
+
+<table>
+  <tr>
+    <th align="left">Extension</th>
+    <th align="left">Extension Type</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= @validation.extension %></td>
+     <td valign="top"><%= @validation.kind %></td>
+    <td><%= button_to "Edit Validation", edit_validation_path(@validation), :method => :get %></td>
+  </tr>
+</table>
+<%= button_to "New Validation", new_validation_path, :method => :get %>
+
