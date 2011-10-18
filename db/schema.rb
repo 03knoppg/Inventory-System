@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018141535) do
+ActiveRecord::Schema.define(:version => 20111018200852) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(:version => 20111018141535) do
   create_table "components_properties", :id => false, :force => true do |t|
     t.integer "component_id"
     t.integer "property_id"
+  end
+
+  create_table "components_valuefields", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "valuefield_id"
   end
 
   create_table "data_files", :force => true do |t|
@@ -91,6 +96,11 @@ ActiveRecord::Schema.define(:version => 20111018141535) do
   create_table "products_properties", :id => false, :force => true do |t|
     t.integer "product_id"
     t.integer "property_id"
+  end
+
+  create_table "products_valuefields", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "valuefield_id"
   end
 
   create_table "properties", :force => true do |t|
@@ -137,9 +147,7 @@ ActiveRecord::Schema.define(:version => 20111018141535) do
 
   create_table "valuefields", :force => true do |t|
     t.string   "fieldvalue"
-    t.integer  "property_id"
-    t.integer  "product_id"
-    t.integer  "component_id"
+    t.string   "property_id"
     t.string   "path"
     t.string   "code"
     t.datetime "created_at"

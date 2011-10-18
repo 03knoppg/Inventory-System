@@ -118,20 +118,9 @@ type = Property.create(name: "type", description: "type", field_type: "string")
 =end
 #f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
 
-btoType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: btoBasicStool.id, code: "")
-backMeshType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: basicBackMesh.id, code: "")
-c19Type = Valuefield.create(fieldvalue: "control", property_id: type.id, component_id: basicStoolControl.id, code: "")
-s8RingType = Valuefield.create(fieldvalue: "control", property_id: type.id, component_id: s810Ring.id, code: "")
-chairShadowType = Valuefield.create(fieldvalue: "option", property_id: type.id, component_id: chairShadow.id, code: "")
-type82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: type82BasicStool.id, code: "")
-base82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: base82BasicStool.id, code: "")
-casterBasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: casterBasicStool.id, code: "")
-ssControlAddOnType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: ssControlAddOn.id, code: "")
-lumbarPlusAddOnType = Valuefield.create(fieldvalue: "option", property_id: type.id, component_id: lumbarPlusAddOn.id, code: "")
-type82BasicStoolType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: type82BasicStool.id, code: "")
-multiFunctionalArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: multiFunctionalArm.id, code: "")
-twisterArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: twisterArm.id, code: "")
-task2ArmType = Valuefield.create(fieldvalue: "back", property_id: type.id, component_id: task2Arm.id, code: "")
+backType = Valuefield.create(fieldvalue: "back", property_id: type.id, code: "")
+controlType = Valuefield.create(fieldvalue: "control", property_id: type.id, code: "")
+optionType = Valuefield.create(fieldvalue: "option", property_id: type.id, code: "")
 
 =begin
 ################################################################################################################
@@ -230,6 +219,34 @@ chairShadow                         ,
 type82BasicStool                     ,
 base82BasicStool                      ,
 casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
+
+=begin
+################################################################################################################
+#Products_Valuefields - association table                                                                       #
+################################################################################################################
+=end
+
+=begin
+################################################################################################################
+#Components_Valuefields - association table                                                                       #
+################################################################################################################
+=end
+btoBasicStool.valuefields = [backType]
+basicBackMesh.valuefields = [backType]
+type82BasicStool.valuefields = [backType]
+base82BasicStool.valuefields = [backType]
+casterBasicStool.valuefields = [backType]
+ssControlAddOn.valuefields = [backType]
+type82BasicStool.valuefields = [backType]
+multiFunctionalArm.valuefields = [backType]
+twisterArm.valuefields = [backType]
+task2Arm.valuefields = [backType]
+
+basicStoolControl.valuefields = [controlType]
+s810Ring.valuefields = [controlType]
+
+chairShadow.valuefields = [optionType]
+lumbarPlusAddOn.valuefields = [optionType]
 
 
 

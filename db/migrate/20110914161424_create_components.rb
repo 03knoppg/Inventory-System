@@ -1,6 +1,6 @@
 class CreateComponents < ActiveRecord::Migration
   def change
-    create_table :all_components do |t|
+    create_table :components do |t|
       t.string :name
       t.string :description
       t.string :group_id
