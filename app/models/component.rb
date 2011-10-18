@@ -1,7 +1,7 @@
 class Component < ActiveRecord::Base
   has_and_belongs_to_many :properties
   has_and_belongs_to_many :products
-  has_many :valuefields
+  has_and_belongs_to_many :valuefields
   belongs_to :group
   has_many :images
   has_many :data_files
