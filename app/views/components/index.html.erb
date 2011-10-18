@@ -3,23 +3,20 @@
 <!--Button to create a new component -->
 <%= button_to "New Component", new_component_path, :method => :get %>
 <!--if components available print rows and data -->
-<%if(@all_components.length > 0)    %>
+<%if(!@all_components.empty?)    %>
     <table title="Current Components">
-        <tr><th colspan="2"><h4>Current Components</h4></th></tr>
         <tr>
             <th align="left">Name</th>
             <th align="left">Actions</th>
         </tr>
         <%
-            for comp in @all_components.sort!
-                if(comp.component_parents.length == 0)
+        for comp in @all_components
+            if(comp.component_parents.empty?) #TODO: performance improvement if root component can be known this loop is not required
                 #Call to function to print all components in the database - function/method found in components_helper.rb
-                print_components(comp, 0)
-                end
+                %><%=print_components(comp, 0).html_safe%><%
             end
-         %>
-        <%= @sc.html_safe %>
-<%else%>
+        end
+else%>
         <tr><td><h4>No Components Available</h4></td></tr>
 <%end%>
 </table>

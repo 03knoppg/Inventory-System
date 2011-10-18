@@ -18,12 +18,12 @@
 
 <table>
   <th align="left">Categories related to <%=@product.name%></th>
-  <%  for cat in  @product.categories%>
+  <%  for cat in  @product.categories.sort {|x,y| x.name <=> y.name }%>
       <tr><td><%= link_to cat.name, cat %></td></tr>
   <% end %>
 </table>
-<%components = @product.components
-  if(components.length > 0) %>
+<%components = @product.components.sort {|x,y| x.name <=> y.name }
+  if(!components.empty?) %>
     <table>
       <tr>
         <th align="left"><b>Components related to <%=@product.name%></b></th>
@@ -45,11 +45,11 @@
     <th align="left"><b>Properties related to <%=@product.name%></b></th>
     <th align="left"><b>Value</b></th>
   </tr>
-  <%properties = @product.properties %>
+  <%properties = @product.properties.sort {|x,y| x.name <=> y.name } %>
 
   <% if(!properties.empty?) %>
     <%for prod in properties %>
-    <%valuefields = prod.valuefields %>
+    <%valuefields = prod.valuefields.sort {|x,y| x.name <=> y.name } %>
       <tr><td> <%= link_to("#{prod.name} (#{prod.field_type}) ", prod) %> </td>
 
         <%if(!valuefields.empty?)%>

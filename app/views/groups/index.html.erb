@@ -3,9 +3,8 @@
 <!--Button to create a new group -->
 <%= button_to 'New Group', new_group_path, :method => :get %>
 <!--if length > 0 print groups -->
-<%if(@all_groups.length > 0)    %>
+<%if(!@all_groups.empty?)    %>
     <table title="Current Groups">
-        <tr><th colspan="3"><h4>Current Groups</h4></th></tr>
         <tr>
             <th align="left">Name</th>
             <th align="left">Actions</th>
@@ -13,9 +12,8 @@
         </tr>
         <% for group in @all_groups %>
             <!-- Call to function print_groups located in groups_helper.rb -->
-            <% print_groups(group) %>
+            <%= print_groups(group).html_safe %>
         <%end%>
-        <%= @sg.html_safe %>
 <%else%>
         <tr><td><h4>No Groups Available</h4></td></tr>
 <%end%>

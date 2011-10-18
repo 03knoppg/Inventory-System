@@ -20,26 +20,27 @@
 <% group = @component.group %>
 <table>
   <tr><th align="left">Group Name</th></tr>
-  <% if(group != nil) %>
-      <tr><td><%= link_to("#{group.name} ", group) %></td></tr>
+  <tr><td>
+  <% if(!group.nil?) %>
+      <%= link_to("#{group.name} ", group) %>
   <%else%>
-      <tr><td>No Groups Available</td></tr>
+      No Groups Available
   <%end%>
+  </td></tr>
 </table>
 
 <h4> Parent Components related to <%=@component.name%> </h4>
-<% print_component_parents %>
 <table>
   <tr><th align="Left">Parent Name</th></tr>
-  <%= @part.html_safe %>
+  <%= print_component_parents.html_safe %>
 </table>
 
+
+
 <h4>Child Components related to <%=@component.name%></h4>
-<% print_component_child %>
 <table>
   <tr><th align="left">Child Name</th></tr>
-  <%= @ch.html_safe %>
-
+  <%= print_component_child.html_safe %>
 </table>
 
 
@@ -52,61 +53,74 @@
 
   <% if(!properties.empty?) %>
     <%for prop in properties %>
-    <%valuefields = prop.valuefields %>
-      <tr><td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
+      <%valuefields = prop.valuefields %>
+      <tr>
+        <td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
 
         <%if(!valuefields.empty?)%>
-            <td><table>
-            <%for val in valuefields%>
-
-                <tr><td> <%= link_to(val.fieldvalue, val) %> </td></tr>
-
-            <%end%>
-
-
+          <td>
+            <table>
+              <%for val in valuefields%>
+             <tr>
+               <td> <%= link_to(val.fieldvalue, val) %> </td>
+             </tr>
+              <%end%>
         <%else%>
-
             <td>No valuefields</td>
         <%end%>
-        <tr><td></td><td>
-               <%# button_to "New #{prod.name} Value", new_valuefield_path, :method=>:get%>
-               <form method="get" action="/valuefields/new"  class="button_to"><div><input type="submit" value="New <%=prop.name%> Value" /></div>
-                    <input type="hidden" name="_property_id" value="_<%=prop.id%>" />
-                    <input type="hidden" name="component_id" value="<%=@component.id%>" />
-               </form>
+            <tr>
+              <td></td>
+              <td>
 
-             </td></tr>
-            </table></td>
-      </tr>
+                   <%# button_to "New #{prod.name} Value", new_valuefield_path, :method=>:get%>
+                   <form method="get" action="/valuefields/new"  class="button_to"><div><input type="submit" value="New <%=prop.name%> Value" /></div>
+                        <input type="hidden" name="_property_id" value="_<%=prop.id%>" />
+                        <input type="hidden" name="component_id" value="<%=@component.id%>" />
+                   </form>
+
+              </td>
+            </tr>
+
+            </table>
+          </td>
+        </tr>
    <%end%>
 
   <%else%>
-      <tr><td>No properties</td><td>No value</td></tr>
+      <tr>
+        <td>No properties</td>       <td>No value</td>
+      </tr>
   <%end%>
-<tr><td> <%= button_to "New Property", new_property_path, :method => :get %>
-</td><td></td></tr>
+  <tr>
+    <td> <%= button_to "New Property", new_property_path, :method => :get %></td><td></td>
+  </tr>
 </table>
+
+
+
+
 <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Images related to <%=@component.name%></b></th>
   </tr>
-  <% if(!@all_images.empty?) %>
-      <%compImages = []%>
-    <%for img in @all_images %>
-          <%if(@component.id == img.component_id)%>
-              <%compImages.push(img)%>
-          <%end%>
-    <%end%>
-  <%end%>
-      <%if(!compImages.empty?)%>
-      <tr>
-      <%for ig in compImages%>
+  <%if(!@all_images.empty?)
+        compImages = []
+        for img in @all_images
+          if(@component.id == img.component_id)
+             compImages.push(img)
+          end
+        end%>
+        <tr>
+        <%for ig in compImages%>
          <td> <%= link_to(image_tag(ig.picture), ig) %> </td>
-      <%end%>
-       </tr>
-      <%else%>
-         <tr><td>No Images</td></tr>
-      <%end%>
-         <tr><td> <%= button_to "New Image", new_image_path %> </td></tr>
+        <%end%>
+        </tr>
+  <%else %>
+      <tr>
+        <td>No Images</td>
+      </tr>
+  <%end%>
+      <tr>
+        <td> <%= button_to "New Image", new_image_path %> </td>
+      </tr>
 </table>
-<br class="clear" />

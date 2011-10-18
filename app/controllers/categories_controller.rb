@@ -6,11 +6,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @tmp_array = []
-    @categories = Category.all
-    @all_categories =  Category.all
+
+    @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     @all_categories_hash = {}
-    @s = ""
 
     sort_categories
 
@@ -27,7 +25,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @parent = @category.parent_id ? Category.find(@category.parent_id) : nil
-    @all_categories =  Category.all
+    @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @category }
@@ -40,7 +38,7 @@ class CategoriesController < ApplicationController
   #Function for new category
   def new
     @category = Category.new
-    @all_categories =  Category.all
+    @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,7 +50,8 @@ class CategoriesController < ApplicationController
   #Function to edit a category
   def edit
     @category = Category.find(params[:id])
-    @all_categories =  Category.all
+    @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
+
     @child_categories = []
     remove_children(@all_categories, @category)
 
@@ -114,10 +113,10 @@ class CategoriesController < ApplicationController
   #Function to destroy a parent category and its children
   def destroy_category(category)
     #if category and id are nil return, else destroy all children of category then destroy parent.
-    if(category == nil || category.id == nil)
+    if(category.nil? || category.id.nil?)
         return
     end
-    if(@all_categories_hash[category.id] != nil)
+    if(!@all_categories_hash[category.id].nil?)
       for child in @all_categories_hash[category.id]
         #calls itself to destroy children.
        destroy_category(child)
@@ -142,10 +141,10 @@ class CategoriesController < ApplicationController
     #loop to sort categories parents and children
     for cat in @all_categories
      #if category parent id == nill then hash = current category else if parent id of category = nil then parent id hash is nil
-     if(cat.parent_id == nil)
+     if(cat.parent_id.nil?)
          @all_categories_hash[0] = [cat]
      else
-       if(@all_categories_hash[cat.parent_id] == nil)
+       if(@all_categories_hash[cat.parent_id].nil?)
           @all_categories_hash[cat.parent_id] = []
         end
         @all_categories_hash[cat.parent_id].push(cat)

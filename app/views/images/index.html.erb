@@ -4,7 +4,7 @@
 
 <table title="Current Images">
   <tr><th colspan="5"><h4>Current Images</h4></th></tr>
-  <%if(@all_images.length > 0)    %>
+  <%if(!@all_images.empty?)    %>
       <tr>
         <th align="left">Image</th>
         <th align="left">Product image belongs to</th>
@@ -12,8 +12,7 @@
         <th align="left">Valuefield image belongs to</th>
         <th align="left">Actions</th>
       </tr>
-      <% print_images %>
-      <%= @sp.html_safe %>
+      <% print_images.html_safe %>
   <%else%>
       <tr><td><h4>No Images Available</h4></td></tr>
   <%end%>

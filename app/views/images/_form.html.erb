@@ -31,7 +31,7 @@
         <td>
           <div class="field">
             <select size="5" name="image[product_id]" style="width: 200px">
-              <% for prod in @all_products %>
+              <% for prod in @all_products.sort {|x,y| x.name <=> y.name } %>
                   <option value="<%= prod.id %>"<%if(@image.product == prod)%> selected = "true"<%end%>>
                     <%= prod.name %>
                   </option>
@@ -42,10 +42,8 @@
         <td>
           <div class="field">
             <select size="5" name="image[component_id]" style="width: 200px">
-              <% for comp in @all_components %>
-                  <%@pt = ""%>
-                  <%= components_table(comp, 0, @image) %>
-                  <%=@pt.html_safe%>
+              <% for comp in @all_components.sort {|x,y| x.name <=> y.name } %>
+                  <%= components_table(comp, 0, @image).html_safe %>
               <% end %>
             </select>
           </div>
@@ -53,8 +51,8 @@
         <td>
           <div class="field">
             <select size="5" name="image[valuefield_id]" style="width: 200px">
-              <%for vf in @all_valuefields %>
-                  <option value="<%= vf.fieldvalue%>"<%if(@image.valuefield.id == vf.id)%> selected = "true"<%end%>>
+              <%for vf in @all_valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue } %>
+                  <option value="<%= vf.fieldvalue%>"<%if(@image.valuefield == vf)%> selected = "true"<%end%>>
                     <%= vf.fieldvalue %>
                   </option>
               <% end %>

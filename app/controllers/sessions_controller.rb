@@ -71,7 +71,7 @@ class SessionsController < ApplicationController
     end
 
     if(root.is_a?(Product))
-      children = root.components
+      children = root.all_components
     elsif(root.is_a?(Component))
       children = root.components + root.valuefields
     end

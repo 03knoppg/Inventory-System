@@ -2,8 +2,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
-    @all_images = Image.all
+    @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
     @sp = ""
     respond_to do |format|
       format.html # index.html.erb
@@ -49,6 +48,9 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(params[:image])
+    @all_products = Product.all
+    @all_components = Component.all
+    @all_valuefields = Valuefield.all
 
     respond_to do |format|
       if @image.save
@@ -65,6 +67,9 @@ class ImagesController < ApplicationController
   # PUT /images/1.json
   def update
     @image = Image.find(params[:id])
+    @all_products = Product.all
+    @all_components = Component.all
+    @all_valuefields = Valuefield.all
 
     respond_to do |format|
       if @image.update_attributes(params[:image])

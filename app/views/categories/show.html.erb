@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <td><%= @category.name %></td>
-    <td><%if(@parent != nil)%><%= link_to @parent.name, @parent %><%end%></td>
+    <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
     <td><%= button_to "Edit Category", edit_category_path(@category), :method => :get %></td>
   </tr>
 </table>
@@ -16,11 +16,11 @@
 
 <h4> Products related to <%=@category.name%> </h4>
 <% for cat in @all_categories %>
- <% print_related_products(cat) %>
- <%end%>
+ <% srp = print_related_products(cat) %>
+<%end%>
 
 <table>
-    <%= @srp.html_safe %>
+    <%= srp.html_safe %>
 </table>
 <%= button_to "New Product", new_product_path, :method => :get %>
 <br class="clear" />

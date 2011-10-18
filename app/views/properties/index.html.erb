@@ -12,12 +12,9 @@
             <th align="left">Description</th>
             <th align="left">Field Type</th>
             <th align="left">Actions</th>
-            <th align="left">Grouped Value Fields</th>
         </tr>
-        <% print_properties %>
-        <%= @sa.html_safe %>
+        <%= print_properties.html_safe %>
 <%else%>
         <tr><td><h4>No Properties Available</h4></td></tr>
 <%end%>
 </table>
-<br class="clear" />

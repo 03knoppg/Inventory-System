@@ -4,9 +4,8 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
-    @all_groups = Group.all
-    @all_components = Component.all
+    @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
+    @all_components = Component.all.sort {|x,y| x.name <=> y.name }
     @sg = ""
 
     respond_to do |format|

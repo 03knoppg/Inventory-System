@@ -4,9 +4,10 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields
   # GET /valuefields.json
   def index
-    @valuefields = Valuefield.all
-    @all_properties = Property.all
-    @all_valuefields = Valuefield.all
+    @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
+    @all_components = Property.all.sort!{|x,y| x.name <=> y.name}
+    @all_products = Property.all.sort!{|x,y| x.name <=> y.name}
+    @all_valuefields = Valuefield.all.sort!{|x,y| x.fieldvalue <=> y.fieldvalue}
 
     respond_to do |format|
       format.html # mainmenu.html.erb
@@ -19,7 +20,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1.json
   def show
     @valuefield = Valuefield.find(params[:id])
-    @all_images = Image.all
+    @all_images = Image.all.sort!{|x,y| x.name <=> y.name}
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,9 +33,9 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/new.json
   def new
     @valuefield = Valuefield.new
-    @all_properties = Property.all
+    @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
     @paths = ""
-    @all_prods_comps = Product.all + Component.all
+    @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
 
     if(!params[:property_id].nil?)
       @property = Property.find(params[:property_id])
@@ -54,8 +55,8 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1/edit
   def edit
     @valuefield = Valuefield.find(params[:id])
-    @all_properties = Property.all
-    @all_prods_comps = Product.all + Component.all
+    @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
+    @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
   end
 
   # POST /valuefields
@@ -63,7 +64,7 @@ class ValuefieldsController < ApplicationController
   def create
     @valuefield = Valuefield.new(params[:valuefield])
 
-    logger.info("\n\n\n PATH#{params.inspect}")
+    #logger.info("\n\n\n PATH#{params.inspect}")
 
     path = params[:valuefield_path_hidden]
     prod_comp = Integer(params[:prod_comp_id])
@@ -83,7 +84,7 @@ class ValuefieldsController < ApplicationController
         @valuefield.component = component
         component.properties.push(property)
       else
-        logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
+        #logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
       end
     else
       @valuefield.path = path
@@ -107,25 +108,23 @@ class ValuefieldsController < ApplicationController
   def update
     @valuefield = Valuefield.find(params[:id])
 
-    prod_comp = Integer(params[:prod_comp_id])
+    prod_comp_id = Integer(params[:prod_comp_id])
     @valuefield.product = nil
     @valuefield.component = nil
 
-    logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
-    if(prod_comp < 0)       #Product id is negative to differentiate from component
-      @valuefield.product = Product.find(-(prod_comp+1))
-      product = Product.find(-(prod_comp+1))
+    #logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+    if(prod_comp_id < 0)       #Product id is negative to differentiate from component
+      @valuefield.product = Product.find(-(prod_comp_id+1))
+      product = Product.find(-(prod_comp_id+1))
        property =  Property.find(Integer(params[:property_id][0]))
       @valuefield.property = property
       product.properties.push(property)
     elsif
-      @valuefield.component = Component.find(prod_comp)
+      @valuefield.component = Component.find(prod_comp_id)
       property =  Property.find(Integer(params[:property_id][0]))
-      component = Component.find(prod_comp)
+      component = Component.find(prod_comp_id)
       @valuefield.property = property
       component.properties.push(property)
-    else
-      logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
     end
 
     @valuefield.property = Property.find(Integer(params[:property_id][0]))

@@ -2,7 +2,6 @@
 <!--Button to create a new Data File -->
 <%= button_to "New Data File", new_data_file_path, :method => :get %>
 <table title="Current Data Files">
-  <tr><th colspan="5"><h4>Current Data Files</h4></th></tr>
   <%if(@data_files.length > 0)    %>
       <tr>
         <th align="left">Data File</th>

@@ -21,7 +21,7 @@
       <tr>
         <td style="width: 200px">
           <div class ="field">
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :required => true %>
           </div>
         </td>
         <td>
@@ -39,8 +39,7 @@
             <%if(@all_categories.length < 2)%>
                 <br/> No Categories available
             <%else%>
-
-                <select size="5" multiple="multiple" name="new_categories_ids[]" style="width: 100px">
+                <select size="5" multiple="multiple" name="new_categories_ids[]" style="width: 100px"  class="required">
 
                   <% for cat in @all_categories
                          if (cat.parent_id == nil)

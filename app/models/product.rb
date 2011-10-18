@@ -5,4 +5,6 @@ class Product < ActiveRecord::Base
   has_many :valuefields
   has_many :images
   has_many :data_files
+
+  validates_presence_of :name
 end

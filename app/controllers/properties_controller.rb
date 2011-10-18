@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
   # GET /properties.json
   def index
     @properties = Property.all
-    @all_properties = Property.all
+    @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
     @sa = " "
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class PropertiesController < ApplicationController
   # GET /properties/1.json
   def show
     @property = Property.find(params[:id])
-    @associated_values = @property.valuefields
+    @associated_values = @property.valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,7 +32,6 @@ class PropertiesController < ApplicationController
   # GET /properties/new.json
   def new
     @property = Property.new
-    @all_properties = Property.all
 
 
     respond_to do |format|
@@ -44,7 +43,6 @@ class PropertiesController < ApplicationController
   # GET /properties/1/edit
   def edit
     @property = Property.find(params[:id])
-    @all_properties = Property.all
   end
 
   # POST /properties
@@ -83,7 +81,6 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1.json
   def destroy
     @property = Property.find(params[:id])
-    @property.destroy
 
     for val in @property.valuefields
       val.destroy

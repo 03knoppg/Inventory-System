@@ -3,17 +3,17 @@
 <!--Button to create a new product -->
 <%= button_to "New Product", new_product_path, :method => :get %>
  <!--if length > 0 print groups -->
-<%if(@all_products.length > 0)    %>
+<%if(!@all_products.empty?)    %>
     <table title="Current Products">
         <tr><th colspan="4"><h4>Current Products</h4></th></tr>
         <tr>
             <th align="left">Name</th>
             <th align="left">Description</th>
+            <th align="left">Code</th>
             <th align="left">Actions</th>
-            <th align="left">Grouped Components</th>
+            <!--th align="left">Grouped Components</th-->
         </tr>
-        <% print_products %>
-        <%= @sp.html_safe %>
+        <%= print_products.html_safe %>
 <%else%>
         <tr><td><h4>No Products Available</h4></td></tr>
 <%end%>

@@ -3,18 +3,16 @@ class ComponentsController < ApplicationController
   # GET /components
   # GET /components.json
   def index
-    @components = Component.all
+    @all_components = Component.all.sort {|x,y| x.name <=> y.name }
     @tmp_array = []
-    @all_components =  Component.all
     @all_components_hash = {}
-    @sc = ""
 
     sort_components()
 
     respond_to do |format|
       format.html # mainmenu.html.erb
-      format.json { render json: @components }
-      format.xml { render :xml => @components }
+      format.json { render json: @all_components }
+      format.xml { render :xml => @all_components }
     end
   end
 
@@ -39,14 +37,16 @@ class ComponentsController < ApplicationController
   def new
 
     @component = Component.new
-    @all_products = Product.all
-    @all_groups = Group.all
+    @all_products = Product.all.sort {|x,y| x.name <=> y.name }
+    @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
+    @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
+
     if(!params[:component_id].nil?)
       @component_parent = Component.find(params[:component_id])
     end
 
 
-    @parent_cps = @component.component_parents + @component.products
+    @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @component }
@@ -57,11 +57,12 @@ class ComponentsController < ApplicationController
   #Function to edit components
   def edit
     @component = Component.find(params[:id])
-    @all_products = Product.all
-    @all_components =  Component.all
-    @associated_components = @component.component_parents
-    @parent_cps = @component.component_parents + @component.products
-    @all_groups = Group.all
+    @all_products = Product.all.sort {|x,y| x.name <=> y.name }
+    @all_components =  Component.all.sort {|x,y| x.name <=> y.name }
+    @associated_components = @component.component_parents.sort {|x,y| x.name <=> y.name }
+    @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
+    @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
+    @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
   end
 
   # POST /components
@@ -70,7 +71,7 @@ class ComponentsController < ApplicationController
   def create
     @component = Component.new(params[:component])
 
-       if(params[:new_group_id] != nil)
+    if(params[:new_group_id] != nil)
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
@@ -103,8 +104,9 @@ class ComponentsController < ApplicationController
   #Function to update components
   def update
     @component = Component.find(params[:id])
+
     @component.group = nil
-    if(params[:new_group_id] != nil)
+    if(!params[:new_group_id].nil?)
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
@@ -118,7 +120,7 @@ class ComponentsController < ApplicationController
       prod.components.delete(@component)
     end
 
-    if(params[:new_components_ids] != nil)
+    if(!params[:new_components_ids].nil?)
       for id in params[:new_components_ids]
          id = Integer(id)
          if(id < 0) #Component ids are set to negative values to differentiate from Product ids
@@ -130,6 +132,14 @@ class ComponentsController < ApplicationController
          end
       end
     end
+
+    @component.vlauefields.clear
+    if(!params[:new_ValueFields].nil?)
+      for id in params[:new_ValueFields]
+        @component.valuefields.push(Valuefield.find(id))
+      end
+    end
+
 
     respond_to do |format|
       if @component.update_attributes(params[:component])

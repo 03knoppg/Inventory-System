@@ -9,13 +9,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-    @all_products =  Product.all
-    @all_images = Image.all
+    @all_products =  Product.all.sort {|x,y| x.name <=> y.name }
+    @all_images = Image.all.sort {|x,y| x.picture_file_name <=> y.picture_file_name }
 
     @sp = ""
-
-    #Generator.xml_from_path("")
 
 
     respond_to do |format|
@@ -31,8 +28,8 @@ class ProductsController < ApplicationController
   #Function to show products
   def show
     @product = Product.find(params[:id])
-    @all_images = Image.all
-    @all_datafiles = DataFile.all
+    @all_images = Image.all.sort {|x,y| x.picture_file_name <=> y.picture_file_name }
+    @all_datafiles = DataFile.all.sort {|x,y| x.filedata_file_name <=> y.filedata_file_name }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,8 +42,8 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
-    @all_categories = Category.all
-    @associated_categories = @product.categories
+    @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
+    @associated_categories = @product.categories.sort {|x,y| x.name <=> y.name }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,8 +55,8 @@ class ProductsController < ApplicationController
   #Function to edit products
   def edit
     @product = Product.find(params[:id])
-    @associated_categories = @product.categories
-    @all_categories = Category.all
+    @associated_categories = @product.categories.sort {|x,y| x.name <=> y.name }
+    @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
   end
 
   # POST /products
@@ -68,9 +65,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
 
-    categories = Category.find(params[:new_categories_ids])
-
-    @product.categories = categories
+    if(!params[:new_categories_ids].nil?)
+      @product.categories = Category.find(params[:new_categories_ids])
+    end
 
 
     respond_to do |format|
@@ -89,8 +86,11 @@ class ProductsController < ApplicationController
   #Function to update products
   def update
     @product = Product.find(params[:id])
-    categories = Category.find(params[:new_categories_ids])
-    @product.categories = categories
+
+    if(!params[:new_categories_ids].nil?)
+      @product.categories = Category.find(params[:new_categories_ids])
+    end
+
     respond_to do |format|
       if @product.update_attributes(params[:product])
 

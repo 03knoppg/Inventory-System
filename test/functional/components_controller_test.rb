@@ -8,7 +8,7 @@ class ComponentsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:components)
+    assert_not_nil assigns(:all_components)
   end
 
   test "should get new" do
