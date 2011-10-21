@@ -29,6 +29,18 @@ class DataFilesController < ApplicationController
     @all_products = Product.all
     @all_valuefields = Valuefield.all
 
+    if(!params[:product_id].nil?)
+      @product = Product.find(params[:product_id])
+    end
+
+    if(!params[:component_id].nil?)
+      @component = Component.find(params[:component_id])
+    end
+
+    if(!params[:valuefield_id].nil?)
+      @valuefield = Valuefield.find(params[:valuefield_id])
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @data_file }

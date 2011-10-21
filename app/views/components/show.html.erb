@@ -1,5 +1,5 @@
 <!--Component Show Page -->
-<p id="notice"><%= notice %></p>
+<p id="notice"><%# notice %></p>
 <h1>Viewing Component: <%=@component.name%></h1>
 <table>
   <tr>
@@ -121,6 +121,6 @@
       </tr>
   <%end%>
       <tr>
-        <td> <%= button_to "New Image", new_image_path %> </td>
+        <td> <%= my_button_to "New Image", new_image_path, @component %> </td>
       </tr>
 </table>

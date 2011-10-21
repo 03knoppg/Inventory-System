@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20111018200852) do
 
-  create_table "all_components", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "group_id"
-    t.string   "code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
     t.string   "name"
@@ -33,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20111018200852) do
   create_table "categories_products", :id => false, :force => true do |t|
     t.integer "category_id"
     t.integer "product_id"
+  end
+
+  create_table "components", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "group_id"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "components_components", :id => false, :force => true do |t|

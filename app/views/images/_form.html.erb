@@ -17,7 +17,6 @@
         <th align="left">Products</th>
         <th align="left">Components</th>
         <th align="left">Valuefields</th>
-        <th align="left">Actions</th>
       </tr>
       <tr>
         <td style="width: 200px">
@@ -30,9 +29,9 @@
         </td>
         <td>
           <div class="field">
-            <select size="5" name="image[product_id]" style="width: 200px">
+            <select size="5" name="image[product_id[]]" style="width: 200px">
               <% for prod in @all_products.sort {|x,y| x.name <=> y.name } %>
-                  <option value="<%= prod.id %>"<%if(@image.product == prod)%> selected = "true"<%end%>>
+                  <option value="<%= prod.id %>"  <%= " selected = \"true\"" if @product == prod%>>
                     <%= prod.name %>
                   </option>
               <% end %>
@@ -41,9 +40,9 @@
         </td>
         <td>
           <div class="field">
-            <select size="5" name="image[component_id]" style="width: 200px">
+            <select size="5" name="image[component_id[]]" style="width: 200px">
               <% for comp in @all_components.sort {|x,y| x.name <=> y.name } %>
-                  <%= components_table(comp, 0, @image).html_safe %>
+                  <%= components_select_table(comp, 0, @image).html_safe %>
               <% end %>
             </select>
           </div>
@@ -52,21 +51,22 @@
           <div class="field">
             <select size="5" name="image[valuefield_id]" style="width: 200px">
               <%for vf in @all_valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue } %>
-                  <option value="<%= vf.fieldvalue%>"<%if(@image.valuefield == vf)%> selected = "true"<%end%>>
+                  <option value="<%= vf.id%>"<%=" selected = \"true\"" if @valuefield == vf%>>
                     <%= vf.fieldvalue %>
                   </option>
               <% end %>
             </select>
           </div>
         </td>
-        <td>
+
+</tr>
+</table>
+
           <div class="actions">
             <%= f.submit %>
           </div>
+
 <% end %>
-</td>
-</tr>
-</table>
 <br class="clear" />
 
 <!--Script used to remove current image from edit page when user file_field input changes -->

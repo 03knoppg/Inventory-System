@@ -15,7 +15,6 @@
         <th align="left">Name</th>
         <th align="left">Description</th>
         <th align="left">Code</th>
-        <th align="left">Actions</th>
       </tr>
       <tr>
         <td style="width: 200px">
@@ -33,12 +32,6 @@
             <%= f.text_field :code%>
           </div>
         </td>
-        <td>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-<%end %>
-</td>
 </tr>
 <tr>
   <th align="left">Parent Components</th>
@@ -87,6 +80,12 @@
   </td>
 </tr>
 </table>
+
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+<%end %>
 
 <script type="text/javascript">
   jQuery(function($) {

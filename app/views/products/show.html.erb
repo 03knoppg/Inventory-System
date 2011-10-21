@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%# notice %></p>
 <h1>Viewing Product: <%=@product.name%></h1>
 
 <table>
@@ -16,30 +16,49 @@
   </tr>
 </table>
 
-<table>
-  <th align="left">Categories related to <%=@product.name%></th>
-  <%  for cat in  @product.categories.sort {|x,y| x.name <=> y.name }%>
+<table style="padding-top: 15px">
+  <tr>
+  <th align="left"><b>Categories related to <%=@product.name%></b></th>
+    </tr>
+  <% if(!@product.categories.empty?)
+     for cat in  @product.categories.sort {|x,y| x.name <=> y.name }%>
       <tr><td><%= link_to cat.name, cat %></td></tr>
   <% end %>
+      <%else%>
+      <tr><td>No Categories</td><td></td></tr>
+<%end%>
 </table>
-<%components = @product.components.sort {|x,y| x.name <=> y.name }
-  if(!components.empty?) %>
-    <table>
+
+
+
+<%components = @product.components.sort {|x,y| x.name <=> y.name }%>
+    <table style="padding-top: 15px">
       <tr>
         <th align="left"><b>Components related to <%=@product.name%></b></th>
         <th align="left"><b>Description</b></th>
       </tr>
+  <%if(!components.empty?) %>
       <%for comp in components%>
           <tr>
             <td> <%= link_to("#{comp.name}", comp) %> </td>
             <td> <%= comp.description %> </td>
           </tr>
       <%end%>
-    </table>
+
 <%else%>
-    <br/>No Components
+    <tr><td>No Components</td><td></td></tr>
 <%end%>
-<%= button_to "New Component", new_component_path, :method => :get %>
+    </table>
+<form method="get" action="/components/new"  class="button_to">
+                <div><input type="submit" value="New Component" /></div>
+                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
+               </form>
+
+
+
+
+
+
 <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Properties related to <%=@product.name%></b></th>
@@ -60,7 +79,7 @@
 
             <%end%>
 
-             <tr><td> <%= button_to "New Valuefield", new_valuefield_path %> </td></tr>
+             <tr><td> <%= button_to "New Valuefield", new_valuefield_path, :method => :get %> </td></tr>
             </table></td>
         <%else%>
 
@@ -74,17 +93,18 @@
   <%end%>
 
 
-
-<tr><td> <%= button_to "New Property", new_property_path %> </td></tr>
-
 </table>
+<%= button_to "New Property", new_property_path, :method => :get %>
+
+
+
 
 <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Images related to <%=@product.name%></b></th>
   </tr>
-  <% if(!@all_images.empty?) %>
       <%prodImages = []%>
+  <% if(!@all_images.empty?) %>
     <%for img in @all_images %>
           <%if(@product.id == img.product_id)%>
               <%prodImages.push(img)%>
@@ -98,15 +118,19 @@
       <%else%>
          <tr><td>No Images</td></tr>
       <%end%>
-         <tr><td> <%= button_to "New Image", new_image_path %> </td></tr>
 </table>
+<form method="get" action="/images/new"  class="button_to">
+                <div><input type="submit" value="New Image" /></div>
+                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
+               </form>
+
 
  <table style="padding-top: 15px">
   <tr>
     <th align="left"><b>Data Files related to <%=@product.name%></b></th>
   </tr>
-  <% if(!@all_datafiles.empty?) %>
       <%proddatafiles = []%>
+  <% if(!@all_datafiles.empty?) %>
     <%for df in @all_datafiles %>
           <%if(@product.id == df.product_id)%>
               <%proddatafiles.push(df)%>
@@ -120,7 +144,9 @@
       <%else%>
          <tr><td>No Images</td></tr>
       <%end%>
-         <tr><td> <%= button_to "New Data Files", new_data_file_path %> </td></tr>
 </table>
-
+<form method="get" action="/data_files/new"  class="button_to">
+                <div><input type="submit" value="New Datafile" /></div>
+                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
+               </form>
 

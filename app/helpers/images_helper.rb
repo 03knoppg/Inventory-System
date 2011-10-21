@@ -1,23 +1,5 @@
 module ImagesHelper
-    #Recursive function for display components - finds parents and then children and organizes them in this way to display
-  def components_table(cp, depth, image)
 
-    pt= "<option value=\"#{cp.id}\""
-    if(image != nil && image.component == cp)
-      pt+= "selected = \"true\""
-    end
-    pt+= ">#{"-"*depth}"
-    pt+= "#{cp.name}"
-    pt+= "</option>\n"
-
-    for child in cp.components
-      if(child != @component)
-        pt += components_table(child, depth+1, image)
-      end
-    end
-
-    return pt
-  end
 
   #Function for displaying images
   def print_images

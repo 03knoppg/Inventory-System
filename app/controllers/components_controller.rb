@@ -41,12 +41,16 @@ class ComponentsController < ApplicationController
     @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
     @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
 
+
     if(!params[:component_id].nil?)
-      @component_parent = Component.find(params[:component_id])
+      @parent_cps = [Component.find(params[:component_id])]
+    elsif(!params[:product_id].nil?)
+      @parent_cps = [Product.find(params[:product_id])]
+    else
+      @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
     end
 
 
-    @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @component }
@@ -133,7 +137,9 @@ class ComponentsController < ApplicationController
       end
     end
 
-    @component.vlauefields.clear
+    if(!@component.valuefields.nil?)
+      @component.valuefields.clear
+    end
     if(!params[:new_ValueFields].nil?)
       for id in params[:new_ValueFields]
         @component.valuefields.push(Valuefield.find(id))

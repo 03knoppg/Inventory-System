@@ -18,4 +18,8 @@ class Component < ActiveRecord::Base
                           :foreign_key => 'component_child_id',
                           :association_foreign_key => 'component_parent_id',
                           :class_name => 'Component'
+
+  def to_s   #for debug
+    return "#{id}:#{name}"
+  end
 end

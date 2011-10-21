@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%# notice %></p>
  <h1>Viewing Category: <%=@category.name%></h1>
 <table>
   <tr>
@@ -22,5 +22,8 @@
 <table>
     <%= srp.html_safe %>
 </table>
-<%= button_to "New Product", new_product_path, :method => :get %>
+<form method="get" action="/products/new"  class="button_to">
+                <div><input type="submit" value="New Product" /></div>
+                     <input type="hidden" name="category_id" value="<%=@category.id%>"/>
+               </form>
 <br class="clear" />

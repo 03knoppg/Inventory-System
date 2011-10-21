@@ -17,7 +17,6 @@
         <th align="left">Products</th>
         <th align="left">Components</th>
         <th align="left">Valuefields</th>
-        <th align="left">Actions</th>
       </tr>
       <tr>
         <td style="width: 200px">
@@ -32,9 +31,8 @@
           <%if(!@all_products.empty?)%>
               <div class="field">
                 <select size="5" name="data_file[product_id]" style="width: 200px">
-
                   <% for prod in @all_products %>
-                      <option value="<%= prod.id %>"<%if(@data_file.product == prod)%> selected = "true"<%end%>>
+                      <option value="<%= prod.id %>" <%= "selected=\"true\"" if @product == prod%>>
                         <%= prod.name %>
                       </option>
                   <% end %>
@@ -49,9 +47,7 @@
               <div class="field">
                 <select size="5" name="data_file[component_id]" style="width: 200px">
                   <% for comp in @all_components %>
-                      <%@pt = ""%>
-                      <%= components_table(comp, 0, @data_file) %>
-                      <%=@pt.html_safe%>
+                      <%= components_select_table(comp, 0).html_safe %>
                   <% end %>
                 </select>
               </div>
@@ -64,7 +60,7 @@
               <div class="field">
                 <select size="5" name="data_file[valuefield_id]" style="width: 200px">
                   <%for vf in @all_valuefields %>
-                      <option value="<%= vf.fieldvalue%>"<%if(@data_file.valuefield == vf)%> selected = "true"<%end%>>
+                      <option value=<%= vf.id%> <%= "selected=\"true\"" if @valuefield == vf%>>
                         <%= vf.fieldvalue %>
                       </option>
                   <% end %>
@@ -74,16 +70,15 @@
               None Available.
           <%end%>
         </td>
-        <td>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-<% end %>
-</td>
+
+
 </tr>
 </table>
 <br class="clear" />
-
+    <div class="actions">
+            <%= f.submit %>
+          </div>
+<% end %>
 <!--Script used to remove current image from edit page when user file_field input changes -->
 <script type="text/javascript">
     jQuery(function($){

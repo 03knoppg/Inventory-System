@@ -10,8 +10,7 @@
         <th align="left">Belongs to (Component)</th>
         <th align="left">Belongs to (Valuefield)</th>
       </tr>
-      <% print_data_files %>
-      <%= @df.html_safe %>
+      <%= print_data_files.html_safe %>
   <%else%>
       <tr><td><h4>No Data Files Available</h4></td></tr>
   <%end%>

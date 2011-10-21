@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
-    @sp = ""
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @images }
@@ -29,6 +29,18 @@ class ImagesController < ApplicationController
     @all_products = Product.all
     @all_valuefields = Valuefield.all
 
+    if(!params[:product_id].nil?)
+      @product = Product.find(params[:product_id])
+    end
+
+    if(!params[:component_id].nil?)
+      @component = Component.find(params[:component_id])
+    end
+
+     if(!params[:valuefield_id].nil?)
+      @valuefield = Valuefield.find(params[:valuefield_id])
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @image }
@@ -41,6 +53,9 @@ class ImagesController < ApplicationController
     @all_products = Product.all
     @all_components = Component.all
     @all_valuefields = Valuefield.all
+
+    @product = @image.product
+    @component = @image.component
 
   end
 
