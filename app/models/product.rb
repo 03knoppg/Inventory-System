@@ -7,4 +7,8 @@ class Product < ActiveRecord::Base
   has_many :data_files
 
   validates_presence_of :name
+
+  def to_s   #for debug
+    return "#{id}:#{name}"
+  end
 end

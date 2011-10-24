@@ -43,7 +43,11 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
-    @associated_categories = @product.categories.sort {|x,y| x.name <=> y.name }
+    @associated_categories = []
+
+    if(!params[:category_id].nil?)
+      @associated_categories = [Category.find(params[:category_id])]
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -67,6 +71,8 @@ class ProductsController < ApplicationController
 
     if(!params[:new_categories_ids].nil?)
       @product.categories = Category.find(params[:new_categories_ids])
+    else
+      @product.categories = []
     end
 
 

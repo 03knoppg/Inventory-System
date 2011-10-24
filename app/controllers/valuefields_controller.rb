@@ -20,7 +20,7 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/1.json
   def show
     @valuefield = Valuefield.find(params[:id])
-    @all_images = Image.all.sort!{|x,y| x.name <=> y.name}
+    @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,15 +34,20 @@ class ValuefieldsController < ApplicationController
   def new
     @valuefield = Valuefield.new
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
-    @paths = ""
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
+    @components = []
+    @products = []
 
     if(!params[:property_id].nil?)
       @property = Property.find(params[:property_id])
     end
 
     if(!params[:component_id].nil?)
-      @component = Component.find(params[:component_id])
+      @components = [Component.find(params[:component_id])]
+    end
+
+    if(!params[:product_id].nil?)
+      @product = [Product.find(params[:product_id])]
     end
 
 
@@ -57,6 +62,12 @@ class ValuefieldsController < ApplicationController
     @valuefield = Valuefield.find(params[:id])
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
+
+    @property = @valuefield.property
+    @components = @valuefield.components
+    @products = @valuefield.products
+    @path = @valuefield.path
+
   end
 
   # POST /valuefields
@@ -67,28 +78,31 @@ class ValuefieldsController < ApplicationController
     #logger.info("\n\n\n PATH#{params.inspect}")
 
     path = params[:valuefield_path_hidden]
-    prod_comp = Integer(params[:prod_comp_id])
+    if(!params[:prod_comp_id].nil?)
+      prod_comp = Integer(params[:prod_comp_id])
+    end
 
-    property =  Property.find(Integer(params[:property_id]))
-    @valuefield.property = property
+    if(!params[:property_id].nil?)
+      property =  Property.find(Integer(params[:property_id]))
+      @valuefield.property = property
+    end
 
-    if(path == nil)
+    if(!path.nil?)
+      @valuefield.path = path
 
-      #logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
-      if(prod_comp < 0)       #Product id is negative to differentiate from component
+    elsif(!prod_comp.nil?)
+      if(prod_comp < 0)   #Product id is negative to differentiate from component
         product =  Product.find(-(prod_comp+1))
         @valuefield.product = product
         product.properties.push(property)
-      elsif
+      else
         component =   Component.find(prod_comp)
         @valuefield.component = component
         component.properties.push(property)
-      else
-        #logger.info("\n\nTYPE: " + prod_comp.class.inspect + " \n\n\n")
       end
-    else
-      @valuefield.path = path
     end
+
+
 
 
 

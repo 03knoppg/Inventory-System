@@ -7,7 +7,7 @@ TestDBRubymineProject::Application.routes.draw do
 
   resources :data_files
 
-  #post "images/new" => "images#create"
+  post "images/new" => "images#create", :method => :get
 
   #match'/images/:id/edit' => "images#update"
 

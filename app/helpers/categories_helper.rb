@@ -35,7 +35,7 @@ module CategoriesHelper
     srp += "<tr><th>Name:</th>"
     srp += "<th>Description:</th></tr>"
     if(all_products.empty?)
-      srp += "<tr><td>No Products Available</td></tr>"
+      srp += "<tr><td>No Products Available</td><td></td></tr>"
     else
       all_products.sort!{|x,y| x.name <=> y.name}  #sort alphabetically
       for prod in all_products

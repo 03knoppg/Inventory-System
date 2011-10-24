@@ -5,6 +5,7 @@ module ComponentsHelper
     sc = ""
     sc+= "<tr>\n"
     sc+= "<td> #{"-"*depth} #{comp.name}</td>\n"
+    sc+= "<td> #{comp.description}</td>\n"
     sc+= "<td> #{button_to "Show", {:controller => :components, :action => "show", :id => comp.id }, :method => :get}\n"
     sc+= "#{button_to "Edit", edit_component_path(comp), :method => :get}\n"
     sc+= "#{button_to "Delete", {:controller => :components, :action => "destroy", :id => comp.id }, :confirm => confirmation_message(comp, @all_components_hash), :method => :delete}</td>\n"
@@ -29,7 +30,7 @@ module ComponentsHelper
       pt += "<option value=\"#{-cp.id - 1}\""   #Component ids are set to negative values to differentiate from Product ids
     end
 
-    if (@parent_cps.include?(cp) || @component_parent == cp)
+    if (@parent_cps.include?(cp))
       pt += "selected=\"true\""
     end
 
