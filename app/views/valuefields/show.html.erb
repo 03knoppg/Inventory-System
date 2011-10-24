@@ -10,7 +10,8 @@
   <tr>
     <td><%= @valuefield.fieldvalue %></td>
     <td><%= @valuefield.code %></td>
-    <td><%= button_to 'Edit Valuefield', edit_valuefield_path(@valuefield), :method => :get %></td>
+    <td><%= button_to 'Edit Value Field', edit_valuefield_path(@valuefield), :method => :get %>
+    <%=button_to "Delete Value Field", {:controller => :valuefields, :action => "destroy", :id => @valuefield.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 <table>

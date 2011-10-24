@@ -25,7 +25,6 @@ module ImagesHelper
     sp = ""
 
     for img in @all_images
-
       sp+= "<tr>\n"
       sp+= "<td> #{image_tag(img.picture.url(:small))} </td>\n"
       if(img.product != nil)

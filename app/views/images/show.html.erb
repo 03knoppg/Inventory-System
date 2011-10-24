@@ -8,7 +8,8 @@
   </tr>
   <tr>
     <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
-    <td><%= button_to "Edit Image", edit_image_path(@image), :method => :get %></td>
+    <td><%= button_to "Edit Image", edit_image_path(@image), :method => :get %>
+    <%=button_to "Delete Image", {:controller => :images, :action => "destroy", :id => @image.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 

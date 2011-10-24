@@ -12,7 +12,8 @@
     <td valign="top"><%= @product.name %></td>
     <td valign="top"><%= @product.description %></td>
     <td valign="top"><%= @product.code %></td>
-    <td><%= button_to "Edit Product", edit_product_path(@product), :method => :get %></td>
+    <td><%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
+    <%=button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 

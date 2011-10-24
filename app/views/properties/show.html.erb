@@ -11,7 +11,8 @@
     <td><%= @property.name %></td>
     <td><%= @property.description %></td>
     <td><%= @property.field_type %></td>
-    <td><%= button_to "Edit Property", edit_property_path(@property), :method => :get %></td>
+    <td><%= button_to "Edit Property", edit_property_path(@property), :method => :get %>
+    <%=button_to "Delete Property", {:controller => :properties, :action => "destroy", :id => @property.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 

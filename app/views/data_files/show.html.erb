@@ -8,7 +8,8 @@
   </tr>
   <tr>
     <td valign="top"><%= @data_file.filedata_file_name %></td>
-    <td><%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %></td>
+    <td><%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %>
+    <%=button_to "Delete Data File", {:controller => :data_files, :action => "destroy", :id => @data_file.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 

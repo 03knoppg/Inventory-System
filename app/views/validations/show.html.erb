@@ -10,7 +10,8 @@
   <tr>
     <td valign="top"><%= @validation.extension %></td>
      <td valign="top"><%= @validation.kind %></td>
-    <td><%= button_to "Edit Validation", edit_validation_path(@validation), :method => :get %></td>
+    <td><%= button_to "Edit Validation", edit_validation_path(@validation), :method => :get %>
+    <%=button_to "Delete Validation", {:controller => :validations, :action => "destroy", :id => @validation.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 <%= button_to "New Validation", new_validation_path, :method => :get %>

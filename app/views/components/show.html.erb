@@ -12,7 +12,8 @@
     <td><%= @component.name %></td>
     <td><%= @component.description %></td>
     <td><%= @component.code %></td>
-    <td><%= button_to "Edit Component", edit_component_path(@component), :method => :get %></td>
+    <td><%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
+    <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 

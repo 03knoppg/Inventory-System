@@ -9,7 +9,8 @@
   <tr>
     <td><%= @category.name %></td>
     <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
-    <td><%= button_to "Edit Category", edit_category_path(@category), :method => :get %></td>
+    <td><%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
+    <%=button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 
