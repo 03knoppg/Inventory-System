@@ -36,20 +36,25 @@ class ComponentsController < ApplicationController
   #Function for new components
   def new
 
-    @component = Component.new
     @all_products = Product.all.sort {|x,y| x.name <=> y.name }
     @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
     @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
 
-
-    if(!params[:component_id].nil?)
-      @parent_cps = [Component.find(params[:component_id])]
-    elsif(!params[:product_id].nil?)
-      @parent_cps = [Product.find(params[:product_id])]
+    #If statement to check if duplicating a record
+    if params[:duplicate_component]
+        component_to_duplicate = Component.find params[:duplicate_component]
+        @component = component_to_duplicate.dup
+        @parent_cps = (component_to_duplicate.component_parents + component_to_duplicate.products).sort {|x,y| x.name <=> y.name }
     else
-      @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
+         @component = Component.new
+         if(!params[:component_id].nil?)
+            @parent_cps = [Component.find(params[:component_id])]
+         elsif(!params[:product_id].nil?)
+            @parent_cps = [Product.find(params[:product_id])]
+         else
+            @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
+         end
     end
-
 
     respond_to do |format|
       format.html # new.html.erb

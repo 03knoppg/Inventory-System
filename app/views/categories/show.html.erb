@@ -1,43 +1,27 @@
 <p id="notice"><%# notice %></p>
  <h1>Viewing Category: <%=@category.name%></h1>
-<table>
+<div class="main_div">
+
+<table class="main_table">
   <tr>
-    <th align="left">Category Name:</th>
+    <th align="left">Category Name</th>
     <th align="left">Parent of <%=@category.name%></th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @category.name %></td>
     <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
-    <td><%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
-    <%=button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
+<% for cat in @all_categories %>
+ <% srp = print_related_products(cat) %>
+<%end%>
 </table>
-
-
 <table>
-  <tr><th>Categories related to <%=@category.name%></th></tr>
-    <%found_one = false%>
-    <%for cat in @all_categories%>
-        <%if(cat.parent_id == @category.id)%>
-          <%found_one = true%>
-          <tr>
-            <td><%=link_to cat.name, cat%></td>
-          </tr>
-        <%end%>
-    <%end%>
-    <%if(!found_one)%>
-        <tr><td>No Categories Available</td></tr>
-    <%end%>
-
+    <%= srp.html_safe %>
+    <tr><td><%=my_button_to("New Product", new_product_path, [@category])%></td></tr>
 </table>
-
-
-
-<table>
-    <%= print_related_products(@category).html_safe %>
-</table>
-
-<%= my_button_to "New Product", "/products/new", @category%>
-
-<br class="clear" />
+ </div>
+ <div class="right_div">
+<%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
+<%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
+<%= button_to "Duplicate Category", new_category_path + "?duplicate_category=#{@category.id}"%>
+</div>

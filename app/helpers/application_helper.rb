@@ -11,11 +11,16 @@ module ApplicationHelper
 
 
   #creates a button and form with a hidden field in order to pass ids across to new objects
-  def my_button_to(text, path, obj)
+  def my_button_to(text, path, objs)
     s = "<form method=\"get\" action=\"#{path}\"  class=\"button_to\">
-          <div><input type=\"submit\" value=\"#{text}\"/></div>
-                        <input type=\"hidden\" name=\"#{obj.class.to_s.downcase}_id\" value=\"#{obj.id}\" />
-                   </form>"
+          <div><input type=\"submit\" value=\"#{text}\"/></div>"
+    for obj in objs
+      if(!obj.nil?)
+        s+= "<input type=\"hidden\" name=\"#{obj.class.to_s.downcase}_id\" value=\"#{obj.id}\" />"
+      end
+    end
+
+    s+= "</form>"
 
     return s.html_safe
   end

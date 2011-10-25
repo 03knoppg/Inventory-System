@@ -1,7 +1,11 @@
- <!--Components Index Page - uses application.html.erb for template. -->
-<h1>Listing Components</h1>
+
 <!--Button to create a new component -->
-<%= button_to "New Component", new_component_path, :method => :get %>
+<%= button_to "New Component", new_component_path, :method => :get %>  <br/><br/><br/>
+
+<!--Components Index Page - uses application.html.erb for template. -->
+<h1>Listing Components</h1>
+
+ <div class="main_div">
 <!--if components available print rows and data -->
 <%if(!@all_components.empty?)    %>
     <table title="Current Components">
@@ -21,4 +25,5 @@ else%>
         <tr><td><h4>No Components Available</h4></td></tr>
 <%end%>
 </table>
+   </div>
 <br class="clear" />

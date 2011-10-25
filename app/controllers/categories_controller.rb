@@ -37,8 +37,15 @@ class CategoriesController < ApplicationController
   # GET /categories/new.json
   #Function for new category
   def new
-    @category = Category.new
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
+
+    #if statement for duplicating a record
+    if params[:duplicate_category]
+        category_to_duplicate = Category.find params[:duplicate_category]
+        @category = category_to_duplicate.dup
+    else
+        @category = Category.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb

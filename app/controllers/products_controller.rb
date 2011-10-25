@@ -68,6 +68,12 @@ class ProductsController < ApplicationController
   #Function to create products
   def create
     @product = Product.new(params[:product])
+    @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
+     @associated_categories = []
+
+    if(!params[:category_id].nil?)
+      @associated_categories = [Category.find(params[:category_id])]
+    end
 
     if(!params[:new_categories_ids].nil?)
       @product.categories = Category.find(params[:new_categories_ids])

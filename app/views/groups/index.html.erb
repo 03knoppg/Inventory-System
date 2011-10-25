@@ -1,14 +1,17 @@
+
+<!--Button to create a new group -->
+<%= button_to 'New Group', new_group_path, :method => :get %>  <br/><br/><br/>
+
 <!--Groups Index Page - uses application.html.erb for template. -->
 <h1>Listing Groups</h1>
-<!--Button to create a new group -->
-<%= button_to 'New Group', new_group_path, :method => :get %>
+
+<div class="main_div">
 <!--if length > 0 print groups -->
 <%if(!@all_groups.empty?)    %>
     <table title="Current Groups">
         <tr>
             <th align="left">Name</th>
             <th align="left">Actions</th>
-            <th align="left">Grouped Components</th>
         </tr>
         <% for group in @all_groups %>
             <!-- Call to function print_groups located in groups_helper.rb -->
@@ -18,4 +21,6 @@
         <tr><td><h4>No Groups Available</h4></td></tr>
 <%end%>
 </table>
+  </div>
+
 <br class="clear" />

@@ -55,11 +55,14 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/writefile"
   post "admin/writefile"
 
+  #Posts used for duplicating records.
+  post "categories/new"
+  post "components/new"
+
 
   match 'admin', :to => 'admin#home'
 
   match 'admin_addvalue', :to => 'admin#addvalue'
-
 
 
   # The priority is based upon order of creation:

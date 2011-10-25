@@ -1,17 +1,14 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Valuefield: <%=@valuefield.fieldvalue%></h1>
-
-<table>
+ <h1>Viewing Value: <%=@valuefield.fieldvalue%></h1>
+<div class="main_div">
+<table class="main_table">
   <tr>
     <th align="left">Value</th>
     <th align="left">Code</th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @valuefield.fieldvalue %></td>
     <td><%= @valuefield.code %></td>
-    <td><%= button_to 'Edit Value Field', edit_valuefield_path(@valuefield), :method => :get %>
-    <%=button_to "Delete Value Field", {:controller => :valuefields, :action => "destroy", :id => @valuefield.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 <table>
@@ -81,7 +78,7 @@ path = @valuefield.path%>
     <%end%>
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Images related to <%=@valuefield.fieldvalue%></b></th>
+    <th align="left">Images related to <%=@valuefield.fieldvalue%></th>
   </tr>
       <%vfImages = @valuefield.images%>
       <%if(!vfImages.empty?)%>
@@ -93,13 +90,13 @@ path = @valuefield.path%>
       <%else%>
          <tr><td>No Images</td></tr>
       <%end%>
-         <tr><td> <%= my_button_to "New Image", new_image_path, @valuefield %> </td></tr>
+         <tr><td> <%= my_button_to "New Image", new_image_path, [@valuefield] %> </td></tr>
 </table>
 
 
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Data Files related to <%=@valuefield.fieldvalue%></b></th>
+    <th align="left">Data Files related to <%=@valuefield.fieldvalue%></th>
   </tr>
       <%dfs = @valuefield.data_files%>
       <%if(!dfs.empty?)%>
@@ -109,8 +106,13 @@ path = @valuefield.path%>
       <%end%>
        </tr>
       <%else%>
-         <tr><td>No Files</td></tr>
+         <tr><td>No Data Files</td></tr>
       <%end%>
-         <tr><td> <%= my_button_to "New File", new_data_file_path, @valuefield %> </td></tr>
+         <tr><td> <%= my_button_to "New Data File", new_data_file_path, [@valuefield] %> </td></tr>
 </table>
+    </div>
+<div class="right_div">
+   <%= button_to 'Edit Value', edit_valuefield_path(@valuefield), :method => :get %>
+    <%=button_to "Delete Value", {:controller => :valuefields, :action => "destroy", :id => @valuefield.id }, :confirm => "Are You sure?", :method => :delete%>
+</div>
 

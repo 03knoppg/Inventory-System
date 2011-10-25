@@ -1,10 +1,9 @@
-<div id="button_div">
-   <%=button_to 'Create by Incremental Path', admin_addvalue_path, :method => :get%>
-   <button id="other_button">Create by Component or Product</button>
-   <button id="path_button">Create by Path</button>
+
+
+<div id="button_div" align="center">
+   <button id="other_button" style="width:350px">Create by Component or Product</button>
+  <%=button_to 'Create by Incremental Path', admin_addvalue_path, :style => "width:350px", :method => :get%>
 </div>
-
-
 
 <%= form_for(@valuefield) do |f| %>
 
@@ -21,7 +20,39 @@
           </ul>
         </div>
     <% end %>
+<div id="main_div" class="main_div">
 
+<div id="property_div">
+    <table class="main_table">
+      <tr>
+        <th align="left">Property</th>
+        <th align="left">Value</th>
+        <th align="left">Code</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <select name="property_id" style ="width: 90%">
+              <%for prop in @all_properties%>
+                  <option value= "<%=prop.id %>" <%=" selected = \"true\"" if @property == prop%>>
+                    <%= prop.name%> (<%=prop.field_type%>)</option>
+              <% end %>
+            </select>&nbsp;<span style="color: red; vertical-align: top;">*</span>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :fieldvalue, :required => true %>&nbsp;<span style="color: red">*</span>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :code %>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>
 <div id="path_div">
     <table>
       <tr>
@@ -66,40 +97,10 @@
       </tr>
       </table>
   </div>
-    <div id="property_div">
-    <table>
-      <tr>
-        <th align="left">Property</th>
-        <th align="left">Value</th>
-        <th align="left">Code</th>
-      </tr>
-      <tr>
-        <td>
-          <div class ="field">
-            <select name="property_id" style ="width: 100%">
-              <%for prop in @all_properties%>
-                  <option value= "<%=prop.id %>" <%=" selected = \"true\"" if @property == prop%>>
-                    <%= prop.name%> (<%=prop.field_type%>)</option>
-              <% end %>
-            </select>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :fieldvalue %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :code %>
-          </div>
-        </td>
-      </tr>
-    </table>
-      <div class="actions">
-            <%= f.submit %>
-          </div>
-</div>
+      </div>
+  <div id="submit_div" class="right_div">
+     <%= f.submit :class => "submit"%>
+  </div>
 
 
 <%end%>
@@ -113,13 +114,19 @@
         $('#other_div').hide();
         $('#path_div').hide();
         $('#button_div').hide();
+        $('#submit_div').hide();
+        $('#main_div').hide();
 
         if("<%= !@valuefield.path.nil? %>" == "true"){
             $('#path_div').show();
             $('#property_div').show();
+            $('#submit_div').show();
+            $('#main_div').show();
         } else if("<%= !@valuefield.products.empty? || !@valuefield.components.empty?  %>" == "true"){
-             $('#other_div').show();
+            $('#other_div').show();
             $('#property_div').show();
+            $('#submit_div').show();
+            $('#main_div').show();
         } else {
             $('#button_div').show();
         }
@@ -130,12 +137,16 @@
             $('#path_div').show();
             $('#button_div').hide();
             $('#property_div').show();
+            $('#submit_div').show();
+            $('#main_div').show();
 
         });
         $('#other_button').click(function () {
             $('#other_div').show();
             $('#button_div').hide();
             $('#property_div').show();
+            $('#submit_div').show();
+            $('#main_div').show();
         });
     });
 

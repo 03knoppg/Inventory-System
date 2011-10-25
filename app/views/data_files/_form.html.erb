@@ -10,8 +10,8 @@
           </ul>
         </div>
     <% end %>
-
-    <table>
+ <div class="main_div">
+    <table class="main_table">
       <tr>
         <th align="left">Select Data File:</th>
         <th align="left">Products</th>
@@ -19,9 +19,9 @@
         <th align="left">Valuefields</th>
       </tr>
       <tr>
-        <td style="width: 200px">
+        <td style="width: 325px">
           <div class ="field" style="padding-bottom: 10px">
-            <%= f.file_field(:filedata, :id => "fd") %>
+            <%= f.file_field(:filedata, :id => "fd") %>&nbsp;<span style="color: red">*</span>
           </div>
           <div class align="field">
             <%=text_field_tag("", @data_file.filedata_file_name, :id => "fn", :size => 30) %>
@@ -74,9 +74,10 @@
 
 </tr>
 </table>
+   </div>
 <br class="clear" />
-    <div class="actions">
-            <%= f.submit %>
+    <div class="right_div">
+            <%= f.submit :class => "submit"%>
           </div>
 <% end %>
 <!--Script used to remove current image from edit page when user file_field input changes -->
