@@ -62,9 +62,11 @@
           <td>
             <table>
               <%for val in valuefields%>
-             <tr>
-               <td> <%= link_to(val.fieldvalue, val) %> </td>
-             </tr>
+                  <%if(@component.valuefields.include?(val))%>
+                     <tr>
+                       <td> <%= link_to(val.fieldvalue, val) %> </td>
+                     </tr>
+                  <%end%>
               <%end%>
         <%else%>
             <td>No valuefields</td>

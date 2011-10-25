@@ -15,16 +15,29 @@
 </table>
 
 
-<h4> Products related to <%=@category.name%> </h4>
-<% for cat in @all_categories %>
- <% srp = print_related_products(cat) %>
-<%end%>
+<table>
+  <tr><th>Categories related to <%=@category.name%></th></tr>
+    <%found_one = false%>
+    <%for cat in @all_categories%>
+        <%if(cat.parent_id == @category.id)%>
+          <%found_one = true%>
+          <tr>
+            <td><%=link_to cat.name, cat%></td>
+          </tr>
+        <%end%>
+    <%end%>
+    <%if(!found_one)%>
+        <tr><td>No Categories Available</td></tr>
+    <%end%>
+
+</table>
+
+
 
 <table>
-    <%= srp.html_safe %>
+    <%= print_related_products(@category).html_safe %>
 </table>
-<form method="get" action="/products/new"  class="button_to">
-                <div><input type="submit" value="New Product" /></div>
-                     <input type="hidden" name="category_id" value="<%=@category.id%>"/>
-               </form>
+
+<%= my_button_to "New Product", "/products/new", @category%>
+
 <br class="clear" />

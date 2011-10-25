@@ -32,8 +32,8 @@ module CategoriesHelper
   def print_related_products(category)
     all_products = category.products
     srp = ""
-    srp += "<tr><th>Name:</th>"
-    srp += "<th>Description:</th></tr>"
+    srp += "<tr><th>Products related to #{@category.name}</th>"
+    srp += "<th>Description</th></tr>"
     if(all_products.empty?)
       srp += "<tr><td>No Products Available</td><td></td></tr>"
     else
