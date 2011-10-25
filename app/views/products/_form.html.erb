@@ -10,7 +10,8 @@
           </ul>
         </div>
     <% end %>
-    <table>
+     <div class="main_div">
+    <table class="main_table">
       <tr>
         <th align="left">Name</th>
         <th align="left">Description</th>
@@ -18,14 +19,14 @@
         <th align="left">Categories</th>
       </tr>
       <tr>
-        <td style="width: 200px">
+        <td>
           <div class ="field">
-            <%= f.text_field :name, :required => true %>
+            <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description %>
+            <%= f.text_field :description, :required => true %>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
@@ -39,7 +40,6 @@
                 <br/> No Categories available
             <%else%>
                 <select size="5" multiple="multiple" name="new_categories_ids[]" style="width: 100px"  class="required">
-
                   <% for cat in @all_categories
                          if (cat.parent_id == nil)
                              next
@@ -49,16 +49,16 @@
                       <% if (@associated_categories.include?(cat)) %> selected=true <% end %>>
                         <%= cat.name %>
                       </option>
-
                   <% end %>
-                </select>
+                </select>&nbsp;<span style="color: red; vertical-align: top;">*</span>
             <%end%>
           </div>
         </td>
 </tr>
 </table>
-<div class="actions">
-            <%= f.submit %>
+</div>
+<div class="right_div">
+            <%= f.submit :class => "submit"%>
           </div>
 <% end %>
 <br class="clear" />

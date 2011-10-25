@@ -15,7 +15,7 @@ module CategoriesHelper
     for parent in @all_categories_hash[parent_id]
       if(parent_id != 0)   #only root category has id 0
         s+= "<tr>\n"
-          s+= "<td> #{"-"*depth} #{parent.name }</td>\n"
+          s+= "<td>#{"-"*depth} #{parent.name }</td>\n"
           s+= "<td>#{button_to "Show", {:controller => :categories, :action => "show", :id => parent.id}, :method => :get}\n"
           s+= "#{button_to "Edit", edit_category_path(parent), :method => :get}\n"
           s+= "#{button_to "Delete", {:controller => :categories, :action => "destroy", :id => parent.id }, :confirm => confirmation_message(parent, @all_categories_hash), :method => :delete}</td>\n"
@@ -32,8 +32,8 @@ module CategoriesHelper
   def print_related_products(category)
     all_products = category.products
     srp = ""
-    srp += "<tr><th>Name:</th>"
-    srp += "<th>Description:</th></tr>"
+    srp += "<tr><th>Products related to #{@category.name}</th>"
+    srp += "<th>Description</th></tr>"
     if(all_products.empty?)
       srp += "<tr><td>No Products Available</td><td></td></tr>"
     else

@@ -10,8 +10,8 @@
           </ul>
         </div>
     <% end %>
-
-    <table>
+ <div class="main_div">
+    <table class="main_table">
       <tr>
         <th align="left">Select Image:</th>
         <th align="left">Products</th>
@@ -19,12 +19,12 @@
         <th align="left">Valuefields</th>
       </tr>
       <tr>
-        <td style="width: 200px">
+        <td style="width: 325px">
           <div class ="field" style="padding-bottom: 10px">
-            <%= f.file_field(:picture, :id => "pic", :required => true) %>
+            <%= f.file_field(:picture, :id => "pic", :required => true) %>&nbsp;<span style="color: red">*</span>
           </div>
           <div class align="field">
-            <%=image_tag(@image.picture(:small), :id => "img") %>
+            <%=image_tag(@image.picture(:small), :id => "img", :alt=>"") %>
           </div>
         </td>
         <td>
@@ -42,7 +42,7 @@
           <div class="field">
             <select size="5" name="image[component_id[]]" style="width: 200px">
               <% for comp in @all_components.sort {|x,y| x.name <=> y.name } %>
-                  <%= components_select_table(comp, 0, @image).html_safe %>
+                  <%= components_select_table(comp, 0).html_safe %>
               <% end %>
             </select>
           </div>
@@ -61,9 +61,10 @@
 
 </tr>
 </table>
+   </div>
 
-          <div class="actions">
-            <%= f.submit %>
+          <div class="right_div">
+            <%= f.submit :class => "submit"%>
           </div>
 
 <% end %>

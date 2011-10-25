@@ -1,26 +1,23 @@
 <!--Component Show Page -->
 <p id="notice"><%# notice %></p>
 <h1>Viewing Component: <%=@component.name%></h1>
-<table>
+<div class="main_div">
+<table class="main_table">
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
     <th align="left">Code</th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @component.name %></td>
     <td><%= @component.description %></td>
     <td><%= @component.code %></td>
-    <td><%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-    <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 
-<h4>Group related to <%=@component.name%></h4>
 <% group = @component.group %>
 <table>
-  <tr><th align="left">Group Name</th></tr>
+  <tr><th align="left">Group related to <%=@component.name%></th></tr>
   <tr><td>
   <% if(!group.nil?) %>
       <%= link_to("#{group.name} ", group) %>
@@ -30,25 +27,23 @@
   </td></tr>
 </table>
 
-<h4> Parent Components related to <%=@component.name%> </h4>
 <table>
-  <tr><th align="Left">Parent Name</th></tr>
+  <tr><th align="Left">Parent Components related to <%=@component.name%></th></tr>
   <%= print_component_parents.html_safe %>
 </table>
 
 
 
-<h4>Child Components related to <%=@component.name%></h4>
 <table>
-  <tr><th align="left">Child Name</th></tr>
+  <tr><th align="left">Child Components related to <%=@component.name%></th></tr>
   <%= print_component_child.html_safe %>
 </table>
 
 
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Properties related to <%=@component.name%></b></th>
-    <th align="left"><b>Value</b></th>
+    <th align="left">Properties related to <%=@component.name%></th>
+    <th align="left">Value</th>
   </tr>
   <%properties = @component.properties %>
 
@@ -70,18 +65,10 @@
             <td>No valuefields</td>
         <%end%>
             <tr>
-              <td></td>
               <td>
-
-                   <%# button_to "New #{prod.name} Value", new_valuefield_path, :method=>:get%>
-                   <form method="get" action="/valuefields/new"  class="button_to"><div><input type="submit" value="New <%=prop.name%> Value" /></div>
-                        <input type="hidden" name="_property_id" value="_<%=prop.id%>" />
-                        <input type="hidden" name="component_id" value="<%=@component.id%>" />
-                   </form>
-
+                <%= my_button_to("New #{prop.name} Value", "/valuefields/new", [@component, @property] ) %>
               </td>
             </tr>
-
             </table>
           </td>
         </tr>
@@ -102,7 +89,7 @@
 
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Images related to <%=@component.name%></b></th>
+    <th align="left">Images related to <%=@component.name%></th>
   </tr>
   <%if(!@all_images.empty?)
         compImages = []
@@ -122,6 +109,12 @@
       </tr>
   <%end%>
       <tr>
-        <td> <%= my_button_to "New Image", new_image_path, @component %> </td>
+        <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
       </tr>
 </table>
+ </div>
+<div class="right_div">
+  <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
+  <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Duplicate Component", new_component_path + "?duplicate_component=#{@component.id}"%>
+</div>

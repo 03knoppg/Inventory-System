@@ -1,7 +1,8 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Data File: <%=@data_file.filedata_file_name%></h1>
+<div class="main_div">
 
-<table>
+<table class="main_table">
   <tr>
     <th align="left">Data File</th>
     <th align="left">Actions</th>
@@ -27,7 +28,7 @@
 </table>
 <table>
   <tr>
-    <th align="left"><b>Components related to <%=@data_file.filedata_file_name%></b></th>
+    <th align="left">Components related to <%=@data_file.filedata_file_name%></th>
   </tr>
   <tr>
     <% if(@data_file.component != nil) %>
@@ -39,7 +40,7 @@
 </table>
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Valuefields related to <%=@data_file.filedata_file_name%></b></th>
+    <th align="left">Valuefields related to <%=@data_file.filedata_file_name%></th>
   </tr>
 
   <tr>
@@ -50,5 +51,9 @@
     <%end%>
   </tr>
 </table>
-<%= button_to "New Data File", new_data_file_path, :method => :get %>
+  </div>
+<div class="right_div">
+    <%= button_to "New Data File", new_data_file_path, :method => :get %>
+</div>
+
 

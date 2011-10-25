@@ -1,11 +1,11 @@
 <!--Products Index Page - uses application.html.erb for template. -->
+<%= button_to "New Product", new_product_path, :method => :get %> <br /><br /><br />
 <h1>Listing Products</h1>
 <!--Button to create a new product -->
-<%= button_to "New Product", new_product_path, :method => :get %>
  <!--if length > 0 print groups -->
+<div class="main_div">
 <%if(!@all_products.empty?)    %>
     <table title="Current Products">
-        <tr><th colspan="4"><h4>Current Products</h4></th></tr>
         <tr>
             <th align="left">Name</th>
             <th align="left">Description</th>
@@ -18,4 +18,5 @@
         <tr><td><h4>No Products Available</h4></td></tr>
 <%end%>
 </table>
+  </div>
 <br class="clear" />

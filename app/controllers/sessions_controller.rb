@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:username], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to admin_path, :notice => "Logged in!"
+      redirect_back_or_to admin_path, :notice => ""
     else
       flash[:alert] = "Email or password was invalid."
       redirect_to login_url
@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to root_url, :notice => ""
   end
 
 

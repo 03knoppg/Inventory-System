@@ -5,6 +5,8 @@ class Valuefield < ActiveRecord::Base
   has_many :images
   has_many :data_files
 
+  validates_presence_of :fieldvalue
+
     def to_s   #for debug
     return "#{id}:#{fieldvalue}"
   end

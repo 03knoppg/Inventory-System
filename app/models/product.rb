@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   has_many :images
   has_many :data_files
 
-  validates_presence_of :name
+  validates_presence_of :name, :description
 
   def to_s   #for debug
     return "#{id}:#{name}"

@@ -10,28 +10,29 @@
       </ul>
     </div>
   <% end %>
-
-<table>
+ <div class="main_div">
+    <table class="main_table">
       <tr>
         <th align="left">Extension</th>
         <th align="left">Extension Type</th>
       </tr>
       <tr>
-        <td style="width: 200px">
+        <td>
           <div class ="field">
-            <%= f.text_field :extension, :required => true%>
+            <%= f.text_field :extension, :required => true%>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
           <div class="field">
-             <%= select_tag "kind", raw("<option>Image</option><option>Data File</option>".html_safe) %>
+             <%= select_tag "kind", raw("<option>Image</option><option>Data File</option>".html_safe) %>&nbsp;<span style="color: red; vertical-align: top;">*</span>
           </div>
         </td>
     </tr>
 </table>
+   </div>
 
-          <div class="actions">
-            <%= f.submit %>
+          <div class="right_div">
+            <%= f.submit :class => "submit"%>
           </div>
 <% end %>
 <br class="clear" />

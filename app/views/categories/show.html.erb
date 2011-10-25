@@ -1,30 +1,27 @@
 <p id="notice"><%# notice %></p>
  <h1>Viewing Category: <%=@category.name%></h1>
-<table>
+<div class="main_div">
+
+<table class="main_table">
   <tr>
-    <th align="left">Category Name:</th>
+    <th align="left">Category Name</th>
     <th align="left">Parent of <%=@category.name%></th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @category.name %></td>
     <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
-    <td><%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
-    <%=button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
-</table>
-
-
-<h4> Products related to <%=@category.name%> </h4>
 <% for cat in @all_categories %>
  <% srp = print_related_products(cat) %>
 <%end%>
-
+</table>
 <table>
     <%= srp.html_safe %>
+    <tr><td><%=my_button_to("New Product", new_product_path, [@category])%></td></tr>
 </table>
-<form method="get" action="/products/new"  class="button_to">
-                <div><input type="submit" value="New Product" /></div>
-                     <input type="hidden" name="category_id" value="<%=@category.id%>"/>
-               </form>
-<br class="clear" />
+ </div>
+ <div class="right_div">
+<%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
+<%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
+<%= button_to "Duplicate Category", new_category_path + "?duplicate_category=#{@category.id}"%>
+</div>

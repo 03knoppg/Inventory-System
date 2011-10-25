@@ -1,14 +1,11 @@
-<h1>Listing Data Files</h1>
 <!--Button to create a new Data File -->
-<%= button_to "New Data File", new_data_file_path, :method => :get %>
-<table title="Current Data Files">
+<%= button_to "New Data File", new_data_file_path, :method => :get %><br /><br /><br />
+<h1>Listing Data Files</h1>
+<table>
   <%if(@data_files.length > 0)    %>
       <tr>
         <th align="left">Data File</th>
         <th align="left">Actions</th>
-        <th align="left">Belongs to (Product)</th>
-        <th align="left">Belongs to (Component)</th>
-        <th align="left">Belongs to (Valuefield)</th>
       </tr>
       <%= print_data_files.html_safe %>
   <%else%>

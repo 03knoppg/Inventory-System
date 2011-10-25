@@ -1,19 +1,17 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Product: <%=@product.name%></h1>
+<div class="main_div">
 
-<table>
+<table class="main_table">
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
     <th align="left">Code</th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= @product.name %></td>
     <td valign="top"><%= @product.description %></td>
     <td valign="top"><%= @product.code %></td>
-    <td><%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
-    <%=button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 
@@ -50,10 +48,7 @@
     <tr><td>No Components</td><td></td></tr>
 <%end%>
     </table>
-<form method="get" action="/components/new"  class="button_to">
-                <div><input type="submit" value="New Component" /></div>
-                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
-               </form>
+  <%= my_button_to "New Component", "/components/new", [@product]%>
 
 
 
@@ -120,11 +115,8 @@
          <tr><td>No Images</td></tr>
       <%end%>
 </table>
-<form method="get" action="/images/new"  class="button_to">
-                <div><input type="submit" value="New Image" /></div>
-                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
-               </form>
 
+  <%= my_button_to "New Image", "/images/new", [@product]%>
 
  <table style="padding-top: 15px">
   <tr>
@@ -146,8 +138,13 @@
          <tr><td>No Images</td></tr>
       <%end%>
 </table>
-<form method="get" action="/data_files/new"  class="button_to">
-                <div><input type="submit" value="New Datafile" /></div>
-                     <input type="hidden" name="product_id" value="<%=@product.id%>"/>
-               </form>
+  <%= my_button_to "New Datafile", "/data_files/new", [@product]%>
+  <br/>
 
+
+</div>
+
+<div class="right_div">
+  <%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
+    <%=button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
+</div>

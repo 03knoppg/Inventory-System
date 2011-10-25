@@ -1,21 +1,18 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Group</h1>
-<table>
+ <h1>Viewing Groups</h1>
+<div class="main_div">
+<table class ="main_table">
   <tr>
     <th align="left">Name</th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @group.name %></td>
-    <td><%= button_to "Edit Group", edit_group_path(@group), :method => :get %>
-    <%=button_to "Delete Group", {:controller => :groups, :action => "destroy", :id => @group.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 
-<h4> Components related to this Group </h4>
 <% components = @group.components %>
 <table>
-  <tr><th>Name</th></tr>
+  <tr><th>Components related to this Group</th></tr>
   <%if(!components.empty?)%>
   <% for comp in components %>
     <tr><td><%= link_to(comp.name, comp) %></td></tr>
@@ -26,4 +23,10 @@
     <tr><td><%=button_to "New Component", new_component_path, :method => :get%></td></tr>
 
 </table>
+  </div>
+<div class="right_div">
+  <%= button_to "Edit Group", edit_group_path(@group), :method => :get %>
+  <%=button_to "Delete Group", {:controller => :groups, :action => "destroy", :id => @group.id }, :confirm => "Are You sure?", :method => :delete%>
+
+</div>
 <br class="clear" />

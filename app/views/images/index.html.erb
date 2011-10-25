@@ -1,15 +1,12 @@
-<h1>Listing Images</h1>
 <!--Button to create a new Image -->
-<%= button_to "New Image", new_image_path, :method => :get %>
+<%= button_to "New Image", new_image_path, :method => :get %><br /><br /><br />
+<h1>Listing Images</h1>
 
-<table title="Current Images">
-  <tr><th colspan="5"><h4>Current Images</h4></th></tr>
+<div class="main_div">
+<table>
   <%if(!@all_images.empty?)    %>
       <tr>
         <th align="left">Image</th>
-        <th align="left">Product image belongs to</th>
-        <th align="left">Component image belongs to</th>
-        <th align="left">Valuefield image belongs to</th>
         <th align="left">Actions</th>
       </tr>
       <%= print_images.html_safe %>
@@ -17,4 +14,5 @@
       <tr><td><h4>No Images Available</h4></td></tr>
   <%end%>
 </table>
+  </div>
 <br class="clear" />

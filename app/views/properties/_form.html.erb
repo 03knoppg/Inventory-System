@@ -10,7 +10,8 @@
           </ul>
         </div>
     <% end %>
-    <table>
+    <div class="main_div">
+    <table class="main_table">
       <tr>
         <th align="left">Name</th>
         <th align="left">Description</th>
@@ -19,25 +20,25 @@
       <tr>
         <td>
           <div class ="field">
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description %>
+            <%= f.text_field :description, :required => true %>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :field_type %>
+            <%= f.text_field :field_type, :required => true %>&nbsp;<span style="color: red">*</span>
           </div>
         </td>
       </tr>
     </table>
+     </div>
 
-
-          <div class="actions">
-            <%= f.submit %>
+          <div class="right_div">
+            <%= f.submit :class => "submit"%>
           </div>
 <%end%>
 <br class="clear" />

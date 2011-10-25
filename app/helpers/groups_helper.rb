@@ -6,7 +6,6 @@ module GroupsHelper
     sg+= "<td> #{button_to "Show", {:controller => :groups, :action => "show", :id => group.id }, :method => :get}\n"
     sg+= "#{button_to "Edit", edit_group_path(group), :method => :get}\n"
     sg+= "#{button_to "Delete", {:controller => :groups, :action => "destroy", :id => group.id }, :confirm => "Are you sure?", :method => :delete}</td>\n"
-    sg+= "<td>#{group_component_print(group)}</td>"
     sg+= "</tr>\n"
     return sg
   end
