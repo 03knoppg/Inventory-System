@@ -1,0 +1,176 @@
+
+<%= form_for(@valuefield) do |f| %>
+    <% if @valuefield.errors.any? %>
+
+        <div id="error_explanation">
+          <h2><%= pluralize(@valuefield.errors.count, "error") %> prohibited this valuefield from being saved:</h2>
+
+          <ul>
+            <% @valuefield.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+<h1>Add Value</h1>
+
+
+  <div class = "main_div">
+
+    <div id="property_div">
+    <table  class="main_table">
+      <tr>
+        <th align="left">Property</th>
+        <th align="left">Value</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <select style="width: 90%" id ="prop_select" name="property_id">
+              <%for prop in @all_properties %>
+                  <option value= "<%=prop.id %>">
+                    <%= prop.name%> (<%=prop.field_type%>)</option>
+              <% end %>
+            </select>&nbsp;<span style="color: red">*</span>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :fieldvalue, :required => true %>&nbsp;<span style="color: red">*</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+
+  <%= text_field_tag 'valuefield_path',  "", {:hidden => true, :disabled => true, :style => "width: 100%"}%>
+  <%= text_field_tag 'valuefield_path_hidden',  "", {:hidden => true, :style => "width: 100%"}%>
+
+
+
+<table>
+  <tr>
+    <th width="25%">
+      Category
+    </th>
+    <th width="25%">
+      Product
+    </th>
+    <th width="25%">
+      Component
+    </th>
+    <th width="25%">
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%
+   categories = Category.all
+   if(categories.length == 0)%>
+    <br/> No Categories Available
+    <%else%>
+        <div id ="category_select_area">
+          <select style="width: 90%; border: 2px solid red" size="5" id = "category_select_box">
+            <%for cat in categories%>
+                <%if(!cat.products.empty?)%>
+                <option value="<%= @type %><%= cat.id %>">
+
+                  <%=cat.name%>
+
+                </option>
+                <%end %>
+            <%end%>
+          </select>
+        </div>
+    <%end%>
+    </td>
+    <td>
+        <div id="product_select_area"></div>
+    </td>
+    <td>
+        <div id="component_select_area"></div>
+    </td>
+    <td>
+        <div id="valuefield_select_area"></div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <h5><span style="color: red">Red</span> highlighted box is a required selection; continue to choose options to build the permutation.</h5>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+  </div>
+
+<div class="right_div">
+    <%= f.submit :id => "button", :disabled => "true"%>
+</div>
+    <div id="submit_button">
+    <% form_tag url_for(:action => "addvalue"), :id => "tool-form", :remote => true, do  %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+<% end %>
+</div>
+
+<%end%>
+
+
+<script type="text/javascript">
+
+
+    jQuery(function($) {
+        $('#cart123 p').replaceWith("<%= escape_javascript(render :partial => 'fill_select') %>");
+    });
+
+</script>
+
+
+<script type="text/javascript">
+
+    jQuery(function($) {
+
+
+        // dummy example... ignore
+        $('#prod_select123').live('click',
+                function () {
+                    $.getScript(this.href, this.val());
+                    return false;
+                }
+        );
+
+
+        // prod_select ajax get function
+        $('select').live('click',function () {
+            $.get("/admin/addvalue", {path: $('#valuefield_path_hidden').attr("value"), item: $(this).val()}, null, 'script');
+            return false;
+        });
+
+        $('#writebutton').click(function(){
+           $.get("/admin/writefile", {path: $('#valuefield_path_hidden').attr("value"), item: $(this).val()}, null);
+            return false;
+
+        });
+
+
+
+$('#valuefield_path').attr("value","");
+$('#valuefield_path_hidden').attr("value","");
+$('#valuefield_path_hidden').attr("value","");
+$('#category_select_box').removeAttr("disabled");
+
+    });
+
+
+
+</script>
+
+
+

@@ -70,8 +70,8 @@ class PropertiesController < ApplicationController
   # PUT /properties/1.json
   #Function to update property
   def update
+    #Finds selected property
     @property = Property.find(params[:id])
-
     respond_to do |format|
       if @property.update_attributes(params[:property])
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
@@ -85,14 +85,16 @@ class PropertiesController < ApplicationController
 
   # DELETE /properties/1
   # DELETE /properties/1.json
+  #Function to destroy property
   def destroy
+    #Finds selected property
     @property = Property.find(params[:id])
-
+    #destroys valuefields associated with properties
     for val in @property.valuefields
       val.destroy
     end
+    #destroys property
     @property.destroy
-
     respond_to do |format|
       format.html { redirect_to properties_url }
       format.json { head :ok }

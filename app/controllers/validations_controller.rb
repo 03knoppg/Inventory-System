@@ -1,9 +1,10 @@
 class ValidationsController < ApplicationController
   # GET /validations
   # GET /validations.json
+  #Function for index page
   def index
+    #creates an array of all validations
     @validations = Validation.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @validations }
@@ -12,9 +13,10 @@ class ValidationsController < ApplicationController
 
   # GET /validations/1
   # GET /validations/1.json
+  #Function for show page
   def show
+    #Finds selected validation
     @validation = Validation.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @validation }
@@ -23,9 +25,10 @@ class ValidationsController < ApplicationController
 
   # GET /validations/new
   # GET /validations/new.json
+  #Function for new page
   def new
+    #create a new validation
     @validation = Validation.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @validation }
@@ -33,14 +36,19 @@ class ValidationsController < ApplicationController
   end
 
   # GET /validations/1/edit
+  #Function for edit page
   def edit
+    #Finds selected validation
     @validation = Validation.find(params[:id])
   end
 
   # POST /validations
   # POST /validations.json
+  #Function to create validation
   def create
+    #create validation to save
     @validation = Validation.new(params[:validation])
+    #
     @validation.kind = params[:kind]
     respond_to do |format|
       if @validation.save
