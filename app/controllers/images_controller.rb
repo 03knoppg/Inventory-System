@@ -1,9 +1,10 @@
 class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
+  #Function for index page
   def index
+    #creates an array of all images
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @images }
@@ -12,9 +13,10 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   # GET /images/1.json
+  #Function for show page
   def show
+    #Finds selected image
     @image = Image.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @image }
@@ -23,10 +25,15 @@ class ImagesController < ApplicationController
 
   # GET /images/new
   # GET /images/new.json
+  #Function for new page
   def new
+    #create a new image
     @image = Image.new
+    #creates an array of all components
     @all_components = Component.all
+    #creates an array of all products
     @all_products = Product.all
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all
 
     if(!params[:product_id].nil?)
@@ -48,25 +55,34 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/1/edit
+  #Function for edit page
   def edit
+    #Finds selected image
     @image = Image.find(params[:id])
+    #creates an array of all products
     @all_products = Product.all
+    #creates an array of all components
     @all_components = Component.all
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all
-
+    #assigns variable associated product
     @product = @image.product
+    #assigns variable associated component
     @component = @image.component
-
   end
 
   # POST /images
   # POST /images.json
+  #Function to create image
   def create
+    #create an image to save
     @image = Image.new(params[:image])
+    #creates an array of all products
     @all_products = Product.all
+    #creates an array of all components
     @all_components = Component.all
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all
-
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
@@ -80,12 +96,16 @@ class ImagesController < ApplicationController
 
   # PUT /images/1
   # PUT /images/1.json
+  #Function to update image
   def update
+    #Finds selected image
     @image = Image.find(params[:id])
+    #creates an array of products
     @all_products = Product.all
+    #creates an array of components
     @all_components = Component.all
+    #creates an array of valuefields
     @all_valuefields = Valuefield.all
-
     respond_to do |format|
       if @image.update_attributes(params[:image])
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
@@ -99,10 +119,12 @@ class ImagesController < ApplicationController
 
   # DELETE /images/1
   # DELETE /images/1.json
+  #Function to delete image
   def destroy
+    #Finds selected image
     @image = Image.find(params[:id])
+    #destroy image
     @image.destroy
-
     respond_to do |format|
       format.html { redirect_to images_url }
       format.json { head :ok }

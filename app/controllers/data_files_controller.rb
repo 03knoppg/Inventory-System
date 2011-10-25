@@ -1,8 +1,11 @@
 class DataFilesController < ApplicationController
   # GET /data_files
   # GET /data_files.json
+  #Function for index page
   def index
+    #creates an array of all Data Files
     @data_files = DataFile.all
+    #creates an empty string
     @df = ""
     respond_to do |format|
       format.html # index.html.erb
@@ -12,9 +15,10 @@ class DataFilesController < ApplicationController
 
   # GET /data_files/1
   # GET /data_files/1.json
+  #Function for show page
   def show
+    #Finds selected data file
     @data_file = DataFile.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @data_file }
@@ -23,10 +27,15 @@ class DataFilesController < ApplicationController
 
   # GET /data_files/new
   # GET /data_files/new.json
+  #Function for new page
   def new
+    #creates a new data file
     @data_file = DataFile.new
+    #creates an array for all components
     @all_components = Component.all
+    #creates an array for all products
     @all_products = Product.all
+    #creates an array for all valuefields
     @all_valuefields = Valuefield.all
 
     if(!params[:product_id].nil?)
@@ -48,19 +57,29 @@ class DataFilesController < ApplicationController
   end
 
   # GET /data_files/1/edit
+  #Function for edit page
   def edit
+    #Finds selected datafile
     @data_file = DataFile.find(params[:id])
+    #creates an array of all products
     @all_products = Product.all
+    #creates an array of all components
     @all_components = Component.all
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all
   end
 
   # POST /data_files
   # POST /data_files.json
+  #Function to create a new data file
   def create
+    #Creates a new data file to be saved
     @data_file = DataFile.new(params[:data_file])
+    #creates an array of all components
     @all_components = Component.all
+    #creates an array of all products
     @all_products = Product.all
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all
     respond_to do |format|
       if @data_file.save
@@ -75,9 +94,10 @@ class DataFilesController < ApplicationController
 
   # PUT /data_files/1
   # PUT /data_files/1.json
+  #Function to update a data file
   def update
+    #Finds selected data file
     @data_file = DataFile.find(params[:id])
-
     respond_to do |format|
       if @data_file.update_attributes(params[:data_file])
         format.html { redirect_to @data_file, notice: 'Data file was successfully updated.' }
@@ -91,10 +111,12 @@ class DataFilesController < ApplicationController
 
   # DELETE /data_files/1
   # DELETE /data_files/1.json
+  #Function to destroy a data file
   def destroy
+    #Finds selected data file
     @data_file = DataFile.find(params[:id])
+    #destroys data file
     @data_file.destroy
-
     respond_to do |format|
       format.html { redirect_to data_files_url }
       format.json { head :ok }

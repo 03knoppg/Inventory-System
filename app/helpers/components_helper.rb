@@ -103,13 +103,10 @@ module ComponentsHelper
     return pp
   end
 
-
+  #Prints value fields related to a component and selects value if one is related
   def properties_VF_table
-
-    selected_valuefields = @component.valuefields
-
+    selected_valuefields = @component_use.valuefields
     s = ""
-
     for property in @all_properties.sort!
       s += "<option value=\"#{property.id}\">#{property.name} (#{property.field_type})</option>"
       for valuefield in property.valuefields.sort!
@@ -118,14 +115,9 @@ module ComponentsHelper
           s+= " selected=\"true\""
         end
         s+=">---#{valuefield.fieldvalue}</option>"
-
       end
     end
-
     return s
-
-
   end
-
 end
 

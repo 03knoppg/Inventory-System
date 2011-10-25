@@ -32,24 +32,35 @@ class ValuefieldsController < ApplicationController
   # GET /valuefields/new
   # GET /valuefields/new.json
   def new
-    @valuefield = Valuefield.new
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
     @components = []
     @products = []
 
-    if(!params[:property_id].nil?)
-      @property = Property.find(params[:property_id])
-    end
+    #if statement for duplicating a record
+    if params[:duplicate_value]
+        #Assign value to be duplicated
+        value_to_duplicate = Valuefield.find params[:duplicate_value]
+        #set value to duplicated info minus id
+        @valuefield = value_to_duplicate.dup
+        #Global Variables for duplicate
+        @property = value_to_duplicate.property
+        @components = value_to_duplicate.components
+        @products = value_to_duplicate.products
+    else
+        #New category
+        @category = Category.new
+         if(!params[:property_id].nil?)
+          @property = Property.find(params[:property_id])
+         end
+          if(!params[:component_id].nil?)
+            @components = [Component.find(params[:component_id])]
+          end
 
-    if(!params[:component_id].nil?)
-      @components = [Component.find(params[:component_id])]
+          if(!params[:product_id].nil?)
+            @product = [Product.find(params[:product_id])]
+          end
     end
-
-    if(!params[:product_id].nil?)
-      @product = [Product.find(params[:product_id])]
-    end
-
 
     respond_to do |format|
       format.html # new.html.erb

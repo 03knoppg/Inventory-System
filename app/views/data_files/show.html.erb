@@ -9,8 +9,6 @@
   </tr>
   <tr>
     <td valign="top"><%= @data_file.filedata_file_name %></td>
-    <td><%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %>
-    <%=button_to "Delete Data File", {:controller => :data_files, :action => "destroy", :id => @data_file.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
 
@@ -53,7 +51,8 @@
 </table>
   </div>
 <div class="right_div">
-    <%= button_to "New Data File", new_data_file_path, :method => :get %>
+    <%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %>
+    <%=button_to "Delete Data File", {:controller => :data_files, :action => "destroy", :id => @data_file.id }, :confirm => "Are You sure?", :method => :delete%>
 </div>
 
 

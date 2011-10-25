@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20111018200852) do
   create_table "components", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "group_id"
+    t.integer  "group_id"
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"

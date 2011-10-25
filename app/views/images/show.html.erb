@@ -1,18 +1,14 @@
 <p id="notice"><%= notice %></p>
 <h1>Viewing Image: <%=@image.picture_file_name%></h1>
-
-<table>
+<div class="main_div">
+<table class="main_table">
   <tr>
     <th align="left">Image</th>
-    <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
-    <td><%= button_to "Edit Image", edit_image_path(@image), :method => :get %>
-    <%=button_to "Delete Image", {:controller => :images, :action => "destroy", :id => @image.id }, :confirm => "Are You sure?", :method => :delete%></td>
   </tr>
 </table>
-
 <table>
   <tr>
     <th align="left">Products related to <%=@image.picture_file_name%></th>
@@ -27,7 +23,7 @@
 </table>
 <table>
   <tr>
-    <th align="left"><b>Components related to <%=@image.picture_file_name%></b></th>
+    <th align="left">Components related to <%=@image.picture_file_name%></th>
   </tr>
   <tr>
     <% if(@image.component != nil) %>
@@ -39,7 +35,7 @@
 </table>
 <table style="padding-top: 15px">
   <tr>
-    <th align="left"><b>Valuefields related to <%=@image.picture_file_name%></b></th>
+    <th align="left">Valuefields related to <%=@image.picture_file_name%></th>
   </tr>
 
   <tr>
@@ -50,5 +46,8 @@
     <%end%>
   </tr>
 </table>
-<%= button_to "New Image", new_image_path, :method => :get %>
-
+</div>
+<div class="right_div">
+<%= button_to "Edit Image", edit_image_path(@image), :method => :get %>
+    <%=button_to "Delete Image", {:controller => :images, :action => "destroy", :id => @image.id }, :confirm => "Are You sure?", :method => :delete%>
+</div>

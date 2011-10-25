@@ -58,6 +58,8 @@ TestDBRubymineProject::Application.routes.draw do
   #Posts used for duplicating records.
   post "categories/new"
   post "components/new"
+  post "products/new"
+  post "valuefields/new"
 
 
   match 'admin', :to => 'admin#home'

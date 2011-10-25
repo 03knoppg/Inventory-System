@@ -113,6 +113,7 @@ path = @valuefield.path%>
     </div>
 <div class="right_div">
    <%= button_to 'Edit Value', edit_valuefield_path(@valuefield), :method => :get %>
-    <%=button_to "Delete Value", {:controller => :valuefields, :action => "destroy", :id => @valuefield.id }, :confirm => "Are You sure?", :method => :delete%>
+   <%=button_to "Delete Value", {:controller => :valuefields, :action => "destroy", :id => @valuefield.id }, :confirm => "Are You sure?", :method => :delete%>
+   <%= button_to "Duplicate Value", new_valuefield_path + "?duplicate_value=#{@valuefield.id}"%>
 </div>
 

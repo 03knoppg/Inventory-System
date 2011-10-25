@@ -1,21 +1,19 @@
-#Controller file for Categories
+#Controller class for Categories
 class CategoriesController < ApplicationController
-
-
-
   # GET /categories
   # GET /categories.json
+  #Function for index page
   def index
-
+    #creates a sorted array using all category objects
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
+    #creates an empty hash
     @all_categories_hash = {}
-
+    #calls function to populate & sort @all_categories_hash
     sort_categories
-
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @categories }
-       format.xml { render :xml => @categories }
+      format.xml { render :xml => @categories }
     end
   end
 
@@ -23,8 +21,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   #Function to show selected category
   def show
+    #locates the selected category
     @category = Category.find(params[:id])
+    #assigns the parent of the selected category to a variable
     @parent = @category.parent_id ? Category.find(@category.parent_id) : nil
+    #creates a sorted array using all category objects
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # show.html.erb
@@ -37,16 +38,18 @@ class CategoriesController < ApplicationController
   # GET /categories/new.json
   #Function for new category
   def new
+    #creates a sorted array using all category objects
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
-
     #if statement for duplicating a record
     if params[:duplicate_category]
+        #Assign category to be duplicated
         category_to_duplicate = Category.find params[:duplicate_category]
+        #set @category to duplicated info minus id
         @category = category_to_duplicate.dup
     else
+        #New category
         @category = Category.new
     end
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @category }
@@ -56,23 +59,24 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   #Function to edit a category
   def edit
+    #locates the selected category
     @category = Category.find(params[:id])
+    #creates a sorted array using all category objects
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
-
+    #creates an empty hash
     @child_categories = []
+    #call to function to remove children - a parent cannot be moved to be a child of its own child.
     remove_children(@all_categories, @category)
-
+    #re-assigns the array minus the categories children
     @all_categories = @all_categories - @child_categories
-
   end
 
   # POST /categories
   # POST /categories.json
   #Funtion to create a category
   def create
-
+    #Creates the category to be saved in the db
     @category = Category.new(params[:category])
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
@@ -88,8 +92,8 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.json
   #Function to update a category
   def update
+    #locates the category to be updated
     @category = Category.find(params[:id])
-
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -105,12 +109,16 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.json
   #Function to destroy a category
   def destroy
+    #locates the category to be destroyed
     @category = Category.find(params[:id])
+    #Creates an array of all categories
     @all_categories =  Category.all
+    #creates an empty hash
     @all_categories_hash = {}
+    #calls function to populate & sort @all_categories_hash
     sort_categories()
+    #calls function to destroy the category
     destroy_category(@category)
-
     respond_to do |format|
       format.html { redirect_to categories_url }
       format.json { head :ok }
@@ -133,6 +141,7 @@ class CategoriesController < ApplicationController
     category.destroy
   end
 
+  #Function to remove children of a category when edit is called
   def remove_children(categories, category)
      for cat in categories
       if(cat.parent_id == category.id)
