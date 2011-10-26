@@ -1,31 +1,58 @@
-    <h1>Sign Up</h1>
-
-    <%= form_for @user do |f| %>
-      <% if @user.errors.any? %>
+<h1>Sign Up</h1>
+<%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
         <div class="error_messages">
           <h2>Form is invalid</h2>
           <ul>
             <% for message in @user.errors.full_messages %>
-              <li><%= message %></li>
+                <li><%= message %></li>
             <% end %>
           </ul>
         </div>
-      <% end %>
-      <div class="field">
-        <%= f.label :username %>
-        <%= f.text_field :username %>
-      </div>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </div>
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-      </div>
-      <div class="actions"><%= f.submit %></div>
     <% end %>
+    <div class="main_div">
+    <table>
+      <tr>
+        <td style="width: 200px; vertical-align: middle">
+          <%= f.label :username  %>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :username, :style => "height:20px"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;">
+          <%= f.label :email %>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :email, :style => "height:20px" %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;">
+          <%= f.label :password %>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.password_field :password, :style => "height:20px" %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;">
+          <%= f.label :password_confirmation %>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.password_field :password_confirmation, :style => "height:20px" %>
+          </div>
+        </td>
+      </tr>
+    </table>
+      </div>
+    <div class="right_div"><%= f.submit %></div>
+<% end %>
