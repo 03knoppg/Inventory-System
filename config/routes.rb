@@ -22,6 +22,8 @@ TestDBRubymineProject::Application.routes.draw do
   post "login" => "sessions#new", :as => "login"  #for testing php
   get "signup" => "users#new", :as => "signup"
 
+  get  "sessions/forgotpass"
+
 
   resources :images
 
