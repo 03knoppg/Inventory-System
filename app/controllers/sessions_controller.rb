@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
   include REXML
   skip_before_filter :require_login, :except => [:destroy]
 
+  def show
+
+  end
+
   def index
     redirect_to login_url
   end
