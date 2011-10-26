@@ -43,4 +43,17 @@ module ApplicationHelper
     return pt
   end
 
+  def banner
+    @images = Image.all
+    if(!@images.empty?)
+    for img in @images
+      if(img.picture_file_name == "3di_media_server.png")
+        @imagelogo = img.picture.url
+      end
+      if(img.picture_file_name == "banner.png")
+        @imagebanner = img.picture.url
+      end
+    end
+  end
+    end
 end
