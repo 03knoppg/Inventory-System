@@ -5,10 +5,11 @@
 <table class="main_table">
   <tr>
     <th align="left">Data File</th>
-    <th align="left">Actions</th>
+    <th align="left">Preview</th>
   </tr>
   <tr>
     <td valign="top"><%= @data_file.filedata_file_name %></td>
+    <td><%= link_to("Preview Data File", @data_file.filedata.url, {:target => "blank"})%></td>
   </tr>
 </table>
 

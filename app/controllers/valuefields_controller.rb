@@ -1,14 +1,16 @@
 class ValuefieldsController < ApplicationController
-
-
   # GET /valuefields
   # GET /valuefields.json
+  #Function for index page
   def index
+    #creates an array of all properties
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
-    @all_components = Property.all.sort!{|x,y| x.name <=> y.name}
-    @all_products = Property.all.sort!{|x,y| x.name <=> y.name}
+    #creates an array of all components
+    @all_components = Component.all.sort!{|x,y| x.name <=> y.name}
+    #creates an array of all products
+    @all_products = Product.all.sort!{|x,y| x.name <=> y.name}
+    #creates an array of all valuefields
     @all_valuefields = Valuefield.all.sort!{|x,y| x.fieldvalue <=> y.fieldvalue}
-
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @valuefields }
@@ -18,10 +20,12 @@ class ValuefieldsController < ApplicationController
 
   # GET /valuefields/1
   # GET /valuefields/1.json
+  #Function for show page
   def show
+    #Finds selected valuefield
     @valuefield = Valuefield.find(params[:id])
+    #creates an array of all images
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @valuefield }
@@ -31,6 +35,7 @@ class ValuefieldsController < ApplicationController
 
   # GET /valuefields/new
   # GET /valuefields/new.json
+  #Function for new page
   def new
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
@@ -49,7 +54,7 @@ class ValuefieldsController < ApplicationController
         @products = value_to_duplicate.products
     else
         #New category
-        @category = Category.new
+        @valuefield = Valuefield.new
          if(!params[:property_id].nil?)
           @property = Property.find(params[:property_id])
          end
@@ -89,8 +94,11 @@ class ValuefieldsController < ApplicationController
     #logger.info("\n\n\n PATH#{params.inspect}")
 
     path = params[:valuefield_path_hidden]
-    if(!params[:prod_comp_id].nil?)
-      prod_comp = Integer(params[:prod_comp_id])
+    if(!params[:prod_comp_id].empty?)
+      prod_comp = []
+      for ids in params[:prod_comp_id]
+         prod_comp.push(Integer(ids))
+      end
     end
 
     if(!params[:property_id].nil?)
@@ -102,14 +110,16 @@ class ValuefieldsController < ApplicationController
       @valuefield.path = path
 
     elsif(!prod_comp.nil?)
-      if(prod_comp < 0)   #Product id is negative to differentiate from component
-        product =  Product.find(-(prod_comp+1))
-        @valuefield.product = product
+      for pc in prod_comp
+      if(pc < 0)   #Product id is negative to differentiate from component
+        product =  Product.find(-(pc+1))
+        @valuefield.products.push(product)
         product.properties.push(property)
       else
-        component =   Component.find(prod_comp)
-        @valuefield.component = component
+        component = Component.find(pc)
+        @valuefield.components.push(component)
         component.properties.push(property)
+      end
       end
     end
 

@@ -32,7 +32,9 @@
        <%if(!products.empty?) %>
       <%for product in products%>
         <tr>
-           <%= link_to product.name, product %>
+          <td>
+             <%= link_to product.name, product %>
+          </td>
         </tr>
       <%end%>
       <%else%>

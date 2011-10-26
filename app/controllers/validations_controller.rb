@@ -48,7 +48,7 @@ class ValidationsController < ApplicationController
   def create
     #create validation to save
     @validation = Validation.new(params[:validation])
-    #
+    #validation associated with kind
     @validation.kind = params[:kind]
     respond_to do |format|
       if @validation.save
@@ -63,9 +63,10 @@ class ValidationsController < ApplicationController
 
   # PUT /validations/1
   # PUT /validations/1.json
+  #Function to update validation
   def update
+    #Finds selected validation
     @validation = Validation.find(params[:id])
-
     respond_to do |format|
       if @validation.update_attributes(params[:validation])
         format.html { redirect_to @validation, notice: 'Validation was successfully updated.' }
@@ -79,10 +80,12 @@ class ValidationsController < ApplicationController
 
   # DELETE /validations/1
   # DELETE /validations/1.json
+  #Function to destroy validation
   def destroy
+    #Finds selected validation
     @validation = Validation.find(params[:id])
+    #destroys validation
     @validation.destroy
-
     respond_to do |format|
       format.html { redirect_to validations_url }
       format.json { head :ok }

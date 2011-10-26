@@ -62,11 +62,9 @@
 </tr>
 </table>
    </div>
-
           <div class="right_div">
             <%= f.submit :class => "submit"%>
           </div>
-
 <% end %>
 <br class="clear" />
 
@@ -76,6 +74,7 @@
                 $('#pic').change(
                         function(){
                             $('#img').remove();
+                            $('#img').change($('#pic').value)
                         }
                 )
             }

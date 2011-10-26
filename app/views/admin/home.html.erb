@@ -7,57 +7,19 @@
 </head>
 <body>
 <div>
-
+    <% menu = ["Categories", "Products", "Groups", "Components", "Properties", "ValueFields", "Validations", "Images", "Data_Files"] %>
     <h1>MAIN MENU</h1>
-    <table>
+    <table class="main_table">
         <tr>
-            <th align="left">Navigation</th>
+            <th>Navigation</th>
         </tr>
-        <tr>
-            <td>
-                <a href="categories/">Categories</a>
-            </td>
-        </tr>
+      <% for m in menu %>
         <tr>
             <td>
-                <a href="products/">Products</a>
+                <a href="<%= m.downcase %>/"><%= m %></a>
             </td>
         </tr>
-        <tr>
-            <td>
-                <a href="components/">Components</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="groups/">Groups</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="properties/">Properties</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="valuefields/">Value Fields</a>
-            </td>
-        </tr>
-      <tr>
-        <td>
-          <a href="images/">Images</a>
-        </td>
-      </tr>
-       <tr>
-        <td>
-          <a href="data_files/">Data Files</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="validations/">Validations</a>
-        </td>
-      </tr>
+      <%end%>
     </table>
 </div>
 </body>

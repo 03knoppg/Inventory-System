@@ -64,7 +64,7 @@
                 <div class ="field">
                   <select size="10" name="new_group_id" STYLE="width: 100%">
                     <%for group in @all_groups%>
-                        <option value = "<%=group.id%>" <%if(@component_use.group_id == group.id)%> selected = "true"<%end%>>
+                        <option value = "<%=group.id%>" <%if(!@component_use == nil && @component_use.group_id == group.id)%> selected = "true"<%end%>>
                           <%= group.name %>
                         </option>
                     <%end%>

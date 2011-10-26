@@ -46,8 +46,6 @@ class ComponentsController < ApplicationController
     @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
     #creates a sorted array of all properties
     @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
-    #creates a sorted array of all products
-    @all_products = Product.all.sort {|x,y| x.name <=> y.name }
     #creates a sorted array of all components
     @all_components =  Component.all.sort {|x,y| x.name <=> y.name }
 
