@@ -4,7 +4,7 @@
 <!-- Call to function to print all categories in the database - function/method found in categories_helper.rb-->
 <%s = print_categories(0,-1)%>
 <div class="main_div">
-<table>
+<table class="sortable" id="sortabletable">
   <!--Validation check to see if the string is empty or not. -->
    <%if(s.length == 0)%>
     <tr><td><h4>No Categories Available</h4></td></tr>

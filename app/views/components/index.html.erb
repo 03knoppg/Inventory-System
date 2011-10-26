@@ -8,9 +8,10 @@
  <div class="main_div">
 <!--if components available print rows and data -->
 <%if(!@all_components.empty?)    %>
-    <table title="Current Components">
+       <table id="t1" class="example table-autosort table-autofilter table-autopage:10 table-stripeclass:alternate table-page-number:t1page table-page-count:t1pages table-filtered-rowcount:t1filtercount table-rowcount:t1allcount">
+
         <tr>
-            <th align="left">Name</th>
+            <th align="left" class="table-filterable table-sortable:default">Name</th>
             <th align="left">Description</th>
             <th align="left">Actions</th>
         </tr>
