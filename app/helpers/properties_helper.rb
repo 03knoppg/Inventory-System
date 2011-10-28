@@ -68,5 +68,25 @@ module PropertiesHelper
     return s
   end
 
+   def print_property_table(parent)
+    s = "<table style=\"padding-top: 15px\">"
+    s +=" <tr>"
+    s +="  <th align=\"left\">Related Property</th>"
+    s +="  </tr>"
+    prop = parent.property
+
+    if(!prop.nil?)
+
+        s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop)} </td></tr>"
+
+    else
+      s +=  "<tr><td>No property</td></tr>"
+    end
+
+    s += "</table>"
+
+    return s
+  end
+
 
 end

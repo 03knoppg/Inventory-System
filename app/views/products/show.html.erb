@@ -13,150 +13,19 @@
     <td valign="top"><%= @product.code %></td>
   </tr>
 </table>
-<table style="padding-top: 15px">
-  <tr>
-  <th align="left">Related Categories</th>
-    </tr>
-<<<<<<< HEAD
-  <% if(!@product.categories.empty?)
-     for cat in  @product.categories.sort {|x,y| x.name <=> y.name }%>
-      <tr><td><%= link_to cat.name, cat %></td></tr>
-  <% end %>
-      <%else%>
-      <tr><td>No Categories</td><td></td></tr>
-<%end%>
-</table>
 
 
+    <%= print_child_category_table(@product).html_safe %>
 
-    <%= print_component_child_table(@product).html_safe %>
+    <%= print_components_table(@product).html_safe %>
 
     <%= print_properties_table(@product).html_safe %>
 
+    <%= print_images_table(@product).html_safe %>
 
-=======
-    <tr>
-      <td valign="top"><%= @product.name %></td>
-      <td valign="top"><%= @product.description %></td>
-      <td valign="top"><%= @product.code %></td>
-    </tr>
-  </table>
-  <table style="padding-top: 15px">
-    <tr>
-      <th align="left"><b>Categories related to <%=@product.name%></b></th>
-    </tr>
-    <% if(!@product.categories.empty?)
-           for cat in  @product.categories.sort {|x,y| x.name <=> y.name }%>
-            <tr><td><%= link_to cat.name, cat %></td></tr>
-        <% end %>
-    <%else%>
-        <tr><td>No Categories</td><td></td></tr>
-    <%end%>
-  </table>
-  <table style="padding-top: 15px">
-    <tr>
-      <th align="left"><b>Components related to <%=@product.name%></b></th>
-      <th align="left"><b>Description</b></th>
-    </tr>
-    <%if(!@product.components.empty?) %>
-        <%for comp in @product.components.sort {|x,y| x.name <=> y.name }%>
-            <tr>
-              <td> <%= link_to("#{comp.name}", comp) %> </td>
-              <td> <%= comp.description %> </td>
-            </tr>
-        <%end%>
-    <%else%>
-        <tr><td>No Components</td><td></td></tr>
-    <%end%>
-  </table>
-  <%= my_button_to "New Component", "/components/new", [@product]%>
-  <table style="padding-top: 15px">
-    <tr>
-      <th align="left"><b>Properties related to <%=@product.name%></b></th>
-      <th align="left"><b>Value</b></th>
-    </tr>
-    <% if(!@product.properties.empty?) %>
-        <%for prod in @product.properties.sort {|x,y| x.name <=> y.name } %>
-            <tr><td> <%= link_to("#{prod.name} (#{prod.field_type}) ", prod) %> </td>
-              <%if(!prod.valuefields.empty?)%>
-                  <td><table>
-                    <%for val in prod.valuefields.sort {|x,y| x.name <=> y.name }%>
-                        <tr><td> <%= link_to(val.fieldvalue, val) %> </td></tr>
-                    <%end%>
-                    <tr><td> <%= button_to "New Valuefield", new_valuefield_path, :method => :get %> </td></tr>
-                  </table></td>
-              <%else%>
-                  <td>No valuefields</td>
-              <%end%>
-            </tr>
-        <%end%>
-    <%else%>
-        <tr><td>No properties</td><td>No value</td></tr>
-    <%end%>
-  </table>
-  <%= button_to "New Property", new_property_path, :method => :get %>
-  <table style="padding-top: 15px">
-    <tr>
-      <th align="left"><b>Images related to <%=@product.name%></b></th>
-    </tr>
-    <% if(!@product.images.empty?) %>
-        <%for img in @product.images %>
-            <%if(@product.id == img.product_id)%>
-                <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
-            <%end%>
-        <%end%>
-   <%end%>
-</table>
->>>>>>> 122a06beceb1d57a303c1237f9bf9e738fd8a8ac
-<%= button_to "New Property", new_property_path, :method => :get %>
-    <br/>
-</div>
-  <div>
-<table style="padding-top: 15px">
-  <tr>
-    <th align="left">Related Images</th>
-  </tr>
-  <% if(!@product.images.empty?) %>
-    <%for img in @product.images %>
-          <%if(@product.id == img.product_id)%>
-              <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
-          <%end%>
-    <%end%>
-      <%end%>
-  </table>
-  <%= my_button_to "New Image", "/images/new", [@product]%>
-<<<<<<< HEAD
+    <%= print_datafiles_table(@product).html_safe %>
 
- <table style="padding-top: 15px">
-  <tr>
-    <th align="left">Related Data Files</th>
-  </tr>
-      <%proddatafiles = @product.data_files%>
-      <%if(!proddatafiles.empty?)%>
-      <%for df in proddatafiles%>
-         <tr><td> <%= link_to(df.filedata_file_name, df) %> </td></tr>
-      <%end%>
-      <%else%>
-         <tr><td>No Data Files</td></tr>
-      <%end%>
-</table>
-=======
-  <table style="padding-top: 15px">
-    <tr>
-      <th align="left"><b>Data Files related to <%=@product.name%></b></th>
-    </tr>
-    <% if(!@product.data_files.empty?) %>
-        <%for df in @product.data_files %>
-            <%if(@product.id == df.product_id)%>
-                <tr><td> <%= link_to(df.filedata_file_name, df) %> </td></tr>
-            <%end%>
-        <%end%>
-    <%else%>
-        <tr><td>No Images</td></tr>
-    <%end%>
-  </table>
->>>>>>> 122a06beceb1d57a303c1237f9bf9e738fd8a8ac
-  <%= my_button_to "New Datafile", "/data_files/new", [@product]%>
+
   <br/>
 </div>
 <div class="right_div">

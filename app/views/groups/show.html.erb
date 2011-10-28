@@ -18,19 +18,7 @@
 <!-- tab "panes" -->
 <div class="panes">
   <div>
-<% components = @group.components %>
-<table>
-  <tr><th>Related Components</th></tr>
-  <%if(!components.empty?)%>
-  <% for comp in components %>
-    <tr><td><%= link_to(comp.name, comp) %></td></tr>
-      <%end%>
-      <%else%>
-          <tr><td>No components available</td></tr>
-      <%end%>
-    <tr><td><%=button_to "New Component", new_component_path, :method => :get%></td></tr>
-
-</table>
+    <%= print_components_table(@group).html_safe%>
     </div>
   </div>
   </div>
