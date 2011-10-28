@@ -12,6 +12,7 @@ module ApplicationHelper
 
   #creates a button and form with a hidden field in order to pass ids across to new objects
   def my_button_to(text, path, objs)
+
     s = "<form method=\"get\" action=\"#{path}\"  class=\"button_to\">
           <div><input type=\"submit\" value=\"#{text}\"/></div>"
     for obj in objs
@@ -75,13 +76,21 @@ module ApplicationHelper
     for item in items_hash.keys
       pt += "<li>"
       if(item.is_a?(Product))
-        pt += "<input type=\"checkbox\" name=\"component[products[#{item.id}]]\" value=\"#{item.id}\"> #{item.name} </checkbox>"
+        pt += "#{check_box_tag 'product_ids[]', item.id}"   + "#{item.name}"
+        #pt += "#{check_box_tag "product_ids[#{item.id}]", item.id, :name => "product_ids[]"}"   + "#{item.name}"
+        #pt += "<input type=\"checkbox\" name=\"component[products[]]\" value=\"#{item}\"> #{item.name} </checkbox>"
       elsif(item.is_a?(Component))
-        pt += "<input type=\"checkbox\" name=\"component[components[#{item.id}]]\" value=\"#{item.id}\"> #{item.name} </checkbox>"
+        pt += "#{check_box_tag 'component_parent_ids[]', item.id}"  + "#{item.name}"
+        #pt += "#{check_box_tag "component_parent_ids[#{item.id}]", item.id, :name => "component_parent_ids[]"}"   + "#{item.name}"
+        #pt += "<input type=\"checkbox\" name=\"component_parents[component_id\" value=\"#{item.id}\"> #{item.name} </checkbox>"
       elsif(item.is_a?(Valuefield))
-        pt += "<input type=\"checkbox\" name=\"component[valuefields[#{item.id}]]\" value=\"#{item.id}\" > #{item.fieldvalue} </checkbox>"
+        #pt += "#{check_box_tag "valuefield_ids[#{item.id}]", item.id, :name => "valuefield_ids[]"}"   + "#{item.fieldvalue}"
+        pt += "#{check_box_tag 'valuefield_ids[]', item.id}"   + "#{item.fieldvalue}"
+        #pt += "<input type=\"checkbox\" name=\"new_valuefields[#{item.id}]\" value=\"#{item.id}\" > #{item.fieldvalue} </checkbox>"
       elsif(item.is_a?(Group))
-        pt += "<input type=\"checkbox\" name=\"component[group[#{item.id}]]\" value=\"#{item.id}\" > #{item.name} </checkbox>"
+        #pt += "#{check_box_tag "group_id[#{item.id}]", item.id, :name => "group_id"}"   + "#{item.name}"
+        pt += "#{radio_button_tag 'group_id', item.id}"   + "#{item.name}"
+        #pt += "<input type=\"checkbox\" name=\"new_group[#{item.id}]\" value=\"#{item.id}\" > #{item.name} </checkbox>"
       elsif(item.is_a?(Property))
         pt += "#{item.name}"
       end

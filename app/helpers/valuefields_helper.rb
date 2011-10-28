@@ -22,6 +22,29 @@ module ValuefieldsHelper
 
   end
 
+  def print_value_field_table(parent)
+    s="<table style=\"padding-top: 15px\">"
+    s+="<tr>"
+    s+="<th align=\"left\">Related Valuefields </th>"
+    s+="</tr>"
+
+
+    if(!parent.valuefields.empty?)
+      for vf in parent.valuefields
+        s+="<tr>"
+        s+="<td> #{link_to vf.fieldvalue, vf} </td>"
+        s+="</tr>"
+      end
+
+    else
+      s+="<tr><td>No Valuefields</td></tr>"
+    end
+
+    s+="</table>"
+
+    return s
+  end
+
   ##########################################################################
   #       PATH WITH NAME
   def get_paths_as_select

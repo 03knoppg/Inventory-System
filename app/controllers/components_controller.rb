@@ -110,22 +110,31 @@ class ComponentsController < ApplicationController
     #Create component
     @component = Component.new(params[:component])
 
-    if(params[:new_group_id] != nil)
-      @component.group = Group.find(Integer(params[:new_group_id]))
+    if(!params[:group_id].nil?)
+      @component.group = Group.find(params[:group_id])
     end
 
-    if(params[:new_components_ids] != nil)
-      for id in params[:new_components_ids]
-        id = Integer(id)
-         if(id < 0) #Component ids are set to negative values to differentiate from Product ids
-           c = Component.find((id + 1) * -1)
-           @component.component_parents.push(c)
-         else
-           p = Product.find(id)
-           @component.products.push(p)
-         end
-      end
+    if(!params[:product_ids].nil?)
+      @component.products = Product.find(params[:product_ids])
     end
+
+    if(!params[:component_parent_ids].nil?)
+      @component.component_parents = Component.find(params[:component_parent_ids])
+    end
+
+    if(!params[:valuefield_ids].nil?)
+
+      vfs = Valuefield.find(params[:valuefield_ids])
+      @component.valuefields = vfs
+
+      for vf in vfs
+        if(!@component.properties.include?(vf.property))
+          @component.properties.push(vf.property)
+        end
+      end
+
+    end
+
 
     respond_to do |format|
       if @component.save

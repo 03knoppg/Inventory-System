@@ -49,44 +49,39 @@ module ComponentsHelper
   end
 
 
-
-
-
-
   #Function to print parents related to the component
-  def print_component_parents
-    parents = @component.products + @component.component_parents
-    part = ""
-    if(!parents.empty?)
-      for parent in parents.sort!
-        part += "<tr><td>#{link_to(parent.name, parent)}</td></tr>"
+  def print_component_table(parent)
+
+    items = parent.component_parents
+    part = "<table style=\"padding-top: 15px\">"
+    part += "<tr><th align=\"Left\">Related Parent Components</th></tr>"
+
+    if(!items.empty?)
+      for comp in items.sort!
+        part += "<tr><td>#{link_to(comp.name, comp)}</td></tr>"
       end
     else
       part += "<tr><td>No Parents Available</td></tr>"
     end
-
+    part += "<\table>"
     return part
   end
 
   #Function to print children of component
-  def print_component_child
-    children = @component.components
-    ch = ""
+  def print_component_child_table (parent)
+
+    children = parent.components
+    ch = "<table style=\"padding-top: 15px\">"
+    ch +="<tr><th align=\"Left\">Related Child Components</th><th>Description</th></tr>"
     if(!children.empty?)
       for child in children.sort!
-        ch+= "<tr><td>#{link_to(child.name, child)}</td></tr>"
+        ch+= "<tr><td>#{link_to(child.name, child)}</td><td>#{child.description}</td></tr>"
       end
     else
-      ch+= "<tr><td>No Children Available</td></tr>"
+      ch+= "<tr><td>No Children Available</td><td></td></tr>"
     end
-    #@ch += "<tr><td>#{button_to "New Component", new_component_path, :method => :get}</td></tr>"
-    ch += "<tr><td>
-              <form method=\"get\" action=\"/components/new\"  class=\"button_to\">
-                <div><input type=\"submit\" value=\"New Child Component\" /></div>
-                     <input type=\"hidden\" name=\"component_id\" value=\"#{@component.id}\"/>
-               </form>
-          </td></tr>"
-
+    ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td><td></td></tr>"
+    ch += "</table>"
     return ch
 
   end

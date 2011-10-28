@@ -19,43 +19,11 @@
 <!-- tab "panes" -->
 <div class="panes">
   <div>
-<table>
-  <tr>
-    <th align="left">Products related to <%=@data_file.filedata_file_name%></th>
-  </tr>
-  <tr>
-    <% if(@data_file.product != nil) %>
-        <td><%= link_to @data_file.product.name, @data_file.product %></td>
-    <%else%>
-        <td>N/A</td>
-    <%end%>
-  </tr>
-</table>
-<table>
-  <tr>
-    <th align="left">Components related to <%=@data_file.filedata_file_name%></th>
-  </tr>
-  <tr>
-    <% if(@data_file.component != nil) %>
-        <td> <%= link_to @data_file.component.name, @data_file.component %> </td>
-    <%else%>
-        <td>N/A</td>
-    <%end%>
-  </tr>
-</table>
-<table style="padding-top: 15px">
-  <tr>
-    <th align="left">Valuefields related to <%=@data_file.filedata_file_name%></th>
-  </tr>
+<%= print_product_table(@data_file).html_safe%>
 
-  <tr>
-    <% if(@data_file.valuefield != nil) %>
-        <td> <%= link_to @data_file.valuefield.fieldvalue, @data_file.valuefield %> </td>
-    <%else%>
-        <td>N/A</td>
-    <%end%>
-  </tr>
-</table>
+<%= print_component_child_table(@data_file).html_safe%>
+
+<%= print_value_field_table(@data_file).html_safe %>
   </div>
   </div>
   </div>

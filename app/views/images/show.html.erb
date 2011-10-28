@@ -21,7 +21,7 @@
   <div>
 <table>
   <tr>
-    <th align="left">Products related to <%=@image.picture_file_name%></th>
+    <th align="left">Related Products</th>
   </tr>
     <% if(!@image.products.empty?) %>
         <%for prod in @image.products%>
@@ -33,7 +33,7 @@
 </table>
 <table>
   <tr>
-    <th align="left">Components related to <%=@image.picture_file_name%></th>
+    <th align="left">Related Components</th>
   </tr>
     <% if(!@image.components.empty?) %>
         <%for comp in @image.components%>
@@ -45,7 +45,7 @@
 </table>
 <table style="padding-top: 15px">
   <tr>
-    <th align="left">Valuefields related to <%=@image.picture_file_name%></th>
+    <th align="left">Related Valuefields</th>
   </tr>
     <% if(!@image.valuefields.empty?) %>
         <%for vf in @image.valuefields%>

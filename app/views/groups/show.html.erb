@@ -20,7 +20,7 @@
   <div>
 <% components = @group.components %>
 <table>
-  <tr><th>Components related to this Group</th></tr>
+  <tr><th>Related Components</th></tr>
   <%if(!components.empty?)%>
   <% for comp in components %>
     <tr><td><%= link_to(comp.name, comp) %></td></tr>

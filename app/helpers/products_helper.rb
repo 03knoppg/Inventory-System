@@ -33,4 +33,24 @@ module ProductsHelper
     sgc+= "</table>"
     return sgc
   end
+
+
+   #Function to print parents related to the component
+  def print_product_table(parent)
+
+    items = parent.products
+    part = "<table style=\"padding-top: 15px\">"
+    part += "<tr><th align=\"Left\">Related Parent Products</th></tr>"
+
+    if(!items.empty?)
+      for prod in items.sort!
+        part += "<tr><td>#{link_to(prod.name, prod)}</td></tr>"
+      end
+    else
+      part += "<tr><td>No Parents Available</td></tr>"
+    end
+
+    part += "</table>"
+    return part
+  end
 end
