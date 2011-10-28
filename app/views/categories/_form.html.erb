@@ -2,7 +2,6 @@
     <% if @category.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
           <ul>
             <% @category.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -10,37 +9,38 @@
           </ul>
         </div>
     <% end %>
-     <div class="main_div">
-    <table class="main_table">
-      <tr>
-        <th align="left">Parent</th>
-        <th align="left">Name</th>
-      </tr>
-      <tr>
-        <td style="width: 200px">
-          <div class ="field">
-            <select name="category[parent_id]">
-              <% @all_categories.each do |category| %>
-                  <option value= "<%=category.id %>"<% if(@category.parent_id == category.id) %>
-                          selected = true;
-                          <% end %>>
-                    <%= category.name%></option>
-              <% end %>
-            </select>&nbsp;<span style="color: red">*</span>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
-          </div>
-        </td>
-      </tr>
-    </table>
-   </div>
-        <div class="right_div">
-          <%= f.submit %>
-        </div>
-
+    <div class="main_div">
+      <table class="main_table">
+        <tr>
+          <th align="left">Parent</th>
+          <th align="left">Name</th>
+        </tr>
+        <tr>
+          <td class="td_two_col">
+            <div class ="field">
+              <select name="category[parent_id]" style="width: 200px">
+                <% @all_categories.each do |category| %>
+                    <option value= "<%=category.id %>"
+                            <% if(@category.parent_id == category.id) %>
+                            selected = true;
+                            <% end %>
+                            <% if (@parent != nil && @parent.id == category.id) %>
+                            selected = true; <% end %>>
+                      <%= category.name%></option>
+                <% end %>
+              </select>&nbsp;<span style="color: red">*</span>
+            </div>
+          </td>
+          <td>
+            <div class="field">
+              <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="right_div">
+      <%= f.submit %>
+    </div>
 <% end %>
-
 <br class="clear" />

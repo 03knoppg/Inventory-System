@@ -1,27 +1,39 @@
-
-
 <h1>Log in</h1>
-      
 <%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :username %>
-    <%= text_field_tag :username, params[:username] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-    <%= label_tag :remember_me %>
-  </div>
-  <div class="actions"><%= submit_tag "Log in" %></div>
-
-    <p>
-
-
+    <div class="main_div">
+      <table>
+        <tr>
+          <td style="width: 125px; vertical-align: middle">
+            <%= label_tag :username %>:
+          </td>
+          <td style="width: 100px;">
+            <div class="field">
+              <%= text_field_tag :username, params[:username], :size => 20 %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 125px; vertical-align: middle">
+            <%= label_tag :password %>:
+          </td>
+          <td style="width: 100px;">
+            <div class="field">
+              <%= password_field_tag :password, '', :size => 20 %>
+            </div>
+          </td>
+          <td style="vertical-align: middle">
+            <a href="sessions/forgotpass/">Forgot Password?</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 125px; vertical-align: middle" colspan="2">
+            <div class="field">
+              <%= check_box_tag :remember_me, 1, params[:remember_me] %>&nbsp;<%= label_tag :remember_me %>
+            </div>
+          </td>
+      </table>
+    </div>
+    <div class="right_div"><%= submit_tag "Log in" %></div>
 <% end %>
 
-
-<a href="sessions/forgotpass/">Forgot Password?</a>
 

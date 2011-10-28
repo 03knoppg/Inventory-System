@@ -14,41 +14,31 @@
     <td><%= @component.code %></td>
   </tr>
 </table>
-
-<% group = @component.group %>
 <table>
   <tr><th align="left">Group related to <%=@component.name%></th></tr>
   <tr><td>
-  <% if(!group.nil?) %>
-      <%= link_to("#{group.name} ", group) %>
+  <% if(!@component.group.nil?) %>
+      <%= link_to("#{@component.group.name} ", @component.group) %>
   <%else%>
       No Groups Available
   <%end%>
   </td></tr>
 </table>
-
 <table>
   <tr><th align="Left">Parent Components related to <%=@component.name%></th></tr>
   <%= print_component_parents.html_safe %>
 </table>
-
-
-
 <table>
   <tr><th align="left">Child Components related to <%=@component.name%></th></tr>
   <%= print_component_child.html_safe %>
 </table>
-
-
 <table style="padding-top: 15px">
   <tr>
     <th align="left">Properties related to <%=@component.name%></th>
     <th align="left">Value</th>
   </tr>
-  <%properties = @component.properties %>
-
-  <% if(!properties.empty?) %>
-    <%for prop in properties %>
+  <% if(!@component.properties.empty?) %>
+    <%for prop in @component.properties %>
       <%valuefields = prop.valuefields %>
       <tr>
         <td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
@@ -74,7 +64,6 @@
           </td>
         </tr>
    <%end%>
-
   <%else%>
       <tr>
         <td>No properties</td>       <td>No value</td>
@@ -84,10 +73,6 @@
     <td> <%= button_to "New Property", new_property_path, :method => :get %></td><td></td>
   </tr>
 </table>
-
-
-
-
 <table style="padding-top: 15px">
   <tr>
     <th align="left">Images related to <%=@component.name%></th>
@@ -108,6 +93,6 @@
  </div>
 <div class="right_div">
   <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-  <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Component", new_component_path + "?duplicate_component=#{@component.id}"%>
 </div>
