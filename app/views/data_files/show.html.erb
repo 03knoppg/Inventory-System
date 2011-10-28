@@ -12,7 +12,13 @@
     <td><%= link_to("Preview Data File", @data_file.filedata.url, {:target => "blank"})%></td>
   </tr>
 </table>
-
+    <!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
 <table>
   <tr>
     <th align="left">Products related to <%=@data_file.filedata_file_name%></th>
@@ -50,6 +56,8 @@
     <%end%>
   </tr>
 </table>
+  </div>
+  </div>
   </div>
 <div class="right_div">
     <%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %>

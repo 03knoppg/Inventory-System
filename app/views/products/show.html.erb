@@ -1,11 +1,21 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Product: <%=@product.name%></h1>
 <div class="main_div">
-  <table class="main_table">
-    <tr>
-      <th align="left">Name</th>
-      <th align="left">Description</th>
-      <th align="left">Code</th>
+<table class="main_table">
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th align="left">Code</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= @product.name %></td>
+    <td valign="top"><%= @product.description %></td>
+    <td valign="top"><%= @product.code %></td>
+  </tr>
+</table>
+<table style="padding-top: 15px">
+  <tr>
+  <th align="left"><b>Categories related to <%=@product.name%></b></th>
     </tr>
     <tr>
       <td valign="top"><%= @product.name %></td>
@@ -77,9 +87,23 @@
                 <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
             <%end%>
         <%end%>
-    <%else%>
-        <tr><td>No Images</td></tr>
+   <%end%>
+</table>
+<%= button_to "New Property", new_property_path, :method => :get %>
+    <br/>
+</div>
+  <div>
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left"><b>Images related to <%=@product.name%></b></th>
+  </tr>
+  <% if(!@product.images.empty?) %>
+    <%for img in @product.images %>
+          <%if(@product.id == img.product_id)%>
+              <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
+          <%end%>
     <%end%>
+      <%end%>
   </table>
   <%= my_button_to "New Image", "/images/new", [@product]%>
   <table style="padding-top: 15px">
@@ -101,6 +125,6 @@
 </div>
 <div class="right_div">
   <%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
-  <%=button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Product", new_product_path + "?duplicate_product=#{@product.id}"%>
 </div>

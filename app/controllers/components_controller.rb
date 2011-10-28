@@ -29,6 +29,12 @@ class ComponentsController < ApplicationController
     @all_components =  Component.all
     #creats an array of all images
     @all_images = Image.all
+    #Creates a sorted array of all products
+    @all_products = Product.all.sort {|x,y| x.name <=> y.name }
+    #Creates a sorted array of all groups
+    @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
+    #creates a sorted array of all properties
+    @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @component }

@@ -48,6 +48,11 @@ module ComponentsHelper
 
   end
 
+
+
+
+
+
   #Function to print parents related to the component
   def print_component_parents
     parents = @component.products + @component.component_parents

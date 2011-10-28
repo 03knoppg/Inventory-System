@@ -10,6 +10,14 @@
   </tr>
 </table>
 
+
+<!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
 <% components = @group.components %>
 <table>
   <tr><th>Components related to this Group</th></tr>
@@ -23,6 +31,8 @@
     <tr><td><%=button_to "New Component", new_component_path, :method => :get%></td></tr>
 
 </table>
+    </div>
+  </div>
   </div>
 <div class="right_div">
   <%= button_to "Edit Group", edit_group_path(@group), :method => :get %>

@@ -13,6 +13,14 @@
     <td><%= @property.field_type %></td>
   </tr>
 </table>
+
+   <!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
 <% vf = @property.valuefields %>
 <table>
   <tr><th>Value Fields related to <%=@property.name%></th></tr>
@@ -29,6 +37,9 @@
   </td></tr>
 </table>
    </div>
+  </div>
+   </div>
+
    <div class="right_div">
      <%= button_to "Edit Property", edit_property_path(@property), :method => :get %>
      <%=button_to "Delete Property", {:controller => :properties, :action => "destroy", :id => @property.id }, :confirm => "Are You sure?", :method => :delete%>

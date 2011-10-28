@@ -87,12 +87,25 @@
       </tr>
         <%end%>
       <tr>
-        <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
+        <th align="left">Images related to <%=@component.name%></th>
       </tr>
-</table>
+      <%if(!@component.images.empty?)%>
+            <%for img in @component.images%>
+              <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
+              <%end%>
+          <%else %>
+          <tr>
+            <td>No Images</td>
+          </tr>
+            <%end%>
+          <tr>
+            <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
+          </tr>
+    </table>
  </div>
 <div class="right_div">
   <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
   <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Component", new_component_path + "?duplicate_component=#{@component.id}"%>
 </div>
+
