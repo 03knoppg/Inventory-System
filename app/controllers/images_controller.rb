@@ -17,6 +17,7 @@ class ImagesController < ApplicationController
   def show
     #Finds selected image
     @image = Image.find(params[:id])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @image }
@@ -29,10 +30,10 @@ class ImagesController < ApplicationController
   def new
     #create a new image
     @image = Image.new
+     #creates an array of all products
+    @all_products = Product.all
     #creates an array of all components
     @all_components = Component.all
-    #creates an array of all products
-    @all_products = Product.all
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
 
@@ -83,6 +84,19 @@ class ImagesController < ApplicationController
     @all_components = Component.all
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
+
+    if(!params[:new_products_ids].nil?)
+      @image.products = [Product.find(params[:new_product_ids])]
+    end
+
+    if(!params[:new_components_ids].nil?)
+      @image.components = Component.find(params[:new_components_ids])
+    end
+
+    if(!params[:new_valuefields_ids].nil?)
+      @image.valuefields = Valuefield.find(params[:new_valuefields_ids])
+    end
+
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }

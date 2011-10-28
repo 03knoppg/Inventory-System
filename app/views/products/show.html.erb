@@ -99,18 +99,12 @@
   <tr>
     <th align="left"><b>Images related to <%=@product.name%></b></th>
   </tr>
-      <%prodImages = []%>
-  <% if(!@all_images.empty?) %>
-    <%for img in @all_images %>
+  <% if(!@product.images.empty?) %>
+    <%for img in @product.images %>
           <%if(@product.id == img.product_id)%>
-              <%prodImages.push(img)%>
+              <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
           <%end%>
     <%end%>
-  <%end%>
-      <%if(!prodImages.empty?)%>
-      <%for ig in prodImages%>
-         <tr><td> <%= link_to(image_tag(ig.picture), ig) %> </td></tr>
-      <%end%>
       <%else%>
          <tr><td>No Images</td></tr>
       <%end%>

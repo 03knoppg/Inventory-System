@@ -52,7 +52,6 @@
       <%valuefields = prop.valuefields %>
       <tr>
         <td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
-
         <%if(!valuefields.empty?)%>
           <td>
             <table>
@@ -93,23 +92,15 @@
   <tr>
     <th align="left">Images related to <%=@component.name%></th>
   </tr>
-  <%if(!@all_images.empty?)
-        compImages = []
-        for img in @all_images
-          if(@component.id == img.component_id)
-             compImages.push(img)
-          end
-        end%>
-        <tr>
-        <%for ig in compImages%>
-         <td> <%= link_to(image_tag(ig.picture), ig) %> </td>
-        <%end%>
-        </tr>
-  <%else %>
+  <%if(!@component.images.empty?)%>
+        <%for img in @component.images%>
+          <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
+          <%end%>
+      <%else %>
       <tr>
         <td>No Images</td>
       </tr>
-  <%end%>
+        <%end%>
       <tr>
         <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
       </tr>

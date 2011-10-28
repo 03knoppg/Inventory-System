@@ -57,7 +57,7 @@ fluidBasicStool = Product.create(name: "Basic Stool Chair", description: "Fluid 
 #Data_file                                                                                                     #
 ################################################################################################################
 =end
-testDAE = DataFile.create(product_id: fluidBasicStool.id)
+testDAE = DataFile.create()
 testDAE.filedata = File.open("/var/www/allseating/bin/chairs/dae/No_Textures_version_Series82_0_19.DAE")
 testDAE.save!
 
@@ -127,57 +127,65 @@ optionType = Valuefield.create(fieldvalue: "option", property_id: type.id, code:
 #Images                                                                                                        #
 ################################################################################################################
 =end
-btoBasicStoolImage = Image.create(component_id: btoBasicStool.id)
+btoBasicStoolImage = Image.create()
 btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
 btoBasicStoolImage.save!
 
-basicControlImage = Image.create(component_id: basicStoolControl.id)
+basicControlImage = Image.create()
 basicControlImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/C19.png")
 basicControlImage.save!
 
-task2ArmImage = Image.create(component_id: task2Arm.id)
+task2ArmImage = Image.create()
 task2ArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/T2.png")
 task2ArmImage.save!
 
-multiFunctionalArmImage = Image.create(component_id: multiFunctionalArm.id)
+multiFunctionalArmImage = Image.create()
 multiFunctionalArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/MF.png")
 multiFunctionalArmImage.save!
 
-twisterArmImage = Image.create(component_id: twisterArm.id)
+twisterArmImage = Image.create()
 twisterArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/TW.png")
 twisterArmImage.save!
 
-ssControlAddOnImage = Image.create(component_id: ssControlAddOn.id)
+ssControlAddOnImage = Image.create()
 ssControlAddOnImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/SS.png")
 ssControlAddOnImage.save!
 
-lumbarPlusAddOnImage = Image.create(component_id: lumbarPlusAddOn.id)
+lumbarPlusAddOnImage = Image.create()
 lumbarPlusAddOnImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/LP.png")
 lumbarPlusAddOnImage.save!
 
-type82BasicStoolImage = Image.create(component_id: type82BasicStool.id)
+type82BasicStoolImage = Image.create()
 type82BasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Type82.png")
 type82BasicStoolImage.save!
 
-base82BasicStoolImage = Image.create(component_id: base82BasicStool.id)
+base82BasicStoolImage = Image.create()
 base82BasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Base82.png")
 base82BasicStoolImage.save!
 
-casterBasicStoolImage = Image.create(component_id: casterBasicStool.id)
+casterBasicStoolImage = Image.create()
 casterBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Casters.png")
 casterBasicStoolImage.save!
 
-basicBackMeshImage = Image.create(component_id: basicBackMesh.id)
+basicBackMeshImage = Image.create()
 basicBackMeshImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/FM-BMESH.png")
 basicBackMeshImage.save!
 
-s810RingImage = Image.create(component_id: s810Ring.id)
+s810RingImage = Image.create()
 s810RingImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/S8.png")
 s810RingImage.save!
 
-chairShadowImage = Image.create(component_id: chairShadow.id)
+chairShadowImage = Image.create()
 chairShadowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/shadow.png")
 chairShadowImage.save!
+
+threedilogo = Image.create()
+threedilogo.picture = File.open("#{Rails.root}/app/assets/images/3di_media_server.png")
+threedilogo.save!
+
+banner = Image.create()
+banner.picture = File.open("#{Rails.root}/app/assets/images/banner.png")
+banner.save!
 
 #f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)                   #TODO reenable this
 #f4_pcaberImage.picture = File.open("/var/www/allseating/bin/chairs/textures/F4-PCABER.jpg")
@@ -248,6 +256,31 @@ s810Ring.valuefields = [controlType]
 chairShadow.valuefields = [optionType]
 lumbarPlusAddOn.valuefields = [optionType]
 
+=begin
+################################################################################################################
+#DataFiles_Products - association table                                                                        #
+################################################################################################################
+=end
+testDAE.products = [fluidBasicStool]
+
+=begin
+################################################################################################################
+#Images_Components - association table                                                                         #
+################################################################################################################
+=end
+btoBasicStoolImage.components = [btoBasicStool, basicStoolControl]
+basicControlImage.components = [basicStoolControl]
+task2ArmImage.components = [task2Arm]
+multiFunctionalArmImage.components = [multiFunctionalArm]
+twisterArmImage.components = [twisterArm]
+ssControlAddOnImage.components = [ssControlAddOn]
+lumbarPlusAddOnImage.components = [lumbarPlusAddOn]
+type82BasicStoolImage.components = [type82BasicStool]
+base82BasicStoolImage.components = [base82BasicStool]
+casterBasicStoolImage.components = [casterBasicStool]
+basicBackMeshImage.components = [basicBackMesh]
+s810RingImage.components = [s810Ring]
+chairShadowImage.components = [chairShadow]
 
 
 =begin

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018200852) do
+ActiveRecord::Schema.define(:version => 20111027165309) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20111018200852) do
     t.integer "component_child_id"
   end
 
+  create_table "components_data_files", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "data_file_id"
+  end
+
+  create_table "components_images", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "image_id"
+  end
+
   create_table "components_products", :id => false, :force => true do |t|
     t.integer "component_id"
     t.integer "product_id"
@@ -56,15 +66,22 @@ ActiveRecord::Schema.define(:version => 20111018200852) do
   end
 
   create_table "data_files", :force => true do |t|
-    t.integer  "component_id"
-    t.integer  "product_id"
-    t.integer  "valuefield_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "filedata_file_name"
     t.string   "filedata_content_type"
     t.integer  "filedata_file_size"
     t.datetime "filedata_updated_at"
+  end
+
+  create_table "data_files_products", :id => false, :force => true do |t|
+    t.integer "data_file_id"
+    t.integer "product_id"
+  end
+
+  create_table "data_files_valuefields", :id => false, :force => true do |t|
+    t.integer "data_file_id"
+    t.integer "valuefield_id"
   end
 
   create_table "groups", :force => true do |t|
@@ -74,15 +91,22 @@ ActiveRecord::Schema.define(:version => 20111018200852) do
   end
 
   create_table "images", :force => true do |t|
-    t.integer  "component_id"
-    t.integer  "product_id"
-    t.integer  "valuefield_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "images_products", :id => false, :force => true do |t|
+    t.integer "image_id"
+    t.integer "product_id"
+  end
+
+  create_table "images_valuefields", :id => false, :force => true do |t|
+    t.integer "image_id"
+    t.integer "valuefield_id"
   end
 
   create_table "products", :force => true do |t|

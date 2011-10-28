@@ -29,9 +29,9 @@ class ImageValidator < ActiveModel::Validator
 end
 
 class Image < ActiveRecord::Base
-  belongs_to :product
-  belongs_to :component
-  belongs_to :valuefield
+  has_and_belongs_to_many :products
+  has_and_belongs_to_many :components
+  has_and_belongs_to_many :valuefields
 
   has_attached_file :picture, :styles => { :small => "150x150>" , :medium => "300x300>", :large => "600x600>"},
                     :path => ":rails_root/public/:class/:id/:style/:style_:basename.:extension",

@@ -3,8 +3,8 @@ class Component < ActiveRecord::Base
   has_and_belongs_to_many :products
   has_and_belongs_to_many :valuefields
   belongs_to :group
-  has_many :images
-  has_many :data_files
+  has_and_belongs_to_many :images
+  has_and_belongs_to_many :data_files
 
    has_and_belongs_to_many :components,
                           #:join_table => 'components_components',
