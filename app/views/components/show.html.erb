@@ -1,5 +1,4 @@
 
-
 <!--Component Show Page -->
 <p id="notice"><%# notice %></p>
 <h1>Viewing Component: <%=@component.name%></h1>
@@ -61,7 +60,7 @@
 </div>
 <div class="right_div">
   <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-  <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Component", new_component_path + "?duplicate_component=#{@component.id}"%>
 </div>
 

@@ -23,10 +23,13 @@ class CategoriesController < ApplicationController
   def show
     #locates the selected category
     @category = Category.find(params[:id])
-    #assigns the parent of the selected category to a variable
+    #assigns the parent of the selected category
     @parent = @category.parent_id ? Category.find(@category.parent_id) : nil
-    #creates a sorted array using all category objects
+    #creates a sorted array using all categories
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
+    #creates a sorted array using all related products
+    @related_products = @category.products.sort {|x,y| x.name <=> y.name }
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @category }
@@ -49,7 +52,11 @@ class CategoriesController < ApplicationController
     else
         #New category
         @category = Category.new
+        if(!params[:category_id].nil?)
+          @parent = Category.find params[:category_id]
+        end
     end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @category }
@@ -61,7 +68,7 @@ class CategoriesController < ApplicationController
   def edit
     #locates the selected category
     @category = Category.find(params[:id])
-    #creates a sorted array using all category objects
+    #creates a sorted array using all categories
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     #creates an empty hash
     @child_categories = []
@@ -77,6 +84,7 @@ class CategoriesController < ApplicationController
   def create
     #Creates the category to be saved in the db
     @category = Category.new(params[:category])
+
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
@@ -94,6 +102,7 @@ class CategoriesController < ApplicationController
   def update
     #locates the category to be updated
     @category = Category.find(params[:id])
+
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -119,6 +128,7 @@ class CategoriesController < ApplicationController
     sort_categories()
     #calls function to destroy the category
     destroy_category(@category)
+
     respond_to do |format|
       format.html { redirect_to categories_url }
       format.json { head :ok }

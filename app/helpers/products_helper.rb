@@ -50,7 +50,7 @@ module ProductsHelper
       part += "<tr><td>No Parents Available</td></tr>"
     end
 
-    part += "</table>"
+    part += "</ table>"
     return part
   end
 end

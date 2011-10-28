@@ -8,15 +8,12 @@
 	<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
     <script type="text/javascript" src="/assets/jquery.nestedAccordion.js"></script>
   <%= csrf_meta_tags %>
-
-
-
 </head>
 <body>
 <div class="container">
   <div class="containerBanner">
     <% banner %>
-    <%=image_tag(@imagelogo,  :alt=>"3Di Image", :style => 'margin-right: 5px') %><%=image_tag(@imagebanner,  :alt=>"3Di Image", :width => 945, :height => 100) %>
+    <%=image_tag(@imagelogo,  :alt=>"Company Logo", :style => 'margin-right: 5px') %><%=image_tag(@imagebanner,  :alt=>"Company Banner", :width => 945, :height => 100) %>
   </div>
   <div class="containerLinks">
     <nav class="round">
@@ -32,9 +29,13 @@
       </ul>
     </nav>
   </div>
-  <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
+  <br /><br />
+  <div class="error_div">
+    <% flash.each do |name, msg| %>
+        <h4><%= content_tag :div, msg, :id => "flash_#{name}", :class => "error_div"%></h4>
+    <% end %>
+  </div>
+  <br />
   <%= yield %>
 </div>
 </body>
