@@ -4,6 +4,7 @@ module CategoriesHelper
   #Recursive function for display categories - finds parents and then children and organizes them in this way to display.
   def print_categories(parent_id, depth)
     s = ""
+    if(!@all_categories.empty?)
     #if nil then empty string, else create table rows and data recursively.
     if(@all_categories_hash[parent_id] == nil)
       return ""
@@ -20,13 +21,16 @@ module CategoriesHelper
       #Calls itself to ensure children of parents are printed. Also increases depth of print to show user parent/child relationship.
       s += print_categories(parent.id, depth+1)
     end
+    else
+      s += "<tr><td>No Categories Available</td></tr>"
+    end
     s
   end
 
   #print related category children to this category
   def print_related_children
     child = []
-    c = "<tr><th>Related Child Categories</th></tr>"
+    c = "<table><tr><th>Related Child Categories</th></tr>"
     #creates an array of children
     for cat in @all_categories
       if(cat.parent_id.eql?(@category.id))
@@ -42,16 +46,17 @@ module CategoriesHelper
     else
       c += "<tr><td>No Child Categories Available</td></tr>"
     end
+    c += "<tr><td>#{my_button_to("New Child Category", new_category_path, [@category])}</td></tr></table>"
     c
   end
 
   #print related products to this category
   def print_related_products
     srp = ""
-    srp += "<tr><th>Related Products</th>"
+    srp += "<table><tr><th>Related Products</th>"
     srp += "<th>Description</th></tr>"
     if(@related_products.empty?)
-      srp += "<tr><td>No Products Available</td><td></td></tr>"
+      srp += "<tr><td>No Products Available</td></tr>"
     else
         #sort alphabetically
       for prod in @related_products
@@ -59,6 +64,7 @@ module CategoriesHelper
         srp += "<td>#{prod.description}</td></tr>"
       end
     end
+    srp += "<tr><td>#{my_button_to("New Product", new_product_path, [@category])}</td></tr></table>"
     srp
   end
 end

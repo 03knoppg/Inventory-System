@@ -11,20 +11,8 @@
       <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
     </tr>
   </table>
-  <table>
-    <% c = print_related_children %>
-    <%= c.html_safe %>
-    <tr>
-      <td><%=my_button_to("New Child Category", new_category_path, [@category])%></td>
-    </tr>
-  </table>
-  <table>
-    <% srp = print_related_products %>
-    <%= srp.html_safe %>
-    <tr>
-      <td><%=my_button_to("New Product", new_product_path, [@category])%></td>
-    </tr>
-  </table>
+    <%= print_related_children.html_safe %>
+    <%= print_related_products.html_safe %>
 </div>
 <div class="right_div">
   <%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
