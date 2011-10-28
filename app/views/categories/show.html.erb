@@ -11,15 +11,29 @@
     <td><%= @category.name %></td>
     <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
   </tr>
-<% for cat in @all_categories %>
- <% srp = print_related_products(cat) %>
-<%end%>
-</table>
-<table>
-    <%= srp.html_safe %>
+
+                      </table>
+  <!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
+    <table>
+        <% for cat in @all_categories %>
+         <% srp = print_related_products(cat) %>
+        <%end%>
+
+
+        <%= srp.html_safe %>
     <tr><td><%=my_button_to("New Product", new_product_path, [@category])%></td></tr>
 </table>
+  </div>
  </div>
+</div>
+
+
  <div class="right_div">
 <%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
 <%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>

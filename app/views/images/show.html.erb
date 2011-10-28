@@ -4,11 +4,21 @@
 <table class="main_table">
   <tr>
     <th align="left">Image</th>
+    <th align="left">Image Name</th>
   </tr>
   <tr>
     <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
+    <td><%=@image.picture_file_name%></td>
   </tr>
 </table>
+
+  <!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
 <table>
   <tr>
     <th align="left">Products related to <%=@image.picture_file_name%></th>
@@ -47,6 +57,9 @@
   </tr>
 </table>
 </div>
+  </div>
+  </div>
+
 <div class="right_div">
 <%= button_to "Edit Image", edit_image_path(@image), :method => :get %>
     <%=button_to "Delete Image", {:controller => :images, :action => "destroy", :id => @image.id }, :confirm => "Are You sure?", :method => :delete%>

@@ -14,7 +14,14 @@
     <td valign="top"><%= @product.code %></td>
   </tr>
 </table>
-
+<!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#">Associations</a></li>
+	<li><a href="#">Attachments</a></li>
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+  <div>
 <table style="padding-top: 15px">
   <tr>
   <th align="left"><b>Categories related to <%=@product.name%></b></th>
@@ -91,7 +98,9 @@
 
 </table>
 <%= button_to "New Property", new_property_path, :method => :get %>
-
+    <br/>
+</div>
+  <div>
 
 
 
@@ -141,7 +150,8 @@
   <%= my_button_to "New Datafile", "/data_files/new", [@product]%>
   <br/>
 
-
+ </div>
+  </div>
 </div>
 
 <div class="right_div">

@@ -48,11 +48,12 @@
                   No Eligable Components or Products Available
               <%else%>
                   <div class ="field">
-                    <select size="10" multiple="multiple" name="new_components_ids[]"  STYLE="width: 90%">
-                      <%for prod in @all_products%>
-                          <%=parent_table(prod, 0).html_safe%>
-                      <%end%>
-                    </select>&nbsp;<span style="color: red; vertical-align: top;">*</span>
+                    <!--select size="10" multiple="multiple" name="new_components_ids[]"  STYLE="width: 90%"-->
+
+                          <%#parent_table(prod, 0).html_safe%>
+                          <%= parent_accord(prod_comp_hash(nil), 1, 0).html_safe  %>
+                             <!--/select-->&nbsp;
+                    <span style="color: red; vertical-align: top;">*</span>
                   </div>
               <%end%>
             </div>
@@ -61,22 +62,25 @@
             <%if(@all_groups.empty?)%>
                 No Groups Available
             <%else%>
-                <div class ="field">
-                  <select size="10" name="new_group_id" STYLE="width: 100%">
-                    <%for group in @all_groups%>
-                        <option value = "<%=group.id%>" <%if(!@component_use == nil && @component_use.group_id == group.id)%> selected = "true"<%end%>>
-                          <%= group.name %>
+
+                <%= parent_accord(group_hash, 2, 0).html_safe %>
+                <!--div class ="field">
+                  <!--select size="10" name="new_group_id" STYLE="width: 100%">
+                    <%#for group in @all_groups%>
+                        <option value = "<%#group.id%>" <%#if(!@component_use == nil && @component_use.group_id == group.id)%> selected = "true"<%#end%>>
+                          <%# group.name %>
                         </option>
-                    <%end%>
+                    <%#end%>
                   </select>
-                </div>
+                </div-->
             <%end%>
           </td>
           <td>
-            <select size="10" name="new_ValueFields[]" id="new_Valuefields" multiple="multiple" STYLE="width: 100%">
-              <%=properties_VF_table.html_safe%>
+            <!--select size="10" name="new_ValueFields[]" id="new_Valuefields" multiple="multiple" STYLE="width: 100%"-->
+              <%#properties_VF_table.html_safe%>
 
-            </select>
+              <%= parent_accord(prop_vf_hash, 3, 0).html_safe  %>
+            <!--/select-->
           </td>
         </tr>
       </table>
@@ -91,7 +95,7 @@
         $("#component_photo").change(function(){
             $.get("/components/update_picture", null, 'script');
             return false;
-        })
+        });
 
         $("#new_Valuefields").click(function(){
             index = $("#new_Valuefields").prop("selectedIndex");
@@ -105,7 +109,10 @@
                 $("#new_Valuefields").children("option").eq(index).removeAttr("selected");
             }
             return false;
-        })
+        });
+
+
+        $("#acc1").accordion();
     });
 </script>
 

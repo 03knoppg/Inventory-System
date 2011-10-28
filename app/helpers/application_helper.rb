@@ -55,5 +55,94 @@ module ApplicationHelper
       end
     end
   end
+  end
+
+
+    #Recursive function for display components - finds parents and then children and organizes them in this way to display
+
+  def parent_accord(items_hash, id, depth)
+    if(items_hash.keys.empty?)
+      return ""
     end
+
+    pt = "<ul"
+    if(depth == 0)
+      pt += " id=#{id} class=\"accordion\""
+    end
+
+    pt+=">"
+
+    for item in items_hash.keys
+      pt += "<li>"
+      if(item.is_a?(Product))
+        pt += "<input type=\"checkbox\" name=\"component[products[#{item.id}]]\" value=\"#{item.id}\"> #{item.name} </checkbox>"
+      elsif(item.is_a?(Component))
+        pt += "<input type=\"checkbox\" name=\"component[components[#{item.id}]]\" value=\"#{item.id}\"> #{item.name} </checkbox>"
+      elsif(item.is_a?(Valuefield))
+        pt += "<input type=\"checkbox\" name=\"component[valuefields[#{item.id}]]\" value=\"#{item.id}\" > #{item.fieldvalue} </checkbox>"
+      elsif(item.is_a?(Group))
+        pt += "<input type=\"checkbox\" name=\"component[group[#{item.id}]]\" value=\"#{item.id}\" > #{item.name} </checkbox>"
+      elsif(item.is_a?(Property))
+        pt += "#{item.name}"
+      end
+
+      pt += parent_accord(items_hash[item], id, depth+1)
+      pt += "</li>"
+
+    end
+
+    pt += "</ul>"
+
+    return pt
+
+  end
+
+  def prod_comp_hash(item)
+
+     hash = {}
+
+     if(!item.nil?)
+       items = item.components
+     else
+       items = Product.all
+     end
+
+     for comp in items
+
+       hash[comp] = prod_comp_hash(comp)
+
+     end
+
+     return hash
+
+   end
+
+  def prop_vf_hash
+
+     hash = {}
+     items = Property.all
+
+     for prop in items
+
+       hash[prop] = {}
+       for vf in prop.valuefields
+
+         hash[prop][vf] = {}
+
+       end
+     end
+
+     return hash
+
+   end
+
+  def group_hash
+    hash = {}
+    for group in Group.all
+      hash[group] = {}
+    end
+    return hash
+  end
+
+
 end
