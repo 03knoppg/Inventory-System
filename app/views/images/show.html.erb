@@ -23,38 +23,37 @@
   <tr>
     <th align="left">Products related to <%=@image.picture_file_name%></th>
   </tr>
-  <tr>
-    <% if(@image.product != nil) %>
-        <td><%= link_to @image.product.name, @image.product %></td>
+    <% if(!@image.products.empty?) %>
+        <%for prod in @image.products%>
+            <tr><td><%= link_to prod.name, prod %></td></tr>
+        <%end%>
     <%else%>
-        <td>N/A</td>
+        <tr><td>N/A</td></tr>
     <%end%>
-  </tr>
 </table>
 <table>
   <tr>
     <th align="left">Components related to <%=@image.picture_file_name%></th>
   </tr>
-  <tr>
-    <% if(@image.component != nil) %>
-        <td> <%= link_to @image.component.name, @image.component %> </td>
+    <% if(!@image.components.empty?) %>
+        <%for comp in @image.components%>
+            <tr><td><%= link_to comp.name, comp %></td></tr>
+        <%end%>
     <%else%>
-        <td>N/A</td>
+        <tr><td>N/A</td></tr>
     <%end%>
-  </tr>
 </table>
 <table style="padding-top: 15px">
   <tr>
     <th align="left">Valuefields related to <%=@image.picture_file_name%></th>
   </tr>
-
-  <tr>
-    <% if(@image.valuefield != nil) %>
-        <td> <%= link_to @image.valuefield.fieldvalue, @image.valuefield %> </td>
+    <% if(!@image.valuefields.empty?) %>
+        <%for vf in @image.valuefields%>
+            <tr><td><%= link_to vf.fieldvalue, vf %></td></tr>
+        <%end%>
     <%else%>
-        <td>N/A</td>
+        <tr><td>N/A</td></tr>
     <%end%>
-  </tr>
 </table>
 </div>
   </div>

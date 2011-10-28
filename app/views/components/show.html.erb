@@ -25,7 +25,7 @@
 <!-- tab "panes" -->
 <div class="panes">
 
-	<div>
+	<div> <!--pane 1 -->
       <% group = @component.group %>
         <table>
           <tr><th align="left">Group related to <%=@component.name%></th></tr>
@@ -46,95 +46,74 @@
 
 
 
+<table style="padding-top: 15px">
+  <tr>
+    <th align="left">Properties related to <%=@component.name%></th>
+    <th align="left">Value</th>
+  </tr>
+  <%properties = @component.properties %>
 
+  <% if(!properties.empty?) %>
+    <%for prop in properties %>
+      <%valuefields = prop.valuefields %>
+      <tr>
+        <td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
+        <%if(!valuefields.empty?)%>
+          <td>
+            <table>
+              <%for val in valuefields%>
+                  <%if(@component.valuefields.include?(val))%>
+                     <tr>
+                       <td> <%= link_to(val.fieldvalue, val) %> </td>
+                     </tr>
+                  <%end%>
+              <%end%>
+        <%else%>
+            <td>No valuefields</td>
+        <%end%>
+            <tr>
+              <td>
+                <%= my_button_to("New #{prop.name} Value", "/valuefields/new", [@component, @property] ) %>
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+   <%end%>
 
-        <table>
-          <tr><th align="left">Child Components related to <%=@component.name%></th></tr>
-          <%= print_component_child.html_safe %>
-        </table>
+  <%else%>
+      <tr>
+        <td>No properties</td>       <td>No value</td>
+      </tr>
+  <%end%>
+  <tr>
+    <td> <%= button_to "New Property", new_property_path, :method => :get %></td><td></td>
+  </tr>
+</table>
+</div>  <!--pane 1 -->
 
+  <div> <!--pane 2 -->
 
-        <table style="padding-top: 15px">
-          <tr>
-            <th align="left">Properties related to <%=@component.name%></th>
-            <th align="left">Value</th>
-          </tr>
-          <%properties = @component.properties %>
-
-          <% if(!properties.empty?) %>
-            <%for prop in properties %>
-              <%valuefields = prop.valuefields %>
-              <tr>
-                <td> <%= link_to("#{prop.name} (#{prop.field_type}) ", prop) %> </td>
-
-                <%if(!valuefields.empty?)%>
-                  <td>
-                    <table>
-                      <%for val in valuefields%>
-                          <%if(@component.valuefields.include?(val))%>
-                             <tr>
-                               <td> <%= link_to(val.fieldvalue, val) %> </td>
-                             </tr>
-                          <%end%>
-                      <%end%>
-                <%else%>
-                    <td>No valuefields</td>
-                <%end%>
-                    <tr>
-                      <td>
-                        <%= my_button_to("New #{prop.name} Value", "/valuefields/new", [@component, @property] ) %>
-                      </td>
-                    </tr>
-                    </table>
-                  </td>
-                </tr>
-           <%end%>
-
-          <%else%>
-              <tr>
-                <td>No properties</td>       <td>No value</td>
-              </tr>
-          <%end%>
-          <tr>
-            <td> <%= button_to "New Property", new_property_path, :method => :get %></td><td></td>
-          </tr>
-        </table>
-    </div>
-  <div>
     <table style="padding-top: 15px">
-          <tr>
-            <th align="left">Images related to <%=@component.name%></th>
-          </tr>
-          <%if(!@all_images.empty?)
-                compImages = []
-                for img in @all_images
-                  if(@component.id == img.component_id)
-                     compImages.push(img)
-                  end
-                end%>
-                <tr>
-                <%for ig in compImages%>
-                 <td> <%= link_to(image_tag(ig.picture), ig) %> </td>
-                <%end%>
-                </tr>
+      <tr>
+        <th align="left">Images related to <%=@component.name%></th>
+      </tr>
+      <%if(!@component.images.empty?)%>
+            <%for img in @component.images%>
+              <tr><td> <%= link_to(image_tag(img.picture), img) %> </td></tr>
+              <%end%>
           <%else %>
-              <tr>
-                <td>No Images</td>
-              </tr>
-          <%end%>
-              <tr>
-                <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
-              </tr>
-        </table>
+          <tr>
+            <td>No Images</td>
+          </tr>
+            <%end%>
+          <tr>
+            <td> <%= my_button_to "New Image", new_image_path, [@component] %> </td>
+          </tr>
+    </table>
+ </div><!--pane 2 -->
   </div>
-</div>
-
-
-
-
-
-
- </div>
+  </div>
 <div class="right_div">
   <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
   <%=button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>

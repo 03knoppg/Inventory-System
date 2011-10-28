@@ -123,10 +123,6 @@ class ValuefieldsController < ApplicationController
       end
     end
 
-
-
-
-
     respond_to do |format|
       if @valuefield.save
         format.html { redirect_to @valuefield, notice: 'Valuefield was successfully created.' }

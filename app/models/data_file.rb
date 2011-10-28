@@ -29,9 +29,9 @@ class DataFileValidator < ActiveModel::Validator
 end
 
 class DataFile < ActiveRecord::Base
-  belongs_to :product
-  belongs_to :component
-  belongs_to :valuefield
+  has_and_belongs_to_many :products
+  has_and_belongs_to_many :components
+  has_and_belongs_to_many :valuefields
 
   has_attached_file :filedata,
                     :path => ":rails_root/public/:class/:id/:basename.:extension",
