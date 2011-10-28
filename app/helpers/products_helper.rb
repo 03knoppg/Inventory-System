@@ -36,7 +36,7 @@ module ProductsHelper
 
 
    #Function to print parents related to the component
-  def print_product_table(parent)
+  def print_products_table(parent)
 
     items = parent.products
     part = "<table style=\"padding-top: 15px\">"
@@ -50,7 +50,7 @@ module ProductsHelper
       part += "<tr><td>No Parents Available</td></tr>"
     end
 
-    part += "</ table>"
+    part += "</table>"
     return part
   end
 end

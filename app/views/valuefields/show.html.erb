@@ -11,107 +11,35 @@
     <td><%= @valuefield.code %></td>
   </tr>
 </table>
-<table>
-  <tr>
-    <th align="left">Properties related to <%=@valuefield.fieldvalue%>
-  </tr>
-  <tr>
+   <!-- the tabs -->
+  <ul class="tabs">
+    <li><a href="#">Associations</a></li>
+    <li><a href="#">Attachments</a></li>
+  </ul>
 
-    <%if(!@valuefield.property.nil?)%>
-        <td><%property =  @valuefield.property %><%= link_to property.name, property %> </td>
-    <%else%>
-        <td>No Property Defined</td>
+  <!-- tab "panes" -->
+  <div class="panes">
+
+
+    <div> <!--pane 1 -->
+
+  <%= print_products_table(@valuefield).html_safe %>
+  <%= print_property_table(@valuefield).html_safe %>
+  <%= print_components_table(@valuefield).html_safe %>
+
+<%if(@valuefield.components.empty? && @valuefield.products.empty?)%>
+<%= print_path_table(@valuefield).html_safe %>
     <%end%>
-  </tr>
-</table>
-<table>
-<%products = @valuefield.products.sort!{|x,y| x.name <=> y.name}%>
-       <tr>
-         <th align="left">Products related to <%=@valuefield.fieldvalue%></th>
-       </tr>
-       <%if(!products.empty?) %>
-      <%for product in products%>
-        <tr>
-          <td>
-             <%= link_to product.name, product %>
-          </td>
-        </tr>
-      <%end%>
-      <%else%>
-       <tr>
-         <td>No Products </td>
-       </tr>
+      </div>
+    <div> <!-- pane 2 -->
 
-      <%end%>
-      </table>
-      <table>
-        <%components = @valuefield.components.sort!{|x,y| x.name <=> y.name}%>
-      <tr>
-        <th align="left">Components related to <%=@valuefield.fieldvalue%></th>
-      </tr>
-        <%if(!components.empty?)%>
-            <%for component in components%>
-        <tr>
-          <td><%= link_to component.name, component %></td>
-        </tr>
-        <%end%>
-        <%else%>
-       <tr>
-         <td>No Components </td>
-       </tr>
-            <%end%>
-        </table>
-<%if(components.empty? && products.empty?)
-path = @valuefield.path%>
-<table>
-      <tr>
-        <th align="left">Path related to <%=@valuefield.fieldvalue%></th>
-      </tr>
-        <tr>
-          <td>
-            <%if(!path.nil?)%>
-            <%= id_path_to_name_path(path).html_safe%>
-                <%else%>
-            No Path
-                <%end%>
-          </td>
-        </tr>
-</table>
-    <%end%>
-<table style="padding-top: 15px">
-  <tr>
-    <th align="left">Images related to <%=@valuefield.fieldvalue%></th>
-  </tr>
-      <%vfImages = @valuefield.images%>
-      <%if(!vfImages.empty?)%>
-
-          <%for ig in vfImages%>
-             <tr><td> <%= link_to(image_tag(ig.picture(:small)), ig) %> </td></tr>
-          <%end%>
-
-      <%else%>
-         <tr><td>No Images</td></tr>
-      <%end%>
-         <tr><td> <%= my_button_to "New Image", new_image_path, [@valuefield] %> </td></tr>
-</table>
+  <%= print_images_table(@valuefield).html_safe %>
+  <%= print_datafiles_table(@valuefield).html_safe %>
+         </div>
+    </div>
 
 
-<table style="padding-top: 15px">
-  <tr>
-    <th align="left">Data Files related to <%=@valuefield.fieldvalue%></th>
-  </tr>
-      <%dfs = @valuefield.data_files%>
-      <%if(!dfs.empty?)%>
-      <tr>
-      <%for ig in dfs%>
-         <td> <%= link_to ig.filedata_file_name, ig %> </td>
-      <%end%>
-       </tr>
-      <%else%>
-         <tr><td>No Data Files</td></tr>
-      <%end%>
-         <tr><td> <%= my_button_to "New Data File", new_data_file_path, [@valuefield] %> </td></tr>
-</table>
+
     </div>
 <div class="right_div">
    <%= button_to 'Edit Value', edit_valuefield_path(@valuefield), :method => :get %>

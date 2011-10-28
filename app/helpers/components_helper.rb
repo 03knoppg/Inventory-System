@@ -50,7 +50,7 @@ module ComponentsHelper
 
 
   #Function to print parents related to the component
-  def print_component_table(parent)
+  def print_component_parents_table(parent)
 
     items = parent.component_parents
     part = "<table style=\"padding-top: 15px\">"
@@ -68,17 +68,17 @@ module ComponentsHelper
   end
 
   #Function to print children of component
-  def print_component_child_table (parent)
+  def print_components_table (parent)
 
     children = parent.components
     ch = "<table style=\"padding-top: 15px\">"
-    ch +="<tr><th align=\"Left\">Related Child Components</th><th>Description</th></tr>"
+    ch +="<tr><th align=\"Left\">Related Components</th><th>Description</th></tr>"
     if(!children.empty?)
       for child in children.sort!
         ch+= "<tr><td>#{link_to(child.name, child)}</td><td>#{child.description}</td></tr>"
       end
     else
-      ch+= "<tr><td>No Children Available</td><td></td></tr>"
+      ch+= "<tr><td>No Components Available</td><td></td></tr>"
     end
     ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td><td></td></tr>"
     ch += "</table>"

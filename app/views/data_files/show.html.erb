@@ -19,11 +19,12 @@
 <!-- tab "panes" -->
 <div class="panes">
   <div>
-<%= print_product_table(@data_file).html_safe%>
+<%= print_products_table(@data_file).html_safe%>
 
-<%= print_component_child_table(@data_file).html_safe%>
+<%= print_components_table(@data_file).html_safe%>
 
-<%= print_value_field_table(@data_file).html_safe %>
+<%= print_valuefields_table(@data_file).html_safe %>
+
   </div>
   </div>
   </div>

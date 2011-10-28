@@ -94,7 +94,8 @@ class ValuefieldsController < ApplicationController
     #logger.info("\n\n\n PATH#{params.inspect}")
 
     path = params[:valuefield_path_hidden]
-    if(!params[:prod_comp_id].empty?)
+
+    if(!params[:prod_comp_id].nil? && !params[:prod_comp_id].empty?)
       prod_comp = []
       for ids in params[:prod_comp_id]
          prod_comp.push(Integer(ids))

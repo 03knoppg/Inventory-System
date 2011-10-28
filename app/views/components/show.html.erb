@@ -40,11 +40,11 @@
         </td></tr>
       </table>
 
-    <%= print_product_table(@component).html_safe %>
+    <%= print_products_table(@component).html_safe %>
 
-    <%= print_component_table(@component).html_safe %>
+    <%= print_component_parents_table(@component).html_safe %>
 
-    <%= print_component_child_table(@component).html_safe %>
+    <%= print_components_table(@component).html_safe %>
 
     <%= print_properties_table(@component).html_safe %>
 

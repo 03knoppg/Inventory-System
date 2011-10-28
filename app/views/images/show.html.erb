@@ -19,42 +19,11 @@
 <!-- tab "panes" -->
 <div class="panes">
   <div>
-<table>
-  <tr>
-    <th align="left">Related Products</th>
-  </tr>
-    <% if(!@image.products.empty?) %>
-        <%for prod in @image.products%>
-            <tr><td><%= link_to prod.name, prod %></td></tr>
-        <%end%>
-    <%else%>
-        <tr><td>N/A</td></tr>
-    <%end%>
-</table>
-<table>
-  <tr>
-    <th align="left">Related Components</th>
-  </tr>
-    <% if(!@image.components.empty?) %>
-        <%for comp in @image.components%>
-            <tr><td><%= link_to comp.name, comp %></td></tr>
-        <%end%>
-    <%else%>
-        <tr><td>N/A</td></tr>
-    <%end%>
-</table>
-<table style="padding-top: 15px">
-  <tr>
-    <th align="left">Related Valuefields</th>
-  </tr>
-    <% if(!@image.valuefields.empty?) %>
-        <%for vf in @image.valuefields%>
-            <tr><td><%= link_to vf.fieldvalue, vf %></td></tr>
-        <%end%>
-    <%else%>
-        <tr><td>N/A</td></tr>
-    <%end%>
-</table>
+
+<%= print_products_table(@image).html_safe %>
+<%= print_components_table(@image).html_safe %>
+<%= print_valuefields_table(@image).html_safe %>
+
 </div>
   </div>
   </div>

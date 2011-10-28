@@ -21,21 +21,7 @@
 <!-- tab "panes" -->
 <div class="panes">
   <div>
-<% vf = @property.valuefields %>
-<table>
-  <tr><th>Value Fields related to <%=@property.name%></th></tr>
-  <%if(!vf.empty?)%>
-  <% for v in vf %>
-    <tr><td><%= link_to(v.fieldvalue, v) %></td></tr>
- <%end%>
-      <%else%>
-          <tr><td>No valuefields available</td></tr>
-      <%end%>
-  <tr><td>
-    <%#button_to "New Valuefield", new_valuefield_path, :method => :get%>
-    <input type="submit" value="New Valuefield" id="submit_button"/>
-  </td></tr>
-</table>
+    <%= print_valuefields_table(@property).html_safe%>
    </div>
   </div>
    </div>

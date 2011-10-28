@@ -22,7 +22,7 @@ module ValuefieldsHelper
 
   end
 
-  def print_value_field_table(parent)
+  def print_valuefields_table(parent)
     s="<table style=\"padding-top: 15px\">"
     s+="<tr>"
     s+="<th align=\"left\">Related Valuefields </th>"
@@ -40,6 +40,27 @@ module ValuefieldsHelper
       s+="<tr><td>No Valuefields</td></tr>"
     end
 
+    s+="</table>"
+
+    return s
+  end
+
+  def print_path_table(parent)
+
+    path = @valuefield.path
+    s = "<table>"
+    s+="<tr>"
+    s+="    <th align=\"left\">Related Path</th>"
+    s+="  </tr>"
+    s+="    <tr>"
+    s+="     <td>"
+            if(!path.nil?)
+    s +=        id_path_to_name_path(path)
+                else
+    s+="        No Path"
+                end
+    s+="      </td>"
+    s+="    </tr>"
     s+="</table>"
 
     return s
