@@ -19,6 +19,7 @@ module GroupsHelper
     for comp in group.components.sort {|x,y| x.name <=> y.name }
         sgc+= "<tr><td>#{link_to comp.name, comp}</td></tr>"
     end
+
     sgc+= "</table>"
     end
     return sgc
