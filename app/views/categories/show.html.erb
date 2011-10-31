@@ -11,23 +11,18 @@
       <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
     </tr>
   </table>
-
-   <!-- the tabs -->
+  <!-- the tabs -->
   <ul class="tabs">
     <li><a href="#">Associations</a></li>
   </ul>
 
   <!-- tab "panes" -->
   <div class="panes">
-
-
     <div> <!--pane 1 -->
-
-  <%= print_categories_table(@category).html_safe %>
-  <%= print_products_table(@category).html_safe %>
-      </div>
+      <%= print_child_categories_table.html_safe %>
+      <%= print_related_products_table.html_safe %>
     </div>
-
+  </div>
 </div>
 <div class="right_div">
   <%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
