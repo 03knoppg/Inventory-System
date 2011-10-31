@@ -39,4 +39,8 @@
   </div>
 </div>
 
-
+<script type="text/javascript">
+    $('tab_main_div').bind('tabsselect', function(event, ui) {
+        $('#categories').html(<%=render 'categories/new', :object => [@category, @all_categories] %>)
+    });
+</script>
