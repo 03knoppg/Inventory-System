@@ -29,6 +29,8 @@ class ProductsController < ApplicationController
     @all_images = Image.all.sort {|x,y| x.picture_file_name <=> y.picture_file_name }
     #creates an array of all data files
     @all_datafiles = DataFile.all.sort {|x,y| x.filedata_file_name <=> y.filedata_file_name }
+    #creates a sorted array using all categories
+    @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }

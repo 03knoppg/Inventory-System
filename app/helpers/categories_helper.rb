@@ -27,13 +27,13 @@ module CategoriesHelper
     s
   end
 
-  #print related category children to this category
-  def print_child_categories_table()
+  #print related category children
+  def print_child_categories_table(parent)
     child = []
     c = "<table><tr><th>Related Child Categories</th></tr>"
     #creates an array of children
     for cat in @all_categories
-      if(cat.parent_id.eql?(@category.id))
+      if(cat.parent_id.eql?(parent.id))
         child.push(cat)
       end
     end
@@ -46,9 +46,31 @@ module CategoriesHelper
     else
       c += "<tr><td>No Child Categories Available</td></tr>"
     end
-    c += "<tr><td>#{my_button_to("New Child Category", new_category_path, [@category])}</td></tr></table>"
+    c += "<tr><td>#{my_button_to("New Child Category", new_category_path, [parent])}</td></tr></table>"
     c
   end
+
+  #print related parent categories
+  def print_parent_categories_table(parent)
+     s="<table style=\"padding-top: 15px\">"
+     s+="<tr>"
+     s+="<th align=\"left\">Related Categories</th>"
+     s+="  </tr>"
+
+     if(!parent.categories.empty?)
+       for cat in  parent.categories.sort {|x,y| x.name <=> y.name }
+         s+="    <tr><td>#{link_to cat.name, cat}</td></tr>"
+       end
+     else
+       s+="    <tr><td>No Categories</td></tr>"
+     end
+
+     s+="</table>"
+
+     return s
+   end
+
+
 
   #print related products to this category
   def print_related_products_table
