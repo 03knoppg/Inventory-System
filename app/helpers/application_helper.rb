@@ -68,7 +68,7 @@ module ApplicationHelper
 
     pt = "<ul"
     if(depth == 0)
-      pt += " id=#{id} class=\"accordion\""
+      pt += " id=\"acc#{id}\" class=\"accordion\""
     end
 
     pt+=">"
@@ -77,20 +77,12 @@ module ApplicationHelper
       pt += "<li>"
       if(item.is_a?(Product))
         pt += "#{check_box_tag 'product_ids[]', item.id}"   + "#{item.name}"
-        #pt += "#{check_box_tag "product_ids[#{item.id}]", item.id, :name => "product_ids[]"}"   + "#{item.name}"
-        #pt += "<input type=\"checkbox\" name=\"component[products[]]\" value=\"#{item}\"> #{item.name} </checkbox>"
       elsif(item.is_a?(Component))
         pt += "#{check_box_tag 'component_parent_ids[]', item.id}"  + "#{item.name}"
-        #pt += "#{check_box_tag "component_parent_ids[#{item.id}]", item.id, :name => "component_parent_ids[]"}"   + "#{item.name}"
-        #pt += "<input type=\"checkbox\" name=\"component_parents[component_id\" value=\"#{item.id}\"> #{item.name} </checkbox>"
       elsif(item.is_a?(Valuefield))
-        #pt += "#{check_box_tag "valuefield_ids[#{item.id}]", item.id, :name => "valuefield_ids[]"}"   + "#{item.fieldvalue}"
         pt += "#{check_box_tag 'valuefield_ids[]', item.id}"   + "#{item.fieldvalue}"
-        #pt += "<input type=\"checkbox\" name=\"new_valuefields[#{item.id}]\" value=\"#{item.id}\" > #{item.fieldvalue} </checkbox>"
       elsif(item.is_a?(Group))
-        #pt += "#{check_box_tag "group_id[#{item.id}]", item.id, :name => "group_id"}"   + "#{item.name}"
         pt += "#{radio_button_tag 'group_id', item.id}"   + "#{item.name}"
-        #pt += "<input type=\"checkbox\" name=\"new_group[#{item.id}]\" value=\"#{item.id}\" > #{item.name} </checkbox>"
       elsif(item.is_a?(Property))
         pt += "#{item.name}"
       end
