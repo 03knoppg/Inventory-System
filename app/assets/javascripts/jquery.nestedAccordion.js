@@ -33,11 +33,15 @@ $.fn.accordion = function(options) {
       }
       $(El).each(function(){
           var $node = $(this);
-          if ($node.find(o.next).length || $node.next(o.next).length) {
+          if (true) {
             if ($node.find('> a').length) {
-                $node.find('> a').addClass("trigger").css('display', "block");
+                $node.find('> a').addClass("trigger").css('display', "inline");
             } else {
-                var anchor = '<a class="trigger" style="display:block" href="#" />'
+
+                var anchor = '<a class="trigger" style="display:inline" href="#" />';
+                if(!$node.find(o.next).length && !$node.next(o.next).length){
+                   anchor = '<a class="disable" style="display:inline" href="#" />';
+                }
                 if (o.elToWrap) {
                   var $t = $node.orphans(), $s = $node.find(o.elToWrap);
                   $t.add($s).wrapAll(anchor);
@@ -191,7 +195,7 @@ $.fn.accordion.defaults = {
   focus : true, // it is needed for  keyboard accessibility when we use {event:'hover'}
   interval : 400, // time-interval for delayed actions used to prevent the accidental activation of animations when we use {event:hover} (in milliseconds)
   collapsible : true, // {true} - makes the accordion fully collapsible, {false} - forces one section to be open at any time
-  standardExpansible : false, //if {true}, the functonality will be standard Expand/Collapse without 'accordion' effect
+  standardExpansible : true, //if {true}, the functonality will be standard Expand/Collapse without 'accordion' effect
   lastChild : true, //if {true}, the items without sub-elements will also trigger the 'accordion' animation
   shift: false, // false, 'clicked', 'all'. If 'clicked', the clicked item will be moved to the first position inside its level, 
                 // If 'all', the clicked item and all following siblings will be moved to the top

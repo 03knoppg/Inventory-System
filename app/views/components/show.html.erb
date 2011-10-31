@@ -36,6 +36,7 @@
               <%= link_to("#{group.name} ", group) %>
           <%else%>
               No Groups Available
+                </td></tr><tr><td> <%=my_button_to "New Group", new_group_path, [@component]%>
           <%end%>
         </td></tr>
       </table>

@@ -50,7 +50,7 @@ module PropertiesHelper
           s +=        "<tr><td> #{link_to(val.fieldvalue, val)} </td></tr>"
 
           end
-          s +=       "<tr><td> #{my_button_to "New Valuefield", new_valuefield_path, [parent, prop]} </td></tr>"
+          s +=       "<tr><td> #{my_button_to "New #{prop.name} Valuefield", new_valuefield_path, [parent, prop]} </td></tr>"
           s +=        "</table></td>"
         else
           s +=        "<td>No valuefields</td>"
@@ -62,7 +62,7 @@ module PropertiesHelper
       s +=  "<tr><td>No properties</td><td>No value</td></tr>"
     end
 
-    s +=       "<tr><td> #{my_button_to "New Property", new_property_path, [parent]} </td></tr>"
+    s +=       "<tr><td> #{my_button_to "New Property", new_property_path, [parent]} </td><td>#{my_button_to "New Valuefield", new_valuefield_path, [parent]}</td></tr>"
     s += "</table>"
 
     return s
