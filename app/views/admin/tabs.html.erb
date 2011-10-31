@@ -1,4 +1,5 @@
 <h1>Tabs Page</h1>
+<%category = Category.new%>
 <div class="main_div">
   <ul class="tabs">
     <li><a href="" title="categories">Category</a></li>
@@ -11,7 +12,7 @@
     <li><a href="" title="datafiles">Data File</a></li>
   </ul>
   <div class="panes">
-    <div id="categories" class="tab_main_div"><h1>Category Information</h1></div>
+    <div id="categories" class="tab_main_div"><%= render "categories/new"%></div>
     <div id="products" class="tab_main_div"><h1>Product Information</h1></div>
     <div id="groups" class="tab_main_div"><h1>Group Information</h1></div>
     <div id="components" class="tab_main_div"><h1>Component Information</h1>
@@ -39,4 +40,15 @@
   </div>
 </div>
 
+<script type="text/javascript">
 
+    jQuery(function($) {
+
+
+        $('input[name=commit]').click(function(){
+           $.get("/admin/updatecategory", null);
+            return false;
+
+        });
+    });
+</script>

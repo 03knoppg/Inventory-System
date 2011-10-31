@@ -22,6 +22,7 @@ TestDBRubymineProject::Application.routes.draw do
   post "login" => "sessions#new", :as => "login"  #for testing php
   get "signup" => "users#new", :as => "signup"
 
+
   get  "sessions/forgotpass"
 
 
@@ -53,6 +54,7 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "admin/home"
   get "admin/addvalue"
+  get "admin/updatecategory"
   post "admin/addvalue"
   get "admin/writefile"
   post "admin/writefile"
