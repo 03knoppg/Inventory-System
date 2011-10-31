@@ -1,5 +1,25 @@
 class AdminController < ApplicationController
 
+  def tabs
+
+    @category = Category.new
+    @all_categories = Category.all
+  end
+
+  def updatecategory
+    @all_categories = Category.all
+
+     @category = Category.new(params[:category])
+    @category.name = "name"
+
+     if @category.save
+      respond_to do |format|
+        format.js
+      end
+    end
+
+  end
+
   def home
   end
 

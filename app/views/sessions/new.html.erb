@@ -6,17 +6,17 @@
           <td style="width: 125px; vertical-align: middle">
             <%= label_tag :username %>:
           </td>
-          <td style="width: 100px;">
+          <td style="width: 200px;">
             <div class="field">
               <%= text_field_tag :username, params[:username], :size => 20 %>
             </div>
           </td>
         </tr>
         <tr>
-          <td style="width: 125px; vertical-align: middle">
+          <td style="vertical-align: middle">
             <%= label_tag :password %>:
           </td>
-          <td style="width: 100px;">
+          <td>
             <div class="field">
               <%= password_field_tag :password, '', :size => 20 %>
             </div>
@@ -26,7 +26,7 @@
           </td>
         </tr>
         <tr>
-          <td style="width: 125px; vertical-align: middle" colspan="2">
+          <td style="vertical-align: middle" colspan="2">
             <div class="field">
               <%= check_box_tag :remember_me, 1, params[:remember_me] %>&nbsp;<%= label_tag :remember_me %>
             </div>
