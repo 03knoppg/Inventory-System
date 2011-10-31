@@ -28,7 +28,7 @@ module CategoriesHelper
   end
 
   #print related category children to this category
-  def print_child_categories_table
+  def print_child_categories_table()
     child = []
     c = "<table><tr><th>Related Child Categories</th></tr>"
     #creates an array of children

@@ -11,15 +11,18 @@
       <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
     </tr>
   </table>
+  <h2>Associations</h2>
   <!-- the tabs -->
   <ul class="tabs">
-    <li><a href="#">Associations</a></li>
+    <li><a href="#">Child Components</a></li>
+     <li><a href="#">Products</a></li>
   </ul>
-
   <!-- tab "panes" -->
   <div class="panes">
     <div> <!--pane 1 -->
       <%= print_child_categories_table.html_safe %>
+    </div>
+    <div><!--pane 2 -->
       <%= print_related_products_table.html_safe %>
     </div>
   </div>
