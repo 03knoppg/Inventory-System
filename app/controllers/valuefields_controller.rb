@@ -50,8 +50,7 @@ class ValuefieldsController < ApplicationController
         @valuefield = value_to_duplicate.dup
         #Global Variables for duplicate
         @property = value_to_duplicate.property
-        @components = value_to_duplicate.components
-        @products = value_to_duplicate.products
+        @items_to_select = value_to_duplicate.components + value_to_duplicate.products
     else
         #New category
         @valuefield = Valuefield.new
@@ -59,11 +58,11 @@ class ValuefieldsController < ApplicationController
           @property = Property.find(params[:property_id])
          end
           if(!params[:component_id].nil?)
-            @components = [Component.find(params[:component_id])]
+            @items_to_select = [Component.find(params[:component_id])]
           end
 
           if(!params[:product_id].nil?)
-            @product = [Product.find(params[:product_id])]
+            @items_to_select = [Product.find(params[:product_id])]
           end
     end
 
@@ -80,8 +79,7 @@ class ValuefieldsController < ApplicationController
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
 
     @property = @valuefield.property
-    @components = @valuefield.components
-    @products = @valuefield.products
+    @items_to_select = @valuefield.components + @valuefield.products
     @path = @valuefield.path
 
   end

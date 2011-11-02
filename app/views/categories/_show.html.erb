@@ -13,12 +13,12 @@
   </table>
   <h2>Associations</h2>
   <!-- the tabs -->
-  <ul class="tabs">
+  <ul class="tabs2">
     <li><a href="#">Child Components</a></li>
      <li><a href="#">Products</a></li>
   </ul>
   <!-- tab "panes" -->
-  <div class="panes">
+  <div class="panes2">
     <div> <!--pane 1 -->
       <%= print_child_categories_table(@category).html_safe %>
     </div>
@@ -27,8 +27,12 @@
     </div>
   </div>
 </div>
-<div class="right_div">
+
+
+    <div class="right_div">
   <%= button_to "Edit Category", "categories/edit", :object => @category,:controller => :categories, :method => :get %>
   <%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Category", new_category_path + "?duplicate_category=#{@category.id}"%>
+
 </div>
+

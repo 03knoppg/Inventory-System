@@ -183,7 +183,7 @@ $.fn.accordion.defaults = {
   el : 'li', // the parent of 'a.trigger' - 'li', '.h'
   head : '', // the headings that are parents of 'a.trigger' (if any)
   next : 'ul', // the collapsible element - 'ul', 'ol', 'div'
-  initShow : '', // the initially expanded section (optional)
+  initShow : '.expand', // the initially expanded section (optional)
   expandSub : true, // {true} forces the sub-content under the 'current' item to be expanded on page load
   showMethod : 'slideDown', // 'slideDown', 'show', 'fadeIn', or custom
   hideMethod : 'slideUp', // 'slideUp', 'hide', 'fadeOut', or custom

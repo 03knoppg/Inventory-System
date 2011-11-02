@@ -1,0 +1,12 @@
+
+<% a = render( "/categories/show", :object => [@category]).squish %>
+
+var decoded = $("<div/>").html("<%=a%> ").text();
+
+$('#categories').html(decoded);
+
+
+
+
+
+

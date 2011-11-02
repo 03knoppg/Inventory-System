@@ -7,16 +7,20 @@ class AdminController < ApplicationController
   end
 
   def updatecategory
-    @all_categories = Category.all
+     @all_categories = Category.all
 
-     @category = Category.new(params[:category])
-    @category.name = "name"
+     @category = Category.new
+     @category.name = "name"
 
      if @category.save
       respond_to do |format|
         format.js
       end
-    end
+     #
+     # else
+     #   format.html { render action: "categories/new", :controller => :categories }
+     #   format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
 
   end
 

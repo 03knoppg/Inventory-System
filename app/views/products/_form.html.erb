@@ -16,7 +16,6 @@
         <th align="left">Name</th>
         <th align="left">Description</th>
         <th align="left">Code</th>
-        <th align="left">Categories</th>
       </tr>
       <tr>
         <td>
@@ -34,28 +33,23 @@
             <%= f.text_field :code %>
           </div>
         </td>
-        <td>
-          <div class="field">
-            <%if(@all_categories.length < 2)%>
-                <br/> No Categories available
-            <%else%>
-                <select size="5" multiple="multiple" name="new_categories_ids[]" style="width: 100px"  class="required">
-                  <% for cat in @all_categories
-                         if (cat.parent_id == nil)
-                             next
-                         end %>
-                      <option
-                      value="<%= cat.id %>"
-                      <% if (@associated_categories.include?(cat)) %> selected=true <% end %>>
-                        <%= cat.name %>
-                      </option>
-                  <% end %>
-                </select>&nbsp;<span style="color: red; vertical-align: top;">*</span>
-            <%end%>
-          </div>
-        </td>
+
 </tr>
 </table>
+       <table>
+         <tr>
+        <th align="left">Categories</th>
+             </tr>
+         <tr>
+           <td>
+          <div class="field">
+                <%= checkbox_accord(all_category_hash).html_safe %>
+                &nbsp;<span style="color: red; vertical-align: top;">*</span>
+
+          </div>
+        </td>
+         </tr>
+       </table>
 </div>
 <div class="right_div">
         <input type="reset" />

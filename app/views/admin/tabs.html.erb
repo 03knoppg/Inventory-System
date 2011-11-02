@@ -44,11 +44,7 @@
 
     jQuery(function($) {
 
+        $('#new_category')[0].setAttribute("data-remote", "true");
 
-        $('input[name=commit]').click(function(){
-           $.get("/admin/updatecategory", null);
-            return false;
-
-        });
     });
 </script>

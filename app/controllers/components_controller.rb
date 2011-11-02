@@ -64,16 +64,16 @@ class ComponentsController < ApplicationController
         #Duplicate the component to use -no id is carried over
         @component = component_to_duplicate.dup
         #creates an array of all the components parents
-        @parent_cps = (component_to_duplicate.component_parents + component_to_duplicate.products).sort {|x,y| x.name <=> y.name }
+        @items_to_select = (component_to_duplicate.component_parents + component_to_duplicate.products + [component_to_duplicate.group] + component_to_duplicate.valuefields)
     else
       #New Record
          @component = Component.new
          if(!params[:component_id].nil?)
-            @parent_cps = [Component.find(params[:component_id])]
+            @items_to_select = [Component.find(params[:component_id])]
          elsif(!params[:product_id].nil?)
-            @parent_cps = [Product.find(params[:product_id])]
+            @items_to_select = [Product.find(params[:product_id])]
          else
-            @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
+            @items_to_select = []
          end
     end
     respond_to do |format|
@@ -93,10 +93,9 @@ class ComponentsController < ApplicationController
     @all_products = Product.all.sort {|x,y| x.name <=> y.name }
     #creates an array of all components
     @all_components =  Component.all.sort {|x,y| x.name <=> y.name }
-    #creates an array of all components parents
-    @associated_components = @component.component_parents.sort {|x,y| x.name <=> y.name }
+
     #creates an array of all components parents and associated products
-    @parent_cps = (@component.component_parents + @component.products).sort {|x,y| x.name <=> y.name }
+    @items_to_select = (@component.component_parents + @component.products + [@component.group] + @component.valuefields)
     #creates an array of all groups
     @all_groups = Group.all.sort {|x,y| x.name <=> y.name }
     #creates an array of all properties

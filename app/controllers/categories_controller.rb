@@ -84,11 +84,13 @@ class CategoriesController < ApplicationController
   def create
     #Creates the category to be saved in the db
     @category = Category.new(params[:category])
+    @all_categories = Category.all
 
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
         format.json { render json: @category, status: :created, location: @category }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @category.errors, status: :unprocessable_entity }

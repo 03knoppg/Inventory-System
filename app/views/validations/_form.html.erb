@@ -23,8 +23,11 @@
           </div>
         </td>
         <td>
+             &nbsp;<span style="color: red; vertical-align: top;">*</span>
           <div class="field">
-             <%= select_tag "kind", raw("<option>Image</option><option>Data File</option>".html_safe) %>&nbsp;<span style="color: red; vertical-align: top;">*</span>
+            <%= radio_button_tag "kind", "Data File"%> Data File  <br/>
+            <%= radio_button_tag "kind", "Image"%> Image
+
           </div>
         </td>
     </tr>

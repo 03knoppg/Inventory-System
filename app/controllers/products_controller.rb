@@ -54,12 +54,12 @@ class ProductsController < ApplicationController
         #set category to duplicated info minus id
         @product = product_to_duplicate.dup
         #Use for select fields
-        @associated_categories = product_to_duplicate.categories
+        @items_to_select = product_to_duplicate.categories
     else
         #New category
         @product = Product.new
         if(!params[:category_id].nil?)
-          @associated_categories = [Category.find(params[:category_id])]
+          @items_to_select = [Category.find(params[:category_id])]
         end
     end
     respond_to do |format|
@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
     #Finds selected product
     @product = Product.find(params[:id])
     #creates an array of all the products associated categories
-    @associated_categories = @product.categories.sort {|x,y| x.name <=> y.name }
+    @items_to_select = @product.categories
     #creates an array of all categories
     @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
   end
@@ -88,10 +88,10 @@ class ProductsController < ApplicationController
     #creates an array of all categories
     @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
     #creates an empty array
-    @associated_categories = []
+    @items_to_select = []
 
     if(!params[:category_id].nil?)
-      @associated_categories = [Category.find(params[:category_id])]
+      @items_to_select = [Category.find(params[:category_id])]
     end
 
     if(!params[:new_categories_ids].nil?)

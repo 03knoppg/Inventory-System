@@ -38,15 +38,15 @@ class ImagesController < ApplicationController
     @all_valuefields = Valuefield.all
 
     if(!params[:product_id].nil?)
-      @product = Product.find(params[:product_id])
+      @items_to_select = Product.find(params[:product_id])
     end
 
     if(!params[:component_id].nil?)
-      @component = Component.find(params[:component_id])
+      @items_to_select = Component.find(params[:component_id])
     end
 
      if(!params[:valuefield_id].nil?)
-      @valuefield = Valuefield.find(params[:valuefield_id])
+      @items_to_select = Valuefield.find(params[:valuefield_id])
     end
 
     respond_to do |format|
@@ -67,9 +67,7 @@ class ImagesController < ApplicationController
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
     #assigns variable associated product
-    @product = @image.product
-    #assigns variable associated component
-    @component = @image.component
+    @items_to_select = @image.products +  @image.components + @image.valuefields
   end
 
   # POST /images
@@ -96,6 +94,8 @@ class ImagesController < ApplicationController
     if(!params[:new_valuefields_ids].nil?)
       @image.valuefields = Valuefield.find(params[:new_valuefields_ids])
     end
+
+    @items_to_select = @image.products +  @image.components + @image.valuefields
 
     respond_to do |format|
       if @image.save
