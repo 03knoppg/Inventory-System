@@ -14,7 +14,7 @@ h2, h3, h4, h5 {font-size:1em}
 #side h2 {border-bottom:1px solid #484b51}
 
 /* --- Links --- */
-a {padding:1px; border:1px solid #e0e0e0; color:#05b}
+a {padding:5px; }
 
 a:hover, a:focus, a:active {border-color:#bcd; text-decoration:none; outline:0 none}
 
@@ -52,9 +52,9 @@ a:hover, a:focus, a:active {border-color:#bcd; text-decoration:none; outline:0 n
 .accordion a {...}
 */
 
-a.trigger {padding-left:20px; background-image: url(/assets/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+a.trigger {padding-left:15px; background-image: url(/assets/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
 
-a.disable {padding-left:20px; background-image: url(/assets/minus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+a.disable {padding-left:15px; background-image: url(/assets/minus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
 
 a.trigger.open {background-image: url(/assets/minus.gif);}
 
@@ -67,3 +67,5 @@ a.trigger.open {background-image: url(/assets/minus.gif);}
 #main a:hover.trigger.open, #main a:focus.trigger.open, #main a:active.trigger.open {border-color:#bcd}
 
 #side a.active{font-weight:700; color:#f72; text-decoration:none}
+
+div.inline{ display:inline; }

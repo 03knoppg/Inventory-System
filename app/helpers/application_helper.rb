@@ -93,20 +93,20 @@ module ApplicationHelper
        pt +=">"
 
       if(item.is_a?(Category))         #not currently used
-        pt += "#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Product))
-        pt += "#{check_box_tag "product_ids[]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Component))
-        pt += "#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item)}"  + "#{item.name}"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Valuefield))
-        pt += "#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item)}"   + "#{item.fieldvalue}"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
       elsif(item.is_a?(Group))         #not currently used
-        pt += "#{check_box_tag "group_ids[]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Property))
         if(show_properties)
-          pt += "#{check_box_tag "#{parent}[property_id]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+          pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "#{parent}[property_id]", item.id, @items_to_select.include?(item), :id=>"o#{item.id}"}"   +  "<label for=\"o#{item.id}\">#{item.name}</label>"
         elsif(!item.valuefields.empty?)
-          pt += "#{item.name}"
+          pt += "<div class=\"inline\">&nbsp</div><b>#{item.name}</b>"
         end
 
       end
@@ -150,23 +150,24 @@ module ApplicationHelper
         pt += " class=\"expand\""
         expand = false
       end
-       pt +=">"
+       pt +="><div class=\"inline\">&nbsp</div>"
 
-      if(item.is_a?(Category))
-        pt += "#{radio_button_tag "#{parent}[parent_id]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+      if(item.is_a?(Category))         #not currently used
+        pt += "#{radio_button_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Product))
-        pt += "#{radio_button_tag "#{parent}[product_ids]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+        pt += "#{radio_button_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label>"
+        #{item.name}</label>"
       elsif(item.is_a?(Component))
-        pt += "#{radio_button_tag "#{parent}[component_parent_id]", item.id, @items_to_select.include?(item)}"  + "#{item.name}"
+        pt += "#{radio_button_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Valuefield))
-        pt += "#{radio_button_tag "#{parent}[valuefield_id]", item.id, @items_to_select.include?(item)}"   + "#{item.fieldvalue}"
-      elsif(item.is_a?(Group))
-        pt += "#{radio_button_tag "#{parent}[group_id]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+        pt += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
+      elsif(item.is_a?(Group))         #not currently used
+        pt += "#{radio_button_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Property))
         if(show_properties)
-          pt += "#{radio_button_tag "#{parent}[property_id]", item.id, @items_to_select.include?(item)}"   + "#{item.name}"
+          pt += "#{radio_button_tag "#{parent}[property_id]", item.id, @items_to_select.include?(item), :id=>"o#{item.id}"}"   +  "<label for=\"o#{item.id}\">#{item.name}</label>"
         elsif(!item.valuefields.empty?)
-          pt += "#{item.name}"
+          pt += "<b>#{item.name}</b>"
         end
 
       end
@@ -181,6 +182,7 @@ module ApplicationHelper
     return pt
 
   end
+
 
   def all_prod_comp_hash(item=nil)
 
