@@ -138,7 +138,7 @@ module ApplicationHelper
     pt = "<ul style=\"list-style-type: none\" "
     if(depth == 0)
       @counter.nil?? @counter = 1 : @counter += 1
-      pt += "id=\"#{@counter}\" class=\"accordion\" "
+      pt += "id=\"#{@counter}\" class=\"\" "
     end
 
     pt+=">"
