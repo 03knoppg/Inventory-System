@@ -16,7 +16,7 @@
         <th align="left">Select Image:</th>
       </tr>
       <tr>
-        <td style="width: 325px">
+         <td style="width: 325px">
           <div class ="field" style="padding-bottom: 10px">
             <%= f.file_field(:picture, :id => "pic", :required => true) %>&nbsp;<span style="color: red">*</span>
           </div>
@@ -24,7 +24,6 @@
             <%=image_tag(@image.picture(:small), :id => "img", :alt=>"") %>
           </div>
         </td>
-
 
 </tr>
 </table>
