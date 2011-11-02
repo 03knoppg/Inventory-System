@@ -18,17 +18,9 @@
         <tr>
           <td class="td_two_col">
             <div class ="field">
-              <select name="category[parent_id]" style="width: 200px">
-                <% @all_categories.each do |category| %>
-                    <option value= "<%=category.id %>"
-                            <% if(@category.parent_id == category.id) %>
-                            selected = true;
-                            <% end %>
-                            <% if (@parent != nil && @parent.id == category.id) %>
-                            selected = true; <% end %>>
-                      <%= category.name%></option>
-                <% end %>
-              </select>&nbsp;<span style="color: red">*</span>
+<span style="color: red">*</span>
+              <%= checkbox_accord(all_category_hash).html_safe  %>
+
             </div>
           </td>
           <td>

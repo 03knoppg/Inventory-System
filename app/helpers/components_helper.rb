@@ -30,7 +30,7 @@ module ComponentsHelper
       pt += "<option value=\"#{-cp.id - 1}\""   #Component ids are set to negative values to differentiate from Product ids
     end
 
-    if (!@parent_cps.nil? && @parent_cps.include?(cp))
+    if (!@items_to_select.nil? && @items_to_select.include?(cp))
       pt += "selected=\"true\""
     end
 

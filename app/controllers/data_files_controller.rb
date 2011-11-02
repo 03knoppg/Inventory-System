@@ -39,15 +39,15 @@ class DataFilesController < ApplicationController
     @all_valuefields = Valuefield.all
 
     if(!params[:product_id].nil?)
-      @product = Product.find(params[:product_id])
+      @items_to_select = Product.find(params[:product_id])
     end
 
     if(!params[:component_id].nil?)
-      @component = Component.find(params[:component_id])
+      @items_to_select = Component.find(params[:component_id])
     end
 
     if(!params[:valuefield_id].nil?)
-      @valuefield = Valuefield.find(params[:valuefield_id])
+      @items_to_select = Valuefield.find(params[:valuefield_id])
     end
 
     respond_to do |format|
@@ -67,6 +67,8 @@ class DataFilesController < ApplicationController
     @all_components = Component.all
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
+
+    @items_to_select = @data_file.products + @data_file.components + @data_file.valuefields
   end
 
   # POST /data_files

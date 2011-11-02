@@ -14,9 +14,6 @@
     <table class="main_table">
       <tr>
         <th align="left">Select Data File:</th>
-        <th align="left">Products</th>
-        <th align="left">Components</th>
-        <th align="left">Valuefields</th>
       </tr>
       <tr>
         <td style="width: 325px">
@@ -27,53 +24,27 @@
             <%=text_field_tag("", @data_file.filedata_file_name, :id => "fn", :size => 30) %>
           </div>
         </td>
-        <td>
-          <%if(!@all_products.empty?)%>
-              <div class="field">
-                <select size="5" name="data_file[product_id]" style="width: 200px">
-                  <% for prod in @all_products %>
-                      <option value="<%= prod.id %>" <%= "selected=\"true\"" if @product == prod%>>
-                        <%= prod.name %>
-                      </option>
-                  <% end %>
-                </select>
-              </div>
-          <%else%>
-              None Available.
-          <%end%>
-        </td>
-        <td>
-          <%if(!@all_components.empty?)%>
-              <div class="field">
-                <select size="5" name="data_file[component_id]" style="width: 200px">
-                  <% for comp in @all_components %>
-                      <%= components_select_table(comp, 0).html_safe %>
-                  <% end %>
-                </select>
-              </div>
-          <%else%>
-              None Available.
-          <%end%>
-        </td>
-        <td>
-          <%if(!@all_valuefields.empty?)%>
-              <div class="field">
-                <select size="5" name="data_file[valuefield_id]" style="width: 200px">
-                  <%for vf in @all_valuefields %>
-                      <option value=<%= vf.id%> <%= "selected=\"true\"" if @valuefield == vf%>>
-                        <%= vf.fieldvalue %>
-                      </option>
-                  <% end %>
-                </select>
-              </div>
-          <%else%>
-              None Available.
-          <%end%>
-        </td>
-
 
 </tr>
 </table>
+   <table>
+     <tr>
+        <th align="left">Products / Components</th>
+        <th align="left">Valuefields</th>
+     </tr>
+     <tr>
+       <td>
+          <div class="field">
+            <%= checkbox_accord(all_prod_comp_hash).html_safe%>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= checkbox_accord(all_prop_vf_hash).html_safe%>
+          </div>
+        </td>
+     </tr>
+   </table>
    </div>
 <br class="clear" />
     <div class="right_div">

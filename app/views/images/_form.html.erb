@@ -14,9 +14,6 @@
     <table class="main_table">
       <tr>
         <th align="left">Select Image:</th>
-        <th align="left">Products</th>
-        <th align="left">Components</th>
-        <th align="left">Valuefields</th>
       </tr>
       <tr>
          <td style="width: 325px">
@@ -28,40 +25,26 @@
           </div>
         </td>
 
-        <td>
-          <div class="field">
-            <select size="5" name="new_products_ids[]" style="width: 200px">
-              <% for prod in @all_products.sort {|x,y| x.name <=> y.name } %>
-                  <option value=<%=prod.id %>  <%= " selected = \"true\"" if @product == prod%>>
-                    <%= prod.name %>
-                  </option>
-              <% end %>
-            </select>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <select size="5" name="new_components_ids[]" multiple="true" style="width: 200px">
-              <% for comp in @all_components.sort {|x,y| x.name <=> y.name } %>
-                  <%= components_select_table(comp, 0).html_safe %>
-              <% end %>
-            </select>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <select size="5" name="new_valuefields_ids[]" style="width: 200px">
-              <%for vf in @all_valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue } %>
-                  <option value="<%= vf.id %>"<%=" selected = \"true\"" if @valuefield == vf%>>
-                    <%= vf.fieldvalue %>
-                  </option>
-              <% end %>
-            </select>
-          </div>
-        </td>
-
 </tr>
 </table>
+   <table>
+     <tr>
+        <th align="left">Products / Components</th>
+        <th align="left">Valuefields</th>
+     </tr>
+     <tr>
+       <td>
+          <div class="field">
+            <%= checkbox_accord(all_prod_comp_hash).html_safe%>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= checkbox_accord(all_prop_vf_hash).html_safe%>
+          </div>
+        </td>
+     </tr>
+   </table>
    </div>
           <div class="right_div">
         <input type="reset" />

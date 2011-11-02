@@ -38,55 +38,30 @@
       <table>
         <tr>
           <th align="left">Parents</th>
-          <th align="left">Group</th>
+          <th align="left">Groups</th>
           <th align="left">ValueFields</th>
         </tr>
         <tr>
           <td>
             <div class="field">
-              <% if(@all_products.length == 0)%>
-                  No Eligable Components or Products Available
-              <%else%>
-                  <div class ="field">
-                    <!--select size="10" multiple="multiple" name="new_components_ids[]"  STYLE="width: 90%"-->
-
-                          <%#parent_table(prod, 0).html_safe%>
-                          <%= parent_accord(prod_comp_hash(nil), 1, 0).html_safe  %>
-                             <!--/select-->&nbsp;
+                <%= checkbox_accord(all_prod_comp_hash,  0).html_safe  %>
                     <span style="color: red; vertical-align: top;">*</span>
-                  </div>
-              <%end%>
+
+              <!--ul id=5 class="accordion">
+                <li>abc</li><%#check_box_tag "parent_ids[]", Product.all[0].id%>
+              </ul-->
             </div>
           </td>
           <td>
-            <%if(@all_groups.empty?)%>
-                No Groups Available
-            <%else%>
-
-                <%= parent_accord(group_hash, 2, 0).html_safe %>
-                <!--div class ="field">
-                  <!--select size="10" name="new_group_id" STYLE="width: 100%">
-                    <%#for group in @all_groups%>
-                        <option value = "<%#group.id%>" <%#if(!@component_use == nil && @component_use.group_id == group.id)%> selected = "true"<%#end%>>
-                          <%# group.name %>
-                        </option>
-                    <%#end%>
-                  </select>
-                </div-->
-            <%end%>
+                <%= radio_accord(all_group_hash, "component").html_safe %>
           </td>
           <td>
-            <!--select size="10" name="new_ValueFields[]" id="new_Valuefields" multiple="multiple" STYLE="width: 100%"-->
-              <%#properties_VF_table.html_safe%>
-
-              <%= parent_accord(prop_vf_hash, 3, 0).html_safe  %>
-            <!--/select-->
+              <%= checkbox_accord(all_prop_vf_hash).html_safe  %>
           </td>
         </tr>
       </table>
     </div>
     <div class="right_div">
-
 
         <input type="reset" />
       <%= f.submit %>
@@ -115,8 +90,7 @@
         });
 
 
-        $("#acc1").accordion();
-    });
+         });
 </script>
 
 

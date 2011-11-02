@@ -14,7 +14,11 @@ class AdminController < ApplicationController
       respond_to do |format|
         format.js
       end
-    end
+     #
+     # else
+     #   format.html { render action: "categories/new", :controller => :categories }
+     #   format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
 
   end
 

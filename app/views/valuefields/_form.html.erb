@@ -32,12 +32,8 @@
       <tr>
         <td>
           <div class ="field">
-            <select name="property_id" style ="width: 90%">
-              <%for prop in @all_properties%>
-                  <option value= "<%=prop.id %>" <%=" selected = \"true\"" if @property == prop%>>
-                    <%= prop.name%> (<%=prop.field_type%>)</option>
-              <% end %>
-            </select>&nbsp;<span style="color: red; vertical-align: top;">*</span>
+            <%= radio_accord(all_prop_hash, "value_field", true).html_safe %>
+            &nbsp;<span style="color: red; vertical-align: top;">*</span>
           </div>
         </td>
         <td>
@@ -81,17 +77,7 @@
       <tr>
         <td>
           <div class ="field">
-            <select name="prod_comp_id[]" size = "10" multiple="multiple">
-              <!--Product id is negative to differentiate from component-->
-              <% parents = @components + @products
-
-
-              for pc in @all_prods_comps %>
-                  <option value= <%= pc.is_a?(Product) ? "#{(-pc.id)-1}" : pc.id %>
-                    <%= "selected = \"true\"" if parents.include?(pc) %>>
-                  <%= pc.name%> </option>
-              <% end %>
-            </select>
+            <%= checkbox_accord(all_prod_comp_hash).html_safe  %>
           </div>
         </td>
       </tr>

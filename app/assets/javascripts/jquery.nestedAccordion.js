@@ -44,9 +44,11 @@ $.fn.accordion = function(options) {
                 }
                 if (o.elToWrap) {
                   var $t = $node.orphans(), $s = $node.find(o.elToWrap);
-                  $t.add($s).wrapAll(anchor);
+                  //$t.add($s).wrapAll(anchor);
+                  $s.wrapAll(anchor);
                 } else {
-                  $node.orphans().wrap(anchor);
+                  //$node.orphans().wrap(anchor);
+                  $node.wrap(anchor);
                 }
             }
           } else {
@@ -183,10 +185,10 @@ $.fn.accordion.defaults = {
   el : 'li', // the parent of 'a.trigger' - 'li', '.h'
   head : '', // the headings that are parents of 'a.trigger' (if any)
   next : 'ul', // the collapsible element - 'ul', 'ol', 'div'
-  initShow : '', // the initially expanded section (optional)
+  initShow : '.expand', // the initially expanded section (optional)
   expandSub : true, // {true} forces the sub-content under the 'current' item to be expanded on page load
-  showMethod : 'slideDown', // 'slideDown', 'show', 'fadeIn', or custom
-  hideMethod : 'slideUp', // 'slideUp', 'hide', 'fadeOut', or custom
+  showMethod : 'show', // 'slideDown', 'show', 'fadeIn', or custom
+  hideMethod : 'hide', // 'slideUp', 'hide', 'fadeOut', or custom
   showSpeed : 400,
   hideSpeed : 800,
   scrollSpeed : 600, //speed of repositioning the newly opened section when it is pushed off screen.
@@ -199,7 +201,7 @@ $.fn.accordion.defaults = {
   lastChild : true, //if {true}, the items without sub-elements will also trigger the 'accordion' animation
   shift: false, // false, 'clicked', 'all'. If 'clicked', the clicked item will be moved to the first position inside its level, 
                 // If 'all', the clicked item and all following siblings will be moved to the top
-  elToWrap: null, // null, or the element, besides the text node, to be wrapped by the trigger, e.g. 'span:first'
+  elToWrap: 'div.inline:first', // null, or the element, besides the text node, to be wrapped by the trigger, e.g. 'span:first'
   uri : 'full', // 
   retFunc: null //
 };

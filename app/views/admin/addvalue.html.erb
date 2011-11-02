@@ -27,12 +27,8 @@
       <tr>
         <td>
           <div class ="field">
-            <select style="width: 90%" id ="prop_select" name="property_id">
-              <%for prop in @all_properties %>
-                  <option value= "<%=prop.id %>">
-                    <%= prop.name%> (<%=prop.field_type%>)</option>
-              <% end %>
-            </select>&nbsp;<span style="color: red">*</span>
+            <%= radio_accord(all_prop_hash, "value_field", true).html_safe %>
+            &nbsp;<span style="color: red">*</span>
           </div>
         </td>
         <td>
@@ -43,8 +39,6 @@
       </tr>
     </table>
 </div>
-
-
 
   <%= text_field_tag 'valuefield_path',  "", {:hidden => true, :disabled => true, :style => "width: 100%"}%>
   <%= text_field_tag 'valuefield_path_hidden',  "", {:hidden => true, :style => "width: 100%"}%>
