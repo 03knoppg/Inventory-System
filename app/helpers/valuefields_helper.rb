@@ -40,7 +40,7 @@ module ValuefieldsHelper
       s+="<tr><td>No Valuefields</td></tr>"
     end
 
-    s+="<tr><td>#{my_button_to "New Valuefield", new_valuefield_path, parent}/td></tr>"
+    s+="<tr><td>#{my_button_to "New Valuefield", new_valuefield_path, [parent]}</td></tr>"
     s+="</table>"
 
     return s

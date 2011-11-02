@@ -1,10 +1,5 @@
 
-
-
-<%#render( "/categories/show", :object => [@category]).truncate(30) %>
-
-
-$('#categories').html("<%= render( "/categories/show", :object => [@category]).truncate(30)%>");
+$('#categories').replaceWith("<%= format.html{render :template =>"/categories/show", :object => [@category]}%>");
 
 
 

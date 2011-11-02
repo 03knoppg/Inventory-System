@@ -67,9 +67,9 @@ class ImagesController < ApplicationController
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
     #assigns variable associated product
-    @product = @image.product
+    @product = @image.products
     #assigns variable associated component
-    @component = @image.component
+    @component = @image.components
   end
 
   # POST /images
@@ -86,7 +86,7 @@ class ImagesController < ApplicationController
     @all_valuefields = Valuefield.all
 
     if(!params[:new_products_ids].nil?)
-      @image.products = [Product.find(params[:new_product_ids])]
+      @image.products = Product.find(params[:new_products_ids])
     end
 
     if(!params[:new_components_ids].nil?)
