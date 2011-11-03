@@ -1,44 +1,55 @@
 <h1>Tabs Page</h1>
-<%category = Category.new%>
-<div class="main_div">
-  <ul class="tabs">
-    <li><a href="" title="categories">Category</a></li>
-    <li><a href="" title="products">Product</a></li>
-    <li><a href="" title="groups">Group</a></li>
-    <li><a href="" title="components">Component</a></li>
-    <li><a href="" title="properties">Property</a></li>
-    <li><a href="" title="valuefields">Value Field</a></li>
-    <li><a href="" title="images">Image</a></li>
-    <li><a href="" title="datafiles">Data File</a></li>
-  </ul>
-  <div class="panes">
-    <div id="categories" class="tab_main_div"><%= render "categories/new"%></div>
-    <div id="products" class="tab_main_div"><h1>Product Information</h1></div>
-    <div id="groups" class="tab_main_div"><h1>Group Information</h1></div>
-    <div id="components" class="tab_main_div"><h1>Component Information</h1>
-      <ul class="tabs_child">
-        <li><a href="" title="child1">Child 1</a></li>
-        <li><a href="" title="child2">Child 2</a></li>
-        <li><a href="" title="child3">Child 3</a></li>
-        <li><a href="" title="child4">Child 4</a></li>
-        <li><a href="" title="child5">Child 5</a></li>
-        <li><a href="" title="child6">Child 6</a></li>
+
+
+  <div class="tabs">
+      <ul>
+        <li><a href="">Category</a></li>
+        <li><a href="">Product</a></li>
+        <li><a href="">Group</a></li>
+        <li><a href="">Component</a></li>
+        <li><a href="">Property</a></li>
+        <li><a href="">Value Field</a></li>
+        <li><a href="">Image</a></li>
+        <li><a href="">Data File</a></li>
       </ul>
-      <div class="child_panes">
-        <div id="child1" class="tab_sub_div"><h1>Child 1 Information</h1></div>
-        <div id="child2" class="tab_sub_div"><h1>Child 2 Information</h1></div>
-        <div id="child3" class="tab_sub_div"><h1>Child 3 Information</h1></div>
-        <div id="child4" class="tab_sub_div"><h1>Child 4 Information</h1></div>
-        <div id="child5" class="tab_sub_div"><h1>Child 5 Information</h1></div>
-        <div id="child6" class="tab_sub_div"><h1>Child 6 Information</h1></div>
+
+
+      <div>
+        <div><%= render "categories/new"%></div>
+        <div><h1>Product Information</h1></div>
+        <div><h1>Group Information</h1></div>
+
+
+
+
+        <div><h1>Component Information</h1>
+
+          <div class="tabs">
+              <ul>
+                <li><a href="">Child 1</a></li>
+                <li><a href="">Child 2</a></li>
+              </ul>
+              <div>
+                <div><h1>Child 1 Information</h1></div>
+                <div><h1>Child 2 Information</h1></div>
+              </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div><h1>Property Information</h1></div>
+        <div><h1>Value Information</h1></div>
+        <div><h1>Image Information</h1></div>
+        <div><h1>Data File Information</h1></div>
       </div>
-    </div>
-    <div id="properties" class="tab_main_div"><h1>Property Information</h1></div>
-    <div id="valuefields" class="tab_main_div"><h1>Value Information</h1></div>
-    <div id="images" class="tab_main_div"><h1>Image Information</h1></div>
-    <div id="datafiles" class="tab_main_div"><h1>Data File Information</h1></div>
   </div>
-</div>
+
 
 <script type="text/javascript">
 

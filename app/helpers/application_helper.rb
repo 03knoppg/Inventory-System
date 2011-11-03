@@ -138,7 +138,11 @@ module ApplicationHelper
     pt = "<ul style=\"list-style-type: none\" "
     if(depth == 0)
       @counter.nil?? @counter = 1 : @counter += 1
-      pt += "id=\"#{@counter}\" class=\"\" "
+      pt += "id=\"#{@counter}\""
+      if(!items_hash.keys[0].is_a?(Group))
+          pt+=" class=\"accordion\" "
+      end
+
     end
 
     pt+=">"

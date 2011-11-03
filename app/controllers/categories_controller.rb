@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
         #New category
         @category = Category.new
         if(!params[:category_id].nil?)
-          @parent = Category.find params[:category_id]
+          @items_to_select = Category.find params[:category_id]
         end
     end
 
@@ -76,6 +76,8 @@ class CategoriesController < ApplicationController
     remove_children(@all_categories, @category)
     #re-assigns the array minus the categories children
     @all_categories = @all_categories - @child_categories
+
+    @items_to_select = [Category.find(@category.parent_id)]
   end
 
   # POST /categories
