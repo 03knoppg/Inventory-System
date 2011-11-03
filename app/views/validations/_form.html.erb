@@ -13,13 +13,13 @@
  <div class="main_div">
     <table class="main_table">
       <tr>
-        <th align="left">Extension</th>
-        <th align="left">Extension Type</th>
+        <th align="left">Extension&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Extension Type&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
         <td>
           <div class ="field">
-            <%= f.text_field :extension, :required => true%>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :extension, :required => true%>
           </div>
         </td>
         <td>
@@ -39,4 +39,5 @@
             <%= f.submit :class => "submit"%>
           </div>
 <% end %>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />

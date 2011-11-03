@@ -13,12 +13,12 @@
  <div class="main_div">
     <table class="main_table">
       <tr>
-        <th align="left">Select Image:</th>
+        <th align="left">Image&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
          <td style="width: 325px">
           <div class ="field" style="padding-bottom: 10px">
-            <%= f.file_field(:picture, :id => "pic", :required => true) %>&nbsp;<span style="color: red">*</span>
+            <%= f.file_field(:picture, :id => "pic", :required => true) %>
           </div>
           <div class align="field">
             <%=image_tag(@image.picture(:small), :id => "img", :alt=>"") %>
@@ -51,6 +51,7 @@
             <%= f.submit :class => "submit"%>
           </div>
 <% end %>
+<h5>Required fields are marked with</h5>
 <br class="clear" />
 
 <!--Script used to remove current image from edit page when user file_field input changes -->

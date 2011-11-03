@@ -13,19 +13,19 @@
      <div class="main_div">
     <table class="main_table">
       <tr>
-        <th align="left">Name</th>
-        <th align="left">Description</th>
+        <th align="left">Name&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Description&nbsp;<span style="color: red">*</span></th>
         <th align="left">Code</th>
       </tr>
       <tr>
         <td>
           <div class ="field">
-            <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :name, :required => true %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :description, :required => true %>
           </div>
         </td>
         <td>
@@ -38,13 +38,13 @@
 </table>
        <table>
          <tr>
-        <th align="left">Categories</th>
+        <th align="left">Categories&nbsp;<span style="color: red">*</span></th>
              </tr>
          <tr>
            <td>
           <div class="field">
                 <%= checkbox_accord(all_category_hash).html_safe %>
-                &nbsp;<span style="color: red; vertical-align: top;">*</span>
+
 
           </div>
         </td>
@@ -56,4 +56,5 @@
             <%= f.submit :class => "submit"%>
           </div>
 <% end %>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />
