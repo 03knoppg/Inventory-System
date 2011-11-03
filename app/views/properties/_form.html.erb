@@ -13,24 +13,24 @@
     <div class="main_div">
     <table class="main_table">
       <tr>
-        <th align="left">Name</th>
-        <th align="left">Description</th>
-        <th align="left">Field Type</th>
+        <th align="left">Name&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Description&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Field Type&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
         <td>
           <div class ="field">
-            <%= f.text_field :name, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :name, :required => true %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :description, :required => true %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :field_type, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :field_type, :required => true %>
           </div>
         </td>
       </tr>
@@ -42,4 +42,5 @@
             <%= f.submit :class => "submit"%>
           </div>
 <%end%>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />

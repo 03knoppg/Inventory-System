@@ -56,8 +56,25 @@ $(function() {
 
 <script type="text/javascript" charset="utf-8">
     // setup ul.tabs to work as tabs for each div directly under div.panes
-        $('div.tabs').each(function(){
-           $(this).find('ul:first').tabs($(this).find('div:first > div'));
-        });
+
+    $('div.tabs').each(function(){
+       $(this).find('ul:first').tabs($(this).find('div:first > div'));
+    });
+
+     $('li > input').click(function(){
+        var current_select = $(this);
+        var array_select = $('li > input');
+         for(i = 0; i < array_select.length; i++) {
+          if(current_select.attr('id') == array_select.eq(i).attr('id')) {
+              if(current_select.is(':checked')){
+                  array_select.eq(i).attr('checked', true);
+              }
+              else{
+                  array_select.eq(i).attr('checked', false);
+              }
+
+          }
+         }
+    });
 </script>
 

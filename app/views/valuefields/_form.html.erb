@@ -25,20 +25,19 @@
 <div id="property_div">
     <table class="main_table">
       <tr>
-        <th align="left">Property</th>
-        <th align="left">Value</th>
+        <th align="left">Property&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Value&nbsp;<span style="color: red">*</span></th>
         <th align="left">Code</th>
       </tr>
       <tr>
         <td>
           <div class ="field">
             <%= radio_accord(all_prop_hash, "value_field", true).html_safe %>
-            &nbsp;<span style="color: red; vertical-align: top;">*</span>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :fieldvalue, :required => true %>&nbsp;<span style="color: red">*</span>
+            <%= f.text_field :fieldvalue, :required => true %>
           </div>
         </td>
         <td>
@@ -91,6 +90,7 @@
 
 
 <%end%>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />
 
 
