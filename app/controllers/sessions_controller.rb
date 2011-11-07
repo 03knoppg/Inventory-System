@@ -13,8 +13,21 @@ class SessionsController < ApplicationController
 
   def new
 
+    #character model example
+    if(!params[:code].nil?)
+      code = params[:code].split("_")
 
+      category = Category.find_all_by_name("Characters")
 
+      image = Image.find_by_picture_file_name(params[:code])
+
+      redirect_to(image)
+
+      return
+
+    end
+
+    #All Seating example
     if(params[:TYPE] != nil)
 
       php_args = []

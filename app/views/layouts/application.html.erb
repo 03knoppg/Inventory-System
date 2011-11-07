@@ -7,19 +7,6 @@
   <!-- include the Tools -->
   <%= csrf_meta_tags %>
 
-  <script type="text/javascript">
-<!--//--><![CDATA[//><!--
-$("html").addClass("js");
-$.fn.accordion.defaults.container = false;
-$(function() {
-  $(".accordion").accordion();
-
-
-  $("html").removeClass("js");
-});
-//--><!]]>
-</script>
-
 </head>
 <body>
 <div class="container">
@@ -58,7 +45,7 @@ $(function() {
     // setup ul.tabs to work as tabs for each div directly under div.panes
 
     $('div.tabs').each(function(){
-       $(this).find('ul:first').tabs($(this).find('div:first > div'));
+       $(this).find('ul:first').tabs($(this).find('div:first > div'), {effect: 'fade', fadeOutSpeed: 400});
     });
 
      $('li > input').click(function(){
@@ -76,5 +63,16 @@ $(function() {
           }
          }
     });
+
+<!--//--><![CDATA[//><!--
+$("html").addClass("js");
+$.fn.accordion.defaults.container = false;
+$(function() {
+  $(".accordion").accordion();
+
+
+  $("html").removeClass("js");
+});
+//--><!]]>
 </script>
 

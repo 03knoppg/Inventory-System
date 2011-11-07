@@ -1,5 +1,25 @@
 class AdminController < ApplicationController
 
+  def tree
+    id = params[:id]
+
+    if(id[0] == "a")
+
+      @parent = Category.find(id[1..0])
+      @children = @parent.products
+      for cat in Category.all
+        if cat.parent_id == @parent.id
+          @children.push(cat)
+        end
+      end
+
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def tabs
     @category = Category.new
     @all_categories = Category.all

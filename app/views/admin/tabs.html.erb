@@ -1,11 +1,26 @@
 <h1>Tabs Page</h1>
 
+<table>
+  <tr>
+    <td width="15%">
+      <ul  class="accordion">
+        <li class="expand">
+          <div class="inline">&nbsp</div>
 
-  <div class="tabs">
+          <a id="a<%=Category.all[0].id%>" href="#first">All</a>
+
+        </li>
+      </ul>
+
+
+
+    </td>
+    <td width="85%">
+       <div class="tabs">
       <ul>
-        <li><a href="">Category</a></li>
-        <li><a href="">Product</a></li>
-        <li><a href="">Group</a></li>
+        <li><a href="#first">Category</a></li>
+        <li><a href="#second">Product</a></li>
+        <li><a href="#third">Group</a></li>
         <li><a href="">Component</a></li>
         <li><a href="">Property</a></li>
         <li><a href="">Value Field</a></li>
@@ -15,11 +30,9 @@
 
 
       <div>
-        <div><%= render "categories/new"%></div>
+        <div id="categories"><%= render "categories/new"%></div>
         <div><h1>Product Information</h1></div>
         <div><h1>Group Information</h1></div>
-
-
 
 
         <div><h1>Component Information</h1>
@@ -40,15 +53,17 @@
 
 
 
-
-
-
         <div><h1>Property Information</h1></div>
         <div><h1>Value Information</h1></div>
         <div><h1>Image Information</h1></div>
         <div><h1>Data File Information</h1></div>
       </div>
   </div>
+    </td>
+  </tr>
+</table>
+
+
 
 
 <script type="text/javascript">
@@ -57,6 +72,14 @@
 
         $('#new_category')[0].setAttribute("data-remote", "true");
 
+        $('#a<%=Category.all[0].id%>').click(children());
+
+
+
     });
+
+        function children(parent){
+           $.get("admin/tree", {id: $(parent).attr('id')}, null, 'script');
+        }
 </script>
 

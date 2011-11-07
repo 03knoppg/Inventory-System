@@ -7,8 +7,8 @@
     <th align="left">Image Name</th>
   </tr>
   <tr>
-    <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
-    <td><%=@image.picture_file_name%></td>
+    <td><%=link_to(image_tag(@image.picture.url(:original)), @image.picture.url(:original), {:target => "blank"})%></td>
+    <td><%=link_to(@image.picture_file_name, @image.picture.url(:original), {:target => "blank"})%></td>
   </tr>
 </table>
 
