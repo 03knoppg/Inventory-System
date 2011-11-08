@@ -19,9 +19,10 @@ class SessionsController < ApplicationController
 
       category = Category.find_all_by_name("Characters")
 
-      image = Image.find_by_picture_file_name(params[:code])
+      data = DataFile.find_by_filedata_file_name(params[:code])
 
-      redirect_to(image)
+
+      redirect_to(data.filedata.url)
 
       return
 

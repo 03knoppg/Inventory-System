@@ -16,7 +16,7 @@ class DataFileValidator < ActiveModel::Validator
       end
     end
     if(!valid.empty?)
-      answer = valid.include?(record.filedata_file_name[-4..-1])
+      answer = valid.include?("." + record.filedata_file_name.split(".").last)
       if(answer == false)
         s = ""
         for v in valid

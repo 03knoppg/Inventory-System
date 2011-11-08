@@ -1,9 +1,19 @@
-=begin
+namespace :app do
+  desc <<-DESC
+    Load testing data.
+    Run using the command 'rake app:load_demo_data'
+  DESC
+  task :character_seed => [:environment] do
+
+  # Only data not required in production should be here.
+  # If it needs to be there in production, it belongs in seeds.rb.
+
+
 ################################################################################################################
 #All Seating Test                                                                                              #
 #Begin Seed                                                                                                    #
 ################################################################################################################
-=end
+
 
 #Destroy Tables
 Category.destroy_all
@@ -17,19 +27,19 @@ Image.destroy_all
 DataFile.destroy_all
 Validation.destroy_all
 
-=begin
+
 ################################################################################################################
 #Users                                                                                                         #
 ################################################################################################################
-=end
+
 brett = User.create(username: "bh", email: "bh@bh.com", password: "bh")
 graham = User.create(username: "gk", email: "gk@gk.com", password: "gk")
 
-=begin
+
 ################################################################################################################
 #Validations                                                                                                   #
 ################################################################################################################
-=end
+
 jpg = Validation.create(extension: ".jpg", kind: "Image")
 tga = Validation.create(extension: ".tga", kind: "Image")
 png = Validation.create(extension: ".png", kind: "Image")
@@ -39,252 +49,333 @@ txt = Validation.create(extension: ".txt", kind: "Data File")
 mat = Validation.create(extension: ".mat", kind: "Data File")
 fbx = Validation.create(extension: ".fbx", kind: "Data File")
 FBX2 = Validation.create(extension: ".FBX", kind: "Data File")
+ab = Validation.create(extension: ".assetbundle", kind: "Data File")
 
-=begin
+
 ################################################################################################################
 #Categories                                                                                                    #
 ################################################################################################################
-=end
+
 all = Category.create(name: "All")
 characters = Category.create(name: "Characters", parent_id: all.id)
 
-=begin
+
 ################################################################################################################
 #Products                                                                                                      #
 ################################################################################################################
-=end
+
 male = Product.create(name: "Male", description: "male", code: "male")
 female = Product.create(name: "Female", description: "female", code: "female")
 
-=begin
+
 ################################################################################################################
 #Data_file                                                                                                     #
 ################################################################################################################
-=end
+
 
 female_fbx = DataFile.create()
-female_fbx.filedata = File.open("/home/franz2/unitydata/Female.FBX")
+female_fbx.filedata = File.open("/unitydata/Female.FBX")
 female_fbx.save!
 female_idle1 = DataFile.create()
-female_idle1.filedata = File.open("/home/franz2/unitydata/Female@idle1.FBX")
+female_idle1.filedata = File.open("/unitydata/Female@idle1.FBX")
 female_idle1.save!
 female_item_boots = DataFile.create()
-female_item_boots.filedata = File.open("/home/franz2/unitydata/Female@item_boots.fbx")
+female_item_boots.filedata = File.open("/unitydata/Female@item_boots.fbx")
 female_item_boots.save!
 female_item_pants = DataFile.create()
-female_item_pants.filedata = File.open("/home/franz2/unitydata/Female@item_pants.fbx")
+female_item_pants.filedata = File.open("/unitydata/Female@item_pants.fbx")
 female_item_pants.save!
 female_item_shirt = DataFile.create()
-female_item_shirt.filedata = File.open("/home/franz2/unitydata/Female@item_shirt.fbx")
+female_item_shirt.filedata = File.open("/unitydata/Female@item_shirt.fbx")
 female_item_shirt.save!
 female_walk = DataFile.create()
-female_walk.filedata = File.open("/home/franz2/unitydata/Female@walk.fbx")
+female_walk.filedata = File.open("/unitydata/Female@walk.fbx")
 female_walk.save!
 female_walkin = DataFile.create()
-female_walkin.filedata = File.open("/home/franz2/unitydata/Female@walkin.fbx")
+female_walkin.filedata = File.open("/unitydata/Female@walkin.fbx")
 female_walkin.save!
 
 
 male_fbx = DataFile.create()
-male_fbx.filedata = File.open("/home/franz2/unitydata/Male.FBX")
+male_fbx.filedata = File.open("/unitydata/Male.FBX")
 male_fbx.save!
 male_idle1 = DataFile.create()
-male_idle1.filedata = File.open("/home/franz2/unitydata/Male@idle1.fbx")
+male_idle1.filedata = File.open("/unitydata/Male@idle1.fbx")
 male_idle1.save!
 male_item_boots = DataFile.create()
-male_item_boots.filedata = File.open("/home/franz2/unitydata/Male@item_boots.fbx")
+male_item_boots.filedata = File.open("/unitydata/Male@item_boots.fbx")
 male_item_boots.save!
 male_item_pants = DataFile.create()
-male_item_pants.filedata = File.open("/home/franz2/unitydata/Male@item_pants.fbx")
+male_item_pants.filedata = File.open("/unitydata/Male@item_pants.fbx")
 male_item_pants.save!
 male_item_shirt = DataFile.create()
-male_item_shirt.filedata = File.open("/home/franz2/unitydata/Male@item_shirt.fbx")
+male_item_shirt.filedata = File.open("/unitydata/Male@item_shirt.fbx")
 male_item_shirt.save!
 male_walk = DataFile.create()
-male_walk.filedata = File.open("/home/franz2/unitydata/Male@walk.fbx")
+male_walk.filedata = File.open("/unitydata/Male@walk.fbx")
 male_walk.save!
 
 male_pants_1_blue_mat = DataFile.create()
-male_pants_1_blue_mat.filedata=File.open("/home/franz2/unitydata/male_pants-1_blue.mat")
+male_pants_1_blue_mat.filedata=File.open("/unitydata/male_pants-1_blue.mat")
 male_pants_1_blue_mat.save!
 male_pants_1_dark_mat = DataFile.create()
-male_pants_1_dark_mat.filedata=File.open("/home/franz2/unitydata/male_pants-1_dark.mat")
+male_pants_1_dark_mat.filedata=File.open("/unitydata/male_pants-1_dark.mat")
 male_pants_1_dark_mat.save!
 male_pants_1_green_mat = DataFile.create()
-male_pants_1_green_mat.filedata=File.open("/home/franz2/unitydata/male_pants-1_green.mat")
+male_pants_1_green_mat.filedata=File.open("/unitydata/male_pants-1_green.mat")
 male_pants_1_green_mat.save!
 male_pants_2_blue_mat = DataFile.create()
-male_pants_2_blue_mat.filedata=File.open("/home/franz2/unitydata/male_pants-2_blue.mat")
+male_pants_2_blue_mat.filedata=File.open("/unitydata/male_pants-2_blue.mat")
 male_pants_2_blue_mat.save!
 male_pants_2_lillac_mat = DataFile.create()
-male_pants_2_lillac_mat.filedata=File.open("/home/franz2/unitydata/male_pants-2_lillac.mat")
+male_pants_2_lillac_mat.filedata=File.open("/unitydata/male_pants-2_lillac.mat")
 male_pants_2_lillac_mat.save!
 male_pants_2_purple_mat = DataFile.create()
-male_pants_2_purple_mat.filedata=File.open("/home/franz2/unitydata/male_pants-2_purple.mat")
+male_pants_2_purple_mat.filedata=File.open("/unitydata/male_pants-2_purple.mat")
 male_pants_2_purple_mat.save!
 female_pants_1_blue_mat = DataFile.create()
-female_pants_1_blue_mat.filedata=File.open("/home/franz2/unitydata/female_pants-1_blue.mat")
+female_pants_1_blue_mat.filedata=File.open("/unitydata/female_pants-1_blue.mat")
 female_pants_1_blue_mat.save!
 female_pants_1_dark_mat = DataFile.create()
-female_pants_1_dark_mat.filedata=File.open("/home/franz2/unitydata/female_pants-1_dark.mat")
+female_pants_1_dark_mat.filedata=File.open("/unitydata/female_pants-1_dark.mat")
 female_pants_1_dark_mat.save!
 female_pants_1_green_mat = DataFile.create()
-female_pants_1_green_mat.filedata=File.open("/home/franz2/unitydata/female_pants-1_green.mat")
+female_pants_1_green_mat.filedata=File.open("/unitydata/female_pants-1_green.mat")
 female_pants_1_green_mat.save!
 female_pants_2_black_mat = DataFile.create()
-female_pants_2_black_mat.filedata=File.open("/home/franz2/unitydata/female_pants-2_black.mat")
+female_pants_2_black_mat.filedata=File.open("/unitydata/female_pants-2_black.mat")
 female_pants_2_black_mat.save!
 female_pants_2_blue_mat = DataFile.create()
-female_pants_2_blue_mat.filedata=File.open("/home/franz2/unitydata/female_pants-2_blue.mat")
+female_pants_2_blue_mat.filedata=File.open("/unitydata/female_pants-2_blue.mat")
 female_pants_2_blue_mat.save!
 female_pants_2_orange_mat = DataFile.create()
-female_pants_2_orange_mat.filedata=File.open("/home/franz2/unitydata/female_pants-2_orange.mat")
+female_pants_2_orange_mat.filedata=File.open("/unitydata/female_pants-2_orange.mat")
 female_pants_2_orange_mat.save!
 male_face_1__mat = DataFile.create()
-male_face_1__mat.filedata=File.open("/home/franz2/unitydata/male_face-1.mat")
+male_face_1__mat.filedata=File.open("/unitydata/male_face-1.mat")
 male_face_1__mat.save!
 male_face_2__mat = DataFile.create()
-male_face_2__mat.filedata=File.open("/home/franz2/unitydata/male_face-2.mat")
+male_face_2__mat.filedata=File.open("/unitydata/male_face-2.mat")
 male_face_2__mat.save!
 female_face_1__mat = DataFile.create()
-female_face_1__mat.filedata=File.open("/home/franz2/unitydata/female_face-1.mat")
+female_face_1__mat.filedata=File.open("/unitydata/female_face-1.mat")
 female_face_1__mat.save!
 female_face_2__mat = DataFile.create()
-female_face_2__mat.filedata=File.open("/home/franz2/unitydata/female_face-2.mat")
+female_face_2__mat.filedata=File.open("/unitydata/female_face-2.mat")
 female_face_2__mat.save!
 male_hair_1_blond_mat = DataFile.create()
-male_hair_1_blond_mat.filedata=File.open("/home/franz2/unitydata/male_hair-1_blond.mat")
+male_hair_1_blond_mat.filedata=File.open("/unitydata/male_hair-1_blond.mat")
 male_hair_1_blond_mat.save!
 male_hair_1_brown_mat = DataFile.create()
-male_hair_1_brown_mat.filedata=File.open("/home/franz2/unitydata/male_hair-1_brown.mat")
+male_hair_1_brown_mat.filedata=File.open("/unitydata/male_hair-1_brown.mat")
 male_hair_1_brown_mat.save!
 male_hair_1_orange_mat = DataFile.create()
-male_hair_1_orange_mat.filedata=File.open("/home/franz2/unitydata/male_hair-1_orange.mat")
+male_hair_1_orange_mat.filedata=File.open("/unitydata/male_hair-1_orange.mat")
 male_hair_1_orange_mat.save!
 male_hair_2_blond_mat = DataFile.create()
-male_hair_2_blond_mat.filedata=File.open("/home/franz2/unitydata/male_hair-2_blond.mat")
+male_hair_2_blond_mat.filedata=File.open("/unitydata/male_hair-2_blond.mat")
 male_hair_2_blond_mat.save!
 male_hair_2_brown_mat = DataFile.create()
-male_hair_2_brown_mat.filedata=File.open("/home/franz2/unitydata/male_hair-2_brown.mat")
+male_hair_2_brown_mat.filedata=File.open("/unitydata/male_hair-2_brown.mat")
 male_hair_2_brown_mat.save!
 male_hair_2_red_mat = DataFile.create()
-male_hair_2_red_mat.filedata=File.open("/home/franz2/unitydata/male_hair-2_red.mat")
+male_hair_2_red_mat.filedata=File.open("/unitydata/male_hair-2_red.mat")
 male_hair_2_red_mat.save!
 female_hair_1_brown_mat = DataFile.create()
-female_hair_1_brown_mat.filedata=File.open("/home/franz2/unitydata/female_hair-1_brown.mat")
+female_hair_1_brown_mat.filedata=File.open("/unitydata/female_hair-1_brown.mat")
 female_hair_1_brown_mat.save!
 female_hair_1_red_mat = DataFile.create()
-female_hair_1_red_mat.filedata=File.open("/home/franz2/unitydata/female_hair-1_red.mat")
+female_hair_1_red_mat.filedata=File.open("/unitydata/female_hair-1_red.mat")
 female_hair_1_red_mat.save!
 female_hair_1_yellow_mat = DataFile.create()
-female_hair_1_yellow_mat.filedata=File.open("/home/franz2/unitydata/female_hair-1_yellow.mat")
+female_hair_1_yellow_mat.filedata=File.open("/unitydata/female_hair-1_yellow.mat")
 female_hair_1_yellow_mat.save!
 female_hair_2_cyan_mat = DataFile.create()
-female_hair_2_cyan_mat.filedata=File.open("/home/franz2/unitydata/female_hair-2_cyan.mat")
+female_hair_2_cyan_mat.filedata=File.open("/unitydata/female_hair-2_cyan.mat")
 female_hair_2_cyan_mat.save!
 female_hair_2_dark_mat = DataFile.create()
-female_hair_2_dark_mat.filedata=File.open("/home/franz2/unitydata/female_hair-2_dark.mat")
+female_hair_2_dark_mat.filedata=File.open("/unitydata/female_hair-2_dark.mat")
 female_hair_2_dark_mat.save!
 female_hair_2_pink_mat = DataFile.create()
-female_hair_2_pink_mat.filedata=File.open("/home/franz2/unitydata/female_hair-2_pink.mat")
+female_hair_2_pink_mat.filedata=File.open("/unitydata/female_hair-2_pink.mat")
 female_hair_2_pink_mat.save!
 male_shoes_1_black_mat = DataFile.create()
-male_shoes_1_black_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-1_black.mat")
+male_shoes_1_black_mat.filedata=File.open("/unitydata/male_shoes-1_black.mat")
 male_shoes_1_black_mat.save!
 male_shoes_1_green_mat = DataFile.create()
-male_shoes_1_green_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-1_green.mat")
+male_shoes_1_green_mat.filedata=File.open("/unitydata/male_shoes-1_green.mat")
 male_shoes_1_green_mat.save!
 male_shoes_1_red_mat = DataFile.create()
-male_shoes_1_red_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-1_red.mat")
+male_shoes_1_red_mat.filedata=File.open("/unitydata/male_shoes-1_red.mat")
 male_shoes_1_red_mat.save!
 male_shoes_2_brown_mat = DataFile.create()
-male_shoes_2_brown_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-2_brown.mat")
+male_shoes_2_brown_mat.filedata=File.open("/unitydata/male_shoes-2_brown.mat")
 male_shoes_2_brown_mat.save!
 male_shoes_2_dark_mat = DataFile.create()
-male_shoes_2_dark_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-2_dark.mat")
+male_shoes_2_dark_mat.filedata=File.open("/unitydata/male_shoes-2_dark.mat")
 male_shoes_2_dark_mat.save!
 male_shoes_2_red_mat = DataFile.create()
-male_shoes_2_red_mat.filedata=File.open("/home/franz2/unitydata/male_shoes-2_red.mat")
+male_shoes_2_red_mat.filedata=File.open("/unitydata/male_shoes-2_red.mat")
 male_shoes_2_red_mat.save!
 female_shoes_1_blue_mat = DataFile.create()
-female_shoes_1_blue_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-1_blue.mat")
+female_shoes_1_blue_mat.filedata=File.open("/unitydata/female_shoes-1_blue.mat")
 female_shoes_1_blue_mat.save!
 female_shoes_1_green_mat = DataFile.create()
-female_shoes_1_green_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-1_green.mat")
+female_shoes_1_green_mat.filedata=File.open("/unitydata/female_shoes-1_green.mat")
 female_shoes_1_green_mat.save!
 female_shoes_1_yellow_mat = DataFile.create()
-female_shoes_1_yellow_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-1_yellow.mat")
+female_shoes_1_yellow_mat.filedata=File.open("/unitydata/female_shoes-1_yellow.mat")
 female_shoes_1_yellow_mat.save!
 female_shoes_2_blue_mat = DataFile.create()
-female_shoes_2_blue_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-2_blue.mat")
+female_shoes_2_blue_mat.filedata=File.open("/unitydata/female_shoes-2_blue.mat")
 female_shoes_2_blue_mat.save!
 female_shoes_2_red_mat = DataFile.create()
-female_shoes_2_red_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-2_red.mat")
+female_shoes_2_red_mat.filedata=File.open("/unitydata/female_shoes-2_red.mat")
 female_shoes_2_red_mat.save!
 female_shoes_2_yellow_mat = DataFile.create()
-female_shoes_2_yellow_mat.filedata=File.open("/home/franz2/unitydata/female_shoes-2_yellow.mat")
+female_shoes_2_yellow_mat.filedata=File.open("/unitydata/female_shoes-2_yellow.mat")
 female_shoes_2_yellow_mat.save!
 male_top_1_blue_mat = DataFile.create()
-male_top_1_blue_mat.filedata=File.open("/home/franz2/unitydata/male_top-1_blue.mat")
+male_top_1_blue_mat.filedata=File.open("/unitydata/male_top-1_blue.mat")
 male_top_1_blue_mat.save!
 male_top_1_pink_mat = DataFile.create()
-male_top_1_pink_mat.filedata=File.open("/home/franz2/unitydata/male_top-1_pink.mat")
+male_top_1_pink_mat.filedata=File.open("/unitydata/male_top-1_pink.mat")
 male_top_1_pink_mat.save!
 male_top_1_yellow_mat = DataFile.create()
-male_top_1_yellow_mat.filedata=File.open("/home/franz2/unitydata/male_top-1_yellow.mat")
+male_top_1_yellow_mat.filedata=File.open("/unitydata/male_top-1_yellow.mat")
 male_top_1_yellow_mat.save!
 male_top_2_gray_mat = DataFile.create()
-male_top_2_gray_mat.filedata=File.open("/home/franz2/unitydata/male_top-2_gray.mat")
+male_top_2_gray_mat.filedata=File.open("/unitydata/male_top-2_gray.mat")
 male_top_2_gray_mat.save!
 male_top_2_green_mat = DataFile.create()
-male_top_2_green_mat.filedata=File.open("/home/franz2/unitydata/male_top-2_green.mat")
+male_top_2_green_mat.filedata=File.open("/unitydata/male_top-2_green.mat")
 male_top_2_green_mat.save!
 male_top_2_orange_mat = DataFile.create()
-male_top_2_orange_mat.filedata=File.open("/home/franz2/unitydata/male_top-2_orange.mat")
+male_top_2_orange_mat.filedata=File.open("/unitydata/male_top-2_orange.mat")
 male_top_2_orange_mat.save!
 female_top_1_blue_mat = DataFile.create()
-female_top_1_blue_mat.filedata=File.open("/home/franz2/unitydata/female_top-1_blue.mat")
+female_top_1_blue_mat.filedata=File.open("/unitydata/female_top-1_blue.mat")
 female_top_1_blue_mat.save!
 female_top_1_green_mat = DataFile.create()
-female_top_1_green_mat.filedata=File.open("/home/franz2/unitydata/female_top-1_green.mat")
+female_top_1_green_mat.filedata=File.open("/unitydata/female_top-1_green.mat")
 female_top_1_green_mat.save!
 female_top_1_pink_mat = DataFile.create()
-female_top_1_pink_mat.filedata=File.open("/home/franz2/unitydata/female_top-1_pink.mat")
+female_top_1_pink_mat.filedata=File.open("/unitydata/female_top-1_pink.mat")
 female_top_1_pink_mat.save!
 female_top_2_green_mat = DataFile.create()
-female_top_2_green_mat.filedata=File.open("/home/franz2/unitydata/female_top-2_green.mat")
+female_top_2_green_mat.filedata=File.open("/unitydata/female_top-2_green.mat")
 female_top_2_green_mat.save!
 female_top_2_orange_mat = DataFile.create()
-female_top_2_orange_mat.filedata=File.open("/home/franz2/unitydata/female_top-2_orange.mat")
+female_top_2_orange_mat.filedata=File.open("/unitydata/female_top-2_orange.mat")
 female_top_2_orange_mat.save!
 female_top_2_purple_mat = DataFile.create()
-female_top_2_purple_mat.filedata=File.open("/home/franz2/unitydata/female_top-2_purple.mat")
+female_top_2_purple_mat.filedata=File.open("/unitydata/female_top-2_purple.mat")
 female_top_2_purple_mat.save!
 male_eyes_blue_mat = DataFile.create()
-male_eyes_blue_mat.filedata=File.open("/home/franz2/unitydata/male_eyes_blue.mat")
+male_eyes_blue_mat.filedata=File.open("/unitydata/male_eyes_blue.mat")
 male_eyes_blue_mat.save!
 male_eyes_brown_mat = DataFile.create()
-male_eyes_brown_mat.filedata=File.open("/home/franz2/unitydata/male_eyes_brown.mat")
+male_eyes_brown_mat.filedata=File.open("/unitydata/male_eyes_brown.mat")
 male_eyes_brown_mat.save!
 male_eyes_green_mat = DataFile.create()
-male_eyes_green_mat.filedata=File.open("/home/franz2/unitydata/male_eyes_green.mat")
+male_eyes_green_mat.filedata=File.open("/unitydata/male_eyes_green.mat")
 male_eyes_green_mat.save!
 female_eyes_blue_mat = DataFile.create()
-female_eyes_blue_mat.filedata=File.open("/home/franz2/unitydata/female_eyes_blue.mat")
+female_eyes_blue_mat.filedata=File.open("/unitydata/female_eyes_blue.mat")
 female_eyes_blue_mat.save!
 female_eyes_brown_mat = DataFile.create()
-female_eyes_brown_mat.filedata=File.open("/home/franz2/unitydata/female_eyes_brown.mat")
+female_eyes_brown_mat.filedata=File.open("/unitydata/female_eyes_brown.mat")
 female_eyes_brown_mat.save!
 female_eyes_green_mat = DataFile.create()
-female_eyes_green_mat.filedata=File.open("/home/franz2/unitydata/female_eyes_green.mat")
+female_eyes_green_mat.filedata=File.open("/unitydata/female_eyes_green.mat")
 female_eyes_green_mat.save!
+    
+    
+male_pants_1_assetbundle =DataFile.create()
+male_pants_1_assetbundle.filedata=File.open("/unitydata/male_pants-1.assetbundle")
+male_pants_1_assetbundle.save!
+male_pants_2_assetbundle =DataFile.create()
+male_pants_2_assetbundle.filedata=File.open("/unitydata/male_pants-2.assetbundle")
+male_pants_2_assetbundle.save!
+female_pants_1_assetbundle =DataFile.create()
+female_pants_1_assetbundle.filedata=File.open("/unitydata/female_pants-1.assetbundle")
+female_pants_1_assetbundle.save!
+female_pants_2_assetbundle =DataFile.create()
+female_pants_2_assetbundle.filedata=File.open("/unitydata/female_pants-2.assetbundle")
+female_pants_2_assetbundle.save!
+male_face_1_assetbundle =DataFile.create()
+male_face_1_assetbundle.filedata=File.open("/unitydata/male_face-1.assetbundle")
+male_face_1_assetbundle.save!
+male_face_2_assetbundle =DataFile.create()
+male_face_2_assetbundle.filedata=File.open("/unitydata/male_face-2.assetbundle")
+male_face_2_assetbundle.save!
+female_face_1_assetbundle =DataFile.create()
+female_face_1_assetbundle.filedata=File.open("/unitydata/female_face-1.assetbundle")
+female_face_1_assetbundle.save!
+female_face_2_assetbundle =DataFile.create()
+female_face_2_assetbundle.filedata=File.open("/unitydata/female_face-2.assetbundle")
+female_face_2_assetbundle.save!
+male_hair_1_assetbundle =DataFile.create()
+male_hair_1_assetbundle.filedata=File.open("/unitydata/male_hair-1.assetbundle")
+male_hair_1_assetbundle.save!
+male_hair_2_assetbundle =DataFile.create()
+male_hair_2_assetbundle.filedata=File.open("/unitydata/male_hair-2.assetbundle")
+male_hair_2_assetbundle.save!
+female_hair_1_assetbundle =DataFile.create()
+female_hair_1_assetbundle.filedata=File.open("/unitydata/female_hair-1.assetbundle")
+female_hair_1_assetbundle.save!
+female_hair_2_assetbundle =DataFile.create()
+female_hair_2_assetbundle.filedata=File.open("/unitydata/female_hair-2.assetbundle")
+female_hair_2_assetbundle.save!
+male_shoes_1_assetbundle =DataFile.create()
+male_shoes_1_assetbundle.filedata=File.open("/unitydata/male_shoes-1.assetbundle")
+male_shoes_1_assetbundle.save!
+male_shoes_2_assetbundle =DataFile.create()
+male_shoes_2_assetbundle.filedata=File.open("/unitydata/male_shoes-2.assetbundle")
+male_shoes_2_assetbundle.save!
+female_shoes_1_assetbundle =DataFile.create()
+female_shoes_1_assetbundle.filedata=File.open("/unitydata/female_shoes-1.assetbundle")
+female_shoes_1_assetbundle.save!
+female_shoes_2_assetbundle =DataFile.create()
+female_shoes_2_assetbundle.filedata=File.open("/unitydata/female_shoes-2.assetbundle")
+female_shoes_2_assetbundle.save!
+male_top_1_assetbundle =DataFile.create()
+male_top_1_assetbundle.filedata=File.open("/unitydata/male_top-1.assetbundle")
+male_top_1_assetbundle.save!
+male_top_2_assetbundle =DataFile.create()
+male_top_2_assetbundle.filedata=File.open("/unitydata/male_top-2.assetbundle")
+male_top_2_assetbundle.save!
+female_top_1_assetbundle =DataFile.create()
+female_top_1_assetbundle.filedata=File.open("/unitydata/female_top-1.assetbundle")
+female_top_1_assetbundle.save!
+female_top_2_assetbundle =DataFile.create()
+female_top_2_assetbundle.filedata=File.open("/unitydata/female_top-2.assetbundle")
+female_top_2_assetbundle.save!
+male_eyes_assetbundle =DataFile.create()
+male_eyes_assetbundle.filedata=File.open("/unitydata/male_eyes.assetbundle")
+male_eyes_assetbundle.save!
+female_eyes_assetbundle =DataFile.create()
+female_eyes_assetbundle.filedata=File.open("/unitydata/female_eyes.assetbundle")
+female_eyes_assetbundle.save!
 
 
-=begin
+characterElementDatabase = DataFile.create()
+characterElementDatabase.filedata= File.open("/unitydata/CharacterElementDatabase.assetbundle")
+characterElementDatabase.save!
+female_characterbase = DataFile.create()
+female_characterbase.filedata= File.open("/unitydata/female_characterbase.assetbundle")
+female_characterbase.save!
+male_characterbase = DataFile.create()
+male_characterbase.filedata= File.open("/unitydata/male_characterbase.assetbundle")
+male_characterbase.save!
+ 
+
+
+
 ################################################################################################################
 #Groups                                                                                                        #
 ################################################################################################################
-=end
+
 #Groups below represent an "or" choice
 male_pants      = Group.create(name: "male_pants")
 female_pants    = Group.create(name: "female_pants")
@@ -298,11 +389,11 @@ male_top        = Group.create(name: "male_top")
 female_top      = Group.create(name: "female_top")
 
 
-=begin
+
 ################################################################################################################
 #Components                                                                                                    #
 ################################################################################################################
-=end
+
 #Component Group - Arm
 
 male_pants_1      = Component.create(name: "male_pants_1", description: "", code: "pants", group_id: male_pants.id)
@@ -328,11 +419,11 @@ female_top_2      = Component.create(name: "female_top_2", description: "", code
 male_eyes         = Component.create(name: "male_eyes", description: "", code: "eyes")
 female_eyes       = Component.create(name: "female_eyes", description: "", code: "eyes")
 
-=begin
+
 ################################################################################################################
 #Properties                                                                                                    #
 ################################################################################################################
-=end
+
 
 male_pants_colour      = Property.create(name: "male_pants", description: "property", field_type: "string")
 female_pants_colour    = Property.create(name: "female_pants", description: "property", field_type: "string")
@@ -347,11 +438,11 @@ female_top_colour      = Property.create(name: "female_top", description: "prope
 male_eyes_colour        = Property.create(name: "male_eye", description: "property", field_type: "string")
 female_eyes_colour      = Property.create(name: "female_eye", description: "property", field_type: "string")
 
-=begin
+
 ################################################################################################################
 #ValueFields                                                                                                   #
 ################################################################################################################
-=end
+
 
 
 male_pants_1_blue      = Valuefield.create(fieldvalue: "male_pants_1_blue", code: "blue", property_id: male_pants_colour.id)
@@ -432,247 +523,245 @@ female_eyes_blue       = Valuefield.create(fieldvalue: "female_eyes_blue", code:
 female_eyes_brown       = Valuefield.create(fieldvalue: "female_eyes_brown", code: "brown", property_id: female_eyes_colour.id)
 female_eyes_green       = Valuefield.create(fieldvalue: "female_eyes_green", code: "green", property_id: female_eyes_colour.id)
 
-=begin
+
 ################################################################################################################
 #Images                                                                                                        #
 ################################################################################################################
-=end
+
 
 male_pants_1_blue_tga = Image.create()
-male_pants_1_blue_tga.picture= File.open("/home/franz2/unitydata/male_pants-1_blue.tga")
+male_pants_1_blue_tga.picture= File.open("/unitydata/male_pants-1_blue.tga")
 male_pants_1_blue_tga.save!
 male_pants_1_dark_tga = Image.create()
-male_pants_1_dark_tga.picture= File.open("/home/franz2/unitydata/male_pants-1_dark.tga")
+male_pants_1_dark_tga.picture= File.open("/unitydata/male_pants-1_dark.tga")
 male_pants_1_dark_tga.save!
 male_pants_1_green_tga = Image.create()
-male_pants_1_green_tga.picture= File.open("/home/franz2/unitydata/male_pants-1_green.tga")
+male_pants_1_green_tga.picture= File.open("/unitydata/male_pants-1_green.tga")
 male_pants_1_green_tga.save!
 male_pants_1_normal_tga = Image.create()
-male_pants_1_normal_tga.picture= File.open("/home/franz2/unitydata/male_pants-1_normal.tga")
+male_pants_1_normal_tga.picture= File.open("/unitydata/male_pants-1_normal.tga")
 male_pants_1_normal_tga.save!
 male_pants_2_blue_tga = Image.create()
-male_pants_2_blue_tga.picture= File.open("/home/franz2/unitydata/male_pants-2_blue.tga")
+male_pants_2_blue_tga.picture= File.open("/unitydata/male_pants-2_blue.tga")
 male_pants_2_blue_tga.save!
 male_pants_2_lillac_tga = Image.create()
-male_pants_2_lillac_tga.picture= File.open("/home/franz2/unitydata/male_pants-2_lillac.tga")
+male_pants_2_lillac_tga.picture= File.open("/unitydata/male_pants-2_lillac.tga")
 male_pants_2_lillac_tga.save!
 male_pants_2_normal_tga = Image.create()
-male_pants_2_normal_tga.picture= File.open("/home/franz2/unitydata/male_pants-2_normal.tga")
+male_pants_2_normal_tga.picture= File.open("/unitydata/male_pants-2_normal.tga")
 male_pants_2_normal_tga.save!
 male_pants_2_purple_tga = Image.create()
-male_pants_2_purple_tga.picture= File.open("/home/franz2/unitydata/male_pants-2_purple.tga")
+male_pants_2_purple_tga.picture= File.open("/unitydata/male_pants-2_purple.tga")
 male_pants_2_purple_tga.save!
 female_pants_1_blue_tga = Image.create()
-female_pants_1_blue_tga.picture= File.open("/home/franz2/unitydata/female_pants-1_blue.tga")
+female_pants_1_blue_tga.picture= File.open("/unitydata/female_pants-1_blue.tga")
 female_pants_1_blue_tga.save!
 female_pants_1_dark_tga = Image.create()
-female_pants_1_dark_tga.picture= File.open("/home/franz2/unitydata/female_pants-1_dark.tga")
+female_pants_1_dark_tga.picture= File.open("/unitydata/female_pants-1_dark.tga")
 female_pants_1_dark_tga.save!
 female_pants_1_green_tga = Image.create()
-female_pants_1_green_tga.picture= File.open("/home/franz2/unitydata/female_pants-1_green.tga")
+female_pants_1_green_tga.picture= File.open("/unitydata/female_pants-1_green.tga")
 female_pants_1_green_tga.save!
 female_pants_1_normal_tga = Image.create()
-female_pants_1_normal_tga.picture= File.open("/home/franz2/unitydata/female_pants-1_normal.tga")
+female_pants_1_normal_tga.picture= File.open("/unitydata/female_pants-1_normal.tga")
 female_pants_1_normal_tga.save!
 female_pants_2_black_tga = Image.create()
-female_pants_2_black_tga.picture= File.open("/home/franz2/unitydata/female_pants-2_black.tga")
+female_pants_2_black_tga.picture= File.open("/unitydata/female_pants-2_black.tga")
 female_pants_2_black_tga.save!
 female_pants_2_blue_tga = Image.create()
-female_pants_2_blue_tga.picture= File.open("/home/franz2/unitydata/female_pants-2_blue.tga")
+female_pants_2_blue_tga.picture= File.open("/unitydata/female_pants-2_blue.tga")
 female_pants_2_blue_tga.save!
 female_pants_2_normal_tga = Image.create()
-female_pants_2_normal_tga.picture= File.open("/home/franz2/unitydata/female_pants-2_normal.tga")
+female_pants_2_normal_tga.picture= File.open("/unitydata/female_pants-2_normal.tga")
 female_pants_2_normal_tga.save!
 female_pants_2_orange_tga = Image.create()
-female_pants_2_orange_tga.picture= File.open("/home/franz2/unitydata/female_pants-2_orange.tga")
+female_pants_2_orange_tga.picture= File.open("/unitydata/female_pants-2_orange.tga")
 female_pants_2_orange_tga.save!
 male_face_1__tga = Image.create()
-male_face_1__tga.picture= File.open("/home/franz2/unitydata/male_face-1.tga")
+male_face_1__tga.picture= File.open("/unitydata/male_face-1.tga")
 male_face_1__tga.save!
 male_face_1_normal_tga = Image.create()
-male_face_1_normal_tga.picture= File.open("/home/franz2/unitydata/male_face-1_normal.tga")
+male_face_1_normal_tga.picture= File.open("/unitydata/male_face-1_normal.tga")
 male_face_1_normal_tga.save!
 male_face_2__tga = Image.create()
-male_face_2__tga.picture= File.open("/home/franz2/unitydata/male_face-2.tga")
+male_face_2__tga.picture= File.open("/unitydata/male_face-2.tga")
 male_face_2__tga.save!
 male_face_2_normal_tga = Image.create()
-male_face_2_normal_tga.picture= File.open("/home/franz2/unitydata/male_face-2_normal.tga")
+male_face_2_normal_tga.picture= File.open("/unitydata/male_face-2_normal.tga")
 male_face_2_normal_tga.save!
 female_face_1__tga = Image.create()
-female_face_1__tga.picture= File.open("/home/franz2/unitydata/female_face-1.tga")
+female_face_1__tga.picture= File.open("/unitydata/female_face-1.tga")
 female_face_1__tga.save!
 female_face_1_normal_tga = Image.create()
-female_face_1_normal_tga.picture= File.open("/home/franz2/unitydata/female_face-1_normal.tga")
+female_face_1_normal_tga.picture= File.open("/unitydata/female_face-1_normal.tga")
 female_face_1_normal_tga.save!
 female_face_2__tga = Image.create()
-female_face_2__tga.picture= File.open("/home/franz2/unitydata/female_face-2.tga")
+female_face_2__tga.picture= File.open("/unitydata/female_face-2.tga")
 female_face_2__tga.save!
 female_face_2_normal_tga = Image.create()
-female_face_2_normal_tga.picture= File.open("/home/franz2/unitydata/female_face-2_normal.tga")
+female_face_2_normal_tga.picture= File.open("/unitydata/female_face-2_normal.tga")
 female_face_2_normal_tga.save!
 male_hair_1_blond_tga = Image.create()
-male_hair_1_blond_tga.picture= File.open("/home/franz2/unitydata/male_hair-1_blond.tga")
+male_hair_1_blond_tga.picture= File.open("/unitydata/male_hair-1_blond.tga")
 male_hair_1_blond_tga.save!
 male_hair_1_brown_tga = Image.create()
-male_hair_1_brown_tga.picture= File.open("/home/franz2/unitydata/male_hair-1_brown.tga")
+male_hair_1_brown_tga.picture= File.open("/unitydata/male_hair-1_brown.tga")
 male_hair_1_brown_tga.save!
 male_hair_1_normal_tga = Image.create()
-male_hair_1_normal_tga.picture= File.open("/home/franz2/unitydata/male_hair-1_normal.tga")
+male_hair_1_normal_tga.picture= File.open("/unitydata/male_hair-1_normal.tga")
 male_hair_1_normal_tga.save!
 male_hair_1_orange_tga = Image.create()
-male_hair_1_orange_tga.picture= File.open("/home/franz2/unitydata/male_hair-1_orange.tga")
+male_hair_1_orange_tga.picture= File.open("/unitydata/male_hair-1_orange.tga")
 male_hair_1_orange_tga.save!
 male_hair_2_blond_tga = Image.create()
-male_hair_2_blond_tga.picture= File.open("/home/franz2/unitydata/male_hair-2_blond.tga")
+male_hair_2_blond_tga.picture= File.open("/unitydata/male_hair-2_blond.tga")
 male_hair_2_blond_tga.save!
 male_hair_2_brown_tga = Image.create()
-male_hair_2_brown_tga.picture= File.open("/home/franz2/unitydata/male_hair-2_brown.tga")
+male_hair_2_brown_tga.picture= File.open("/unitydata/male_hair-2_brown.tga")
 male_hair_2_brown_tga.save!
 male_hair_2_normal_tga = Image.create()
-male_hair_2_normal_tga.picture= File.open("/home/franz2/unitydata/male_hair-2_normal.tga")
+male_hair_2_normal_tga.picture= File.open("/unitydata/male_hair-2_normal.tga")
 male_hair_2_normal_tga.save!
 male_hair_2_red_tga = Image.create()
-male_hair_2_red_tga.picture= File.open("/home/franz2/unitydata/male_hair-2_red.tga")
+male_hair_2_red_tga.picture= File.open("/unitydata/male_hair-2_red.tga")
 male_hair_2_red_tga.save!
 female_hair_1_brown_tga = Image.create()
-female_hair_1_brown_tga.picture= File.open("/home/franz2/unitydata/female_hair-1_brown.tga")
+female_hair_1_brown_tga.picture= File.open("/unitydata/female_hair-1_brown.tga")
 female_hair_1_brown_tga.save!
 female_hair_1_normal_tga = Image.create()
-female_hair_1_normal_tga.picture= File.open("/home/franz2/unitydata/female_hair-1_normal.tga")
+female_hair_1_normal_tga.picture= File.open("/unitydata/female_hair-1_normal.tga")
 female_hair_1_normal_tga.save!
 female_hair_1_red_tga = Image.create()
-female_hair_1_red_tga.picture= File.open("/home/franz2/unitydata/female_hair-1_red.tga")
+female_hair_1_red_tga.picture= File.open("/unitydata/female_hair-1_red.tga")
 female_hair_1_red_tga.save!
 female_hair_1_yellow_tga = Image.create()
-female_hair_1_yellow_tga.picture= File.open("/home/franz2/unitydata/female_hair-1_yellow.tga")
+female_hair_1_yellow_tga.picture= File.open("/unitydata/female_hair-1_yellow.tga")
 female_hair_1_yellow_tga.save!
 female_hair_2_cyan_tga = Image.create()
-female_hair_2_cyan_tga.picture= File.open("/home/franz2/unitydata/female_hair-2_cyan.tga")
+female_hair_2_cyan_tga.picture= File.open("/unitydata/female_hair-2_cyan.tga")
 female_hair_2_cyan_tga.save!
 female_hair_2_dark_tga = Image.create()
-female_hair_2_dark_tga.picture= File.open("/home/franz2/unitydata/female_hair-2_dark.tga")
+female_hair_2_dark_tga.picture= File.open("/unitydata/female_hair-2_dark.tga")
 female_hair_2_dark_tga.save!
 female_hair_2_pink_tga = Image.create()
-female_hair_2_pink_tga.picture= File.open("/home/franz2/unitydata/female_hair-2_pink.tga")
+female_hair_2_pink_tga.picture= File.open("/unitydata/female_hair-2_pink.tga")
 female_hair_2_pink_tga.save!
 male_shoes_1_black_tga = Image.create()
-male_shoes_1_black_tga.picture= File.open("/home/franz2/unitydata/male_shoes-1_black.tga")
+male_shoes_1_black_tga.picture= File.open("/unitydata/male_shoes-1_black.tga")
 male_shoes_1_black_tga.save!
 male_shoes_1_green_tga = Image.create()
-male_shoes_1_green_tga.picture= File.open("/home/franz2/unitydata/male_shoes-1_green.tga")
+male_shoes_1_green_tga.picture= File.open("/unitydata/male_shoes-1_green.tga")
 male_shoes_1_green_tga.save!
 male_shoes_1_normal_tga = Image.create()
-male_shoes_1_normal_tga.picture= File.open("/home/franz2/unitydata/male_shoes-1_normal.tga")
+male_shoes_1_normal_tga.picture= File.open("/unitydata/male_shoes-1_normal.tga")
 male_shoes_1_normal_tga.save!
 male_shoes_1_red_tga = Image.create()
-male_shoes_1_red_tga.picture= File.open("/home/franz2/unitydata/male_shoes-1_red.tga")
+male_shoes_1_red_tga.picture= File.open("/unitydata/male_shoes-1_red.tga")
 male_shoes_1_red_tga.save!
 male_shoes_2_brown_tga = Image.create()
-male_shoes_2_brown_tga.picture= File.open("/home/franz2/unitydata/male_shoes-2_brown.tga")
+male_shoes_2_brown_tga.picture= File.open("/unitydata/male_shoes-2_brown.tga")
 male_shoes_2_brown_tga.save!
 male_shoes_2_dark_tga = Image.create()
-male_shoes_2_dark_tga.picture= File.open("/home/franz2/unitydata/male_shoes-2_dark.tga")
+male_shoes_2_dark_tga.picture= File.open("/unitydata/male_shoes-2_dark.tga")
 male_shoes_2_dark_tga.save!
 male_shoes_2_normal_tga = Image.create()
-male_shoes_2_normal_tga.picture= File.open("/home/franz2/unitydata/male_shoes-2_normal.tga")
+male_shoes_2_normal_tga.picture= File.open("/unitydata/male_shoes-2_normal.tga")
 male_shoes_2_normal_tga.save!
 male_shoes_2_red_tga = Image.create()
-male_shoes_2_red_tga.picture= File.open("/home/franz2/unitydata/male_shoes-2_red.tga")
+male_shoes_2_red_tga.picture= File.open("/unitydata/male_shoes-2_red.tga")
 male_shoes_2_red_tga.save!
 female_shoes_1_blue_tga = Image.create()
-female_shoes_1_blue_tga.picture= File.open("/home/franz2/unitydata/female_shoes-1_blue.tga")
+female_shoes_1_blue_tga.picture= File.open("/unitydata/female_shoes-1_blue.tga")
 female_shoes_1_blue_tga.save!
 female_shoes_1_green_tga = Image.create()
-female_shoes_1_green_tga.picture= File.open("/home/franz2/unitydata/female_shoes-1_green.tga")
+female_shoes_1_green_tga.picture= File.open("/unitydata/female_shoes-1_green.tga")
 female_shoes_1_green_tga.save!
 female_shoes_1_normal_tga = Image.create()
-female_shoes_1_normal_tga.picture= File.open("/home/franz2/unitydata/female_shoes-1_normal.tga")
+female_shoes_1_normal_tga.picture= File.open("/unitydata/female_shoes-1_normal.tga")
 female_shoes_1_normal_tga.save!
 female_shoes_1_yellow_tga = Image.create()
-female_shoes_1_yellow_tga.picture= File.open("/home/franz2/unitydata/female_shoes-1_yellow.tga")
+female_shoes_1_yellow_tga.picture= File.open("/unitydata/female_shoes-1_yellow.tga")
 female_shoes_1_yellow_tga.save!
 female_shoes_2_blue_tga = Image.create()
-female_shoes_2_blue_tga.picture= File.open("/home/franz2/unitydata/female_shoes-2_blue.tga")
+female_shoes_2_blue_tga.picture= File.open("/unitydata/female_shoes-2_blue.tga")
 female_shoes_2_blue_tga.save!
 female_shoes_2_normal_tga = Image.create()
-female_shoes_2_normal_tga.picture= File.open("/home/franz2/unitydata/female_shoes-2_normal.tga")
+female_shoes_2_normal_tga.picture= File.open("/unitydata/female_shoes-2_normal.tga")
 female_shoes_2_normal_tga.save!
 female_shoes_2_red_tga = Image.create()
-female_shoes_2_red_tga.picture= File.open("/home/franz2/unitydata/female_shoes-2_red.tga")
+female_shoes_2_red_tga.picture= File.open("/unitydata/female_shoes-2_red.tga")
 female_shoes_2_red_tga.save!
 female_shoes_2_yellow_tga = Image.create()
-female_shoes_2_yellow_tga.picture= File.open("/home/franz2/unitydata/female_shoes-2_yellow.tga")
+female_shoes_2_yellow_tga.picture= File.open("/unitydata/female_shoes-2_yellow.tga")
 female_shoes_2_yellow_tga.save!
 male_top_1_blue_tga = Image.create()
-male_top_1_blue_tga.picture= File.open("/home/franz2/unitydata/male_top-1_blue.tga")
+male_top_1_blue_tga.picture= File.open("/unitydata/male_top-1_blue.tga")
 male_top_1_blue_tga.save!
 male_top_1_normal_tga = Image.create()
-male_top_1_normal_tga.picture= File.open("/home/franz2/unitydata/male_top-1_normal.tga")
+male_top_1_normal_tga.picture= File.open("/unitydata/male_top-1_normal.tga")
 male_top_1_normal_tga.save!
 male_top_1_pink_tga = Image.create()
-male_top_1_pink_tga.picture= File.open("/home/franz2/unitydata/male_top-1_pink.tga")
+male_top_1_pink_tga.picture= File.open("/unitydata/male_top-1_pink.tga")
 male_top_1_pink_tga.save!
 male_top_1_yellow_tga = Image.create()
-male_top_1_yellow_tga.picture= File.open("/home/franz2/unitydata/male_top-1_yellow.tga")
+male_top_1_yellow_tga.picture= File.open("/unitydata/male_top-1_yellow.tga")
 male_top_1_yellow_tga.save!
 male_top_2_gray_tga = Image.create()
-male_top_2_gray_tga.picture= File.open("/home/franz2/unitydata/male_top-2_gray.tga")
+male_top_2_gray_tga.picture= File.open("/unitydata/male_top-2_gray.tga")
 male_top_2_gray_tga.save!
 male_top_2_green_tga = Image.create()
-male_top_2_green_tga.picture= File.open("/home/franz2/unitydata/male_top-2_green.tga")
+male_top_2_green_tga.picture= File.open("/unitydata/male_top-2_green.tga")
 male_top_2_green_tga.save!
 male_top_2_normal_tga = Image.create()
-male_top_2_normal_tga.picture= File.open("/home/franz2/unitydata/male_top-2_normal.tga")
+male_top_2_normal_tga.picture= File.open("/unitydata/male_top-2_normal.tga")
 male_top_2_normal_tga.save!
 male_top_2_orange_tga = Image.create()
-male_top_2_orange_tga.picture= File.open("/home/franz2/unitydata/male_top-2_orange.tga")
+male_top_2_orange_tga.picture= File.open("/unitydata/male_top-2_orange.tga")
 male_top_2_orange_tga.save!
 female_top_1_blue_tga = Image.create()
-female_top_1_blue_tga.picture= File.open("/home/franz2/unitydata/female_top-1_blue.tga")
+female_top_1_blue_tga.picture= File.open("/unitydata/female_top-1_blue.tga")
 female_top_1_blue_tga.save!
 female_top_1_green_tga = Image.create()
-female_top_1_green_tga.picture= File.open("/home/franz2/unitydata/female_top-1_green.tga")
+female_top_1_green_tga.picture= File.open("/unitydata/female_top-1_green.tga")
 female_top_1_green_tga.save!
 female_top_1_normal_tga = Image.create()
-female_top_1_normal_tga.picture= File.open("/home/franz2/unitydata/female_top-1_normal.tga")
+female_top_1_normal_tga.picture= File.open("/unitydata/female_top-1_normal.tga")
 female_top_1_normal_tga.save!
 female_top_1_pink_tga = Image.create()
-female_top_1_pink_tga.picture= File.open("/home/franz2/unitydata/female_top-1_pink.tga")
+female_top_1_pink_tga.picture= File.open("/unitydata/female_top-1_pink.tga")
 female_top_1_pink_tga.save!
 female_top_2_green_tga = Image.create()
-female_top_2_green_tga.picture= File.open("/home/franz2/unitydata/female_top-2_green.tga")
+female_top_2_green_tga.picture= File.open("/unitydata/female_top-2_green.tga")
 female_top_2_green_tga.save!
 female_top_2_normal_tga = Image.create()
-female_top_2_normal_tga.picture= File.open("/home/franz2/unitydata/female_top-2_normal.tga")
+female_top_2_normal_tga.picture= File.open("/unitydata/female_top-2_normal.tga")
 female_top_2_normal_tga.save!
 female_top_2_orange_tga = Image.create()
-female_top_2_orange_tga.picture= File.open("/home/franz2/unitydata/female_top-2_orange.tga")
+female_top_2_orange_tga.picture= File.open("/unitydata/female_top-2_orange.tga")
 female_top_2_orange_tga.save!
 female_top_2_purple_tga = Image.create()
-female_top_2_purple_tga.picture= File.open("/home/franz2/unitydata/female_top-2_purple.tga")
+female_top_2_purple_tga.picture= File.open("/unitydata/female_top-2_purple.tga")
 female_top_2_purple_tga.save!
 male_eyes_blue_tga = Image.create()
-male_eyes_blue_tga.picture= File.open("/home/franz2/unitydata/male_eyes_blue.tga")
+male_eyes_blue_tga.picture= File.open("/unitydata/male_eyes_blue.tga")
 male_eyes_blue_tga.save!
 male_eyes_brown_tga = Image.create()
-male_eyes_brown_tga.picture= File.open("/home/franz2/unitydata/male_eyes_brown.tga")
+male_eyes_brown_tga.picture= File.open("/unitydata/male_eyes_brown.tga")
 male_eyes_brown_tga.save!
 male_eyes_green_tga = Image.create()
-male_eyes_green_tga.picture= File.open("/home/franz2/unitydata/male_eyes_green.tga")
+male_eyes_green_tga.picture= File.open("/unitydata/male_eyes_green.tga")
 male_eyes_green_tga.save!
 female_eyes_blue_tga = Image.create()
-female_eyes_blue_tga.picture= File.open("/home/franz2/unitydata/female_eyes_blue.tga")
+female_eyes_blue_tga.picture= File.open("/unitydata/female_eyes_blue.tga")
 female_eyes_blue_tga.save!
 female_eyes_brown_tga = Image.create()
-female_eyes_brown_tga.picture= File.open("/home/franz2/unitydata/female_eyes_brown.tga")
+female_eyes_brown_tga.picture= File.open("/unitydata/female_eyes_brown.tga")
 female_eyes_brown_tga.save!
 female_eyes_green_tga = Image.create()
-female_eyes_green_tga.picture= File.open("/home/franz2/unitydata/female_eyes_green.tga")
+female_eyes_green_tga.picture= File.open("/unitydata/female_eyes_green.tga")
 female_eyes_green_tga.save!
 
-
-
-
+    
 
 threedilogo = Image.create()
 threedilogo.picture = File.open("#{Rails.root}/app/assets/images/3di_media_server.png")
@@ -683,35 +772,35 @@ banner.picture = File.open("#{Rails.root}/app/assets/images/banner.png")
 banner.save!
 
 
-=begin
+
 ################################################################################################################
 #Categories_Products - association table                                                                       #
 ################################################################################################################
-=end
+
 characters.products = [male,female]
 
-=begin
+
 ################################################################################################################
 #Components_Products - association table                                                                       #
 ################################################################################################################
-=end
+
 
 male.components = [male_pants_1,male_pants_2,male_face_1,male_face_2,male_hair_1,male_hair_2,male_shoes_1,male_shoes_2,male_top_1,male_top_2,male_eyes ]
 
 female.components = [female_pants_1,female_pants_2,female_face_1,female_face_2,female_hair_1,female_hair_2,female_shoes_1,female_shoes_2,female_top_1,female_top_2,female_eyes]
 
-=begin
+
 ################################################################################################################
 #Components_Groups - association table                                                                     #
 ################################################################################################################
-=end          
 
 
-=begin
+
+
 ################################################################################################################
 #valuefields_properties - association table                                                                     #
 ################################################################################################################
-=end
+
 
 male_pants_1_blue.property = male_pants_colour
 male_pants_1_dark.property = male_pants_colour
@@ -794,11 +883,11 @@ female_eyes_green.property = female_eyes_colour
 
 
 
-=begin
+
 ################################################################################################################
 #Valuefields_Images - association table                                                                      #
 ################################################################################################################
-=end
+
 
 male_pants_1_blue.images=[male_pants_1_blue_tga]
 male_pants_1_dark.images=[male_pants_1_dark_tga]
@@ -878,11 +967,11 @@ female_eyes_blue.images=[female_eyes_blue_tga]
 female_eyes_brown.images=[female_eyes_brown_tga]
 female_eyes_green.images=[female_eyes_green_tga]
 
-=begin
+
 ################################################################################################################
 #Components_Valuefields - association table                                                                    #
 ################################################################################################################
-=end
+
 
 male_pants_1.valuefields = [male_pants_1_blue,male_pants_1_dark,male_pants_1_green,male_pants_1_normal]
 male_pants_2.valuefields = [male_pants_2_blue,male_pants_2_lillac,male_pants_2_normal,male_pants_2_purple]
@@ -907,11 +996,11 @@ female_top_2.valuefields = [female_top_2_green,female_top_2_normal,female_top_2_
 male_eyes.valuefields = [male_eyes_blue,male_eyes_brown,male_eyes_green]
 female_eyes.valuefields = [female_eyes_blue,female_eyes_brown,female_eyes_green]
 
-=begin
+
 ################################################################################################################
 #DataFiles_Products - association table                                                                        #
 ################################################################################################################
-=end                
+              
 
 female_fbx.products=[female]
 female_idle1.products=[female]
@@ -931,11 +1020,11 @@ male_walk.products=[male]
 
 
 
-=begin
+
 ################################################################################################################
 #Datafile_Valuefiled - association table                                                                         #
 ################################################################################################################
-=end
+
 
 male_pants_1_blue.data_files=[male_pants_1_blue_mat]
 male_pants_1_dark.data_files=[male_pants_1_dark_mat]
@@ -997,9 +1086,14 @@ female_eyes_brown.data_files=[female_eyes_brown_mat]
 female_eyes_green.data_files=[female_eyes_green_mat]
 
 
-=begin
+
 ################################################################################################################
 #All Seating Test                                                                                              #
 #End of Seed                                                                                                   #
 ################################################################################################################
-=end
+
+
+
+
+  end
+end
