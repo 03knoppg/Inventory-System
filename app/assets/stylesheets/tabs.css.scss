@@ -7,6 +7,9 @@
 
 /* tab pane styling */
 
+div.tabs{
+    margin:5px;
+}
 
 /* root element for tabs  */
 div.tabs > ul {
@@ -52,6 +55,12 @@ div.tabs > div {
     border:1px solid #999;
     border-top:0;
     padding:0px;
+    height:100%;
+}
+
+div.tabs > div > div{
+    height:100%;
+
 }
 
 /* when mouse enters the tab move the background image */
@@ -90,26 +99,49 @@ div.tabs > ul > li >  a.xl.current { background-position: 0 -62px; }
 
 /*Tabs 2 */
 div.tabs2{
-    width:1200px;
     height:500px;
+    padding:5px;
 }
 div.tabs2 > ul{
-    //width: 260px;
     float:left;
     list-style:none;
-	//border-right:1px solid #666;
     position: relative;
-	height:30px;
-    padding-left:8px;
+    padding-left:0px;
     margin:0;
+    width:12%;
+    height:100%;
 }
 
 div.tabs2 > ul > li{
     display: block;
     width:165;
     height: relative;
-    position: relative;
     color: #73736b;
+
+}
+
+div.tabs2 > ul > li:last-child{
+    display: block;
+    width:165;
+    height: 100%;
+    color: #73736b;
+    border-right:1px solid #666;
+
+}
+div.tabs2 > ul > li:last-child > a{
+    background: url(/assets/blue_side.png) no-repeat -422px 0;
+	font-size:11px;
+	display:block;
+	height: 30px;
+	line-height:30px;
+	width: 132px;
+	text-align:center;
+	text-decoration:none;
+	color:#333;
+	padding:0px;
+	margin:0px;
+	position:relative;
+    float:right;
 
 }
 
@@ -127,28 +159,18 @@ div.tabs2 > ul > li > a{
 	margin:0px;
 	position:relative;
     border-right:1px solid #666;
+    float:right;
 }
 
-div.tabs2 > ul > li.current{
-
-   //border-right-color: #aeaeaa;
-}
-
-div.tabs2 > ul > li > a:active {
-	outline:none;
-}
 
 div.tabs2 > div {
     border:1px solid #999;
     border-left:0;
-    margin-right:25px;
-    //padding-right:15px;
     float:right;
+    width:88%;
+    height:100%;
 }
 
-div.tabs2 > div > div{
-    width:1040px;
-}
 
 /* when mouse enters the tab move the background image */
 div.tabs2 > ul > li > a:hover {
