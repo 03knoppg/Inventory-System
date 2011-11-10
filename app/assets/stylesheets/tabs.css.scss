@@ -147,7 +147,12 @@ div.tabs2 > div {
 }
 
 div.tabs2 > div > div{
-    width:1040px;
+    width:relative;
+}
+
+div.tabs2 > div > div > div {
+    width:relative;
+    float:right;
 }
 
 /* when mouse enters the tab move the background image */
