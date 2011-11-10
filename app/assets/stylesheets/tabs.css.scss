@@ -108,7 +108,7 @@ div.tabs2 > ul{
     position: relative;
     padding-left:0px;
     margin:0;
-    width:12%;
+    width:140px;
     height:100%;
 }
 
@@ -167,7 +167,6 @@ div.tabs2 > div {
     border:1px solid #999;
     border-left:0;
     float:right;
-    width:88%;
     height:100%;
 }
 
@@ -183,7 +182,7 @@ div.tabs2 > ul > li > a.current, div.tabs2 > ul > li > a.current:hover, div.tabs
 	background-position: -422px -62px;
 	cursor:defadiv ult !important;
 	color:#000 !important;
-    border-right:0;
+    border-right: 1px solid transparent;
 }
 
 /* Different widths for tabs2: use a class name: s, l, xl */
