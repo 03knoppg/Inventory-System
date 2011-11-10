@@ -201,7 +201,12 @@
 
    jQuery(function($) {
 
-       $('#new_category')[0].setAttribute("data-remote", "true");
+       //$('#new_category')[0].setAttribute("data-remote", "true");
+
+       width = Number($('div.tabs2').width());
+       ulWidth = Number($('div.tabs2 > ul').width());
+       $('div.tabs2 > div').width(width - ulWidth -1);
+
 
    });
    </script>
