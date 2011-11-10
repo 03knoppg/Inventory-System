@@ -5,6 +5,18 @@ class Category < ActiveRecord::Base
   #validations
   validates_presence_of :name
 
+  def categories
+    children = []
+
+    for cat in Category.all
+      if cat.parent_id == id
+        children.push(cat)
+      end
+    end
+
+    return children
+  end
+
   def to_s   #for debug
     return "#{id}:#{name}"
   end

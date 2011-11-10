@@ -19,8 +19,9 @@ class DataFileValidator < ActiveModel::Validator
     end
     #if statement to check if array is not empty
     if(!valid.empty?)
-      #checks array for a substring of files that match the extensions and assigns a boolean value.
-      answer = valid.include?(record.filedata_file_name[-4..-1])
+
+      answer = valid.include?("." + record.filedata_file_name.split(".").last)
+
       if(answer == false)
         s = ""
         for v in valid

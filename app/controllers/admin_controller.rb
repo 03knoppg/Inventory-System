@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
 
+
   #Function for tabs page
   def tabs
     @product = Product.find(params[:id])
