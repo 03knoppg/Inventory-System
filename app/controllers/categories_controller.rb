@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     @all_categories_hash = {}
     #calls function to populate & sort @all_categories_hash
     sort_categories
+
     respond_to do |format|
       format.html # mainmenu.html.erb
       format.json { render json: @categories }
@@ -46,14 +47,21 @@ class CategoriesController < ApplicationController
     #if statement for duplicating a record
     if params[:duplicate_category]
         #Assign category to be duplicated
-        category_to_duplicate = Category.find params[:duplicate_category]
+        category_to_duplicate = [Category.find(params[:duplicate_category])]
         #set @category to duplicated info minus id
         @category = category_to_duplicate.dup
     else
         #New category
         @category = Category.new
+
         if(!params[:category_id].nil?)
-          @items_to_select = Category.find params[:category_id]
+          @items_to_select = [Category.find(params[:category_id])]
+        else
+          for ac in @all_categories
+            if(ac.parent_id.nil?)
+               @items_to_select = [ac]
+            end
+          end
         end
     end
 

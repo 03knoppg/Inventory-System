@@ -71,8 +71,8 @@ module ComponentsHelper
   def print_components_table (parent)
 
     children = parent.components
-    ch = "<table style=\"padding-top: 15px\">"
-    ch +="<tr><th align=\"Left\">Related Components</th><th>Description</th></tr>"
+    ch = "<table class=\"tight_table\">"
+    ch +="<tr><th align=\"Left\">Related Components</th><th>Component Description</th></tr>"
     if(!children.empty?)
       for child in children.sort!
         ch+= "<tr><td>#{link_to(child.name, child)}</td><td>#{child.description}</td></tr>"

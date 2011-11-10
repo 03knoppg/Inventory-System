@@ -1,0 +1,12 @@
+<div>
+<table class="tight_table">
+  <tr>
+    <th align="left">Image</th>
+    <th align="left">Image Name</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= image_tag(@image.picture.url(:original)) %></td>
+    <td><%=@image.picture_file_name%></td>
+  </tr>
+</table>
+    </div>
