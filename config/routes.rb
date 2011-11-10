@@ -22,7 +22,6 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "sessions/forgotpass"
 
-
   resources :images
 
   resources :users
@@ -56,15 +55,17 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/writefile"
   post "admin/writefile"
 
+  #test scale
+  get "admin/testscale"
+
   #Posts used for duplicating records.
   post "categories/new"
   post "components/new"
   post "products/new"
   post "valuefields/new"
 
-
   match 'admin', :to => 'admin#home'
-  match 'tabs', :to => 'admin#tabs'
+  match 'tabs/:id', :to => 'admin#tabs'
 
   match 'admin_addvalue', :to => 'admin#addvalue'
 

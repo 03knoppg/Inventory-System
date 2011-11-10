@@ -1,3 +1,4 @@
+#Value Field class
 class Valuefield < ActiveRecord::Base
   belongs_to :property
   has_and_belongs_to_many :components
@@ -5,6 +6,7 @@ class Valuefield < ActiveRecord::Base
   has_and_belongs_to_many :images
   has_and_belongs_to_many :data_files
 
+  #Validations
   validates_presence_of :fieldvalue
 
     def to_s   #for debug

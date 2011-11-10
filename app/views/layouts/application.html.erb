@@ -4,6 +4,8 @@
   <title>TestDBRubymineProject</title>
   <%= stylesheet_link_tag 'application', :media => 'screen'%>
    <%= javascript_include_tag "application"%>
+
+
   <!-- include the Tools -->
   <%= csrf_meta_tags %>
 
@@ -28,13 +30,11 @@
       </ul>
     </nav>
   </div>
-  <br /><br />
   <div class="error_div">
     <% flash.each do |name, msg| %>
         <h4><%= content_tag :div, msg, :id => "flash_#{name}", :class => "error_div"%></h4>
     <% end %>
   </div>
-  <br />
   <%= yield %>
 </div>
 </body>
@@ -46,6 +46,10 @@
 
     $('div.tabs').each(function(){
        $(this).find('ul:first').tabs($(this).find('div:first > div'), {effect: 'fade', fadeOutSpeed: 400});
+    });
+
+    $('div.tabs2').each(function(){
+       $(this).find('ul:first').tabs($(this).find('div:first > div'));
     });
 
      $('li > input').click(function(){
@@ -64,6 +68,13 @@
          }
     });
 
+  $(".content").hide();
+  //toggle the componenet with class msg_body
+  $(".heading").click(function()
+  {
+    $(this).next(".content").slideToggle(1200).scroll();
+  });
+
 <!--//--><![CDATA[//><!--
 $("html").addClass("js");
 $.fn.accordion.defaults.container = false;
@@ -74,5 +85,10 @@ $(function() {
   $("html").removeClass("js");
 });
 //--><!]]>
+
 </script>
+
+
+
+
 

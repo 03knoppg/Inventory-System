@@ -14,8 +14,9 @@ module ImagesHelper
     return sp
   end
 
+  #Function for printing images table
   def print_images_table(parent)
-    s = "<table style=\"padding-top: 15px\">"
+    s = "<table class=\"tight_table\">"
     s+="    <tr>"
     s+="      <th align=\"left\">Related Images</th>"
     s+="    </tr>"

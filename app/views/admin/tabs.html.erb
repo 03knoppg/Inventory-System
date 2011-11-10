@@ -1,79 +1,210 @@
-<h1>Tabs Page</h1>
 
-<table>
-  <tr>
-    <td width="15%">
+<h1 class="title_header">Product: <%=@product.name%></h1>
+   <div class="inner_container">
+ <div><%= render "products/show" %></div>
+ <div class="tabs">
+   <ul>
+     <li><a href="">Components</a></li>
+     <li><a href="">Properties</a></li>
+     <li><a href="">Value Fields</a></li>
+     <li><a href="">Images</a></li>
+     <li><a href="">Data Files</a></li>
+   </ul>
+   <div>
+     <div><h1 class="sub_title_header">Components</h1>
+       <%if(!@product_components.empty?)%>
+           <div class="tabs2">
+             <ul>
+               <%for c in @product_components%>
+                   <li><a href=""><%=c.name%></a></li>
+               <%end%>
+             </ul>
+             <br /><br />
+             <div>
+               <%for @component in @product_components%>
+                   <div><h1 class="sub_title_header"><%=@component.name%></h1>
+                     <%= render("/components/show", :object => [@component]) %>
+                     <div class="tabs">
+                       <ul>
+                         <li><a href="">Group</a></li>
+                         <li><a href="">Child Components</a></li>
+                         <li><a href="">Properties</a></li>
+                         <li><a href="">Value Fields</a></li>
+                         <li><a href="">Images</a></li>
+                         <li><a href="">Data Files</a></li>
+                       </ul>
+                       <div>
+                         <div><h1 class="sub_title_header">Group Information</h1>
+                           <%if(!@component.group_id.nil?)%>
+                               <%@group = @component.group%>
+                               <%= render("/groups/show", :object => [@group]) %>
+                           <%else%>
+                               None Available.
+                           <%end%></div>
+                         <div><div><h1 class="sub_title_header">Child Components Information</h1></div></div>
+                         <div><h1 class="sub_title_header">Properties Information</h1>
+                           <%if(!@component.properties.empty?)%>
+                               <div class="tabs">
+                                 <ul>
+                                   <%for prop in @component.properties%>
+                                       <li><a href=""><%=prop.name%></a></li>
+                                   <%end%>
+                                 </ul>
+                                 <div>
+                                   <%for prop in @component.properties%>
+                                       <%@property = prop%>
+                                       <div><%= render("/properties/show", :object => [@property]) %></div>
+                                   <%end%>
+                                 </div>
+                               </div>
+                           <%else%>
+                               None Available.
+                           <%end%>
+                         </div>
+                         <div><h1 class="sub_title_header">Value Fields Information</h1>
+                           <%if(!@component.valuefields.empty?)%>
+                               <div class="tabs">
+                                 <ul>
+                                   <%for vf in @component.valuefields%>
+                                       <li><a href=""><%=vf.fieldvalue%></a></li>
+                                   <%end%>
+                                 </ul>
+                                 <div>
+                                   <%for vf in @component.valuefields%>
+                                       <%@valuefield = vf%>
+                                       <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+                                   <%end%>
+                                 </div>
+                               </div>
+                           <%else%>
+                               None Available.
+                           <%end%>
+                         </div>
+                         <div><h1 class="sub_title_header">Images Information</h1>
+                           <%if(!@component.images.empty?)%>
+                               <div class="tabs">
+                                 <ul>
+                                   <%for img in @component.images%>
+                                       <li><a href=""><%=img.picture_file_name%></a></li>
+                                   <%end%>
+                                 </ul>
+                                 <div>
+                                   <%for img in @component.images%>
+                                       <%@image = img%>
+                                       <div><%= render("/images/show", :object => [@image]) %></div>
+                                   <%end%>
+                                 </div>
+                               </div>
+                           <%else%>
+                               None Available.
+                           <%end%>
+                         </div>
+                         <div><h1 class="sub_title_header">Data Files Information</h1>
+                           <%if(!@component.data_files.empty?)%>
+                               <div class="tabs">
+                                 <ul>
+                                   <%for df in @component.data_files%>
+                                       <li><a href=""><%=df.filedata_file_name%></a></li>
+                                   <%end%>
+                                 </ul>
+                                 <div>
+                                   <%for df in @component.data_files%>
+                                       <%@data_file = df%>
+                                       <div><%= render("/data_files/show", :object => [@data_file]) %></div>
+                                   <%end%>
+                                 </div>
+                               </div>
+                           <%else%>
+                               None Available.
+                           <%end%>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+               <%end%>
+             </div>
+           </div>
+       <%end%>
+     </div>
+     <div><h1 class="sub_title_header">Property Information</h1>
+       <%if(!@product_properties.nil?)%>
+           <div class="tabs">
+             <ul>
+               <%for properties in @product_properties%>
+                   <li><a href=""><%=properties.name%></a></li>
+               <%end%>
+             </ul>
+             <div>
+               <%for properties in @product_properties%>
+                   <%@property = property%>
+                   <div><%= render("/properties/show", :object => [@property]) %></div>
+               <%end%>
+             </div>
+           </div>
+       <%end%>
+     </div>
+     <div><h1 class="sub_title_header">Value Information</h1>
+       <%if(!@product_valuefields.nil?)%>
+           <div class="tabs">
+             <ul>
+               <%for valuefield in @product_valuefields%>
+                   <li><a href=""><%=valuefield.name%></a></li>
+               <%end%>
+             </ul>
+             <div>
+               <%for valuefield in @product_valuefields%>
+                   <%@valuefield = valuefield%>
+                   <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+               <%end%>
+             </div>
+           </div>
+       <%end%>
+     </div>
+     <div><h1 class="sub_title_header">Image Information</h1>
+       <%if(!@product_images.nil?)%>
+           <div class="tabs">
+             <ul>
+               <%for image in @product_images%>
+                   <li><a href=""><%=image.picture_file_name%></a></li>
+               <%end%>
+             </ul>
+             <br /><br />
+             <div>
+               <%for image in @product_images%>
+                   <%@image = image%>
+                   <div><%= render("/images/show", :object => [@image]) %></div>
+               <%end%>
+             </div>
+           </div>
+       <%end%>
+     </div>
+     <div><h1 class="sub_title_header">Data File Information</h1>
+       <%if(!@product_datafiles.nil?)%>
+           <div class="tabs">
+             <ul>
+               <%for datafile in @product_datafiles%>
+                   <li><a href="" class="xl"><%=datafile.filedata_file_name%></a></li>
+               <%end%>
+             </ul>
+             <div>
+               <%for datafile in @product_datafiles%>
+                   <%@data_file = datafile%>
+                   <div><%= render("/data_files/show", :object => [@data_file]) %></div>
+               <%end%>
+             </div>
+           </div>
+       <%end%>
+     </div>
+   </div>
+ </div>
+   </div>
 
-<%= full_tree.html_safe %>
+   <script type="text/javascript">
 
+   jQuery(function($) {
 
+       $('#new_category')[0].setAttribute("data-remote", "true");
 
-    </td>
-    <td width="85%">
-       <div class="tabs">
-      <ul>
-        <li><a href="#first">Category</a></li>
-        <li><a href="#second">Product</a></li>
-        <li><a href="#third">Group</a></li>
-        <li><a href="">Component</a></li>
-        <li><a href="">Property</a></li>
-        <li><a href="">Value Field</a></li>
-        <li><a href="">Image</a></li>
-        <li><a href="">Data File</a></li>
-      </ul>
-
-
-      <div>
-        <div id="categories"><%= render "categories/new"%></div>
-        <div><h1>Product Information</h1></div>
-        <div><h1>Group Information</h1></div>
-
-
-        <div><h1>Component Information</h1>
-
-          <div class="tabs">
-              <ul>
-                <li><a href="">Child 1</a></li>
-                <li><a href="">Child 2</a></li>
-              </ul>
-              <div>
-                <div><h1>Child 1 Information</h1></div>
-                <div><h1>Child 2 Information</h1></div>
-              </div>
-            </div>
-
-
-        </div>
-
-
-
-        <div><h1>Property Information</h1></div>
-        <div><h1>Value Information</h1></div>
-        <div><h1>Image Information</h1></div>
-        <div><h1>Data File Information</h1></div>
-      </div>
-  </div>
-    </td>
-  </tr>
-</table>
-
-
-
-
-<script type="text/javascript">
-
-    jQuery(function($) {
-
-        $('#new_category')[0].setAttribute("data-remote", "true");
-
-        $('#a<%=Category.all[0].id%>').click(children());
-
-
-
-    });
-
-        function children(parent){
-           $.get("admin/tree", {id: $(parent).attr('id')}, null, 'script');
-        }
-</script>
+   });
+   </script>
 

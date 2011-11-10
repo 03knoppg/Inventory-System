@@ -30,11 +30,12 @@ module PropertiesHelper
     return sgc
   end
 
+  #Function to print properties table
   def print_properties_table(parent)
-    s = "<table style=\"padding-top: 15px\">"
+    s = "<table class=\"tight_table\">"
     s +=" <tr>"
     s +="  <th align=\"left\">Related Properties</th>"
-    s +="    <th align=\"left\">Value</th>"
+    s +="    <th align=\"left\">Related Values</th>"
     s +="  </tr>"
     properties = parent.properties.sort {|x,y| x.name <=> y.name }
 
@@ -59,7 +60,7 @@ module PropertiesHelper
       end
 
     else
-      s +=  "<tr><td>No properties</td><td>No value</td></tr>"
+      s +=  "<tr><td>No properties</td><td>No values</td></tr>"
     end
 
     s +=       "<tr><td> #{my_button_to "New Property", new_property_path, [parent]} </td><td>#{my_button_to "New Valuefield", new_valuefield_path, [parent]}</td></tr>"

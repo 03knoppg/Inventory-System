@@ -44,6 +44,7 @@ module ApplicationHelper
     return pt
   end
 
+  #Function to fill banner and log portion of web pages
   def banner
     @images = Image.all
     if(!@images.empty?)
@@ -59,8 +60,7 @@ module ApplicationHelper
   end
 
 
-    #Recursive function for display components - finds parents and then children and organizes them in this way to display
-
+  #Recursive function for display components - finds parents and then children and organizes them in this way to display
   def checkbox_accord(items_hash, show_properties=false, depth=0)
 
     if(depth == 0 && items_hash.keys.empty?)
@@ -121,8 +121,6 @@ module ApplicationHelper
     return pt
 
   end
-
-
 
   #Radio button accordion
   def radio_accord(items_hash, parent, show_properties = false, depth=0)

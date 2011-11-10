@@ -1,36 +1,25 @@
 class AdminController < ApplicationController
 
-  def tree
-    id = params[:id]
 
-    if(id[0] == "a")
-
-      @parent = Category.find(id[1..0])
-      @children = @parent.products
-      for cat in Category.all
-        if cat.parent_id == @parent.id
-          @children.push(cat)
-        end
-      end
-
-    end
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
+  #Function for tabs page
   def tabs
-    @category = Category.new
-    @all_categories = Category.all
+    @product = Product.find(params[:id])
+    @product_components = @product.components
+    @product_valuefields = @product.valuefields
+    @product_properties = @product.properties
+    @product_images = @product.images
+    @product_datafiles = @product.data_files
+    @groups = Group.all
+    @properties = Property.all
   end
 
+  #Update category for tabs page
   def updatecategory
     @all_categories = Category.all
     @category = Category.new(params[:category])
     @category.name = "name"
 
-     if @category.save
+    if @category.save
       respond_to do |format|
         format.js
       end
@@ -38,8 +27,7 @@ class AdminController < ApplicationController
      # else
      #   format.html { render action: "categories/new", :controller => :categories }
      #   format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-
+    end
   end
 
   def home
