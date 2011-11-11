@@ -7,9 +7,6 @@
 
 /* tab pane styling */
 
-div.tabs{
-    margin:5px;
-}
 
 /* root element for tabs  */
 div.tabs > ul {
@@ -101,6 +98,7 @@ div.tabs > ul > li >  a.xl.current { background-position: 0 -62px; }
 div.tabs2{
     height:500px;
     padding:5px;
+    //overflow:hidden;
 }
 div.tabs2 > ul{
     float:left;
@@ -168,6 +166,11 @@ div.tabs2 > div {
     border-left:0;
     float:right;
     height:100%;
+    overflow-y:scroll;
+}
+
+div.tabs2 > div > div{
+padding:0px 5px;
 }
 
 

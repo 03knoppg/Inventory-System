@@ -2,7 +2,6 @@
  .layer1 {
 margin: 0;
 padding:0;
-width: 1200px;
 }
 
 .heading {
@@ -16,7 +15,7 @@ background-color:teal;
 font-weight:bold;
 }
 .content {
-padding: 5px 10px;
+padding: 5px 0px;
 background-color:#fafafa;
 }
 p { padding: 5px 0; }
@@ -24,20 +23,24 @@ p { padding: 5px 0; }
 /* Container */
 .container {
   width: 1200px;
-  height:auto;
+  height:100%;
   background: white ;
   padding: 60px;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  overflow:hidden;
 }
 
 .inner_container {
   //width: 1150px;
-  //height: 580px;
+  height: 680px;
   background: white ;
   padding:5px;
+  padding-right: 20px;
+  overflow-x:hidden;
+  overflow-y:scroll;
 
 }
 
@@ -138,8 +141,8 @@ h5{
 }
 
 .inner_scroll_div{
-  width:1100px;
   height:300px;
+  width:100%;
   overflow:auto;
   border:1px solid;
 }

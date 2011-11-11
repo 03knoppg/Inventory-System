@@ -210,15 +210,26 @@
 
    <script type="text/javascript">
 
-   jQuery(function($) {
+       jQuery(function($) {
 
-       //$('#new_category')[0].setAttribute("data-remote", "true");
-
-       width = Number($('div.tabs2').width());
-       ulWidth = Number($('div.tabs2 > ul').width());
-       $('div.tabs2 > div').width(width - ulWidth -1);
+           //$('#new_category')[0].setAttribute("data-remote", "true");
 
 
-   });
+
+           $(".content").hide();
+           //toggle the componenet with class msg_body
+           $(".heading").click(function()
+           {
+               $(this).next(".content").slideToggle(1200).scroll();
+           });
+
+           adjustWidth();
+       });
+
+       function adjustWidth(){
+           width = Number($('div.tabs2').width());
+           ulWidth = Number($('div.tabs2 > ul').width());
+           $('div.tabs2 > div').width(width - ulWidth -1);
+       }
    </script>
 
