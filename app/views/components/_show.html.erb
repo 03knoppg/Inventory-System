@@ -1,16 +1,47 @@
-<!--Component Show Page -->
 <div>
   <table class="tight_table">
     <tr>
       <th align="left">Name</th>
       <th align="left">Description</th>
       <th align="left">Code</th>
+      <th align="left">Actions</th>
     </tr>
     <tr>
-      <td><%= @component.name %></td>
-      <td><%= @component.description %></td>
-      <td><%= @component.code %></td>
+      <td valign="top"><%= @component.name %></td>
+      <td valign="top"><%= @component.description %></td>
+      <td valign="top"><%= @component.code %></td>
+      <td>
+        <div>
+          <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
+          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+        </div>
+      </td>
     </tr>
   </table>
+  <div class="layer1">
+    <p class="heading">Click Here To Expand/Collapse Detailed Component Information</p>
+    <div class="content">
+      <div class="inner_scroll_div">
+      <table class="tight_table">
+        <tr>
+          <td><%= print_component_parents_table(@component).html_safe %></td>
+
+          <td><%= print_components_table(@component).html_safe %></td>
+        </tr>
+        <tr>
+          <td><%= print_properties_table(@component).html_safe %></td>
+
+          <td><%= print_images_table(@component).html_safe %></td>
+        </tr>
+        <tr>
+          <td><%= print_datafiles_table(@component).html_safe %></td>
+        </tr>
+      </table>
+        </div>
+    </div>
+  </div>
 </div>
+<br />
+
+
 

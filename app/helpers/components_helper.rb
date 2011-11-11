@@ -53,7 +53,7 @@ module ComponentsHelper
   def print_component_parents_table(parent)
 
     items = parent.component_parents
-    part = "<table style=\"padding-top: 15px\">"
+    part = "<table>"
     part += "<tr><th align=\"Left\">Related Parent Components</th></tr>"
 
     if(!items.empty?)
@@ -72,15 +72,15 @@ module ComponentsHelper
 
     children = parent.components
     ch = "<table class=\"tight_table\">"
-    ch +="<tr><th align=\"Left\">Related Components</th><th>Component Description</th></tr>"
+    ch +="<tr><th align=\"Left\">Related Components</th></tr>"
     if(!children.empty?)
       for child in children.sort!
-        ch+= "<tr><td>#{link_to(child.name, child)}</td><td>#{child.description}</td></tr>"
+        ch+= "<tr><td>#{link_to(child.name, child)}</td></tr>"
       end
     else
-      ch+= "<tr><td>No Components Available</td><td></td></tr>"
+      ch+= "<tr><td>No Components Available</td></tr>"
     end
-    ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td><td></td></tr>"
+    ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td></tr>"
     ch += "</table>"
     return ch
 

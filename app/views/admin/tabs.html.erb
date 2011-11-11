@@ -4,44 +4,44 @@
  <div><%= render "products/show" %></div>
  <div class="tabs">
    <ul>
-     <li><a href="">Components</a></li>
-     <li><a href="">Properties</a></li>
-     <li><a href="">Value Fields</a></li>
-     <li><a href="">Images</a></li>
-     <li><a href="">Data Files</a></li>
+     <li><a class="l" href="">Components</a></li>
+     <li><a class="l" href="">Properties</a></li>
+     <li><a class="l" href="">Value Fields</a></li>
+     <li><a class="l" href="">Images</a></li>
+     <li><a class="l" href="">Data Files</a></li>
    </ul>
    <div>
-     <div><h1 class="sub_title_header">Components</h1>
+     <div>
        <%if(!@product_components.empty?)%>
            <div class="tabs2">
              <ul>
                <%for c in @product_components%>
                    <li><a href=""><%=c.name%></a></li>
                <%end%>
+               <li><a href="">New Component</a> </li>
              </ul>
              <div>
                <%for @component in @product_components%>
-                   <div><h1 class="sub_title_header"><%=@component.name%></h1>
+                   <div>
                      <%= render("/components/show", :object => [@component]) %>
                      <div class="tabs">
                        <ul>
-                         <li><a href="">Group</a></li>
-                         <li><a href="">Child Components</a></li>
-                         <li><a href="">Properties</a></li>
-                         <li><a href="">Value Fields</a></li>
-                         <li><a href="">Images</a></li>
-                         <li><a href="">Data Files</a></li>
+                         <li><a class="s" href="">Group</a></li>
+                         <li><a class="s" href="">Components</a></li>
+                         <li><a class="s" href="">Properties</a></li>
+                         <li><a class="s" href="">Value Fields</a></li>
+                         <li><a class="s" href="">Images</a></li>
+                         <li><a class="s" href="">Data Files</a></li>
                        </ul>
                        <div>
-                         <div><h1 class="sub_title_header">Group Information</h1>
+                         <div>
                            <%if(!@component.group_id.nil?)%>
                                <%@group = @component.group%>
                                <%= render("/groups/show", :object => [@group]) %>
                            <%else%>
-                               None Available.
+                               <h5>None Available.</h5>
                            <%end%></div>
-                         <div><div><h1 class="sub_title_header">Child Components Information</h1></div></div>
-                         <div><h1 class="sub_title_header">Properties Information</h1>
+                         <div>
                            <%if(!@component.properties.empty?)%>
                                <div class="tabs">
                                  <ul>
@@ -57,10 +57,10 @@
                                  </div>
                                </div>
                            <%else%>
-                               None Available.
+                               <h5>None Available.</h5>
                            <%end%>
                          </div>
-                         <div><h1 class="sub_title_header">Value Fields Information</h1>
+                         <div>
                            <%if(!@component.valuefields.empty?)%>
                                <div class="tabs">
                                  <ul>
@@ -76,10 +76,10 @@
                                  </div>
                                </div>
                            <%else%>
-                               None Available.
+                               <h5>None Available.</h5>
                            <%end%>
                          </div>
-                         <div><h1 class="sub_title_header">Images Information</h1>
+                         <div>
                            <%if(!@component.images.empty?)%>
                                <div class="tabs">
                                  <ul>
@@ -95,10 +95,10 @@
                                  </div>
                                </div>
                            <%else%>
-                               None Available.
+                               <h5>None Available.</h5>
                            <%end%>
                          </div>
-                         <div><h1 class="sub_title_header">Data Files Information</h1>
+                         <div>
                            <%if(!@component.data_files.empty?)%>
                                <div class="tabs">
                                  <ul>
@@ -114,18 +114,21 @@
                                  </div>
                                </div>
                            <%else%>
-                               None Available.
+                               <h5>None Available.</h5>
                            <%end%>
                          </div>
                        </div>
                      </div>
                    </div>
                <%end%>
+               <div><%= render("/components/new", :action => "new", :controller => ComponentsController)%></div>
              </div>
            </div>
+           <%else%>
+       <h5>None Available.</h5>
        <%end%>
      </div>
-     <div><h1 class="sub_title_header">Property Information</h1>
+     <div>
        <%if(!@product_properties.nil?)%>
            <div class="tabs">
              <ul>
@@ -140,9 +143,11 @@
                <%end%>
              </div>
            </div>
+           <%else%>
+       <h5>None Available.</h5>
        <%end%>
      </div>
-     <div><h1 class="sub_title_header">Value Information</h1>
+     <div>
        <%if(!@product_valuefields.nil?)%>
            <div class="tabs">
              <ul>
@@ -157,9 +162,11 @@
                <%end%>
              </div>
            </div>
+           <%else%>
+       <h5>None Available.</h5>
        <%end%>
      </div>
-     <div><h1 class="sub_title_header">Image Information</h1>
+     <div>
        <%if(!@product_images.nil?)%>
            <div class="tabs">
              <ul>
@@ -174,9 +181,11 @@
                <%end%>
              </div>
            </div>
+           <%else%>
+       <h5>None Available.</h5>
        <%end%>
      </div>
-     <div><h1 class="sub_title_header">Data File Information</h1>
+     <div>
        <%if(!@product_datafiles.nil?)%>
            <div class="tabs">
              <ul>
@@ -191,6 +200,8 @@
                <%end%>
              </div>
            </div>
+           <%else%>
+       <h5>None Available.</h5>
        <%end%>
      </div>
    </div>
