@@ -11,7 +11,8 @@ module ProductsHelper
         sp+= "<td> #{prod.code} </td>\n"
         sp+= "<td> #{button_to "Show", {:controller => :products, :action => "show", :id => prod.id }, :method => :get}\n"
         sp+= "#{button_to "Edit", edit_product_path(prod), :method => :get}\n"
-        sp+= "#{button_to "Delete", {:controller => :products, :action => "destroy", :id => prod.id }, :confirm => "Are You sure?", :method => :delete}\n</td>"
+        sp+= "#{button_to "Delete", {:controller => :products, :action => "destroy", :id => prod.id }, :confirm => "Are You sure?", :method => :delete}\n"
+        sp+= "#{button_to "Full ID", {:controller => :admin, :action => "tabs", :id => prod.id }, :method => :get}\n</td>"
         #sp+= "<td>#{product_component_print(prod)}</td>"
       sp+= "</tr>\n"
     end

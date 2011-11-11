@@ -1,4 +1,5 @@
 module ValuefieldsHelper
+  #Function to print value fields
   def print_value_fields
     @sfv = ""
      if(@all_valuefields == nil)
@@ -22,6 +23,7 @@ module ValuefieldsHelper
 
   end
 
+  #Function to print value fields table
   def print_valuefields_table(parent)
     s="<table style=\"padding-top: 15px\">"
     s+="<tr>"
@@ -46,6 +48,7 @@ module ValuefieldsHelper
     return s
   end
 
+  #Function to print value field paths
   def print_path_table(parent)
 
     path = @valuefield.path

@@ -1,5 +1,5 @@
 module ValidationsHelper
-    #Function for displaying products
+    #Function for displaying validations
   def print_validations
     s = ""
     for valid in @validations

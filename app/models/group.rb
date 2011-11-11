@@ -1,3 +1,4 @@
+#Group class
 class Group < ActiveRecord::Base
   has_many :components
 

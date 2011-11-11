@@ -16,8 +16,9 @@ module DataFilesHelper
     return df
   end
 
+  #Function to print data files
   def print_datafiles_table(parent)
-    s = "<table style=\"padding-top: 15px\">"
+    s = "<table class=\"tight_table\">"
     s+="    <tr>"
     s+="      <th align=\"left\">Related Data Files</th>"
     s+="    </tr>"

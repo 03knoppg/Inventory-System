@@ -1,62 +1,267 @@
-<h1>Tabs Page</h1>
+<h1 class="title_header">Product: <%=@product.name%></h1>
 
+<!--Page Container -->
+<div class="inner_container">
+<div><%= render "products/show" %></div>
+<!-- Tabs for directly related objects to the Product -->
+<div class="tabs">
+<ul>
+  <li><a class="l" href="">Components</a></li>
+  <li><a class="l" href="">Properties</a></li>
+  <li><a class="l" href="">Value Fields</a></li>
+  <li><a class="l" href="">Images</a></li>
+  <li><a class="l" href="">Data Files</a></li>
+</ul>
+<div>
+  <div>
+    <!-- Tabs for Child Components Belonging to the Product -->
+    <div class="tabs2">
+      <%if(!@product_components.empty?)%>
+          <ul>
+            <%for c in @product_components%>
+                <li><a href=""><%=c.name%></a></li>
+            <%end%>
+            <li><a href="">New Component</a> </li>
+          </ul>
 
-  <div class="tabs">
-      <ul>
-        <li><a href="">Category</a></li>
-        <li><a href="">Product</a></li>
-        <li><a href="">Group</a></li>
-        <li><a href="">Component</a></li>
-        <li><a href="">Property</a></li>
-        <li><a href="">Value Field</a></li>
-        <li><a href="">Image</a></li>
-        <li><a href="">Data File</a></li>
-      </ul>
-
-
-      <div>
-        <div><%= render "categories/new"%></div>
-        <div><h1>Product Information</h1></div>
-        <div><h1>Group Information</h1></div>
-
-
-
-
-        <div><h1>Component Information</h1>
-
-          <div class="tabs">
-              <ul>
-                <li><a href="">Child 1</a></li>
-                <li><a href="">Child 2</a></li>
-              </ul>
-              <div>
-                <div><h1>Child 1 Information</h1></div>
-                <div><h1>Child 2 Information</h1></div>
-              </div>
-            </div>
-
-
-        </div>
-
-
-
-
-
-
-        <div><h1>Property Information</h1></div>
-        <div><h1>Value Information</h1></div>
-        <div><h1>Image Information</h1></div>
-        <div><h1>Data File Information</h1></div>
+          <div>
+            <%for @component in @product_components%>
+                <div>
+                  <%= render("/components/show", :object => [@component]) %>
+                  <!-- Tabs for directly related objects to the Components -->
+                  <div class="tabs">
+                    <ul>
+                      <li><a class="s" href="">Group</a></li>
+                      <li><a class="s" href="">Components</a></li>
+                      <li><a class="s" href="">Properties</a></li>
+                      <li><a class="s" href="">Value Fields</a></li>
+                      <li><a class="s" href="">Images</a></li>
+                      <li><a class="s" href="">Data Files</a></li>
+                    </ul>
+                    <div>
+                      <div>
+                        <%if(!@component.group_id.nil?)%>
+                            <%@group = @component.group%>
+                            <%= render("/groups/show", :object => [@group]) %>
+                        <%else%>
+                            <h5>None Available.</h5>
+                        <%end%>
+                      </div>
+                      <div>
+                        <!-- Tabs for directly related Properties to the Component -->
+                        <%if(false && !@component.components.empty?)%>
+                            <div class="tabs">
+                              <ul>
+                                <%for comp in @component.components%>
+                                    <li><a href=""><%=comp.name%></a></li>
+                                <%end%>
+                              </ul>
+                              <div>
+                                <%for comp in @component.components%>
+                                    <%@compp = comp%>
+                                    <div><%= render("/components/show", :object => [@compp]) %></div>
+                                <%end%>
+                              </div>
+                            </div>
+                        <%else%>
+                            <h5>None Available.</h5>
+                        <%end%>
+                      </div>
+                      <div>
+                        <!-- Tabs for directly related Properties to the Component -->
+                        <%if(false && !@component.properties.empty?)%>
+                            <div class="tabs">
+                              <ul>
+                                <%for prop in @component.properties%>
+                                    <li><a href=""><%=prop.name%></a></li>
+                                <%end%>
+                              </ul>
+                              <div>
+                                <%for prop in @component.properties%>
+                                    <%@property = prop%>
+                                    <div><%= render("/properties/show", :object => [@property]) %></div>
+                                <%end%>
+                              </div>
+                            </div>
+                        <%else%>
+                            <h5>None Available.</h5>
+                        <%end%>
+                      </div>
+                      <div>
+                        <%if(false && !@component.valuefields.empty?)%>
+                            <!-- Tabs for directly related Valuefields to the Component -->
+                            <div class="tabs">
+                              <ul>
+                                <%for vf in @component.valuefields%>
+                                    <li><a href=""><%=vf.fieldvalue%></a></li>
+                                <%end%>
+                              </ul>
+                              <div>
+                                <%for vf in @component.valuefields%>
+                                    <%@valuefield = vf%>
+                                    <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+                                <%end%>
+                              </div>
+                            </div>
+                          <%else%>
+                              <h5>None Available.</h5>
+                          <%end%>
+                      </div>
+                      <div>
+                        <!-- Tabs for directly related Images to the Component -->
+                        <div class="tabs">
+                          <%if(!@component.images.empty?)%>
+                              <ul>
+                                <%for img in @component.images%>
+                                    <li><a href=""><%=img.picture_file_name%></a></li>
+                                <%end%>
+                              </ul>
+                              <div>
+                                <%for img in @component.images%>
+                                    <%@image = img%>
+                                    <div><%= render("/images/show", :object => [@image]) %></div>
+                                <%end%>
+                              </div>
+                          <%else%>
+                              <h5>None Available.</h5>
+                          <%end%>
+                        </div>
+                      </div>
+                      <div>
+                        <!-- Tabs for directly related Data Files to the Component -->
+                        <div class="tabs">
+                          <%if(!@component.data_files.empty?)%>
+                              <ul>
+                                <%for df in @component.data_files%>
+                                    <li><a href=""><%=df.filedata_file_name%></a></li>
+                                <%end%>
+                              </ul>
+                              <div>
+                                <%for df in @component.data_files%>
+                                    <%@data_file = df%>
+                                    <div><%= render("/data_files/show", :object => [@data_file]) %></div>
+                                <%end%>
+                              </div>
+                          <%else%>
+                              <h5>None Available.</h5>
+                          <%end%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <%end%>
+            <%@component = @reset_component%>
+            <div><%= render("components/new")%></div>
+          </div>
+          </div>
+      <%else%>
+          <h5>None Available.</h5>
+      <%end%>
       </div>
+  <div>
+    <!-- Tabs for directly related Properties to the Product -->
+    <div class="tabs">
+      <%if(!@product_properties.empty?)%>
+          <ul>
+            <%for properties in @product_properties%>
+                <li><a href=""><%=properties.name%></a></li>
+            <%end%>
+          </ul>
+          <div>
+            <%for property in @product_properties%>
+                <%@property = property%>
+                <div><%= render("/properties/show", :object => [@property]) %></div>
+            <%end%>
+          </div>
+      <%else%>
+          <h5>None Available.</h5>
+      <%end%>
+    </div>
   </div>
-
-
+  <div>
+    <!-- Tabs for directly related ValueFields to the Product -->
+    <div class="tabs">
+      <%if(!@product_valuefields.empty?)%>
+          <ul>
+            <%for valuefield in @product_valuefields%>
+                <li><a href=""><%=valuefield.name%></a></li>
+            <%end%>
+          </ul>
+          <div>
+            <%for valuefield in @product_valuefields%>
+                <%@valuefield = valuefield%>
+                <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+            <%end%>
+          </div>
+      <%else%>
+          <h5>None Available.</h5>
+      <%end%>
+    </div>
+  </div>
+  <div>
+    <!-- Tabs for directly related Images to the Product -->
+    <div class="tabs">
+      <%if(!@product_images.empty?)%>
+          <ul>
+            <%for image in @product_images%>
+                <li><a href=""><%=image.picture_file_name%></a></li>
+            <%end%>
+          </ul>
+          <div>
+            <%for image in @product_images%>
+                <%@image = image%>
+                <div><%= render("/images/show", :object => [@image]) %></div>
+            <%end%>
+          </div>
+      <%else%>
+          <h5>None Available.</h5>
+      <%end%>
+    </div>
+  </div>
+  <div>
+    <!-- Tabs for directly related Data Files to the Product -->
+    <div class="tabs">
+      <%if(!@product_datafiles.empty?)%>
+          <ul>
+            <%for datafile in @product_datafiles%>
+                <li><a href="" class="xl"><%=datafile.filedata_file_name%></a></li>
+            <%end%>
+          </ul>
+          <div>
+            <%for datafile in @product_datafiles%>
+                <%@data_file = datafile%>
+                <div><%= render("/data_files/show", :object => [@data_file]) %></div>
+            <%end%>
+          </div>
+      <%else%>
+          <h5>None Available.</h5>
+      <%end%>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 <script type="text/javascript">
-
     jQuery(function($) {
+        //$('#new_category')[0].setAttribute("data-remote", "true");
 
-        $('#new_category')[0].setAttribute("data-remote", "true");
 
-    });
-</script>
+           $(".content").hide();
+           //toggle the componenet with class msg_body
+           $(".heading").click(function()
+           {
+               $(this).next(".content").slideToggle(1200).scroll();
+           });
+
+           adjustWidth();
+       });
+
+       function adjustWidth(){
+           width = Number($('div.tabs2').width());
+           ulWidth = Number($('div.tabs2 > ul').width());
+           $('div.tabs2 > div').width(width - ulWidth -1);
+       }
+   </script>
+
 

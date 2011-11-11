@@ -14,14 +14,15 @@ module ImagesHelper
     return sp
   end
 
+  #Function for printing images table
   def print_images_table(parent)
-    s = "<table style=\"padding-top: 15px\">"
+    s = "<table class=\"tight_table\">"
     s+="    <tr>"
-    s+="      <th align=\"left\">Related Images</th>"
+    s+="      <th align=\"left\">Related Images</th><th>Image Name</th>"
     s+="    </tr>"
     if(!parent.images.empty?)
       for img in parent.images
-        s+="<tr><td> #{link_to(image_tag(img.picture), img)} </td></tr>"
+        s+="<tr><td> #{link_to(image_tag(img.picture.url(:small)), img)} </td><td>#{img.picture_file_name}</td></tr>"
       end
     else
       s+="        <tr>"

@@ -1,3 +1,4 @@
+#Component class
 class Component < ActiveRecord::Base
   has_and_belongs_to_many :properties
   has_and_belongs_to_many :products
@@ -6,7 +7,8 @@ class Component < ActiveRecord::Base
   has_and_belongs_to_many :images
   has_and_belongs_to_many :data_files
 
-   has_and_belongs_to_many :components,
+  #Self referencing information
+  has_and_belongs_to_many :components,
                           #:join_table => 'components_components',
                           :foreign_key => 'component_parent_id',
                           :association_foreign_key => 'component_child_id',

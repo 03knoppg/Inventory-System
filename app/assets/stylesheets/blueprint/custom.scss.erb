@@ -1,13 +1,52 @@
+/* expand/collapse */
+ .layer1 {
+margin: 5px 0px;
+padding:0;
+}
+
+.heading {
+margin: 1px;
+color: #fff;
+width: 370px;
+padding: 3px 10px;
+cursor: pointer;
+position: relative;
+background-color:teal;
+font-weight:bold;
+}
+.content {
+padding: 5px 0px;
+background-color:#fafafa;
+}
+p { padding: 5px 0; }
 
 /* Container */
 .container {
   width: 1200px;
+  height:100%;
   background: white ;
   padding: 60px;
   padding-top: 20px;
   padding-bottom: 20px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow:hidden;
+}
+
+.inner_container {
+  //width: 1150px;
+  height: 680px;
+  background: white ;
+  padding:5px;
+  padding-right: 20px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+
+}
+
+.pop_container{
+    width: 500px;
+    height: 500px;
 }
 
 .containerBanner{
@@ -25,6 +64,7 @@
    width:100px;
    background: teal;
    float: right;
+   font-size: 15px;
 }
 
 /* Html */
@@ -49,10 +89,27 @@ section {
 }
 
 /* Headers */
+.title_header {
+    font-size: 300%;
+    border-bottom: 1px #333 solid;
+    margin:0px;
+    padding-bottom:5px;
+}
+.sub_title_header {
+    font-size:250%;
+    border-bottom: 1px #333 solid;
+    margin-bottom:5px;
+    padding-bottom:5px;
+    padding-top:5px;
+    width:relative;
+}
 h1 {
   font-size: 300%;
   border-bottom: 1px #333 solid;
   padding-bottom: 5px;
+  padding-top:0px;
+  margin-left:5px;
+  margin-right:5px;
 }
 
 h2 {
@@ -61,6 +118,7 @@ h2 {
     border-bottom: 1px #333 solid;
     margin-bottom: 5px;
 }
+
 
 h4 {
   font-size: 125%;
@@ -84,7 +142,14 @@ h5{
 
 .right_div {
   float:right;
-  padding-top:20px;
+  padding-top:10px;
+}
+
+.inner_scroll_div{
+  height:300px;
+  width:100%;
+  overflow:auto;
+  border:1px solid;
 }
 
 .new_button_div{
@@ -115,7 +180,11 @@ table {
     border-spacing:2px;
 }
 
-th{ font-size: 25px;
+.tight_table{
+    margin:0;
+    padding:0;
+}
+th{ font-size: 20px;
     border-bottom: 1px #333 solid;
     padding-bottom: 1px;
     font-weight:normal;

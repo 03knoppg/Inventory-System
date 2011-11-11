@@ -5,22 +5,22 @@ module CategoriesHelper
   def print_categories(parent_id, depth)
     s = ""
     if(!@all_categories.empty?)
-    #if nil then empty string, else create table rows and data recursively.
-    if(@all_categories_hash[parent_id] == nil)
-      return ""
-    end
-    for parent in @all_categories_hash[parent_id]
-      if(parent_id != 0)   #only root category has id 0
-        s+= "<tr>\n"
-        s+= "<td>#{"-"*depth} #{parent.name }</td>\n"
-        s+= "<td>#{button_to "Show", {:controller => :categories, :action => "show", :id => parent.id}, :method => :get}\n"
-        s+= "#{button_to "Edit", edit_category_path(parent), :method => :get}\n"
-        s+= "#{button_to "Delete", {:controller => :categories, :action => "destroy", :id => parent.id }, :confirm => confirmation_message(parent, @all_categories_hash), :method => :delete}</td>\n"
-        s+= "</tr>\n"
+      #if nil then empty string, else create table rows and data recursively.
+      if(@all_categories_hash[parent_id] == nil)
+        return ""
       end
-      #Calls itself to ensure children of parents are printed. Also increases depth of print to show user parent/child relationship.
-      s += print_categories(parent.id, depth+1)
-    end
+      for parent in @all_categories_hash[parent_id]
+        if(parent_id != 0)   #only root category has id 0
+          s+= "<tr>\n"
+          s+= "<td>#{"-"*depth} #{parent.name }</td>\n"
+          s+= "<td>#{button_to "Show", {:controller => :categories, :action => "show", :id => parent.id}, :method => :get}\n"
+          s+= "#{button_to "Edit", edit_category_path(parent), :method => :get}\n"
+          s+= "#{button_to "Delete", {:controller => :categories, :action => "destroy", :id => parent.id }, :confirm => confirmation_message(parent, @all_categories_hash), :method => :delete}</td>\n"
+          s+= "</tr>\n"
+        end
+        #Calls itself to ensure children of parents are printed. Also increases depth of print to show user parent/child relationship.
+        s += print_categories(parent.id, depth+1)
+      end
     else
       s += "<tr><td>No Categories Available</td></tr>"
     end
@@ -52,7 +52,7 @@ module CategoriesHelper
 
   #print related parent categories
   def print_parent_categories_table(parent)
-     s="<table style=\"padding-top: 15px\">"
+     s="<table class=\"tight_table\">"
      s+="<tr>"
      s+="<th align=\"left\">Related Categories</th>"
      s+="  </tr>"

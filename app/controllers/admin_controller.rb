@@ -1,16 +1,27 @@
 class AdminController < ApplicationController
 
+
+  #Function for tabs page
   def tabs
-    @category = Category.new
-    @all_categories = Category.all
+    @product = Product.find(params[:id])
+    @product_components = @product.components
+    @product_valuefields = @product.valuefields
+    @product_properties = @product.properties
+    @product_images = @product.images
+    @product_datafiles = @product.data_files
+    @groups = Group.all
+    @properties = Property.all
+
+    @reset_component = Component.new
   end
 
+  #Update category for tabs page
   def updatecategory
     @all_categories = Category.all
     @category = Category.new(params[:category])
     @category.name = "name"
 
-     if @category.save
+    if @category.save
       respond_to do |format|
         format.js
       end
@@ -18,8 +29,7 @@ class AdminController < ApplicationController
      # else
      #   format.html { render action: "categories/new", :controller => :categories }
      #   format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-
+    end
   end
 
   def home

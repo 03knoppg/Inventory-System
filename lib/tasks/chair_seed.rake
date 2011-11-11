@@ -1,9 +1,19 @@
-=begin
+namespace :app do
+  desc <<-DESC
+    Load testing data.
+    Run using the command 'rake app:load_demo_data'
+  DESC
+  task :chair_seed => [:environment] do
+
+  # Only data not required in production should be here.
+  # If it needs to be there in production, it belongs in seeds.rb.
+
+
 ################################################################################################################
 #All Seating Test                                                                                              #
 #Begin Seed                                                                                                    #
 ################################################################################################################
-=end
+
 
 #Destroy Tables
 Category.destroy_all
@@ -17,66 +27,66 @@ Image.destroy_all
 DataFile.destroy_all
 Validation.destroy_all
 
-=begin
+
 ################################################################################################################
 #Users                                                                                                         #
 ################################################################################################################
-=end
+
 brett = User.create(username: "bh", email: "bh@bh.com", password: "bh")
 graham = User.create(username: "gk", email: "gk@gk.com", password: "gk")
 
-=begin
+
 ################################################################################################################
 #Validations                                                                                                   #
 ################################################################################################################
-=end
+
 jpg = Validation.create(extension: ".jpg", kind: "Image")
 png = Validation.create(extension: ".png", kind: "Image")
 gif = Validation.create(extension: ".gif", kind: "Image")
 dae = Validation.create(extension: ".DAE", kind: "Data File")
 txt = Validation.create(extension: ".txt", kind: "Data File")
 
-=begin
+
 ################################################################################################################
 #Categories                                                                                                    #
 ################################################################################################################
-=end
+
 all = Category.create(name: "All")
 chair = Category.create(name: "Chair", parent_id: all.id)
 fluid = Category.create(name: "Fluid", parent_id: chair.id)
 
-=begin
+
 ################################################################################################################
 #Products                                                                                                      #
 ################################################################################################################
-=end
+
 fluidBasicStool = Product.create(name: "Basic Stool Chair", description: "Fluid Basic Stool Chair", code: "82")
 
-=begin
+
 ################################################################################################################
 #Data_file                                                                                                     #
 ################################################################################################################
-=end
+
 testDAE = DataFile.create()
 testDAE.filedata = File.open("/var/www/allseating/bin/chairs/dae/No_Textures_version_Series82_0_19.DAE")
 testDAE.save!
 
-=begin
+
 ################################################################################################################
 #Groups                                                                                                        #
 ################################################################################################################
-=end
+
 #Groups below represent an "or" choice
 arm = Group.create(name: "Chair Arm")
 control = Group.create(name: "Chair Tilt Control")
 addOnControl = Group.create(name: "Chair Add-On Control")
 addOnLumbarPlus = Group.create(name: "Chair Add-On Lumbar Plus")
 
-=begin
+
 ################################################################################################################
 #Components                                                                                                    #
 ################################################################################################################
-=end
+
 #Component Group - Arm
 noArm = Component.create(name: "No Arm", description: "Chair with No Arm", group_id: arm.id, code: "NA")
 task2Arm = Component.create(name: "Task 2 Arm", description: "Chair with Task 2 Arm", group_id: arm.id, code: "T2")
@@ -103,30 +113,30 @@ basicBackMesh = Component.create(name: "Basic Back Mesh", description: "Chair Ba
 s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil, code: "S8")
 chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil, code: "shadow")
 
-=begin
+
 ################################################################################################################
 #Properties                                                                                                    #
 ################################################################################################################
-=end
+
 fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric", field_type: "string")
 type = Property.create(name: "type", description: "type", field_type: "string")
 
-=begin
+
 ################################################################################################################
 #ValueFields                                                                                                   #
 ################################################################################################################
-=end
+
 #f4_pcaber = Valuefield.create(fieldvalue: "Fabric F4-PCABER", property_id: fabrics.id, component_id: type82BasicStool.id, code: "F4-PCABER")
 
 backType = Valuefield.create(fieldvalue: "back", property_id: type.id, code: "")
 controlType = Valuefield.create(fieldvalue: "control", property_id: type.id, code: "")
 optionType = Valuefield.create(fieldvalue: "option", property_id: type.id, code: "")
 
-=begin
+
 ################################################################################################################
 #Images                                                                                                        #
 ################################################################################################################
-=end
+
 btoBasicStoolImage = Image.create()
 btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
 btoBasicStoolImage.save!
@@ -191,33 +201,33 @@ banner.save!
 #f4_pcaberImage.picture = File.open("/var/www/allseating/bin/chairs/textures/F4-PCABER.jpg")
 #f4_pcaberImage.save!
 
-=begin
+
 ################################################################################################################
 #Categories_Products - association table                                                                       #
 ################################################################################################################
-=end
+
 fluid.products = [fluidBasicStool]
 
-=begin
+
 ################################################################################################################
 #Components_Products - association table                                                                       #
 ################################################################################################################
-=end
+
 fluidBasicStool.components = [noArm, task2Arm, multiFunctionalArm, twisterArm, basicStoolControl, basicBackMesh,
                               s810Ring, chairShadow, btoBasicStool, type82BasicStool, base82BasicStool, casterBasicStool]
-=begin
+
 ################################################################################################################
 #Components_Components - association table                                                                     #
 ################################################################################################################
-=end
+
 basicStoolControl.components = [ssControlAddOn, ssControlNone]
 btoBasicStool.components = [lumbarPlusAddOn, lumbarPlusNone]
 
-=begin
+
 ################################################################################################################
 #components_properties - association table                                                                     #
 ################################################################################################################
-=end
+
 #type82BasicStool.properties = [fabrics]
 type.components = [btoBasicStool,
 basicBackMesh                    ,
@@ -228,17 +238,17 @@ type82BasicStool                     ,
 base82BasicStool                      ,
 casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
 
-=begin
+
 ################################################################################################################
 #Products_Valuefields - association table                                                                       #
 ################################################################################################################
-=end
 
-=begin
+
+
 ################################################################################################################
 #Components_Valuefields - association table                                                                       #
 ################################################################################################################
-=end
+
 btoBasicStool.valuefields = [backType]
 basicBackMesh.valuefields = [backType]
 type82BasicStool.valuefields = [backType]
@@ -256,18 +266,18 @@ s810Ring.valuefields = [controlType]
 chairShadow.valuefields = [optionType]
 lumbarPlusAddOn.valuefields = [optionType]
 
-=begin
+
 ################################################################################################################
 #DataFiles_Products - association table                                                                        #
 ################################################################################################################
-=end
+
 testDAE.products = [fluidBasicStool]
 
-=begin
+
 ################################################################################################################
 #Images_Components - association table                                                                         #
 ################################################################################################################
-=end
+
 btoBasicStoolImage.components = [btoBasicStool, basicStoolControl]
 basicControlImage.components = [basicStoolControl]
 task2ArmImage.components = [task2Arm]
@@ -283,9 +293,15 @@ s810RingImage.components = [s810Ring]
 chairShadowImage.components = [chairShadow]
 
 
-=begin
+
 ################################################################################################################
 #All Seating Test                                                                                              #
 #End of Seed                                                                                                   #
 ################################################################################################################
-=end
+
+
+
+
+
+  end
+end
