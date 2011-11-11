@@ -11,6 +11,8 @@ class AdminController < ApplicationController
     @product_datafiles = @product.data_files
     @groups = Group.all
     @properties = Property.all
+
+    @reset_component = Component.new
   end
 
   #Update category for tabs page
