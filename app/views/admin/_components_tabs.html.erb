@@ -1,0 +1,188 @@
+ <h1 class="tight_h1"><%=parent.class.to_s%>: <%=parent.name%></h1>
+<div>
+  <table class="tight_table main_table">
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+      <th align="left">Code</th>
+      <th align="left">Actions</th>
+    </tr>
+    <tr>
+      <td valign="top"><%= parent.name %></td>
+      <td valign="top"><%= parent.description %></td>
+      <td valign="top"><%= parent.code %></td>
+      <td>
+        <div>
+          <%= button_to "Edit Component", edit_component_path(parent), :method => :get %>
+          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => parent.id }, :confirm => "Are You sure?", :method => :delete%>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="layer1">
+    <p class="heading">Click Here To Expand/Collapse Detailed Component Information</p>
+    <div class="content">
+      <div class="inner_scroll_div">
+      <table class="tight_table">
+        <tr>
+          <td><%if parent.is_a?(Component)%> <%= print_component_parents_table(parent).html_safe %><%end%></td>
+
+          <td><%= print_components_table(parent).html_safe %></td>
+        </tr>
+        <tr>
+          <td><%= print_properties_table(parent).html_safe %></td>
+
+          <td><%= print_images_table(parent).html_safe %></td>
+        </tr>
+        <tr>
+          <td><%= print_datafiles_table(parent).html_safe %></td>
+        </tr>
+      </table>
+        </div>
+    </div>
+  </div>
+</div>
+<br />
+<!-- Tabs for Child Components Belonging to the Product -->
+  <div class="tabs2">
+    <% if (!parent.components.empty?) %>
+        <ul>
+          <% for c in parent.components %>
+              <li><a href=""><%= c.name %></a></li>
+          <% end %>
+          <li><a href="">New Component...</a></li>
+        </ul>
+
+        <div>
+          <% for @component in parent.components %>
+              <div>
+                <%= render("/components/show", :object => [@component]) %>
+                <!-- Tabs for directly related objects to the Components -->
+                <div class="tabs">
+                  <ul>
+                    <li><a class="s" href="">Group</a></li>
+                    <li><a class="s" href="">Components</a></li>
+                    <li><a class="s" href="">Properties</a></li>
+                    <li><a class="s" href="">Value Fields</a></li>
+                    <li><a class="s" href="">Images</a></li>
+                    <li><a class="s" href="">Data Files</a></li>
+                  </ul>
+                  <div>
+                    <div>
+                      <% if (!@component.group_id.nil?) %>
+                          <% @group = @component.group %>
+                          <%= render("/groups/show", :object => [@group]) %>
+                      <% else %>
+                          <h5>None Available.</h5>
+                      <% end %>
+                    </div>
+                    <div>
+                      <!-- Tabs for directly related Components to the Component -->
+                      <% if (!@component.components.empty?) %>
+                          <div class="tabs2">
+                            <ul>
+                              <% for comp in @component.components %>
+                                  <li><a href=""><%= comp.name %></a></li>
+                              <% end %>
+                            </ul>
+                            <div>
+                              <% for comp in @component.components %>
+                                  <div><%= render :partial=>"admin/components_tabs", :locals => {:parent => comp}%></div>
+                              <% end %>
+                            </div>
+                          </div>
+                      <% else %>
+                          <h5>None Available.</h5>
+                      <% end %>
+                    </div>
+                    <div>
+                      <!-- Tabs for directly related Properties to the Component -->
+                      <% if (!@component.properties.empty?) %>
+                          <div class="tabs">
+                            <ul>
+                              <% for prop in @component.properties %>
+                                  <li><a href=""><%= prop.name %></a></li>
+                              <% end %>
+                            </ul>
+                            <div>
+                              <% for prop in @component.properties %>
+                                  <% @property = prop %>
+                                  <div><%= render("/properties/show", :object => [@property]) %></div>
+                              <% end %>
+                            </div>
+                          </div>
+                      <% else %>
+                          <h5>None Available.</h5>
+                      <% end %>
+                    </div>
+                    <div>
+                      <% if (false && !@component.valuefields.empty?) %>
+                          <!-- Tabs for directly related Valuefields to the Component -->
+                          <div class="tabs">
+                            <ul>
+                              <% for vf in @component.valuefields %>
+                                  <li><a href=""><%= vf.fieldvalue %></a></li>
+                              <% end %>
+                            </ul>
+                            <div>
+                              <% for vf in @component.valuefields %>
+                                  <% @valuefield = vf %>
+                                  <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+                              <% end %>
+                            </div>
+                          </div>
+                      <% else %>
+                          <h5>None Available.</h5>
+                      <% end %>
+                    </div>
+                    <div>
+                      <!-- Tabs for directly related Images to the Component -->
+                      <div class="tabs">
+                        <% if (!@component.images.empty?) %>
+                            <ul>
+                              <% for img in @component.images %>
+                                  <li><a href=""><%= img.picture_file_name %></a></li>
+                              <% end %>
+                            </ul>
+                            <div>
+                              <% for img in @component.images %>
+                                  <% @image = img %>
+                                  <div><%= render("/images/show", :object => [@image]) %></div>
+                              <% end %>
+                            </div>
+                        <% else %>
+                            <h5>None Available.</h5>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div>
+                      <!-- Tabs for directly related Data Files to the Component -->
+                      <div class="tabs">
+                        <% if (!@component.data_files.empty?) %>
+                            <ul>
+                              <% for df in @component.data_files %>
+                                  <li><a href=""><%= df.filedata_file_name %></a></li>
+                              <% end %>
+                            </ul>
+                            <div>
+                              <% for df in @component.data_files %>
+                                  <% @data_file = df %>
+                                  <div><%= render("/data_files/show", :object => [@data_file]) %></div>
+                              <% end %>
+                            </div>
+                        <% else %>
+                            <h5>None Available.</h5>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <% @component = @reset_component %>
+          <div><%= render("components/new") %></div>
+        </div>
+    <% else %>
+        <h5>None Available.</h5>
+    <% end %>
+  </div>

@@ -11,6 +11,7 @@ class AdminController < ApplicationController
     @product_datafiles = @product.data_files
     @groups = Group.all
     @properties = Property.all
+    @all_categories = Category.all
 
     @reset_component = Component.new
   end

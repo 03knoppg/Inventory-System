@@ -1,4 +1,5 @@
 <div class="pop_container">
+<h1>Editing Product: <%=@product.name%></h1>
 <%= form_for(@product) do |f| %>
     <% if @product.errors.any? %>
         <div id="error_explanation">
@@ -20,17 +21,17 @@
       <tr>
         <td>
           <div class ="field">
-            <%= f.text_field :name, :required => true %>
+            <%= f.text_field :name, :required => true, :size=>23 %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :description, :required => true %>
+            <%= f.text_field :description, :required => true, :size=>23 %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :code %>
+            <%= f.text_field :code, :size=>23 %>
           </div>
         </td>
 

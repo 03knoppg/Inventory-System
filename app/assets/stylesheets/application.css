@@ -6,5 +6,7 @@
  *= require blueprint/custom
  *= require accordion
  *= require tabs
+ *= require overlay-apple
+ *= require standalone
 */
 
