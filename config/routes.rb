@@ -66,7 +66,6 @@ TestDBRubymineProject::Application.routes.draw do
 
   match 'admin', :to => 'admin#home'
   match 'tabs/:id', :to => 'admin#tabs'
-
   match 'admin_addvalue', :to => 'admin#addvalue'
 
 
