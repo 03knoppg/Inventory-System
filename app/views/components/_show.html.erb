@@ -1,4 +1,4 @@
-<h1 class="tight_h1">Component: <%=@component.name%></h1>
+<h1 class="tight_h1">Component: <%=component.name%></h1>
 <div>
   <table class="tight_table main_table">
     <tr>
@@ -8,13 +8,13 @@
       <th align="left">Actions</th>
     </tr>
     <tr>
-      <td valign="top"><%= @component.name %></td>
-      <td valign="top"><%= @component.description %></td>
-      <td valign="top"><%= @component.code %></td>
+      <td valign="top"><%= component.name %></td>
+      <td valign="top"><%= component.description %></td>
+      <td valign="top"><%= component.code %></td>
       <td>
         <div>
-          <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <%= button_to "Edit Component", edit_component_path(component), :method => :get %>
+          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
         </div>
       </td>
     </tr>
@@ -25,17 +25,17 @@
       <div class="inner_scroll_div">
       <table class="tight_table">
         <tr>
-          <td><%= print_component_parents_table(@component).html_safe %></td>
+          <td><%= print_component_parents_table(component).html_safe %></td>
 
-          <td><%= print_components_table(@component).html_safe %></td>
+          <td><%= print_components_table(component).html_safe %></td>
         </tr>
         <tr>
-          <td><%= print_properties_table(@component).html_safe %></td>
+          <td><%= print_properties_table(component).html_safe %></td>
 
-          <td><%= print_images_table(@component).html_safe %></td>
+          <td><%= print_images_table(component).html_safe %></td>
         </tr>
         <tr>
-          <td><%= print_datafiles_table(@component).html_safe %></td>
+          <td><%= print_datafiles_table(component).html_safe %></td>
         </tr>
       </table>
         </div>

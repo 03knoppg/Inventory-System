@@ -5,8 +5,8 @@
     <th align="left">Image Name</th>
   </tr>
   <tr>
-    <td valign="top"><%= image_tag(@image.picture.url(:small)) %></td>
-    <td><%=@image.picture_file_name%></td>
+    <td valign="top"><%= image_tag(image.picture.url(:small)) %></td>
+    <td><%=image.picture_file_name%></td>
   </tr>
 </table>
     </div>

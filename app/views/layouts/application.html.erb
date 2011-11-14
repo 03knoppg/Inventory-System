@@ -45,7 +45,7 @@
     // setup ul.tabs to work as tabs for each div directly under div.panes
 
     $('div.tabs').each(function(){
-       $(this).find('ul:first').tabs($(this).find('div:first > div'), {effect: 'fade', fadeOutSpeed: 400});
+       $(this).find('ul:first').tabs($(this).find('div:first > div'));
     });
 
     $('div.tabs2').each(function(){
@@ -77,7 +77,7 @@ $(function() {
   $(".accordion").accordion();
 
 
-  $("html").removeClass("js");
+  //$("html").removeClass("js");
 });
 //--><!]]>
 

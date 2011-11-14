@@ -40,6 +40,19 @@ class AdminController < ApplicationController
     path = params[:path]    #the permuted path
   end
 
+
+  def load_component_tab
+
+    @item_id = params[:item]
+
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
   def addvalue
     @tmp_array = []
     @categories = Category.all
@@ -264,7 +277,6 @@ class AdminController < ApplicationController
   end
 
   def debug_hash(hash)
-    logger.info("\n\n\n\n\n\n\nHASH:\n\n")
     for key in hash.keys
       logger.info("#{key.inspect}\n")
       for val in hash[key]
