@@ -1,5 +1,5 @@
 <div>
-  <table class="tight_table">
+  <table class="tight_table main_table">
     <tr>
       <th align="left">Name</th>
       <th align="left">Description</th>
@@ -14,18 +14,15 @@
         <div>
           <%# button_to "Edit Product", edit_product_path(@product), :method => :get %>
           <!-- external page is given in the href attribute (as it should be) -->
-            <a href="products/edit" rel="#overlay" style="text-decoration:none">
+            <a href="#" rel="#overlay" style="text-decoration:none">
 
                 <!-- remember that you can use any element inside the trigger -->
-                <%= button_to "Edit Product", "products/edit", :method => :get %>
+                <%# button_to "Edit Product", {  :controller => :products, :action => "edit"}, :method => :edit, :object => @product %>
+              <input type="button" value="Edit Product"/>
             </a>
 
-            <!-- overlayed element -->
             <div class="apple_overlay" id="overlay">
-
-                <!-- the external content is loaded inside this tag -->
-                <div class="contentWrap"></div>
-
+                <%=render("products/edit", :id => @product.id) %>
             </div>
           <%= button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
         </div>
