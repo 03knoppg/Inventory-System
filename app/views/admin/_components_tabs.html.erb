@@ -13,6 +13,8 @@
           <div><%= render("components/new") %></div>
           <% for component in parent.components %>
               <div>
+                <h1 class="tight_h1">Component: <%=component.name%></h1>
+                <!--div class="inner_container"-->
                 <%= render "components/show", :component => component %>
                 <!-- Tabs for directly related objects to the Components -->
                 <div class="tabs">
@@ -113,6 +115,7 @@
                     </div>
                   </div>
                 </div>
+                  <!--/div inner_container-->
               </div>
           <% end %>
 

@@ -112,6 +112,10 @@
             return false;
         });
 
+
+
+         moveULs();
+
         $(".content").hide();
         //toggle the componenet with class msg_body
         $(".heading").click(function() {
@@ -121,7 +125,7 @@
         $('div.tabs2').each(function(){
             width = Number($(this).width());
             ulWidth = Number($(this).find(' > ul').width());
-            $(this).find(' > div').width(width - ulWidth - 1);
+            $(this).find(' > div').width(width - ulWidth);
         });
 
 
@@ -149,7 +153,7 @@
         //$("html").addClass("js");
         //$.fn.accordion.defaults.container = false;
 
-        pane.find(".accordion").accordion();
+        //pane.find(".accordion").accordion();
 
         //$("html").removeClass("js");
 
@@ -165,9 +169,31 @@
         item.find('div.tabs2').each(function(){
             width = Number($(this).width());
             ulWidth = Number($(this).find(' > ul').width());
-            $(this).find(' > div').width(width - ulWidth - 1);
+            $(this).find(' > div').width(width - ulWidth);
         });
 
+
+    }
+
+    function moveULs(){
+
+
+        $('.inner_container').scroll(function(){
+            container = $(this);
+            offset = container.offset().top + 3;
+            container.find('div.tabs2 > ul').each(function(){
+                if( $(this).parent().position().top < offset){
+                   //topPlace = $(this).parent().position().top + container.scrollTop();
+                   $(this).css("top", offset);
+                   $(this).css("position", "fixed");
+
+                } else {
+                   $(this).css("top", 0);
+                   $(this).css("position", "");
+                }
+            });
+
+        });
 
     }
 </script>

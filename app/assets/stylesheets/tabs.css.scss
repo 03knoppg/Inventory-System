@@ -97,8 +97,10 @@ div.tabs > ul > li >  a.xl.current { background-position: 0 -62px; }
 
 /*Tabs 2 */
 div.tabs2{
-    height:500px;
+    //height:500px;
     padding:5px;
+    display: inline-block;
+    width: 99%;
     //overflow:hidden;
 }
 div.tabs2 > ul{
@@ -108,7 +110,8 @@ div.tabs2 > ul{
     padding-left:0px;
     margin:0;
     width:140px;
-    height:100%;
+    //position:fixed;
+
 }
 
 div.tabs2 > ul > li{
@@ -119,14 +122,14 @@ div.tabs2 > ul > li{
 
 }
 
-div.tabs2 > ul > li:last-child{
+/*div.tabs2 > ul > li:last-child{
     display: block;
     width:165;
     height: 100%;
     color: #73736b;
     border-right:1px solid #666;
 
-}
+} */
 div.tabs2 > ul > li:last-child > a{
     background: url(/assets/blue_side.png) no-repeat -422px 0;
 	font-size:11px;
@@ -164,11 +167,11 @@ div.tabs2 > ul > li > a{
 
 
 div.tabs2 > div {
-    border:1px solid #999;
-    border-left:0;
+    //border-top:1px solid #999;
+    //border-left:0;
     float:right;
     height:100%;
-    overflow-y:scroll;
+    //overflow-y:scroll;
 }
 
 div.tabs2 > div > div{
