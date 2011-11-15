@@ -50,6 +50,7 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "admin/home"
   get "admin/addvalue"
+  get "admin/load_component_tab"
   get "admin/updatecategory"
   post "admin/addvalue"
   get "admin/writefile"

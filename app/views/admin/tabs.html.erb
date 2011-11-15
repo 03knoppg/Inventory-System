@@ -103,6 +103,14 @@
     jQuery(function($) {
         //$('#new_category')[0].setAttribute("data-remote", "true");
 
+        $('div.tabs2 > ul > li > a').live('click',function () {
+
+            if($(this).attr("href") != ""){
+                $.get("/admin/load_component_tab", {item: $(this).attr("href")}, null, 'script');
+            }
+
+            return false;
+        });
 
         $(".content").hide();
         //toggle the componenet with class msg_body
@@ -110,14 +118,54 @@
             $(this).next(".content").slideToggle(1200).scroll();
         });
 
-        adjustWidth();
+        $('div.tabs2').each(function(){
+            width = Number($(this).width());
+            ulWidth = Number($(this).find(' > ul').width());
+            $(this).find(' > div').width(width - ulWidth - 1);
+        });
+
+
     });
 
-    function adjustWidth() {
-        $('div.tabs2').each(function(){
-           width = Number($(this).width());
-           ulWidth = Number($(this).find(' > ul').width());
-           $(this).find(' > div').width(width - ulWidth - 1);
+    function cleanUp(id){
+        pane = $("#"+id);
+
+        pane.find('div.tabs').each(function(){
+           $(this).find('ul:first').tabs($(this).find('div:first > div'));
+        });
+
+        pane.find('div.tabs2').each(function(){
+           $(this).find('ul:first').tabs($(this).find('div:first > div'));
+        });
+
+        pane.find(".content").hide();
+        //toggle the componenet with class msg_body
+        pane.find(".heading").click(function() {
+            $(this).next(".content").slideToggle(1200).scroll();
+        });
+
+
+
+        //$("html").addClass("js");
+        //$.fn.accordion.defaults.container = false;
+
+        pane.find(".accordion").accordion();
+
+        //$("html").removeClass("js");
+
+
+        adjustWidth(id);
+
+    }
+
+    function adjustWidth(id) {
+
+        item = $("#"+id);
+
+        item.find('div.tabs2').each(function(){
+            width = Number($(this).width());
+            ulWidth = Number($(this).find(' > ul').width());
+            $(this).find(' > div').width(width - ulWidth - 1);
         });
 
 
