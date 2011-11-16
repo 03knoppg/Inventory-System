@@ -1,7 +1,7 @@
 <!-- Tabs for Child Components Belonging to the Product -->
   <div class="tabs2">
-
         <ul>
+          <li style="display:none"><a>hidden</a></li>
           <li><a href="">New Component...</a></li>
           <% for component in parent.components %>
               <li><a href="<%=component.id%>"><%= component.name %></a></li>
@@ -10,11 +10,15 @@
         </ul>
 
         <div>
+
+          <div style=""><p style="text-align: center">Select a tab from the list to display details</p></div>
+
           <div><%= render("components/new") %></div>
+
           <% for component in parent.components %>
               <div>
                 <h1 class="tight_h1">Component: <%=component.name%></h1>
-                <!--div class="inner_container"-->
+                <div class="inner_container">
                 <%= render "components/show", :component => component %>
                 <!-- Tabs for directly related objects to the Components -->
                 <div class="tabs">
@@ -115,7 +119,7 @@
                     </div>
                   </div>
                 </div>
-                  <!--/div inner_container-->
+                </div>
               </div>
           <% end %>
 

@@ -1,4 +1,4 @@
-<h1 class="title_header">Product: <%= @product.name %></h1>
+<a class="tab_title" href="#"><h1 class="title_header">- Product: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container">
@@ -101,7 +101,14 @@
 </div>
 <script type="text/javascript">
     jQuery(function($) {
-        //$('#new_category')[0].setAttribute("data-remote", "true");
+
+        $('a.tab_title').click(expandColapseSection);
+
+
+
+        $('.inner_container:first').css("overflow-x" ,"hidden");
+        $('.inner_container:first').css("overflow-y", "scroll");
+
 
         $('div.tabs2 > ul > li > a').live('click',function () {
 
@@ -114,22 +121,68 @@
 
 
 
-         moveULs();
+        moveULs();
+        setUpSliders();
+        adjustWidth($(document));
 
+
+
+    });
+
+    function expandColapseSection(){
+          inner_container = $(this).closest('.container').children('div.inner_container');
+
+            //minimize
+            if($(this).find('h1').text()[0] == '-'){
+                $(this).find('h1').text('+ Product');
+
+
+                inner_container.css({overflow: 'hidden'});
+
+
+                inner_container.children('div:first').animate({height: 'toggle'});
+                inner_container.find('div.tabs:first > div').css("border", 0);
+                inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
+                inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+
+                inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+
+                inner_container.find('div.tabs2:first > div').animate({width: '100%'});
+
+                inner_container.find('div.tabs2:first > div').css("border", 0);
+
+            }
+
+            //expand
+            else{
+                $(this).find('h1').text('- Product');
+
+                inner_container.css("overflow-x" ,"hidden");
+                inner_container.css("overflow-y", "scroll");
+
+                inner_container.children('div:first').animate({height: 'toggle'});
+                inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
+                inner_container.find('div.tabs:first > div').css("border-top", 0);
+                inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
+                inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+
+                inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+
+                fullwidth = inner_container.find('div.tabs2:first').width();
+                ulWidth = inner_container.find('div.tabs2:first > ul').width();
+                inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
+
+            }
+    }
+
+    function setUpSliders(){
         $(".content").hide();
         //toggle the componenet with class msg_body
         $(".heading").click(function() {
             $(this).next(".content").slideToggle(1200).scroll();
         });
 
-        $('div.tabs2').each(function(){
-            width = Number($(this).width());
-            ulWidth = Number($(this).find(' > ul').width());
-            $(this).find(' > div').width(width - ulWidth);
-        });
-
-
-    });
+    }
 
     function cleanUp(id){
         pane = $("#"+id);
@@ -149,27 +202,24 @@
         });
 
 
+        adjustWidth(pane);
 
-        //$("html").addClass("js");
-        //$.fn.accordion.defaults.container = false;
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
 
-        //pane.find(".accordion").accordion();
+        pane.find(".accordion").accordion();
 
-        //$("html").removeClass("js");
-
-
-        adjustWidth(id);
+        $("html").removeClass("js");
 
     }
 
-    function adjustWidth(id) {
+    function adjustWidth(pane) {
 
-        item = $("#"+id);
 
-        item.find('div.tabs2').each(function(){
+        pane.find('div.tabs2').each(function(){
             width = Number($(this).width());
             ulWidth = Number($(this).find(' > ul').width());
-            $(this).find(' > div').width(width - ulWidth);
+            $(this).find(' > div').width(width - ulWidth - 16);
         });
 
 
@@ -183,7 +233,6 @@
             offset = container.offset().top + 3;
             container.find('div.tabs2 > ul').each(function(){
                 if( $(this).parent().position().top < offset){
-                   //topPlace = $(this).parent().position().top + container.scrollTop();
                    $(this).css("top", offset);
                    $(this).css("position", "fixed");
 
