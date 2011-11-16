@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @product }
       format.xml { render :xml => @product }
+      format.js
     end
   end
 

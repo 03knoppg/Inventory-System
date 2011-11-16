@@ -70,7 +70,7 @@ TestDBRubymineProject::Application.routes.draw do
   match 'admin_addvalue', :to => 'admin#addvalue'
 
   match 'tabs/products/edit/:id', :to => 'products#_edit'
-
+  match 'tabs/products/show/:id', :to => 'products#_show', :as => :tab_product
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

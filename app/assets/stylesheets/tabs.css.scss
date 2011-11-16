@@ -43,10 +43,12 @@ div.tabs > ul > li > a {
 	position:relative;
 	top:1px;
     font-weight: bold;
+    overflow:hidden;
 }
 
 div.tabs > ul > a:active {
 	outline:none;
+    overflow:auto;
 }
 
 div.tabs > div {
@@ -160,6 +162,7 @@ div.tabs2 > ul > li > a{
     border-right:1px solid #666;
     float:right;
     font-weight: bold;
+    overflow:hidden;
 }
 
 

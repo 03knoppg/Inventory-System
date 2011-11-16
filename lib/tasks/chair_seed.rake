@@ -105,10 +105,10 @@ lumbarPlusAddOn = Component.create(name: "Chair Lumbar Add-On", description: "Lu
 lumbarPlusNone = Component.create(name: "Chair Lumbar No Add-On", description: "Lumbar Plus no Add-On for chair", group_id: addOnLumbarPlus.id)
 
 #Fluid Basic Stool Components - no group - required components for chair
-btoBasicStool = Component.create(name: "Fluid Basic Stool Back", description: "Back type for the Fluid Basic Stool", group_id: nil, code: "0")
-type82BasicStool = Component.create(name: "Fluid Basic Stool Seat", description: "Seat type for the Fluid Basic Stool", group_id: nil)
-base82BasicStool = Component.create(name: "Fluid Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
-casterBasicStool = Component.create(name: "Fluid Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
+btoBasicStool = Component.create(name: "Basic Stool Back", description: "Back type for the Fluid Basic Stool", group_id: nil, code: "0")
+type82BasicStool = Component.create(name: "Basic Stool Seat", description: "Seat type for the Fluid Basic Stool", group_id: nil)
+base82BasicStool = Component.create(name: "Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
+casterBasicStool = Component.create(name: "Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
 basicBackMesh = Component.create(name: "Basic Back Mesh", description: "Chair Basic Back Mesh", group_id: nil, code: "FM-BMESH")
 s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil, code: "S8")
 chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil, code: "shadow")
