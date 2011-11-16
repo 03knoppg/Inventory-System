@@ -16,23 +16,6 @@ class AdminController < ApplicationController
     @reset_component = Component.new
   end
 
-  #Update category for tabs page
-  def updatecategory
-    @all_categories = Category.all
-    @category = Category.new(params[:category])
-    @category.name = "name"
-
-    if @category.save
-      respond_to do |format|
-        format.js
-      end
-     #
-     # else
-     #   format.html { render action: "categories/new", :controller => :categories }
-     #   format.json { render json: @category.errors, status: :unprocessable_entity }
-    end
-  end
-
   def home
   end
 

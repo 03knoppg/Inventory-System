@@ -27,7 +27,7 @@ class ValuefieldsController < ApplicationController
     #creates an array of all images
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.erbml.erb
       format.json { render json: @valuefield }
       format.xml { render :xml => @valuefield }
     end

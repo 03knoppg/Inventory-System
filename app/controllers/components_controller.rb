@@ -36,7 +36,7 @@ class ComponentsController < ApplicationController
     #creates a sorted array of all properties
     @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # popup_showp_show.html.erb
       format.json { render json: @component }
        format.xml { render :xml => @component }
     end

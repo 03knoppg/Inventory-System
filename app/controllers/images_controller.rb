@@ -19,7 +19,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.erbml.erb
       format.json { render json: @image }
     end
   end

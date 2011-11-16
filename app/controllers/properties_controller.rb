@@ -24,7 +24,7 @@ class PropertiesController < ApplicationController
     #creates an array of associated valuefields
     @associated_values = @property.valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue }
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.erbml.erb
       format.json { render json: @property }
       format.xml { render :xml => @property }
     end

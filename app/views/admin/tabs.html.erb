@@ -2,7 +2,7 @@
 
 <!--Page Container -->
 <div class="inner_container">
-<div><%= render "products/show" %></div>
+<div id="products_partial"><%= render "products/popup_show" %></div>
 <!-- Tabs for directly related objects to the Product -->
 <div class="tabs">
 <ul>
@@ -120,7 +120,6 @@
         });
 
 
-
         moveULs();
         setUpSliders();
         adjustWidth($(document));
@@ -173,15 +172,16 @@
                 inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
 
             }
+
     }
 
     function setUpSliders(){
+        //Expand/Collapse javascript
         $(".content").hide();
         //toggle the componenet with class msg_body
         $(".heading").click(function() {
             $(this).next(".content").slideToggle(1200).scroll();
         });
-
     }
 
     function cleanUp(id){
@@ -224,6 +224,8 @@
 
 
     }
+
+
 
     function moveULs(){
 

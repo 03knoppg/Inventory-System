@@ -52,15 +52,11 @@
     </div>
   </div>
 </div>
-
-<!-- make all links with the 'rel' attribute open overlays -->
-<script>
-
-$(function() {
-
-	// if the function argument is given to overlay,
+<script type="text/javascript">
+   jQuery(function($) {
+     // if the function argument is given to overlay,
 	// it is assumed to be the onBeforeLoad event listener
-	$("a[rel]").overlay({
+	var triggers = $("a[rel]").overlay({
 
 		mask: 'lightblue',
 		effect: 'apple',
@@ -75,6 +71,19 @@ $(function() {
 		}
 
 	});
-});
-</script>
 
+    //On Submit closes pop up window and reloads div tag
+      $("#overlay").submit(
+              function(){
+                triggers.overlay().close();
+              }
+      );
+
+       //Expand/Collapse javascript
+        $(".content").hide();
+       //toggle the componenet with class msg_body
+        $(".heading").click(function() {
+        $(this).next(".content").slideToggle(1200).scroll();
+        });
+   });
+</script>

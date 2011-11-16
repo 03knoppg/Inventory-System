@@ -1,62 +1,60 @@
 <div class="pop_container">
-<h1>Editing Product: <%=@product.name%></h1>
-<%= form_for(@product) do |f| %>
-    <% if @product.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-          <ul>
-            <% @product.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-     <div>
-    <table>
-      <tr>
-        <th align="left">Name&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Description&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Code</th>
-      </tr>
-      <tr>
-        <td>
-          <div class ="field">
-            <%= f.text_field :name, :required => true, :size=>23 %>
+  <h1>Editing Product: <%=@product.name%></h1>
+  <%= form_for(@product, :remote => true) do |f| %>
+      <% if @product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <ul>
+              <% @product.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
           </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :description, :required => true, :size=>23 %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :code, :size=>23 %>
-          </div>
-        </td>
-
-</tr>
-</table>
-       <table>
-         <tr>
-        <th align="left">Categories&nbsp;<span style="color: red">*</span></th>
-             </tr>
-         <tr>
-           <td>
-          <div class="field">
+      <% end %>
+      <div>
+        <table>
+          <tr>
+            <th align="left">Name&nbsp;<span style="color: red">*</span></th>
+            <th align="left">Description&nbsp;<span style="color: red">*</span></th>
+            <th align="left">Code</th>
+          </tr>
+          <tr>
+            <td>
+              <div class ="field">
+                <%= f.text_field :name, :required => true, :size=>23 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :description, :required => true, :size=>23 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :code, :size=>23 %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th align="left">Categories&nbsp;<span style="color: red">*</span></th>
+          </tr>
+          <tr>
+            <td>
+              <div class="field">
                 <%= checkbox_accord(all_category_hash).html_safe %>
-
-
-          </div>
-        </td>
-         </tr>
-       </table>
-</div>
-<div class="right_div">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="right_div">
         <input type="reset" />
-            <%= f.submit :class => "submit"%>
-          </div>
-<% end %>
-<h5>Required fields are marked with <span style="color: red">*</span></h5>
-<br class="clear" />
-    </div>
+        <%= f.submit :class => "submit"%>
+      </div>
+  <% end %>
+  <h5>Required fields are marked with <span style="color: red">*</span></h5>
+  <br class="clear" />
+</div>
+
