@@ -1,5 +1,5 @@
 
-$("#<%=@item_id%>").html(" <%= render( :partial =>"/admin/components_tabs", :locals => {:parent => Component.find(@item_id)}).gsub("\n","").gsub("\"","\\\"").html_safe%>");
+$("#<%=@item_id%>").html(" <%= j render( :partial =>"/admin/components_tabs", :locals => {:parent => Component.find(@item_id)})%>");
 
 
 cleanUp("<%=@item_id%>");
