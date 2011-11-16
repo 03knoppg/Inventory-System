@@ -2,7 +2,7 @@
 
 <!--Page Container -->
 <div class="inner_container">
-<div id="products_partial"><%= render "products/show" %></div>
+<div id="products_partial"><%= render "products/popup_show" %></div>
 <!-- Tabs for directly related objects to the Product -->
 <div class="tabs">
 <ul>
@@ -111,11 +111,9 @@
 
             return false;
         });
-
-
-
          moveULs();
 
+        //Expand/Collapse javascript
         $(".content").hide();
         //toggle the componenet with class msg_body
         $(".heading").click(function() {
@@ -127,9 +125,8 @@
             ulWidth = Number($(this).find(' > ul').width());
             $(this).find(' > div').width(width - ulWidth);
         });
-
-
     });
+
 
     function cleanUp(id){
         pane = $("#"+id);
@@ -174,6 +171,8 @@
 
 
     }
+
+
 
     function moveULs(){
 

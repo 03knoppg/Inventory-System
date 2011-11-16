@@ -52,6 +52,38 @@
     </div>
   </div>
 </div>
-<br />
+<script type="text/javascript">
+   jQuery(function($) {
+     // if the function argument is given to overlay,
+	// it is assumed to be the onBeforeLoad event listener
+	var triggers = $("a[rel]").overlay({
 
-<!-- make all links with the 'rel' attribute open overlays -->
+		mask: 'lightblue',
+		effect: 'apple',
+
+		onBeforeLoad: function() {
+
+			// grab wrapper element inside content
+			var wrap = this.getOverlay().find(".contentWrap");
+
+			// load the page specified in the trigger
+			wrap.load(this.getTrigger().attr("href"));
+		}
+
+	});
+
+    //On Submit closes pop up window and reloads div tag
+      $("#overlay").submit(
+              function(){
+                triggers.overlay().close();
+              }
+      );
+
+       //Expand/Collapse javascript
+        $(".content").hide();
+       //toggle the componenet with class msg_body
+        $(".heading").click(function() {
+        $(this).next(".content").slideToggle(1200).scroll();
+        });
+   });
+</script>

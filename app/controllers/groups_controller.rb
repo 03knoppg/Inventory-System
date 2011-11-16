@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     #Finds selected group
     @group = Group.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # popup_showp_show.html.erb
       format.json { render json: @group }
       format.xml { render :xml => @group }
     end

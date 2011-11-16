@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     #creates a sorted array using all categories
     @all_categories =  Category.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.erbml.erb
       format.json { render json: @product }
       format.xml { render :xml => @product }
       format.js

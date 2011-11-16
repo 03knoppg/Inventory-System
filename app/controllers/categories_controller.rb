@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
     @related_products = @category.products.sort {|x,y| x.name <=> y.name }
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # popup_showp_show.html.erb
       format.json { render json: @category }
       format.xml { render :xml => @category }
     end

@@ -210,7 +210,7 @@ Feel free to remove the following code if you don't need these custom animations
 ------------------------------------------------ */
 //credit: http://jquery.malsup.com/fadetest.html
 $.fn.slideFadeDown = function(speed, callback) { 
-  return this.animate({opacity: 'show', height: 'show'}, speed, function() { 
+  return this.animate({opacity: 'show', height: 'show'}, speed, function() {
     if (jQuery.browser.msie) { this.style.removeAttribute('filter'); }
     if (jQuery.isFunction(callback)) { callback(); }
   }); 

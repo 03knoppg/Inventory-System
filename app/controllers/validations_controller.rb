@@ -18,7 +18,7 @@ class ValidationsController < ApplicationController
     #Finds selected validation
     @validation = Validation.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.erbml.erb
       format.json { render json: @validation }
     end
   end
