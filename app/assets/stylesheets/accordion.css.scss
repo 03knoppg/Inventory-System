@@ -53,11 +53,11 @@ a:hover, a:focus, a:active {border-color:#bcd; text-decoration:none; outline:0 n
 .accordion a {...}
 */
 
-a.trigger {padding-left:15px; background-image: url(/assets/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+a.trigger {padding-left:15px; background-image: url(Accordian/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
 
-a.disable {padding-left:15px; background-image: url(/assets/minus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+a.disable {padding-left:15px; background-image: url(Accordian/minus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
 
-a.trigger.open {background-image: url(/assets/minus.gif);}
+a.trigger.open {background-image: url(Accordian/minus.gif);}
 
 .last-child a.trigger{padding-left:1px; background-image:none; font-weight:normal}
 

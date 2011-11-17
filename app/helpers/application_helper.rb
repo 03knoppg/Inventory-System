@@ -44,15 +44,15 @@ module ApplicationHelper
     return pt
   end
 
-  #Function to fill banner and log portion of web pages
+  #Function to fill banner and logo portion of web pages
   def banner
     @images = Image.all
     if(!@images.empty?)
     for img in @images
-      if(img.picture_file_name == "3di_media_server.png")
+      if(img.picture_file_name == "Company_Logo.png")
         @imagelogo = img.picture.url
       end
-      if(img.picture_file_name == "banner.png")
+      if(img.picture_file_name == "Company_Banner.png")
         @imagebanner = img.picture.url
       end
     end
@@ -183,7 +183,176 @@ module ApplicationHelper
 
   end
 
+  #Recursive function for display categories or components - finds parents and then children and organizes them in this way to display
+  def main_menu_accord(items_hash, show_properties=false, depth=0)
+    if(depth == 0 && items_hash.keys.empty?)
+      return "No Items Available"
+    end
+    if(@items_to_select.nil?)
+      @items_to_select = []
+    end
+    if(items_hash.keys.empty?)
+      return ""
+    end
+    pt = "<ul "
+    if(depth == 0)
+      pt += "id=\"id#{Time.now.usec}\" class=\"accordion\""
+    end
+    pt+=">"
+    expand = true
+    for item in items_hash.keys
+      pt += "<li"
+      if(depth == 0 && expand && (!item.is_a?(Property) || !item.valuefields.empty?))
+        pt += " class=\"expand\""
+        expand = false
+      end
+       pt +=">"
+      if(item.is_a?(Category))
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+      elsif(item.is_a?(Component))
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+      end
+      pt += main_menu_accord(items_hash[item], show_properties, depth+1)
+      pt += "</li>"
+    end
+    pt += "</ul>"
+    return pt
+  end
 
+  #Prints a list of links for the Main Menu
+  def print_link_list(items)
+    linkString = ""
+    if(!items.empty?  && items[0].is_a?(Category))
+      linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
+    elsif(!items.empty?  && items[0].is_a?(Component))
+      linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
+    elsif(!items.empty?)
+      for item in items
+        if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+        elsif(item.is_a?(DataFile))
+          linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Image))
+          linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Validation))
+          linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
+        elsif(item.is_a?(Valuefield))
+          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+        end
+      end
+    else
+      linkString += "<tr><td>None Available.</td></tr>"
+    end
+    return linkString
+  end
+
+   #Creates a hash for all categories
+   def all_category_hash(item=nil)
+     hash = {}
+     items = []
+     if(!item.nil?)
+        for cat in Category.all
+          if(cat.parent_id.eql?(item.id))
+            items.push(cat)
+          end
+        end
+     else
+       for cat in Category.all
+          if(cat.parent_id.nil?)
+            items.push(cat)
+          end
+        end
+     end
+     for cat in items
+       hash[cat] = all_category_hash(cat)
+     end
+     return hash
+   end
+
+  #Creates a hash for all groups
+  def all_group_hash
+    hash = {}
+    for group in Group.all
+      hash[group] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all properties
+  def all_property_hash
+     hash = {}
+     items = Property.all
+     for prop in items
+       hash[prop] = {}
+     end
+     return hash
+  end
+
+  #Creates a hash for all products
+  def all_product_hash
+    hash = {}
+    items = Product.all
+    for prod in items
+      hash[prod] = {}
+    end
+    return hash
+  end
+
+  #Creates a has for all components
+  def all_component_hash(item=nil)
+    hash = {}
+    if(!item.nil?)
+      items = item.components
+    else
+      items = Component.all
+    end
+    for comp in items
+      hash[comp] = all_component_hash(comp)
+    end
+    return hash
+  end
+
+  #Creates a hash for all valuefields
+  def all_valuefield_hash
+    hash = {}
+    items = Valuefield.all
+    for vf in items
+      hash[vf] = {}
+    end
+    return hash
+  end
+
+   #Creates a hash for all images
+  def all_image_hash
+    hash = {}
+    items = Image.all
+    for img in items
+      hash[img] = {}
+    end
+    return hash
+  end
+
+   #Creates a hash for all images
+  def all_datafile_hash
+    hash = {}
+    items = DataFile.all
+    for df in items
+      hash[df] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all images
+  def all_validation_hash
+    hash = {}
+    items = Validation.all
+    for vd in items
+      hash[vd] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all products and components
   def all_prod_comp_hash(item=nil)
 
      hash = {}
@@ -225,57 +394,9 @@ module ApplicationHelper
 
   end
 
-  def all_prop_hash
 
-     hash = {}
-     items = Property.all
 
-     for prop in items
 
-       hash[prop] = {}
-
-     end
-
-     return hash
-
-  end
-
-  def all_category_hash(item=nil)
-
-     hash = {}
-     items = []
-
-     if(!item.nil?)
-        for cat in @all_categories
-          if(cat.parent_id.eql?(item.id))
-            items.push(cat)
-          end
-        end
-     else
-       for cat in @all_categories
-          if(cat.parent_id.nil?)
-            items.push(cat)
-          end
-        end
-     end
-
-     for cat in items
-
-       hash[cat] = all_category_hash(cat)
-
-     end
-
-     return hash
-
-   end
-
-  def all_group_hash
-    hash = {}
-    for group in Group.all
-      hash[group] = {}
-    end
-    return hash
-  end
 
 
 

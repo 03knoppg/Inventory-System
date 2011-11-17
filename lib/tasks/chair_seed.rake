@@ -190,11 +190,11 @@ chairShadowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Se
 chairShadowImage.save!
 
 threedilogo = Image.create()
-threedilogo.picture = File.open("#{Rails.root}/app/assets/images/3di_media_server.png")
+threedilogo.picture = File.open("#{Rails.root}/app/assets/images/Company_Logo.png")
 threedilogo.save!
 
 banner = Image.create()
-banner.picture = File.open("#{Rails.root}/app/assets/images/banner.png")
+banner.picture = File.open("#{Rails.root}/app/assets/images/Company_Banner.png")
 banner.save!
 
 #f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)                   #TODO reenable this
