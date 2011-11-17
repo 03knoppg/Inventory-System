@@ -206,6 +206,7 @@
     function setUpSliders(){
         //Expand/Collapse javascript
         $(".content").hide();
+        $(".heading").unbind('click');
         //toggle the componenet with class msg_body
         $(".heading").bind("click", function() {
             $(this).next(".content").slideToggle(1200).scroll();

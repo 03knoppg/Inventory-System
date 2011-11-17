@@ -29,7 +29,7 @@
   <br/>
 </div>
 <div class="right_div">
-  <%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
+  <%= button_to "Edit Product", tab_product_path, :product => @product, :method => :get %>
   <%= button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Product", new_product_path + "?duplicate_product=#{@product.id}"%>
 </div>
