@@ -1,4 +1,4 @@
-<a class="tab_title" href="#"><h1 class="title_header">- Product: <%= @product.name %></h1></a>
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header">Product: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container">
@@ -102,7 +102,7 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('a.tab_title').click(expandColapseSection);
+        $('a.tab_title_expanded').click(expandColapseSection);
 
 
 
@@ -113,7 +113,9 @@
         $('div.tabs2 > ul > li > a').live('click',function () {
 
             if($(this).attr("href") != ""){
+                $('#'+$(this).attr("href")).html("");
                 $.get("/admin/load_component_tab", {item: $(this).attr("href")}, null, 'script');
+
             }
 
             return false;
@@ -122,56 +124,82 @@
 
         moveULs();
         setUpSliders();
-        adjustWidth($(document));
+        adjustWidth($('div.tabs2 > div'), true, false);
 
 
 
     });
 
     function expandColapseSection(){
-          inner_container = $(this).closest('.container').children('div.inner_container');
+        inner_container = $(this).closest('.container').children('div.inner_container');
 
-            //minimize
-            if($(this).find('h1').text()[0] == '-'){
-                $(this).find('h1').text('+ Product');
-
-
-                inner_container.css({overflow: 'hidden'});
+        //minimize
+        if($(this).hasClass("tab_title_expanded")){
+            $(this).removeClass("tab_title_expanded");
+            $(this).addClass("tab_title_minimized");
 
 
-                inner_container.children('div:first').animate({height: 'toggle'});
-                inner_container.find('div.tabs:first > div').css("border", 0);
-                inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-                inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            inner_container.css("overflow-x" ,"hidden");
+            inner_container.css("overflow-y" ,"hidden");
+            inner_container.find('div.inner_container:first').parent().parent().children('*').children('div.inner_container').each(function(){
+                $(this).css("overflow-x" ,"hidden");
+                $(this).css("overflow-y" ,"scroll");
+            });
 
-                inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
 
-                inner_container.find('div.tabs2:first > div').animate({width: '100%'});
+            inner_container.children('div:first').animate({height: 'toggle'});
+            inner_container.find('div.tabs:first > div').css("border", 0);
+            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
 
-                inner_container.find('div.tabs2:first > div').css("border", 0);
+            //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            inner_container.find('div.tabs2:first > ul').css({width: '0'});
 
-            }
+            //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
+            inner_container.find('div.tabs2:first > div').css({width: '100%'});
 
-            //expand
-            else{
-                $(this).find('h1').text('- Product');
+            inner_container.find('div.tabs2:first > div').css("border-top", 0);
+            adjustHeight();
+            $('.inner_container').each(function(){
+                if($(this).width() > 0)
+                    adjustWidth($(this), false, true);
+            });
+        }
 
-                inner_container.css("overflow-x" ,"hidden");
-                inner_container.css("overflow-y", "scroll");
+        //expand
+        else{
 
-                inner_container.children('div:first').animate({height: 'toggle'});
-                inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
-                inner_container.find('div.tabs:first > div').css("border-top", 0);
-                inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-                inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            $(this).removeClass("tab_title_minimized");
+            $(this).addClass("tab_title_expanded");
 
-                inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            inner_container.css("overflow-x" ,"hidden");
+            inner_container.css("overflow-y" ,"scroll");
+            inner_container.find('div.inner_container:first').parent().parent().children('*').children('div.inner_container').each(function(){
+                $(this).css("overflow-x" ,"hidden");
+                $(this).css("overflow-y" ,"hidden");
+            });
 
-                fullwidth = inner_container.find('div.tabs2:first').width();
-                ulWidth = inner_container.find('div.tabs2:first > ul').width();
-                inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
+            inner_container.children('div:first').animate({height: 'toggle'});
+            inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
+            inner_container.find('div.tabs:first > div').css("border-top", 0);
+            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
 
-            }
+            //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            inner_container.find('div.tabs2:first > ul').css("width", '132');
+
+            fullwidth = inner_container.find('div.tabs2:first').width();
+            ulWidth = inner_container.find('div.tabs2:first > ul').width();
+            inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
+
+            inner_container.find('div.tabs2:first > div').css("border-top", "1px solid #999");
+            adjustHeight();
+            $('.inner_container').each(function(){
+                if($(this).width() > 0)
+                    adjustWidth($(this), false, false);
+            });
+        }
+
 
     }
 
@@ -179,7 +207,7 @@
         //Expand/Collapse javascript
         $(".content").hide();
         //toggle the componenet with class msg_body
-        $(".heading").click(function() {
+        $(".heading").bind("click", function() {
             $(this).next(".content").slideToggle(1200).scroll();
         });
     }
@@ -187,22 +215,16 @@
     function cleanUp(id){
         pane = $("#"+id);
 
-        pane.find('div.tabs').each(function(){
+        pane.find('div.tabs, div.tabs2').each(function(){
            $(this).find('ul:first').tabs($(this).find('div:first > div'));
         });
 
-        pane.find('div.tabs2').each(function(){
-           $(this).find('ul:first').tabs($(this).find('div:first > div'));
-        });
-
-        pane.find(".content").hide();
-        //toggle the componenet with class msg_body
+        pane.find(".content").hide();                             //toggle the componenet with class msg_body
         pane.find(".heading").click(function() {
             $(this).next(".content").slideToggle(1200).scroll();
         });
 
 
-        adjustWidth(pane);
 
         $("html").addClass("js");
         $.fn.accordion.defaults.container = false;
@@ -211,24 +233,53 @@
 
         $("html").removeClass("js");
 
+
+        adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
+        adjustHeight();
+
     }
 
-    function adjustWidth(pane) {
-
-
-        pane.find('div.tabs2').each(function(){
-            width = Number($(this).width());
-            ulWidth = Number($(this).find(' > ul').width());
-            $(this).find(' > div').width(width - ulWidth - 16);
+    function adjustHeight(){
+       $('.inner_container').each(function(){
+           if($(this).css("overflow-y") == "scroll"){
+               $(this).css("height", "580");
+           }
+            else {
+               $(this).css("height","100%");
+           }
         });
+    }
 
+    function adjustWidth(pane, first, minimizing) {
+
+        tabs = pane.closest('div.tabs2');
+        if(tabs == null)
+            return;
+
+        tabwidth = Number(tabs.width());
+        ulWidth = Number(tabs.children('ul').width());
+        if(ulWidth == null)
+            ulWidth = 0;
+
+        //ulWidth = 0;
+        if(first /* || tabs.find('div.inner_container').css("overflow-y") == "scroll"*/)
+            tabs.find(' > div').width(tabwidth - ulWidth - 15);
+        else if(minimizing){
+            tabs.find(' > div').width(tabwidth - 134);
+            tabs.find(' > div').animate({width: tabwidth});
+        }
+        else
+            tabs.find(' > div').width(tabwidth - ulWidth);
+        /*if($(this).closest('div.inner_container').siblings('a.tab_title_expanded'))
+            $(this).find(' > div').width(width - ulWidth - 15);
+        else
+            $(this).find(' > div').width(width - ulWidth);*/
 
     }
 
 
 
     function moveULs(){
-
 
         $('.inner_container').scroll(function(){
             container = $(this);

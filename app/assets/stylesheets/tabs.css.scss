@@ -191,6 +191,6 @@ div.tabs2 > ul > li >  a.xl:hover 	{ background-position: 0 -31px; }
 div.tabs2 > ul > li >  a.xl.current { background-position: 0 -62px; }
 
 
-a.tab_title{
+a.tab_title_expanded, a.tab_title_minimized {
   text-decoration:none;
 }
