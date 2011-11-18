@@ -68,7 +68,7 @@ module ComponentsHelper
   end
 
   #Function to print children of component
-  def print_components_table (parent)
+  def print_components_table (parent, button=true)
 
     children = parent.components
     ch = "<table class=\"tight_table\">"
@@ -80,7 +80,9 @@ module ComponentsHelper
     else
       ch+= "<tr><td>No Components Available</td></tr>"
     end
-    ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td></tr>"
+    if(button)
+      ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td></tr>"
+    end
     ch += "</table>"
     return ch
 

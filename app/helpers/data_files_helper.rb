@@ -17,7 +17,7 @@ module DataFilesHelper
   end
 
   #Function to print data files
-  def print_datafiles_table(parent)
+  def print_datafiles_table(parent, button=true)
     s = "<table class=\"tight_table\">"
     s+="    <tr>"
     s+="      <th align=\"left\">Related Data Files</th>"
@@ -32,7 +32,9 @@ module DataFilesHelper
       s+="        </tr>"
     end
     s+="    <tr>"
-    s+="      <td> #{my_button_to "New Data File", new_data_file_path, [@component]} </td>"
+    if(button)
+      s+="      <td> #{my_button_to "New Data File", new_data_file_path, [@component]} </td>"
+    end
     s+="    </tr>"
     s+="  </table>"
     return s
