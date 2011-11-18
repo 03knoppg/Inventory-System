@@ -42,7 +42,7 @@ module PropertiesHelper
     if(!properties.empty?)
       for prop in properties
         valuefields = prop.valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue }
-        s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop)} </td>"
+        s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop, :target => 'blank')} </td>"
 
         if(!valuefields.empty?)
           s +=      "<td><table>"

@@ -24,7 +24,7 @@ module DataFilesHelper
     s+="    </tr>"
     if(!parent.data_files.empty?)
       for df in parent.data_files
-        s+="            <tr><td> #{link_to(df.filedata_file_name, df)} </td></tr>"
+        s+="            <tr><td> #{link_to(df.filedata_file_name, df, :target => 'blank')} </td></tr>"
       end
     else
       s+="        <tr>"

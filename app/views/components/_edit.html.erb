@@ -1,0 +1,136 @@
+<% #@items_to_select = (component.products + component.components + component.valuefields + component.images + component.data_files + component.group) %>
+<div class="pop_container">
+  <h1>Editing Component: <%=component.name%></h1>
+  <%= form_for(component, :remote => true) do |f| %>
+      <% if component.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+            <ul>
+              <% component.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="inner_pop_container">
+        <table>
+          <tr>
+            <th align="left">Name</th>
+            <th align="left">Description</th>
+            <th align="left">Code</th>
+          </tr>
+          <tr>
+            <td>
+              <div class ="field">
+                <%= f.text_field :name, :required => true, :size=>20 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :description, :required => true, :size=>20 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :code, :size=>20 %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <h2>Click Below to Expand/Collapse links and Select Check Box to Add or Remove from <%=component.name %></h2>
+        <table>
+          <tr>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Categories</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Components</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Value Fields</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Images</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="layer1">
+                <p class="heading_main_menu">Data File</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table" style="display: inline">
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="right_div">
+        <input type="reset" />
+        <%= f.submit :class => "submit"%>
+      </div>
+  <% end %>
+  <br class="clear" />
+</div>
+
+ <script type="text/javascript">
+  jQuery(function($) {
+      //Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
+
+      <!--//--><![CDATA[//><!--
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
+  })
+</script>

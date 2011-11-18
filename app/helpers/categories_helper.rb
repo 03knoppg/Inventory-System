@@ -59,7 +59,7 @@ module CategoriesHelper
 
      if(!parent.categories.empty?)
        for cat in  parent.categories.sort {|x,y| x.name <=> y.name }
-         s+="    <tr><td>#{link_to cat.name, cat}</td></tr>"
+         s+="    <tr><td>#{link_to cat.name, cat, :target => 'blank'}</td></tr>"
        end
      else
        s+="    <tr><td>No Categories</td></tr>"

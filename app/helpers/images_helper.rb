@@ -22,7 +22,7 @@ module ImagesHelper
     s+="    </tr>"
     if(!parent.images.empty?)
       for img in parent.images
-        s+="<tr><td> #{link_to(image_tag(img.picture.url(:small)), img)} </td><td>#{img.picture_file_name}</td></tr>"
+        s+="<tr><td> #{link_to(image_tag(img.picture.url(:small)), img, :target => 'blank')} </td><td>#{img.picture_file_name}</td></tr>"
       end
     else
       s+="        <tr>"

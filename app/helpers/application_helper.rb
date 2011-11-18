@@ -258,7 +258,7 @@ module ApplicationHelper
     elsif(!items.empty?)
       for item in items
         if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
-          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+          linkString += "<tr><td>#{link_to(item.name, 'tabs/' + item.id.to_s)}</td></tr>"
         elsif(item.is_a?(DataFile))
           linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
         elsif(item.is_a?(Image))

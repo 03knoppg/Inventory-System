@@ -19,7 +19,7 @@
               <div>
                 <a class="tab_title tab_title_expanded" href="#"><h1 class="tight_h1"><%=image_tag "Accordian/bigminus.gif"%>&nbspComponent: <%=component.name%></h1></a>
                 <div class="inner_container">
-                <%= render "components/show", :component => component %>
+                <div id="components_partial"><%= render "components/popup_show", :component => component %></div>
                 <!-- Tabs for directly related objects to the Components -->
                 <div class="tabs">
                   <ul>

@@ -58,7 +58,7 @@ module ComponentsHelper
 
     if(!items.empty?)
       for comp in items.sort!
-        part += "<tr><td>#{link_to(comp.name, comp)}</td></tr>"
+        part += "<tr><td>#{link_to(comp.name, comp, :target => 'blank')}</td></tr>"
       end
     else
       part += "<tr><td>No Parents Available</td></tr>"
@@ -75,7 +75,7 @@ module ComponentsHelper
     ch +="<tr><th align=\"Left\">Related Components</th></tr>"
     if(!children.empty?)
       for child in children.sort!
-        ch+= "<tr><td>#{link_to(child.name, child)}</td></tr>"
+        ch+= "<tr><td>#{link_to(child.name, child, :target => 'blank')}</td></tr>"
       end
     else
       ch+= "<tr><td>No Components Available</td></tr>"
