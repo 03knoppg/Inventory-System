@@ -19,7 +19,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Category.all).html_safe %>
+                <%= print_link_list(Category.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>
@@ -33,7 +33,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Group.all).html_safe %>
+                <%= print_link_list(Group.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Property.all).html_safe %>
+                <%= print_link_list(Property.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>
@@ -62,13 +62,12 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Product.all).html_safe %>
+                <%= print_link_list(Product.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>
         </div>
       </td>
-
       <!-- Components expand for link list -->
       <td>
         <div class="layer1">
@@ -76,7 +75,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Component.all).html_safe %>
+                <%= print_link_list(Component.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>
@@ -90,7 +89,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Valuefield.all).html_safe %>
+                <%= print_link_list(Valuefield.all.sort {|x,y| x.fieldvalue <=> y.fieldvalue }).html_safe %>
               </table>
             </div>
           </div>
@@ -106,7 +105,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Image.all).html_safe %>
+                <%= print_link_list(Image.all.sort {|x,y| x.picture_file_name <=> y.picture_file_name }).html_safe %>
               </table>
             </div>
           </div>
@@ -119,7 +118,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(DataFile.all).html_safe %>
+                <%= print_link_list(DataFile.all.sort {|x,y| x.filedata_file_name <=> y.filedata_file_name }).html_safe %>
               </table>
             </div>
           </div>
@@ -132,7 +131,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Validation.all).html_safe %>
+                <%= print_link_list(Validation.all.sort {|x,y| x.extension <=> y.extension }).html_safe %>
               </table>
             </div>
           </div>

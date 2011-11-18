@@ -75,7 +75,7 @@ class ProductsController < ApplicationController
     #Finds selected product
     @product = Product.find(params[:id])
     #creates an array of all the products associated categories
-    @items_to_select = @product.categories
+    #@items_to_select = @product.categories
     #creates an array of all categories
     @all_categories = Category.all.sort {|x,y| x.name <=> y.name }
   end
@@ -118,9 +118,68 @@ class ProductsController < ApplicationController
     #update product
     @product = Product.find(params[:id])
 
-    if(!params[:new_categories_ids].nil?)
-      @product.categories = Category.find(params[:new_categories_ids])
+    #if(!params[:new_categories_ids].nil?)
+     # @product.categories = Category.find(params[:new_categories_ids])
+    #end
+
+    #Categories
+    if(!@product.categories.nil?)
+      @product.categories.clear
     end
+    if(!params[:parent_ids].nil?)
+      for id in params[:parent_ids]
+        @product.categories.push(Category.find(id))
+      end
+    end
+
+     #Components
+    if(!@product.components.nil?)
+      @product.components.clear
+    end
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @product.components.push(Component.find(id))
+      end
+    end
+
+    #Images
+    if(!@product.images.nil?)
+      @product.images.clear
+    end
+    if(!params[:Image_ids].nil?)
+      for id in params[:Image_ids]
+        @product.images.push(Image.find(id))
+      end
+    end
+
+    #Data Files
+    if(!@product.data_files.nil?)
+      @product.data_files.clear
+    end
+    if(!params[:DataFile_ids].nil?)
+      for id in params[:DataFile_ids]
+        @product.data_files.push(DataFile.find(id))
+      end
+    end
+
+    #Valuefields
+    if(!@product.valuefields.nil?)
+      @product.valuefields.clear
+    end
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @product.valuefields.push(Valuefield.find(id))
+      end
+      for vf in @product.valuefields
+        for p in Properties.all
+          if(vf.property_id == p.id)
+            @product.properties.push(Property.find(p.id))
+          end
+        end
+
+      end
+    end
+
     respond_to do |format|
       if @product.update_attributes(params[:product])
 

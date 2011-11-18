@@ -12,8 +12,9 @@ class AdminController < ApplicationController
     @groups = Group.all
     @properties = Property.all
     @all_categories = Category.all
-
     @reset_component = Component.new
+    #creates an array of all attached objects to the Product
+    @items_to_select = (@product.categories + @product.components + @product.valuefields + @product.images + @product.data_files)
   end
 
   def home

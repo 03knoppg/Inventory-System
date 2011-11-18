@@ -91,7 +91,7 @@ module ApplicationHelper
       end
        pt +=">"
 
-      if(item.is_a?(Category))         #not currently used
+      if(item.is_a?(Category))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Product))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label>"
@@ -181,6 +181,35 @@ module ApplicationHelper
 
     return pt
 
+  end
+
+  #Function to build a checkbox list  - only usable for an array of the same class
+  def checkbox_list(items)
+    cl = "<ul>"
+    if(!items.empty?)
+      item_class = items[0].class.to_s
+      item_class_sub = item_class[0..0].to_s
+      for item in items
+        cl += "<li>#{check_box_tag(item_class +"_ids[]", item.id, @items_to_select.include?(item), :id=>"#{item_class_sub + "" + item.id.to_s}")}"
+        if(item.is_a?(Product))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(DataFile))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.filedata_file_name}</label></li>"
+        elsif(item.is_a?(Image))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.picture_file_name}</label></li>"
+        elsif(item.is_a?(Group))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(Property))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(Validation))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.extension}</label></li>"
+        elsif(item.is_a?(Valuefield))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.fieldvalue}</label></li>"
+        end
+      end
+      cl += "</ul>"
+    end
+      return cl
   end
 
   #Recursive function for display categories or components - finds parents and then children and organizes them in this way to display

@@ -30,19 +30,23 @@ div.contentWrap {
 		width after the growing animation finishes
 		height is automatically calculated
 	*/
-	width:640px;		
+	width:800px;
 	
 	/* some padding to layout nested elements nicely  */
-	padding:35px;
+	padding:25px;
+
+    margin:  35px;
 
 	/* a little styling */	
 	font-size:11px;
+
+    /*overflow: auto;*/
 }
 
 /* default close button positioned on upper right corner */
 .apple_overlay .close {
 	background-image:url('Overlay/close.png');
-	position:absolute; right:12px; top:12px;
+	position:absolute; right:-15px; top:-15px;
 	cursor:pointer;
     height:35px;
     width:35px;

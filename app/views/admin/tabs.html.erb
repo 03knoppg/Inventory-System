@@ -42,13 +42,13 @@
     <% if (!@product_valuefields.empty?) %>
         <ul>
           <% for valuefield in @product_valuefields %>
-              <li><a href=""><%= valuefield.name %></a></li>
+              <li><a href=""><%= valuefield.fieldvalue %></a></li>
           <% end %>
         </ul>
         <div>
           <% for valuefield in @product_valuefields %>
               <% @valuefield = valuefield %>
-              <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
+              <div><%= render("/valuefields/show", :valuefield => [@valuefield]) %></div>
           <% end %>
         </div>
     <% else %>
