@@ -5,7 +5,6 @@ class DataFilesValuefields < ActiveRecord::Migration
       cp.column "valuefield_id", :integer
     end
   end
-
   def down
     drop_table "data_files_valuefields"
   end

@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(:version => 20111027165309) do
 
   create_table "valuefields", :force => true do |t|
     t.string   "fieldvalue"
-    t.string   "property_id"
+    t.integer  "property_id"
     t.string   "path"
     t.string   "code"
     t.datetime "created_at"

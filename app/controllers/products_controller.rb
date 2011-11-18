@@ -165,17 +165,18 @@ class ProductsController < ApplicationController
     #Valuefields
     if(!@product.valuefields.nil?)
       @product.valuefields.clear
+      @product.properties.clear
     end
     if(!params[:valuefield_ids].nil?)
       for id in params[:valuefield_ids]
         @product.valuefields.push(Valuefield.find(id))
       end
       for vf in @product.valuefields
-        for p in Properties.all
-          if(vf.property_id == p.id)
-            @product.properties.push(Property.find(p.id))
-          end
-        end
+
+            if(!@product.properties.include?(Property.find(vf.property_id)))
+              @product.properties.push(Property.find(vf.property_id))
+            end
+
 
       end
     end
