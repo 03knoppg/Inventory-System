@@ -327,13 +327,18 @@ module ApplicationHelper
     return hash
   end
 
-  #Creates a has for all components
+  #Creates a hash for all components
   def all_component_hash(item=nil)
     hash = {}
+    items = []
     if(!item.nil?)
       items = item.components
     else
-      items = Component.all
+      for comp in Component.all
+        if(comp.component_parents.empty?)
+           items.push(comp)
+        end
+      end
     end
     for comp in items
       hash[comp] = all_component_hash(comp)
