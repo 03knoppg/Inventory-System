@@ -27,15 +27,15 @@
         <tr>
           <td><%= print_component_parents_table(component).html_safe %></td>
 
-          <td><%= print_components_table(component).html_safe %></td>
+          <td><%= print_components_table(component, false).html_safe %></td>
         </tr>
         <tr>
-          <td><%= print_properties_table(component).html_safe %></td>
+          <td><%= print_properties_table(component, false).html_safe %></td>
 
-          <td><%= print_images_table(component).html_safe %></td>
+          <td><%= print_images_table(component, false).html_safe %></td>
         </tr>
         <tr>
-          <td><%= print_datafiles_table(component).html_safe %></td>
+          <td><%= print_datafiles_table(component, false).html_safe %></td>
         </tr>
       </table>
         </div>

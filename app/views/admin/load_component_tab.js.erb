@@ -2,4 +2,4 @@
 $("#<%=@item_id%>").html(" <%= j render( :partial =>"/admin/components_tabs", :locals => {:parent => Component.find(@item_id)})%>");
 
 
-cleanUp("<%=@item_id%>");
+cleanUp($("#<%=@item_id%>"));

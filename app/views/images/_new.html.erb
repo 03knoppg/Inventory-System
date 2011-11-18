@@ -22,7 +22,9 @@
             <%= f.file_field(:picture, :id => "pic", :required => true) %>
           </div>
           <div class align="field">
-            <%=image_tag(image.picture(:small), :id => "img", :alt=>"") %>
+            <%if(!image.picture_file_name.nil?)%>
+                <%=image_tag(image.picture(:small), :id => "img", :alt=>"") %>
+            <%end%>
           </div>
         </td>
 
