@@ -1,4 +1,4 @@
-<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header">Product: <%= @product.name %></h1></a>
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container">
@@ -102,7 +102,7 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('a.tab_title_expanded').click(expandColapseSection);
+        $('a.tab_title').live('click',expandColapseSection);
 
 
 
@@ -124,20 +124,21 @@
 
         moveULs();
         setUpSliders();
-        adjustWidth($('div.tabs2 > div'), true, false);
+        adjustWidth($('div.tabs2  div.inner_container'), true, false);
 
 
 
     });
 
     function expandColapseSection(){
-        inner_container = $(this).closest('.container').children('div.inner_container');
+        inner_container = $(this).siblings('.inner_container');
 
         //minimize
         if($(this).hasClass("tab_title_expanded")){
             $(this).removeClass("tab_title_expanded");
             $(this).addClass("tab_title_minimized");
-
+            $(this).find('img').attr("src", "/assets/Accordian/plus.gif");
+            $(this).find('h1').css({fontSize: "150%"});
 
             inner_container.css("overflow-x" ,"hidden");
             inner_container.css("overflow-y" ,"hidden");
@@ -152,7 +153,7 @@
             inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
             inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
 
-            //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            //inner_container.find('div.tabs2:first > ul').animate({width: '0'});
             inner_container.find('div.tabs2:first > ul').css({width: '0'});
 
             //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
@@ -160,7 +161,7 @@
 
             inner_container.find('div.tabs2:first > div').css("border-top", 0);
             adjustHeight();
-            $('.inner_container').each(function(){
+            inner_container.find('.inner_container').each(function(){
                 if($(this).width() > 0)
                     adjustWidth($(this), false, true);
             });
@@ -171,6 +172,8 @@
 
             $(this).removeClass("tab_title_minimized");
             $(this).addClass("tab_title_expanded");
+            $(this).find('img').attr("src", "/assets/Accordian/bigminus.gif");
+            $(this).find('h1').css({fontSize: "300%"});
 
             inner_container.css("overflow-x" ,"hidden");
             inner_container.css("overflow-y" ,"scroll");
@@ -235,6 +238,7 @@
         $("html").removeClass("js");
 
 
+        //adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustHeight();
 
@@ -243,12 +247,13 @@
     function adjustHeight(){
        $('.inner_container').each(function(){
            if($(this).css("overflow-y") == "scroll"){
-               $(this).css("height", "580");
+               $(this).css("height", "630");
            }
             else {
                $(this).css("height","100%");
            }
         });
+        $('.container').css({height:862});
     }
 
     function adjustWidth(pane, first, minimizing) {

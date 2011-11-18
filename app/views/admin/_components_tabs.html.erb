@@ -11,13 +11,13 @@
 
         <div>
 
-          <div style=""><p style="text-align: center">Select a tab from the list to display details</p></div>
+          <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
 
-          <div><%= render("components/new") %></div>
+          <div><div class="inner_container"><%= render("components/new") %></div></div>
 
           <% for component in parent.components %>
               <div>
-                <h1 class="tight_h1">Component: <%=component.name%></h1>
+                <a class="tab_title tab_title_expanded" href="#"><h1 class="tight_h1"><%=image_tag "Accordian/bigminus.gif"%>&nbspComponent: <%=component.name%></h1></a>
                 <div class="inner_container">
                 <%= render "components/show", :component => component %>
                 <!-- Tabs for directly related objects to the Components -->
@@ -61,7 +61,7 @@
                       <% end %>
                     </div>
                     <div>
-                      <% if (false && !component.valuefields.empty?) %>
+                      <% if (!component.valuefields.empty?) %>
                           <!-- Tabs for directly related Valuefields to the Component -->
                           <div class="tabs">
                             <ul>
