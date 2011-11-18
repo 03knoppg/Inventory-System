@@ -15,7 +15,7 @@ module ImagesHelper
   end
 
   #Function for printing images table
-  def print_images_table(parent)
+  def print_images_table(parent, button=true)
     s = "<table class=\"tight_table\">"
     s+="    <tr>"
     s+="      <th align=\"left\">Related Images</th><th>Image Name</th>"
@@ -30,7 +30,9 @@ module ImagesHelper
       s+="        </tr>"
     end
     s+="    <tr>"
-    s+="      <td> #{my_button_to "New Image", new_image_path, [parent]} </td>"
+    if(button)
+      s+="      <td> #{my_button_to "New Image", new_image_path, [parent]} </td>"
+    end
     s+="    </tr>"
     s+="  </table>"
   end

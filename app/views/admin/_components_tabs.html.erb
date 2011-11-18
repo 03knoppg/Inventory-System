@@ -11,21 +11,19 @@
 
         <div>
 
-          <div style=""><p style="text-align: center">Select a tab from the list to display details</p></div>
+          <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
 
-          <div><%= render("components/new") %></div>
+          <div><div class="inner_container"><%= render("components/new") %></div></div>
 
           <% for component in parent.components %>
               <div>
-                <h1 class="tight_h1">Component: <%=component.name%></h1>
+                <a class="tab_title tab_title_expanded" href="#"><h1 class="tight_h1"><%=image_tag "Accordian/bigminus.gif"%>&nbspComponent: <%=component.name%></h1></a>
                 <div class="inner_container">
                 <%= render "components/show", :component => component %>
                 <!-- Tabs for directly related objects to the Components -->
                 <div class="tabs">
                   <ul>
                     <li><a class="s" href="">Components</a></li>
-                    <li><a class="s" href="">Group</a></li>
-                    <li><a class="s" href="">Properties</a></li>
                     <li><a class="s" href="">Value Fields</a></li>
                     <li><a class="s" href="">Images</a></li>
                     <li><a class="s" href="">Data Files</a></li>
@@ -35,86 +33,60 @@
                       <%# render "admin/components_tabs", :parent => component %>
                     </div>
                     <div>
-                      <% if (!component.group_id.nil?) %>
-                          <%= render("/groups/show", :group=>component.group) %>
-                      <% else %>
-                          <h5>None Available.</h5>
-                      <% end %>
-                    </div>
-                    <div>
-                      <!-- Tabs for directly related Properties to the Component -->
-                      <% if (!component.properties.empty?) %>
-                          <div class="tabs">
-                            <ul>
-                              <% for prop in component.properties %>
-                                  <li><a href=""><%= prop.name %></a></li>
-                              <% end %>
-                            </ul>
-                            <div>
-                              <% for prop in component.properties %>
-                                  <div><%= render("/properties/show", :property => prop) %></div>
-                              <% end %>
-                            </div>
-                          </div>
-                      <% else %>
-                          <h5>None Available.</h5>
-                      <% end %>
-                    </div>
-                    <div>
-                      <% if (false && !component.valuefields.empty?) %>
-                          <!-- Tabs for directly related Valuefields to the Component -->
-                          <div class="tabs">
-                            <ul>
-                              <% for vf in component.valuefields %>
-                                  <li><a href=""><%= vf.fieldvalue %></a></li>
-                              <% end %>
-                            </ul>
-                            <div>
-                              <% for vf in component.valuefields %>
-                                  <div><%= render("/valuefields/show", :valuefield => vf) %></div>
-                              <% end %>
-                            </div>
-                          </div>
-                      <% else %>
-                          <h5>None Available.</h5>
-                      <% end %>
-                    </div>
-                    <div>
-                      <!-- Tabs for directly related Images to the Component -->
-                      <div class="tabs">
-                        <% if (!component.images.empty?) %>
-                            <ul>
-                              <% for img in component.images %>
-                                  <li><a href=""><%= img.picture_file_name %></a></li>
-                              <% end %>
-                            </ul>
-                            <div>
-                              <% for img in component.images %>
-                                  <div><%= render("/images/show",  :image => img ) %></div>
-                              <% end %>
-                            </div>
-                        <% else %>
-                            <h5>None Available.</h5>
-                        <% end %>
+                      <!-- Tabs for directly related ValueFields to the Product -->
+                      <div class="tabs2">
+                        <ul>
+                          <li style="display:none"><a>hidden</a></li>
+                          <li><a href>New Valuefield...</a></li>
+                          <% for valuefield in component.valuefields %>
+                              <li><a href=""><%= valuefield.fieldvalue %></a></li>
+                          <% end %>
+                        </ul>
+                        <div>
+                          <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+                          <div><div class="inner_container"><%= render("valuefields/new") %></div></div>
+                          <% for valuefield in component.valuefields %>
+                              <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <!-- Tabs for directly related Data Files to the Component -->
-                      <div class="tabs">
-                        <% if (!component.data_files.empty?) %>
-                            <ul>
-                              <% for df in component.data_files %>
-                                  <li><a href=""><%= df.filedata_file_name %></a></li>
-                              <% end %>
-                            </ul>
-                            <div>
-                              <% for df in component.data_files %>
-                                  <div><%= render("/data_files/show", :data_file => df) %></div>
-                              <% end %>
-                            </div>
-                        <% else %>
-                            <h5>None Available.</h5>
-                        <% end %>
+                      <!-- Tabs for directly related Images to the Product -->
+                      <div class="tabs2">
+                        <ul>
+                            <li style="display:none"><a>hidden</a></li>
+                            <li><a href>New Image...</a></li>
+                          <% for image in component.images %>
+                              <li><a href=""><%= image.picture_file_name %></a></li>
+                          <% end %>
+                        </ul>
+                        <div>
+                          <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+                          <div><div class="inner_container"><%= render("images/new") %></div></div>
+                          <% for image in component.images %>
+                              <div><%= render("/images/show", :image => image) %></div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <!-- Tabs for directly related Data Files to the Product -->
+                      <div class="tabs2">
+                        <ul>
+                            <li style="display:none"><a>hidden</a></li>
+                            <li><a href>New Data File...</a></li>
+                          <% for datafile in component.data_files %>
+                              <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
+                          <% end %>
+                        </ul>
+                        <div>
+                              <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+                              <div><div class="inner_container"><%= render("data_files/new") %></div></div>
+                          <% for data_file in component.data_files %>
+                              <div><%= render("/data_files/show", :data_file => data_file) %></div>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>

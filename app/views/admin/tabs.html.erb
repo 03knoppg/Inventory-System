@@ -1,4 +1,4 @@
-<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header">Product: <%= @product.name %></h1></a>
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container">
@@ -7,93 +7,69 @@
 <div class="tabs">
 <ul>
   <li><a class="l" href="">Components</a></li>
-  <li><a class="l" href="">Properties</a></li>
   <li><a class="l" href="">Value Fields</a></li>
   <li><a class="l" href="">Images</a></li>
   <li><a class="l" href="">Data Files</a></li>
 </ul>
 <div>
 <div>
-  <%= render :partial=>"admin/components_tabs", :locals => {:parent => @product}%>
-</div>
-<div>
-  <!-- Tabs for directly related Properties to the Product -->
-  <div class="tabs">
-    <% if (!@product_properties.empty?) %>
-        <ul>
-          <% for properties in @product_properties %>
-              <li><a href=""><%= properties.name %></a></li>
-          <% end %>
-        </ul>
-        <div>
-          <% for property in @product_properties %>
-              <% @property = property %>
-              <div><%= render("/properties/show", :object => [@property]) %></div>
-          <% end %>
-        </div>
-    <% else %>
-        <h5>None Available.</h5>
-    <% end %>
-  </div>
+  <%= render "admin/components_tabs", :parent => @product%>
 </div>
 <div>
   <!-- Tabs for directly related ValueFields to the Product -->
-  <div class="tabs">
-    <% if (!@product_valuefields.empty?) %>
-        <ul>
-          <% for valuefield in @product_valuefields %>
-              <li><a href=""><%= valuefield.fieldvalue %></a></li>
-          <% end %>
-        </ul>
-        <div>
-          <% for valuefield in @product_valuefields %>
-              <% @valuefield = valuefield %>
-              <div><%= render("/valuefields/show", :valuefield => [@valuefield]) %></div>
-          <% end %>
-        </div>
-    <% else %>
-        <h5>None Available.</h5>
-    <% end %>
+  <div class="tabs2">
+    <ul>
+      <li style="display:none"><a>hidden</a></li>
+      <li><a href>New Valuefield...</a></li>
+      <% for valuefield in @product_valuefields %>
+          <li><a href=""><%= valuefield.field_value %></a></li>
+      <% end %>
+    </ul>
+    <div>
+      <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+      <div><div class="inner_container"><%= render("valuefields/new") %></div></div>
+      <% for valuefield in @product_valuefields %>
+          <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div>
   <!-- Tabs for directly related Images to the Product -->
-  <div class="tabs">
-    <% if (!@product_images.empty?) %>
-        <ul>
-          <% for image in @product_images %>
-              <li><a href=""><%= image.picture_file_name %></a></li>
-          <% end %>
-        </ul>
-        <div>
-          <% for image in @product_images %>
-              <% @image = image %>
-              <div><%= render("/images/show", :object => [@image]) %></div>
-          <% end %>
-        </div>
-    <% else %>
-        <h5>None Available.</h5>
-    <% end %>
+  <div class="tabs2">
+    <ul>
+        <li style="display:none"><a>hidden</a></li>
+        <li><a href>New Image...</a></li>
+      <% for image in @product_images %>
+          <li><a href=""><%= image.picture_file_name %></a></li>
+      <% end %>
+    </ul>
+    <div>
+      <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+      <div><div class="inner_container"><%= render("images/new") %></div></div>
+      <% for image in @product_images %>
+          <div><%= render("/images/show", :image => image) %></div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div>
   <!-- Tabs for directly related Data Files to the Product -->
-  <div class="tabs">
-    <% if (!@product_datafiles.empty?) %>
-        <ul>
-          <% for datafile in @product_datafiles %>
-              <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
-          <% end %>
-        </ul>
-        <div>
-          <% for datafile in @product_datafiles %>
-              <% @data_file = datafile %>
-              <div><%= render("/data_files/show", :object => [@data_file]) %></div>
-          <% end %>
-        </div>
-    <% else %>
-        <h5>None Available.</h5>
-    <% end %>
+  <div class="tabs2">
+    <ul>
+        <li style="display:none"><a>hidden</a></li>
+        <li><a href>New Data File...</a></li>
+      <% for datafile in @product_datafiles %>
+          <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
+      <% end %>
+    </ul>
+    <div>
+          <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+          <div><div class="inner_container"><%= render("data_files/new") %></div></div>
+      <% for data_file in @product_datafiles %>
+          <div><%= render("/data_files/show", :data_file => data_file) %></div>
+      <% end %>
+    </div>
   </div>
 </div>
 </div>
@@ -102,7 +78,7 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('a.tab_title_expanded').click(expandColapseSection);
+        $('a.tab_title').live('click',expandColapseSection);
 
 
 
@@ -124,20 +100,21 @@
 
         moveULs();
         setUpSliders();
-        adjustWidth($('div.tabs2 > div'), true, false);
+        adjustWidth($('div.tabs2  div.inner_container'), true, false);
 
 
 
     });
 
     function expandColapseSection(){
-        inner_container = $(this).closest('.container').children('div.inner_container');
+        inner_container = $(this).siblings('.inner_container');
 
         //minimize
         if($(this).hasClass("tab_title_expanded")){
             $(this).removeClass("tab_title_expanded");
             $(this).addClass("tab_title_minimized");
-
+            $(this).find('img').attr("src", "/assets/Accordian/plus.gif");
+            $(this).find('h1').css({fontSize: "150%"});
 
             inner_container.css("overflow-x" ,"hidden");
             inner_container.css("overflow-y" ,"hidden");
@@ -152,7 +129,7 @@
             inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
             inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
 
-            //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            //inner_container.find('div.tabs2:first > ul').animate({width: '0'});
             inner_container.find('div.tabs2:first > ul').css({width: '0'});
 
             //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
@@ -160,7 +137,7 @@
 
             inner_container.find('div.tabs2:first > div').css("border-top", 0);
             adjustHeight();
-            $('.inner_container').each(function(){
+            inner_container.find('.inner_container').each(function(){
                 if($(this).width() > 0)
                     adjustWidth($(this), false, true);
             });
@@ -171,6 +148,8 @@
 
             $(this).removeClass("tab_title_minimized");
             $(this).addClass("tab_title_expanded");
+            $(this).find('img').attr("src", "/assets/Accordian/bigminus.gif");
+            $(this).find('h1').css({fontSize: "300%"});
 
             inner_container.css("overflow-x" ,"hidden");
             inner_container.css("overflow-y" ,"scroll");
@@ -235,6 +214,7 @@
         $("html").removeClass("js");
 
 
+        //adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustHeight();
 
@@ -243,12 +223,13 @@
     function adjustHeight(){
        $('.inner_container').each(function(){
            if($(this).css("overflow-y") == "scroll"){
-               $(this).css("height", "580");
+               $(this).css("height", "630");
            }
             else {
                $(this).css("height","100%");
            }
         });
+        $('.container').css({height:862});
     }
 
     function adjustWidth(pane, first, minimizing) {
@@ -263,7 +244,7 @@
             ulWidth = 0;
 
         //ulWidth = 0;
-        if(first /* || tabs.find('div.inner_container').css("overflow-y") == "scroll"*/)
+        if(first)
             tabs.find(' > div').width(tabwidth - ulWidth - 15);
         else if(minimizing){
             tabs.find(' > div').width(tabwidth - 134);
@@ -271,10 +252,6 @@
         }
         else
             tabs.find(' > div').width(tabwidth - ulWidth);
-        /*if($(this).closest('div.inner_container').siblings('a.tab_title_expanded'))
-            $(this).find(' > div').width(width - ulWidth - 15);
-        else
-            $(this).find(' > div').width(width - ulWidth);*/
 
     }
 

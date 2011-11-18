@@ -37,15 +37,15 @@
         <tr>
           <td><%= print_parent_categories_table(@product).html_safe %></td>
 
-          <td><%= print_properties_table(@product).html_safe %></td>
+          <td><%= print_properties_table(@product, false).html_safe %></td>
         </tr>
         <tr>
-          <td><%= print_images_table(@product).html_safe %></td>
+          <td><%= print_images_table(@product, false).html_safe %></td>
 
-          <td><%= print_datafiles_table(@product).html_safe %></td>
+          <td><%= print_datafiles_table(@product, false).html_safe %></td>
         </tr>
         <tr>
-          <td colspan="2"><%= print_components_table(@product).html_safe %></td>
+          <td colspan="2"><%= print_components_table(@product, false).html_safe %></td>
         </tr>
       </table>
         </div>

@@ -1,0 +1,72 @@
+<%valuefield = Valuefield.new%>
+
+
+<%= form_for(valuefield) do |f| %>
+
+
+    <% if valuefield.errors.any? %>
+
+        <div id="error_explanation">
+          <h2><%= pluralize(valuefield.errors.count, "error") %> prohibited this valuefield from being saved:</h2>
+
+          <ul>
+            <% valuefield.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+<div id="main_div" class="main_div">
+
+    <table class="main_table">
+      <tr>
+        <th align="left">Property&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Value&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Code</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <%= radio_accord(all_property_hash, "value_field", true).html_safe %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :fieldvalue, :required => true %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :code %>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+
+
+  <table>
+      <tr>
+        <th align="left" colspan="3">Product or Component</th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <%= checkbox_accord(all_prod_comp_hash).html_safe  %>
+          </div>
+        </td>
+      </tr>
+      </table>
+  </div>
+
+  <div id="submit_div" class="right_div">
+        <input type="reset" />
+     <%= f.submit :class => "submit"%>
+  </div>
+
+
+<%end%>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
+<br class="clear" />
+
+
