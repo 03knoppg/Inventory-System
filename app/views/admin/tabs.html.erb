@@ -82,8 +82,6 @@
 
         $('a.tab_title').live('click',expandColapseSection);
 
-
-
         $('.inner_container:first').css("overflow-x" ,"hidden");
         $('.inner_container:first').css("overflow-y", "scroll");
 
@@ -101,10 +99,15 @@
 
 
         $('.inner_container').scroll(moveULs);
-        $('.tabs > ul > li > a').click(moveULs);
+        $('.tabs > ul > li > a').live('click', moveULs);
+        $('.tabs > ul > li > a').live('click', function(){
+            $(document).find('div.inner_container').filter(function(){return $(this).width()>0;}).each(function(){
+                adjustWidth($(this), false, false)
+            });
+        });
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
-
+        adjustHeight();
 
 
     });
@@ -140,9 +143,8 @@
 
             inner_container.find('div.tabs2:first > div').css("border-top", 0);
             adjustHeight();
-            inner_container.find('.inner_container').each(function(){
-                if($(this).width() > 0)
-                    adjustWidth($(this), false, true);
+            inner_container.find('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, true);
             });
         }
 
@@ -176,9 +178,8 @@
 
             inner_container.find('div.tabs2:first > div').css("border-top", "1px solid #999");
             adjustHeight();
-            $('.inner_container').each(function(){
-                if($(this).width() > 0)
-                    adjustWidth($(this), false, false);
+            $('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, false);
             });
         }
 
@@ -210,11 +211,8 @@
 
         $("html").addClass("js");
         $.fn.accordion.defaults.container = false;
-
         pane.find(".accordion").accordion();
-
         $("html").removeClass("js");
-
 
         adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustHeight();
@@ -261,21 +259,22 @@
 
     function moveULs(){
 
+        $(document).find('div.tabs2 > ul').filter(function(){return $(this).height()>0;}).each(function(){
 
-        $(document).find('.inner_container').each(function(){
-            container = $(this);
-            offset = container.offset().top + 3;
-            container.find('div.tabs2 > ul').each(function(){
-                if( $(this).parent().position().top < offset){
-                   $(this).css("top", offset);
-                   $(this).css("position", "fixed");
+            offset = $(document).find('.inner_container:first').offset().top + 3;
+            offset += 57 * $(document).find('a.tab_title_expanded:first').parents('.inner_container').length;
 
-                } else {
-                   $(this).css("top", 0);
-                   $(this).css("position", "");
-                }
-            });
+            if( $(this).parent().position().top < offset){
+               $(this).css("top", offset);
+               $(this).css("position", "fixed");
+
+            } else {
+               $(this).css("top", 0);
+               $(this).css("position", "");
+            }
         });
+
+
 
 
     }
