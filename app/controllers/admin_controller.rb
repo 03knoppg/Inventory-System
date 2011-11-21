@@ -9,10 +9,6 @@ class AdminController < ApplicationController
     @product_properties = @product.properties
     @product_images = @product.images
     @product_datafiles = @product.data_files
-    @groups = Group.all
-    @properties = Property.all
-    @all_categories = Category.all
-    @reset_component = Component.new
 
   end
 
@@ -23,6 +19,62 @@ class AdminController < ApplicationController
     path = params[:path]    #the permuted path
   end
 
+  def load_edit_product_page
+
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+
+    @product = Product.find(params[:product_id])
+
+    @product_components = @product.components
+    @product_valuefields = @product.valuefields
+    @product_properties = @product.properties
+    @product_images = @product.images
+    @product_datafiles = @product.data_files
+    @product_categories = @product.categories
+
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_vf_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_image_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_df_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_component_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    @all_groups = Group.all
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def load_component_tab
 

@@ -46,17 +46,20 @@ module ApplicationHelper
 
   #Function to fill banner and logo portion of web pages
   def banner
-    @images = Image.all
-    if(!@images.empty?)
-    for img in @images
-      if(img.picture_file_name == "Company_Logo.png")
-        @imagelogo = img.picture.url
-      end
-      if(img.picture_file_name == "Company_Banner.png")
-        @imagebanner = img.picture.url
+    if(@all_images.nil?)
+      @all_images = Image.all
+    end
+
+    if(!@all_images.empty?)
+      for img in @all_images
+        if(img.picture_file_name == "Company_Logo.png")
+          @imagelogo = img.picture.url
+        end
+        if(img.picture_file_name == "Company_Banner.png")
+          @imagebanner = img.picture.url
+        end
       end
     end
-  end
   end
 
 
@@ -280,13 +283,13 @@ module ApplicationHelper
      hash = {}
      items = []
      if(!item.nil?)
-        for cat in Category.all
+        for cat in @all_categories
           if(cat.parent_id.eql?(item.id))
             items.push(cat)
           end
         end
      else
-       for cat in Category.all
+       for cat in @all_categories
           if(cat.parent_id.nil?)
             items.push(cat)
           end
@@ -301,7 +304,7 @@ module ApplicationHelper
   #Creates a hash for all groups
   def all_group_hash
     hash = {}
-    for group in Group.all
+    for group in @all_groups
       hash[group] = {}
     end
     return hash
@@ -310,7 +313,7 @@ module ApplicationHelper
   #Creates a hash for all properties
   def all_property_hash
      hash = {}
-     items = Property.all
+     items = @all_properties
      for prop in items
        hash[prop] = {}
      end
@@ -320,7 +323,7 @@ module ApplicationHelper
   #Creates a hash for all products
   def all_product_hash
     hash = {}
-    items = Product.all
+    items = @all_products
     for prod in items
       hash[prod] = {}
     end
@@ -334,7 +337,7 @@ module ApplicationHelper
     if(!item.nil?)
       items = item.components
     else
-      for comp in Component.all
+      for comp in @all_components
         if(comp.component_parents.empty?)
            items.push(comp)
         end
@@ -349,7 +352,7 @@ module ApplicationHelper
   #Creates a hash for all valuefields
   def all_valuefield_hash
     hash = {}
-    items = Valuefield.all
+    items = @all_valuefields
     for vf in items
       hash[vf] = {}
     end
@@ -359,7 +362,7 @@ module ApplicationHelper
    #Creates a hash for all images
   def all_image_hash
     hash = {}
-    items = Image.all
+    items = @all_images
     for img in items
       hash[img] = {}
     end
@@ -369,7 +372,7 @@ module ApplicationHelper
    #Creates a hash for all images
   def all_datafile_hash
     hash = {}
-    items = DataFile.all
+    items = @all_datafiles
     for df in items
       hash[df] = {}
     end
@@ -379,7 +382,7 @@ module ApplicationHelper
   #Creates a hash for all images
   def all_validation_hash
     hash = {}
-    items = Validation.all
+    items = @all_validations
     for vd in items
       hash[vd] = {}
     end
@@ -394,7 +397,7 @@ module ApplicationHelper
      if(!item.nil?)
        items = item.components
      else
-       items = Product.all
+       items = @all_products
      end
 
      for comp in items
@@ -412,7 +415,7 @@ module ApplicationHelper
   def all_prop_vf_hash
 
      hash = {}
-     items = Property.all
+     items = @all_properties
 
      for prop in items
 

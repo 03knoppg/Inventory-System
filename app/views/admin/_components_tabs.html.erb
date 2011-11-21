@@ -2,7 +2,7 @@
   <div class="tabs2">
         <ul>
           <li style="display:none"><a>hidden</a></li>
-          <li><a href="">New Component...</a></li>
+          <li><a class="new_component" href="">New Component...</a></li>
           <% for component in parent.components %>
               <li><a href="<%=component.id%>"><%= component.name %></a></li>
           <% end %>
@@ -13,7 +13,7 @@
 
           <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
 
-          <div><div class="inner_container"><%= render("components/new") %></div></div>
+          <div><div class="inner_container component_container"><%# render("components/new") %></div></div>
 
           <% for component in parent.components %>
               <div>
@@ -37,14 +37,14 @@
                       <div class="tabs2">
                         <ul>
                           <li style="display:none"><a>hidden</a></li>
-                          <li><a href>New Valuefield...</a></li>
+                          <li><a class="new_vf" href>New Valuefield...</a></li>
                           <% for valuefield in component.valuefields %>
                               <li><a href=""><%= valuefield.fieldvalue %></a></li>
                           <% end %>
                         </ul>
                         <div>
                           <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                          <div><div class="inner_container"><%= render("valuefields/new") %></div></div>
+                          <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
                           <% for valuefield in component.valuefields %>
                               <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
                           <% end %>
@@ -56,14 +56,14 @@
                       <div class="tabs2">
                         <ul>
                             <li style="display:none"><a>hidden</a></li>
-                            <li><a href>New Image...</a></li>
+                            <li><a class="new_image" href>New Image...</a></li>
                           <% for image in component.images %>
                               <li><a href=""><%= image.picture_file_name %></a></li>
                           <% end %>
                         </ul>
                         <div>
                           <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                          <div><div class="inner_container"><%= render("images/new") %></div></div>
+                          <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
                           <% for image in component.images %>
                               <div><%= render("/images/show", :image => image) %></div>
                           <% end %>
@@ -75,14 +75,14 @@
                       <div class="tabs2">
                         <ul>
                             <li style="display:none"><a>hidden</a></li>
-                            <li><a href>New Data File...</a></li>
+                            <li><a class="new_df" href>New Data File...</a></li>
                           <% for datafile in component.data_files %>
                               <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
                           <% end %>
                         </ul>
                         <div>
                               <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                              <div><div class="inner_container"><%= render("data_files/new") %></div></div>
+                              <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
                           <% for data_file in component.data_files %>
                               <div><%= render("/data_files/show", :data_file => data_file) %></div>
                           <% end %>
