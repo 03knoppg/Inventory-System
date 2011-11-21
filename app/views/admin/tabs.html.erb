@@ -157,17 +157,17 @@
 
 
             inner_container.children('div:first').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > div').css("border", 0);
-            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            inner_container.find('> div.tabs > div').css("border", 0);
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
 
             //inner_container.find('div.tabs2:first > ul').animate({width: '0'});
-            inner_container.find('div.tabs2:first > ul').css({width: '0'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css({width: '0'});
 
             //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
-            inner_container.find('div.tabs2:first > div').css({width: '100%'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width: '100%'});
 
-            inner_container.find('div.tabs2:first > div').css("border-top", 0);
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css("border-top", 0);
             adjustHeight();
             inner_container.find('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
                 adjustWidth($(this), false, true);
@@ -188,19 +188,19 @@
                 $(this).css("overflow-x" ,"hidden");
                 $(this).css("overflow-y" ,"hidden");
             });
-
+            inner_container.find('div.tabs:first > ul > li > a:first ').click();
             inner_container.children('div:first').animate({height: 'toggle'});
             inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
             inner_container.find('div.tabs:first > div').css("border-top", 0);
-            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
 
             //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
-            inner_container.find('div.tabs2:first > ul').css("width", '132');
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css("width", '132');
 
             fullwidth = inner_container.find('div.tabs2:first').width();
             ulWidth = inner_container.find('div.tabs2:first > ul').width();
-            inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width:fullwidth - 132});
 
             inner_container.find('div.tabs2:first > div').css("border-top", "1px solid #999");
             adjustHeight();
