@@ -262,9 +262,10 @@
         $(document).find('div.tabs2 > ul').filter(function(){return $(this).height()>0;}).each(function(){
 
             offset = $(document).find('.inner_container:first').offset().top + 3;
-            offset += 57 * $(document).find('a.tab_title_expanded:first').parents('.inner_container').length;
+            minimized_count = $(document).find('a.tab_title_expanded:first').parents('.inner_container').length;
+            offset += 57 * minimized_count;
 
-            if( $(this).parent().position().top < offset){
+            if($(this).height() < $(document).find('a.tab_title_expanded:first').siblings('.inner_container').height() &&  $(this).parent().position().top < offset){
                $(this).css("top", offset);
                $(this).css("position", "fixed");
 
