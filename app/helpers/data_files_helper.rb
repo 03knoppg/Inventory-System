@@ -20,7 +20,7 @@ module DataFilesHelper
   def print_datafiles_table(parent, button=true)
     s = "<table class=\"tight_table\">"
     s+="    <tr>"
-    s+="      <th align=\"left\">Related Data Files</th>"
+    s+="      <th align=\"left\">Data Files</th>"
     s+="    </tr>"
     if(!parent.data_files.empty?)
       for df in parent.data_files

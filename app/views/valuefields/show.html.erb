@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Value: <%=@valuefield.fieldvalue%></h1>
+ <h1>Viewing Value Field: <%=@valuefield.fieldvalue%></h1>
+<div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
   <tr>
@@ -11,10 +12,15 @@
     <td><%= @valuefield.code %></td>
   </tr>
 </table>
+  <div class="tabs">
    <!-- the tabs -->
-  <ul class="tabs">
-    <li><a href="#">Associations</a></li>
-    <li><a href="#">Attachments</a></li>
+  <ul>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Properties</a></li>
+    <li><a href="#">Components</a></li>
+    <li><a href="#">Path</a></li>
+    <li><a href="#">Images</a></li>
+    <li><a href="#">Data Files</a></li>
   </ul>
 
   <!-- tab "panes" -->
@@ -24,19 +30,41 @@
     <div> <!--pane 1 -->
 
   <%= print_products_table(@valuefield).html_safe %>
+      </div>
+    <div>
   <%= print_property_table(@valuefield).html_safe %>
+  </div>
+    <div>
   <%= print_components_table(@valuefield).html_safe %>
-
+  </div>
+    <div>
 <%if(@valuefield.components.empty? && @valuefield.products.empty?)%>
 <%= print_path_table(@valuefield).html_safe %>
+          <%else%>
+      <table>
+        <tr>
+          <th>
+            Path
+          </th>
+        </tr>
+        <tr>
+          <td>
+            No Path
+          </td>
+        </tr>
+      </table>
     <%end%>
       </div>
-    <div> <!-- pane 2 -->
+    <div>
 
   <%= print_images_table(@valuefield).html_safe %>
+    </div>
+    <div>
   <%= print_datafiles_table(@valuefield).html_safe %>
          </div>
     </div>
+    </div>
+</div>
 
 
 

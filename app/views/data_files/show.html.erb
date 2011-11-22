@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Data File: <%=@data_file.filedata_file_name%></h1>
+<div class="inner_container_show">
 <div class="main_div">
 
 <table class="main_table">
@@ -25,6 +26,7 @@
 
 <%= print_valuefields_table(@data_file).html_safe %>
 
+  </div>
   </div>
   </div>
   </div>

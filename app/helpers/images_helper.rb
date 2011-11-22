@@ -18,7 +18,7 @@ module ImagesHelper
   def print_images_table(parent, button=true)
     s = "<table class=\"tight_table\">"
     s+="    <tr>"
-    s+="      <th align=\"left\">Related Images</th><th>Image Name</th>"
+    s+="      <th align=\"left\">Images</th><th>Image Name</th>"
     s+="    </tr>"
     if(!parent.images.empty?)
       for img in parent.images

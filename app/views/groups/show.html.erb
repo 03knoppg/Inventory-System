@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
  <h1>Viewing Groups</h1>
+<div class="inner_container_show">
 <div class="main_div">
 <table class ="main_table">
   <tr>
@@ -12,16 +13,19 @@
 
 
 <!-- the tabs -->
-<ul class="tabs">
-	<li><a href="#">Associations</a></li>
-</ul>
-<!-- tab "panes" -->
-<div class="panes">
-  <div>
-    <%= print_components_table(@group).html_safe%>
-    </div>
+  <div class="tabs">
+    <ul>
+        <li><a href="#">Components</a></li>
+    </ul>
+    <!-- tab "panes" -->
+    <div>
+      <div>
+        <%= print_components_table(@group).html_safe%>
+        </div>
+      </div>
   </div>
-  </div>
+</div>
+</div>
 <div class="right_div">
   <%= button_to "Edit Group", edit_group_path(@group), :method => :get %>
   <%=button_to "Delete Group", {:controller => :groups, :action => "destroy", :id => @group.id }, :confirm => "Are You sure?", :method => :delete%>
