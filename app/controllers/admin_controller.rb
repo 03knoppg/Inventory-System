@@ -13,6 +13,12 @@ class AdminController < ApplicationController
   end
 
   def home
+     @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
   end
 
   def writefile
@@ -38,6 +44,28 @@ class AdminController < ApplicationController
     @product_categories = @product.categories
 
 
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_edit_component_page
+    @all_groups = Group.all
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+    @component = Component.find(params[:component_id])
+
+    @component_components = @component.components
+    @component_valuefields = @component.valuefields
+    @component_properties = @component.properties
+    @component_images = @component.images
+    @component_datafiles = @component.data_files
+    @component_products = @component.products
+    @component_group = @component.group
     respond_to do |format|
       format.js
     end

@@ -83,6 +83,7 @@
         $('input[value="Edit Product"]').click(function(){
             $.get("/admin/load_edit_product_page", {product_id: "<%=@product.id%>"},null, 'script');
         });
+
         $('.new_vf').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.vf_container:first');
             container.addClass("new_vf_container");
@@ -136,11 +137,41 @@
 
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
-        adjustHeight();
+         adjustHeight();
+        setUpPopUp();
         enableMinimizers();
-
-
     });
+
+    //sets up the pop up overlay for each edit button
+    function setUpPopUp(){
+         // setup triggers
+	$("a[rel]").each(function(i) {
+
+		$(this).overlay({
+
+			// common configuration for each overlay
+			oneInstance: false,
+			closeOnClick: true,
+
+			// setup custom finish position
+			//top: positions[i][0],
+			//left: positions[i][1],
+
+			// use apple effect
+			mask: 'lightblue',
+            effect: 'apple',
+
+		onBeforeLoad: function() {
+
+			// grab wrapper element inside content
+			var wrap = this.getOverlay().find(".contentWrap");
+
+			// load the page specified in the trigger
+			wrap.load(this.getTrigger().attr("href"));
+		}
+		});
+	});
+    }
 
     function expandColapseSection(){
 

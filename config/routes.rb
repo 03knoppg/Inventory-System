@@ -56,6 +56,7 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/load_new_df_page"
   get "admin/load_edit_product_page"
   get "admin/load_new_component_page"
+  get "admin/load_edit_component_page"
   get "admin/updatecategory"
   post "admin/addvalue"
   get "admin/writefile"
@@ -76,6 +77,7 @@ TestDBRubymineProject::Application.routes.draw do
 
   match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product
   match 'tabs/products/edit/:id', :to => 'products#_edit'
+  match 'tabs/components/edit/:id', :to => 'components#_edit'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
