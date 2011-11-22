@@ -14,7 +14,10 @@
       <td>
         <div>
           <%= button_to "Edit Component", edit_component_path(component), :method => :get %>
-          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <%= link_to image_tag("open_in_new_window.png"), {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <!--a href><h1>
+            <%# image_tag "open_in_new_window.png"%>
+          </h1></a-->
         </div>
       </td>
     </tr>
