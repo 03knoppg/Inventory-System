@@ -134,11 +134,16 @@
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
         adjustHeight();
+        enableMinimizers();
 
 
     });
 
     function expandColapseSection(){
+
+        if(!$(this).hasClass('enabled'))
+            return;
+
         inner_container = $(this).siblings('.inner_container');
 
         //minimize
@@ -209,6 +214,8 @@
             });
         }
 
+        enableMinimizers()
+
 
     }
 
@@ -243,6 +250,40 @@
         adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustHeight();
 
+        enableMinimizers();
+
+
+    }
+
+    function enableMinimizers(){
+
+        minimized_sections = $('h1').filter(function(){return $(this).height() > 0 && $(this).parent().hasClass('tab_title_minimized');});
+        expanded_sections = $('h1').filter(function(){return $(this).height() > 0 && $(this).parent().hasClass('tab_title_expanded');});
+
+
+        minimized_sections.each(function(){
+            $(this).parent().removeClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/plusdisabled.gif");
+        });
+
+        expanded_sections.each(function(){
+            $(this).parent().removeClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/bigminusdisabled.gif");
+        });
+
+
+        minimized_sections.last().each(function(){
+            $(this).parent().addClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/plus.gif");
+        });
+
+
+        if($('h1').filter(function(){return $(this).height() > 0}).length > 1){
+            expanded_sections.first().each(function(){
+                $(this).parent().addClass('enabled');
+                $(this).find('img').attr("src", "/assets/Accordian/bigminus.gif");
+            });
+        }
 
     }
 
