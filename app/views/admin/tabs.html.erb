@@ -80,7 +80,7 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('input[value="Edit Product"]').click(function(){
+        $('a[value="Edit Product"]').click(function(){
             $.get("/admin/load_edit_product_page", {product_id: "<%=@product.id%>"},null, 'script');
         });
 

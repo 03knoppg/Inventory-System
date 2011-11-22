@@ -12,16 +12,19 @@
       <td valign="top"><%= component.code %></td>
       <td>
         <div>
-          <!-- external page is given in the href attribute (as it should be) -->
-          <a href="#" rel="#overlay_component_<%=component.id%>" style="text-decoration:none">
-            <!-- remember that you can use any element inside the trigger -->
-            <input type="button" value="Edit Component" id="C<%=component.id%>"/>
-          </a>
 
-          <div class="apple_overlay" id="overlay_component_<%=component.id%>">
-            <!--<%#render("components/edit", :component => component) %> -->
-          </div>
-          <%= button_to "Delete component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <!-- external page is given in the href attribute (as it should be) -->
+            <a href="#" rel="#overlay_component_<%=component.id%>" style="text-decoration:none" id="C<%=component.id%>">
+              <!-- remember that you can use any element inside the trigger -->
+              <!--input type="button" value="Edit Component" id="C<%#component.id%>"/-->
+              <%= image_tag "edit-icon.png", :title=>"Edit"%>
+            </a>
+
+            <div class="apple_overlay" id="overlay_component_<%=component.id%>">
+              <!--<%#render("components/edit", :component => component) %> -->
+            </div>
+              <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :title=>"Delete", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+
         </div>
       </td>
     </tr>
@@ -65,7 +68,7 @@
 
 <script type="text/javascript">
    jQuery(function($) {
-  $('input[id="C<%=component.id%>"]').click(function(){
+  $('a[id="C<%=component.id%>"]').click(function(){
             $.get("/admin/load_edit_component_page", {component_id: "<%=component.id%>"}, null, 'script');
         });
    });
