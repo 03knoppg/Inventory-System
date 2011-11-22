@@ -20,14 +20,14 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a href>New Valuefield...</a></li>
+            <li><a class="new_vf" href>New Valuefield...</a></li>
             <% for valuefield in @product_valuefields %>
                 <li><a href=""><%= valuefield.fieldvalue %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container"><%= render("valuefields/new") %></div></div>
+            <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
             <% for valuefield in @product_valuefields %>
                 <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
             <% end %>
@@ -39,14 +39,14 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a href>New Image...</a></li>
+            <li><a href class="new_image">New Image...</a></li>
             <% for image in @product_images %>
                 <li><a href=""><%= image.picture_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container"><%= render("images/new") %></div></div>
+            <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
             <% for image in @product_images %>
                 <div><%= render("/images/show", :image => image) %></div>
             <% end %>
@@ -58,14 +58,14 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a href>New Data File...</a></li>
+            <li><a href class="new_df">New Data File...</a></li>
             <% for datafile in @product_datafiles %>
                 <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container"><%= render("data_files/new") %></div></div>
+            <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
             <% for data_file in @product_datafiles %>
                 <div><%= render("/data_files/show", :data_file => data_file) %></div>
             <% end %>
@@ -80,9 +80,33 @@
 <script type="text/javascript">
     jQuery(function($) {
 
+        $('input[value="Edit Product"]').click(function(){
+            $.get("/admin/load_edit_product_page", {product_id: "<%=@product.id%>"},null, 'script');
+        });
+        $('.new_vf').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.vf_container:first');
+            container.addClass("new_vf_container");
+            $.get("/admin/load_new_vf_page", null, 'script');
+        });
+        $('.new_image').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.image_container:first');
+            container.addClass("new_image_container");
+            $.get("/admin/load_new_image_page", null, 'script');
+        });
+
+        $('.new_df').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.df_container:first');
+            container.addClass("new_df_container");
+            $.get("/admin/load_new_df_page", null, 'script');
+        });
+
+        $('.new_component').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.component_container:first');
+            container.addClass("new_component_container");
+            $.get("/admin/load_new_component_page", null, 'script');
+        });
+
         $('a.tab_title').live('click',expandColapseSection);
-
-
 
         $('.inner_container:first').css("overflow-x" ,"hidden");
         $('.inner_container:first').css("overflow-y", "scroll");
@@ -101,9 +125,15 @@
 
 
         $('.inner_container').scroll(moveULs);
-        $('.tabs > ul > li > a').click(moveULs);
+        $('.tabs > ul > li > a').live('click', moveULs);
+        $('.tabs > ul > li > a').live('click', function(){
+            $(document).find('div.inner_container').filter(function(){return $(this).width()>0;}).each(function(){
+                adjustWidth($(this), false, false)
+            });
+        });
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
+         adjustHeight();
 
         // setup triggers
 	$("a[rel]").each(function(i) {
@@ -154,21 +184,20 @@
 
 
             inner_container.children('div:first').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > div').css("border", 0);
-            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            inner_container.find('> div.tabs > div').css("border", 0);
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
 
             //inner_container.find('div.tabs2:first > ul').animate({width: '0'});
-            inner_container.find('div.tabs2:first > ul').css({width: '0'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css({width: '0'});
 
             //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
-            inner_container.find('div.tabs2:first > div').css({width: '100%'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width: '100%'});
 
-            inner_container.find('div.tabs2:first > div').css("border-top", 0);
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css("border-top", 0);
             adjustHeight();
-            inner_container.find('.inner_container').each(function(){
-                if($(this).width() > 0)
-                    adjustWidth($(this), false, true);
+            inner_container.find('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, true);
             });
         }
 
@@ -186,25 +215,24 @@
                 $(this).css("overflow-x" ,"hidden");
                 $(this).css("overflow-y" ,"hidden");
             });
-
+            inner_container.find('div.tabs:first > ul > li > a:first ').click();
             inner_container.children('div:first').animate({height: 'toggle'});
             inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
             inner_container.find('div.tabs:first > div').css("border-top", 0);
-            inner_container.find('div.tabs:first > ul').animate({height: 'toggle'});
-            inner_container.find('div.tabs:first > ul > li').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
 
             //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
-            inner_container.find('div.tabs2:first > ul').css("width", '132');
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css("width", '132');
 
             fullwidth = inner_container.find('div.tabs2:first').width();
             ulWidth = inner_container.find('div.tabs2:first > ul').width();
-            inner_container.find('div.tabs2:first > div').css({width:fullwidth - 132});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width:fullwidth - 132});
 
             inner_container.find('div.tabs2:first > div').css("border-top", "1px solid #999");
             adjustHeight();
-            $('.inner_container').each(function(){
-                if($(this).width() > 0)
-                    adjustWidth($(this), false, false);
+            $('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, false);
             });
         }
 
@@ -236,11 +264,8 @@
 
         $("html").addClass("js");
         $.fn.accordion.defaults.container = false;
-
         pane.find(".accordion").accordion();
-
         $("html").removeClass("js");
-
 
         adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
         adjustHeight();
@@ -287,21 +312,23 @@
 
     function moveULs(){
 
+        $(document).find('div.tabs2 > ul').filter(function(){return $(this).height()>0;}).each(function(){
 
-        $(document).find('.inner_container').each(function(){
-            container = $(this);
-            offset = container.offset().top + 3;
-            container.find('div.tabs2 > ul').each(function(){
-                if( $(this).parent().position().top < offset){
-                   $(this).css("top", offset);
-                   $(this).css("position", "fixed");
+            offset = $(document).find('.inner_container:first').offset().top + 3;
+            minimized_count = $(document).find('a.tab_title_expanded:first').parents('.inner_container').length;
+            offset += 57 * minimized_count;
 
-                } else {
-                   $(this).css("top", 0);
-                   $(this).css("position", "");
-                }
-            });
+            if($(this).height() < $(document).find('a.tab_title_expanded:first').siblings('.inner_container').height() &&  $(this).parent().position().top < offset){
+               $(this).css("top", offset);
+               $(this).css("position", "fixed");
+
+            } else {
+               $(this).css("top", 0);
+               $(this).css("position", "");
+            }
         });
+
+
 
 
     }

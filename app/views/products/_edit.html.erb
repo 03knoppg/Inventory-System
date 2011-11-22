@@ -1,4 +1,4 @@
-<% @items_to_select = (@product.categories + @product.components + @product.valuefields + @product.images + @product.data_files) %>
+<% @items_to_select = (@product_categories + @product_components + @product_valuefields + @product_images + @product_datafiles) %>
 <div class="pop_container">
   <h1>Editing Product: <%=@product.name%></h1>
   <%= form_for(@product, :remote => true) do |f| %>
@@ -84,7 +84,7 @@
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-                      <%= checkbox_list(Image.all).html_safe %>
+                      <%= checkbox_list(@all_images).html_safe %>
                     </table>
                   </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table" style="display: inline">
-                      <%= checkbox_list(DataFile.all).html_safe %>
+                      <%= checkbox_list(@all_datafiles).html_safe %>
                     </table>
                   </div>
                 </div>

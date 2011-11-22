@@ -23,9 +23,10 @@
 
             </a>
 
-            <div class="apple_overlay" id="overlay_product">
-                <%=render("products/edit", :product => @product) %>
+            <div class="apple_overlay" id="overlay">
+                <%#render("products/edit", :id => @product.id) %>
             </div>
+
           <%= button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
         </div>
       </td>
