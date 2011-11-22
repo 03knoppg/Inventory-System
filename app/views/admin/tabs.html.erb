@@ -145,10 +145,8 @@
     //sets up the pop up overlay for each edit button
     function setUpPopUp(){
          // setup triggers
-	$("a[rel]").each(function(i) {
-
+	$("a.overlay").each(function(i) {
 		$(this).overlay({
-
 			// common configuration for each overlay
 			oneInstance: false,
 			closeOnClick: true,

@@ -14,20 +14,23 @@
         <div>
 
           <!-- external page is given in the href attribute (as it should be) -->
-            <a href="#" rel="#overlay_component_<%=component.id%>" style="text-decoration:none" id="C<%=component.id%>">
+            <a href="#" rel="#overlay_component_<%=component.id%>" style="text-decoration:none" id="C<%=component.id%>" class="overlay" value="Edit Component>
               <!-- remember that you can use any element inside the trigger -->
-              <!--input type="button" value="Edit Component" id="C<%#component.id%>"/-->
-              <%= image_tag "edit-icon.png", :title=>"Edit"%>
+              <!--input type="button" value="Edit Component" id="C<%#component.id%>""/-->
+              <%= image_tag "edit-icon.png", :title=>"Edit", :value=>"Edit Component"%>
             </a>
 
             <div class="apple_overlay" id="overlay_component_<%=component.id%>">
               <!--<%#render("components/edit", :component => component) %> -->
             </div>
-              <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :title=>"Delete", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :title=>"Delete", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+              <%# button_to "Delete component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
 
         </div>
+
       </td>
     </tr>
+
   </table>
   <div class="layer1">
     <p class="heading">Click Here To Expand/Collapse Detailed component Information</p>

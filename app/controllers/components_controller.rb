@@ -159,16 +159,6 @@ class ComponentsController < ApplicationController
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
-    #Components
-    if(!@component.components.nil?)
-      @component.components.clear
-    end
-    if(!params[:component_parent_ids].nil?)
-      for id in params[:component_parent_ids]
-        @component.components.push(Component.find(id))
-      end
-    end
-
     #Images
     if(!@component.images.nil?)
       @component.images.clear
@@ -217,6 +207,11 @@ class ComponentsController < ApplicationController
     #Loop to remove products
     for prod in component_products_val
       prod.components.delete(@component)
+    end
+
+    #Loop to remove children
+    for comp in component_children_val
+      comp.components.delete(@component)
     end
 
     if(!params[:new_components_ids].nil?)

@@ -13,9 +13,9 @@
       <td>
         <div>
           <!-- external page is given in the href attribute (as it should be) -->
-            <a href="#" rel="#overlay_product" style="text-decoration:none">
+            <a href="#" rel="#overlay_product" style="text-decoration:none" class="overlay" value="Edit Product">
                 <!-- remember that you can use any element inside the trigger -->
-              <!--input type="button" value="Edit Product"/-->
+              <!--input type="button"  value="Edit Product"/-->
               <%= image_tag "edit-icon.png", :title=>"Edit"%>
             </a>
 
@@ -23,6 +23,7 @@
                 <%#render("products/edit", :id => @product.id) %>
             </div>
             <%= link_to image_tag("delete-icon.png"), {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :title=>"Delete", :method => :delete%>
+            <%# button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
 
         </div>
       </td>
