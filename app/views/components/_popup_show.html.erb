@@ -13,13 +13,13 @@
       <td>
         <div>
           <!-- external page is given in the href attribute (as it should be) -->
-          <a href="#" rel="#overlay" style="text-decoration:none">
+          <a href="#" rel="#overlay_component" style="text-decoration:none">
 
             <!-- remember that you can use any element inside the trigger -->
             <input type="button" value="Edit Component"/>
           </a>
 
-          <div class="apple_overlay" id="overlay">
+          <div class="apple_overlay" id="overlay_component">
             <%=render("components/edit", :component => component) %>
           </div>
           <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
