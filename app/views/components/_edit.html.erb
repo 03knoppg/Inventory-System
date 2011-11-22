@@ -1,4 +1,4 @@
-<% @items_to_select = (@component.products + @component.components + @component.valuefields + @component.images + @component.data_files + [@component.group]) %>
+<% @items_to_select = (@component.products + @component.component_parents + @component.valuefields + @component.images + @component.data_files + [@component.group]) %>
 <div class="pop_container">
   <%component = @component%>
   <h1>Editing Component: <%=component.name%></h1>
@@ -81,11 +81,11 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Child Components</p>
+                <p class="heading_main_menu">Groups</p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-                      <%= checkbox_accord(all_component_hash).html_safe %>
+                       <%= checkbox_accord(all_group_hash).html_safe %>
                     </table>
                   </div>
                 </div>
