@@ -1,5 +1,6 @@
-<% #@items_to_select = (component.products + component.components + component.valuefields + component.images + component.data_files + component.group) %>
+<% @items_to_select = (@component.products + @component.components + @component.valuefields + @component.images + @component.data_files + [@component.group]) %>
 <div class="pop_container">
+  <%component = @component%>
   <h1>Editing Component: <%=component.name%></h1>
   <%= form_for(component, :remote => true) do |f| %>
       <% if component.errors.any? %>
@@ -37,54 +38,28 @@
             </td>
           </tr>
         </table>
-        <h2>Click Below to Expand/Collapse links and Select Check Box to Add or Remove from <%=component.name %></h2>
+        <h2>Click Below to Expand/Collapse links and Select Check Box to Add or Remove from <%= component.name %></h2>
         <table>
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Categories</p>
+                <p class="heading_main_menu">Products</p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-
+                        <%= checkbox_list(component.products).html_safe %>
                     </table>
                   </div>
                 </div>
               </div>
             </td>
-            <td>
-              <div class="layer1">
-                <p class="heading_main_menu">Components</p>
-                <div class="content_main_menu">
-                  <div>
-                    <table class="tight_table">
-
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
             <td>
               <div class="layer1">
                 <p class="heading_main_menu">Value Fields</p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="layer1">
-                <p class="heading_main_menu">Images</p>
-                <div class="content_main_menu">
-                  <div>
-                    <table class="tight_table">
-
+                       <%= checkbox_accord(all_prop_vf_hash).html_safe %>
                     </table>
                   </div>
                 </div>
@@ -92,18 +67,55 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Parent Components</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                       <%= checkbox_accord(all_component_hash).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Child Components</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                      <%= checkbox_accord(all_component_hash).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Images</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                        <%= checkbox_list(@all_images).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
               <div class="layer1">
                 <p class="heading_main_menu">Data File</p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table" style="display: inline">
-
+                        <%= checkbox_list(@all_datafiles).html_safe %>
                     </table>
                   </div>
                 </div>
               </div>
-
             </td>
           </tr>
         </table>
@@ -116,7 +128,7 @@
   <br class="clear" />
 </div>
 
- <script type="text/javascript">
+<script type="text/javascript">
   jQuery(function($) {
       //Expand/Collapse javascript
         $(".content_main_menu").hide();

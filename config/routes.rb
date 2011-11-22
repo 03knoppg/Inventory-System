@@ -56,6 +56,7 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/load_new_df_page"
   get "admin/load_edit_product_page"
   get "admin/load_new_component_page"
+  get "admin/load_edit_component_page"
   get "admin/updatecategory"
   post "admin/addvalue"
   get "admin/writefile"

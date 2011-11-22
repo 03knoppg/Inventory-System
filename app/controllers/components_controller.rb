@@ -159,6 +159,51 @@ class ComponentsController < ApplicationController
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
+    #Components
+    if(!@component.components.nil?)
+      @component.components.clear
+    end
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @component.components.push(Component.find(id))
+      end
+    end
+
+    #Images
+    if(!@component.images.nil?)
+      @component.images.clear
+    end
+    if(!params[:Image_ids].nil?)
+      for id in params[:Image_ids]
+        @component.images.push(Image.find(id))
+      end
+    end
+
+    #Data Files
+    if(!@component.data_files.nil?)
+      @component.data_files.clear
+    end
+    if(!params[:DataFile_ids].nil?)
+      for id in params[:DataFile_ids]
+        @component.data_files.push(DataFile.find(id))
+      end
+    end
+
+    #Valuefields
+    if(!@component.valuefields.nil?)
+      @component.valuefields.clear
+      @component.properties.clear
+    end
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @component.valuefields.push(Valuefield.find(id))
+      end
+      for vf in @component.valuefields
+        if(!@component.properties.include?(Property.find(vf.property_id)))
+          @component.properties.push(Property.find(vf.property_id))
+        end
+      end
+    end
     #Local variables
     #creates an array of component parents
     component_parents_val = @component.component_parents
