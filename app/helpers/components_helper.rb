@@ -54,7 +54,7 @@ module ComponentsHelper
 
     items = parent.component_parents
     part = "<table>"
-    part += "<tr><th align=\"Left\">Related Parent Components</th></tr>"
+    part += "<tr><th align=\"Left\">Parent Components</th></tr>"
 
     if(!items.empty?)
       for comp in items.sort!
@@ -72,7 +72,7 @@ module ComponentsHelper
 
     children = parent.components
     ch = "<table class=\"tight_table\">"
-    ch +="<tr><th align=\"Left\">Related Components</th></tr>"
+    ch +="<tr><th align=\"Left\">Components</th></tr>"
     if(!children.empty?)
       for child in children.sort!
         ch+= "<tr><td>#{link_to(child.name, child)}</td></tr>"

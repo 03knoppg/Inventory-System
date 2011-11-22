@@ -42,7 +42,7 @@ module ProductsHelper
 
     items = parent.products
     part = "<table style=\"padding-top: 15px\">"
-    part += "<tr><th align=\"Left\">Related Parent Products</th></tr>"
+    part += "<tr><th align=\"Left\">Products</th></tr>"
 
     if(!items.empty?)
       for prod in items.sort!

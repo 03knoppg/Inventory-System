@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Viewing Image: <%=@image.picture_file_name%></h1>
+<div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
   <tr>
@@ -13,20 +14,29 @@
 </table>
 
   <!-- the tabs -->
-<ul class="tabs">
-	<li><a href="#">Associations</a></li>
-</ul>
-<!-- tab "panes" -->
-<div class="panes">
-  <div>
+  <div class="tabs">
+    <ul>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Components</a></li>
+        <li><a href="#">Value Fields</a></li>
+    </ul>
+    <!-- tab "panes" -->
+    <div>
+      <div>
 
-<%= print_products_table(@image).html_safe %>
-<%= print_components_table(@image).html_safe %>
-<%= print_valuefields_table(@image).html_safe %>
+    <%= print_products_table(@image).html_safe %>
+        </div>
+      <div>
+    <%= print_components_table(@image).html_safe %>
+        </div>
+      <div>
+    <%= print_valuefields_table(@image).html_safe %>
 
+    </div>
+      </div>
+      </div>
+  </div>
 </div>
-  </div>
-  </div>
 
 <div class="right_div">
 <%= button_to "Edit Image", edit_image_path(@image), :method => :get %>

@@ -106,7 +106,6 @@
             $.get("/admin/load_new_component_page", null, 'script');
         });
 
-        $('a.tab_title').live('click',expandColapseSection);
 
         $('.inner_container:first').css("overflow-x" ,"hidden");
         $('.inner_container:first').css("overflow-y", "scroll");
@@ -124,13 +123,17 @@
         });
 
 
+        $('a.tab_title').live('click',expandColapseSection);
         $('.inner_container').scroll(moveULs);
-        $('.tabs > ul > li > a').live('click', moveULs);
         $('.tabs > ul > li > a').live('click', function(){
+            moveULs();
             $(document).find('div.inner_container').filter(function(){return $(this).width()>0;}).each(function(){
                 adjustWidth($(this), false, false)
             });
+            enableMinimizers();
         });
+
+
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
         adjustHeight();
