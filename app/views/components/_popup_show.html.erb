@@ -23,7 +23,7 @@
               <!--<%#render("components/edit", :component => component) %> -->
             </div>
           &nbsp
-          <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :title=>"Delete", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy",  :id => component.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
           &nbsp
           <%= link_to image_tag("open_in_new_window.png"),"/tabs/component/#{component.id}", :title => "Open in new window" %>
         </div>
@@ -42,12 +42,12 @@
             <td><%= print_component_parents_table(component).html_safe %></td>
           </tr>
           <tr>
-            <td><%= print_components_table(component).html_safe %></td>
-            <td><%= print_properties_table(component).html_safe %></td>
+            <td><%= print_components_table(component, false).html_safe %></td>
+            <td><%= print_properties_table(component, false).html_safe %></td>
           </tr>
           <tr>
-            <td><%= print_images_table(component).html_safe %></td>
-            <td><%= print_datafiles_table(component).html_safe %></td>
+            <td><%= print_images_table(component, false).html_safe %></td>
+            <td><%= print_datafiles_table(component, false).html_safe %></td>
           </tr>
           <tr><td>
             <% group = component.group %>
