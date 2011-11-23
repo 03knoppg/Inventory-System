@@ -1,0 +1,53 @@
+
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+    background-image:url('Overlay/white.png');
+    height:500px;
+
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+    height:490px;
+    h-align:center;
+    v-align:center;
+    overflow-y:auto;
+}
+
+
+/* the overlayed element */
+.apple_overlay {
+	
+	/* initially overlay is hidden */
+	display:none;
+	
+	/* growing background image */
+	background-image:url('Overlay/white.png');
+
+	
+	/* 
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:800px;
+	
+	/* some padding to layout nested elements nicely  */
+	padding:25px;
+
+    margin:  35px;
+
+	/* a little styling */	
+	font-size:11px;
+
+    /*overflow: auto;*/
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url('Overlay/close.png');
+	position:absolute; right:-15px; top:-15px;
+	cursor:pointer;
+    height:35px;
+    width:35px;
+}

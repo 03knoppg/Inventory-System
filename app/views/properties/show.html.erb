@@ -1,5 +1,6 @@
  <p id="notice"><%# notice %></p>
  <h1>Viewing Property: <%=@property.name%></h1>
+ <div class="inner_container_show">
  <div class="main_div">
 <table class="main_table">
   <tr>
@@ -15,15 +16,18 @@
 </table>
 
    <!-- the tabs -->
-<ul class="tabs">
-	<li><a href="#">Associations</a></li>
+<div class="tabs">
+<ul>
+	<li><a href="#">Value Fields</a></li>
 </ul>
 <!-- tab "panes" -->
-<div class="panes">
+<div>
   <div>
     <%= print_valuefields_table(@property).html_safe%>
    </div>
   </div>
+   </div>
+   </div>
    </div>
 
    <div class="right_div">

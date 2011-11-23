@@ -10,9 +10,10 @@ module ProductsHelper
         sp+= "<td> #{prod.description} </td>\n"
         sp+= "<td> #{prod.code} </td>\n"
         sp+= "<td> #{button_to "Show", {:controller => :products, :action => "show", :id => prod.id }, :method => :get}\n"
-        sp+= "#{button_to "Edit", edit_product_path(prod), :method => :get}\n"
+        sp+= "#{button_to "Edit", {:controller => :admin, :action => "tabs", :id => prod.id }, :method => :get}\n"
+        #sp+= "#{button_to "Edit", edit_product_path(prod), :method => :get}\n"
         sp+= "#{button_to "Delete", {:controller => :products, :action => "destroy", :id => prod.id }, :confirm => "Are You sure?", :method => :delete}\n"
-        sp+= "#{button_to "Full ID", {:controller => :admin, :action => "tabs", :id => prod.id }, :method => :get}\n</td>"
+        #sp+= "#{button_to "Full ID", {:controller => :admin, :action => "tabs", :id => prod.id }, :method => :get}\n</td>"
         #sp+= "<td>#{product_component_print(prod)}</td>"
       sp+= "</tr>\n"
     end
@@ -41,7 +42,7 @@ module ProductsHelper
 
     items = parent.products
     part = "<table style=\"padding-top: 15px\">"
-    part += "<tr><th align=\"Left\">Related Parent Products</th></tr>"
+    part += "<tr><th align=\"Left\">Products</th></tr>"
 
     if(!items.empty?)
       for prod in items.sort!

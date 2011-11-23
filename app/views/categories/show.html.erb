@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Category: <%=@category.name%></h1>
+<div class="inner_container_show">
 <div class="main_div">
   <table class="main_table">
     <tr>
@@ -13,18 +14,21 @@
   </table>
   <h2>Associations</h2>
   <!-- the tabs -->
-  <ul class="tabs">
-    <li><a href="#">Child Components</a></li>
-     <li><a href="#">Products</a></li>
-  </ul>
-  <!-- tab "panes" -->
-  <div class="panes">
-    <div> <!--pane 1 -->
-      <%= print_child_categories_table(@category).html_safe %>
-    </div>
-    <div><!--pane 2 -->
-      <%= print_products_table(@category).html_safe %>
-    </div>
+  <div class="tabs">
+      <ul>
+        <li><a href="#">Child Categories</a></li>
+         <li><a href="#">Products</a></li>
+      </ul>
+      <!-- tab "panes" -->
+      <div class="panes">
+        <div> <!--pane 1 -->
+          <%= print_child_categories_table(@category).html_safe %>
+        </div>
+        <div><!--pane 2 -->
+          <%= print_products_table(@category).html_safe %>
+        </div>
+      </div>
+      </div>
   </div>
 </div>
 <div class="right_div">

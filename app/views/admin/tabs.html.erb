@@ -1,267 +1,384 @@
-<h1 class="title_header">Product: <%=@product.name%></h1>
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container">
-<div><%= render "products/show" %></div>
-<!-- Tabs for directly related objects to the Product -->
-<div class="tabs">
-<ul>
-  <li><a class="l" href="">Components</a></li>
-  <li><a class="l" href="">Properties</a></li>
-  <li><a class="l" href="">Value Fields</a></li>
-  <li><a class="l" href="">Images</a></li>
-  <li><a class="l" href="">Data Files</a></li>
-</ul>
-<div>
-  <div>
-    <!-- Tabs for Child Components Belonging to the Product -->
-    <div class="tabs2">
-      <%if(!@product_components.empty?)%>
-          <ul>
-            <%for c in @product_components%>
-                <li><a href=""><%=c.name%></a></li>
-            <%end%>
-            <li><a href="">New Component</a> </li>
-          </ul>
-
-          <div>
-            <%for @component in @product_components%>
-                <div>
-                  <%= render("/components/show", :object => [@component]) %>
-                  <!-- Tabs for directly related objects to the Components -->
-                  <div class="tabs">
-                    <ul>
-                      <li><a class="s" href="">Group</a></li>
-                      <li><a class="s" href="">Components</a></li>
-                      <li><a class="s" href="">Properties</a></li>
-                      <li><a class="s" href="">Value Fields</a></li>
-                      <li><a class="s" href="">Images</a></li>
-                      <li><a class="s" href="">Data Files</a></li>
-                    </ul>
-                    <div>
-                      <div>
-                        <%if(!@component.group_id.nil?)%>
-                            <%@group = @component.group%>
-                            <%= render("/groups/show", :object => [@group]) %>
-                        <%else%>
-                            <h5>None Available.</h5>
-                        <%end%>
-                      </div>
-                      <div>
-                        <!-- Tabs for directly related Properties to the Component -->
-                        <%if(false && !@component.components.empty?)%>
-                            <div class="tabs">
-                              <ul>
-                                <%for comp in @component.components%>
-                                    <li><a href=""><%=comp.name%></a></li>
-                                <%end%>
-                              </ul>
-                              <div>
-                                <%for comp in @component.components%>
-                                    <%@compp = comp%>
-                                    <div><%= render("/components/show", :object => [@compp]) %></div>
-                                <%end%>
-                              </div>
-                            </div>
-                        <%else%>
-                            <h5>None Available.</h5>
-                        <%end%>
-                      </div>
-                      <div>
-                        <!-- Tabs for directly related Properties to the Component -->
-                        <%if(false && !@component.properties.empty?)%>
-                            <div class="tabs">
-                              <ul>
-                                <%for prop in @component.properties%>
-                                    <li><a href=""><%=prop.name%></a></li>
-                                <%end%>
-                              </ul>
-                              <div>
-                                <%for prop in @component.properties%>
-                                    <%@property = prop%>
-                                    <div><%= render("/properties/show", :object => [@property]) %></div>
-                                <%end%>
-                              </div>
-                            </div>
-                        <%else%>
-                            <h5>None Available.</h5>
-                        <%end%>
-                      </div>
-                      <div>
-                        <%if(false && !@component.valuefields.empty?)%>
-                            <!-- Tabs for directly related Valuefields to the Component -->
-                            <div class="tabs">
-                              <ul>
-                                <%for vf in @component.valuefields%>
-                                    <li><a href=""><%=vf.fieldvalue%></a></li>
-                                <%end%>
-                              </ul>
-                              <div>
-                                <%for vf in @component.valuefields%>
-                                    <%@valuefield = vf%>
-                                    <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
-                                <%end%>
-                              </div>
-                            </div>
-                          <%else%>
-                              <h5>None Available.</h5>
-                          <%end%>
-                      </div>
-                      <div>
-                        <!-- Tabs for directly related Images to the Component -->
-                        <div class="tabs">
-                          <%if(!@component.images.empty?)%>
-                              <ul>
-                                <%for img in @component.images%>
-                                    <li><a href=""><%=img.picture_file_name%></a></li>
-                                <%end%>
-                              </ul>
-                              <div>
-                                <%for img in @component.images%>
-                                    <%@image = img%>
-                                    <div><%= render("/images/show", :object => [@image]) %></div>
-                                <%end%>
-                              </div>
-                          <%else%>
-                              <h5>None Available.</h5>
-                          <%end%>
-                        </div>
-                      </div>
-                      <div>
-                        <!-- Tabs for directly related Data Files to the Component -->
-                        <div class="tabs">
-                          <%if(!@component.data_files.empty?)%>
-                              <ul>
-                                <%for df in @component.data_files%>
-                                    <li><a href=""><%=df.filedata_file_name%></a></li>
-                                <%end%>
-                              </ul>
-                              <div>
-                                <%for df in @component.data_files%>
-                                    <%@data_file = df%>
-                                    <div><%= render("/data_files/show", :object => [@data_file]) %></div>
-                                <%end%>
-                              </div>
-                          <%else%>
-                              <h5>None Available.</h5>
-                          <%end%>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            <%end%>
-            <%@component = @reset_component%>
-            <div><%= render("components/new")%></div>
-          </div>
-          </div>
-      <%else%>
-          <h5>None Available.</h5>
-      <%end%>
+  <div id="products_partial"><%= render "products/popup_show" %></div>
+  <!-- Tabs for directly related objects to the Product -->
+  <div class="tabs">
+    <ul>
+      <li><a class="l" href="">Components</a></li>
+      <li><a class="l" href="">Value Fields</a></li>
+      <li><a class="l" href="">Images</a></li>
+      <li><a class="l" href="">Data Files</a></li>
+    </ul>
+    <div>
+      <div>
+        <%= render "admin/components_tabs", :parent => @product%>
       </div>
-  <div>
-    <!-- Tabs for directly related Properties to the Product -->
-    <div class="tabs">
-      <%if(!@product_properties.empty?)%>
+      <div>
+        <!-- Tabs for directly related ValueFields to the Product -->
+        <div class="tabs2">
           <ul>
-            <%for properties in @product_properties%>
-                <li><a href=""><%=properties.name%></a></li>
-            <%end%>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a class="new_vf" href>New Valuefield...</a></li>
+            <% for valuefield in @product_valuefields %>
+                <li><a href=""><%= valuefield.fieldvalue %></a></li>
+            <% end %>
           </ul>
           <div>
-            <%for property in @product_properties%>
-                <%@property = property%>
-                <div><%= render("/properties/show", :object => [@property]) %></div>
-            <%end%>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+            <% for valuefield in @product_valuefields %>
+                <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+            <% end %>
           </div>
-      <%else%>
-          <h5>None Available.</h5>
-      <%end%>
-    </div>
-  </div>
-  <div>
-    <!-- Tabs for directly related ValueFields to the Product -->
-    <div class="tabs">
-      <%if(!@product_valuefields.empty?)%>
+        </div>
+      </div>
+      <div>
+        <!-- Tabs for directly related Images to the Product -->
+        <div class="tabs2">
           <ul>
-            <%for valuefield in @product_valuefields%>
-                <li><a href=""><%=valuefield.name%></a></li>
-            <%end%>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a href class="new_image">New Image...</a></li>
+            <% for image in @product_images %>
+                <li><a href=""><%= image.picture_file_name %></a></li>
+            <% end %>
           </ul>
           <div>
-            <%for valuefield in @product_valuefields%>
-                <%@valuefield = valuefield%>
-                <div><%= render("/valuefields/show", :object => [@valuefield]) %></div>
-            <%end%>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
+            <% for image in @product_images %>
+                <div><%= render("/images/show", :image => image) %></div>
+            <% end %>
           </div>
-      <%else%>
-          <h5>None Available.</h5>
-      <%end%>
-    </div>
-  </div>
-  <div>
-    <!-- Tabs for directly related Images to the Product -->
-    <div class="tabs">
-      <%if(!@product_images.empty?)%>
+        </div>
+      </div>
+      <div>
+        <!-- Tabs for directly related Data Files to the Product -->
+        <div class="tabs2">
           <ul>
-            <%for image in @product_images%>
-                <li><a href=""><%=image.picture_file_name%></a></li>
-            <%end%>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a href class="new_df">New Data File...</a></li>
+            <% for datafile in @product_datafiles %>
+                <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
+            <% end %>
           </ul>
           <div>
-            <%for image in @product_images%>
-                <%@image = image%>
-                <div><%= render("/images/show", :object => [@image]) %></div>
-            <%end%>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
+            <% for data_file in @product_datafiles %>
+                <div><%= render("/data_files/show", :data_file => data_file) %></div>
+            <% end %>
           </div>
-      <%else%>
-          <h5>None Available.</h5>
-      <%end%>
-    </div>
-  </div>
-  <div>
-    <!-- Tabs for directly related Data Files to the Product -->
-    <div class="tabs">
-      <%if(!@product_datafiles.empty?)%>
-          <ul>
-            <%for datafile in @product_datafiles%>
-                <li><a href="" class="xl"><%=datafile.filedata_file_name%></a></li>
-            <%end%>
-          </ul>
-          <div>
-            <%for datafile in @product_datafiles%>
-                <%@data_file = datafile%>
-                <div><%= render("/data_files/show", :object => [@data_file]) %></div>
-            <%end%>
-          </div>
-      <%else%>
-          <h5>None Available.</h5>
-      <%end%>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
-</div>
+
+
 <script type="text/javascript">
     jQuery(function($) {
-        //$('#new_category')[0].setAttribute("data-remote", "true");
+
+        $('a[value="Edit Product"]').click(function(){
+            $.get("/admin/load_edit_product_page", {product_id: "<%=@product.id%>"},null, 'script');
+        });
+
+        $('.new_vf').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.vf_container:first');
+            container.addClass("new_vf_container");
+            $.get("/admin/load_new_vf_page", null, 'script');
+        });
+        $('.new_image').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.image_container:first');
+            container.addClass("new_image_container");
+            $.get("/admin/load_new_image_page", null, 'script');
+        });
+
+        $('.new_df').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.df_container:first');
+            container.addClass("new_df_container");
+            $.get("/admin/load_new_df_page", null, 'script');
+        });
+
+        $('.new_component').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.component_container:first');
+            container.addClass("new_component_container");
+            $.get("/admin/load_new_component_page", null, 'script');
+        });
 
 
-           $(".content").hide();
-           //toggle the componenet with class msg_body
-           $(".heading").click(function()
-           {
-               $(this).next(".content").slideToggle(1200).scroll();
-           });
+        $('.inner_container:first').css("overflow-x" ,"hidden");
+        $('.inner_container:first').css("overflow-y", "scroll");
 
-           adjustWidth();
-       });
 
-       function adjustWidth(){
-           width = Number($('div.tabs2').width());
-           ulWidth = Number($('div.tabs2 > ul').width());
-           $('div.tabs2 > div').width(width - ulWidth -1);
-       }
-   </script>
+        $('div.tabs2 > ul > li > a').live('click',function () {
+
+            if($(this).attr("href") != ""){
+                $('#'+$(this).attr("href")).html("");
+                $.get("/admin/load_component_tab", {item: $(this).attr("href")}, null, 'script');
+
+            }
+
+            return false;
+        });
+
+
+        $('a.tab_title').live('click',expandColapseSection);
+        $('.inner_container').scroll(moveULs);
+        $('.tabs > ul > li > a').live('click', function(){
+            moveULs();
+            $(document).find('div.inner_container').filter(function(){return $(this).width()>0;}).each(function(){
+                adjustWidth($(this), false, false)
+            });
+            enableMinimizers();
+        });
+
+
+        setUpSliders();
+        adjustWidth($('div.tabs2  div.inner_container'), true, false);
+         adjustHeight();
+        setUpPopUp();
+        enableMinimizers();
+    });
+
+    //sets up the pop up overlay for each edit button
+    function setUpPopUp(){
+         // setup triggers
+	$("a.overlay").each(function(i) {
+		$(this).overlay({
+			// common configuration for each overlay
+			oneInstance: false,
+			closeOnClick: true,
+
+			// setup custom finish position
+			//top: positions[i][0],
+			//left: positions[i][1],
+
+			// use apple effect
+			mask: 'lightblue',
+            effect: 'apple',
+
+		onBeforeLoad: function() {
+
+			// grab wrapper element inside content
+			var wrap = this.getOverlay().find(".contentWrap");
+
+			// load the page specified in the trigger
+			wrap.load(this.getTrigger().attr("href"));
+		}
+		});
+	});
+    }
+
+    function expandColapseSection(){
+
+        if(!$(this).hasClass('enabled'))
+            return;
+
+        inner_container = $(this).siblings('.inner_container');
+
+        //minimize
+        if($(this).hasClass("tab_title_expanded")){
+            $(this).removeClass("tab_title_expanded");
+            $(this).addClass("tab_title_minimized");
+            $(this).find('img').attr("src", "/assets/Accordian/plus.gif");
+            $(this).find('h1').css({fontSize: "150%"});
+
+            inner_container.css("overflow-x" ,"hidden");
+            inner_container.css("overflow-y" ,"hidden");
+            inner_container.find('div.inner_container:first').parent().parent().children('*').children('div.inner_container').each(function(){
+                $(this).css("overflow-x" ,"hidden");
+                $(this).css("overflow-y" ,"scroll");
+            });
+
+
+            inner_container.children('div:first').animate({height: 'toggle'});
+            inner_container.find('> div.tabs > div').css("border", 0);
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
+
+            //inner_container.find('div.tabs2:first > ul').animate({width: '0'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css({width: '0'});
+
+            //inner_container.find('div.tabs2:first > div').animate({width: '100%'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width: '100%'});
+
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css("border-top", 0);
+            adjustHeight();
+            inner_container.find('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, true);
+            });
+        }
+
+        //expand
+        else{
+
+            $(this).removeClass("tab_title_minimized");
+            $(this).addClass("tab_title_expanded");
+            $(this).find('img').attr("src", "/assets/Accordian/bigminus.gif");
+            $(this).find('h1').css({fontSize: "300%"});
+
+            inner_container.css("overflow-x" ,"hidden");
+            inner_container.css("overflow-y" ,"scroll");
+            inner_container.find('div.inner_container:first').parent().parent().children('*').children('div.inner_container').each(function(){
+                $(this).css("overflow-x" ,"hidden");
+                $(this).css("overflow-y" ,"hidden");
+            });
+            inner_container.find('div.tabs:first > ul > li > a:first ').click();
+            inner_container.children('div:first').animate({height: 'toggle'});
+            inner_container.find('div.tabs:first > div').css("border", "1px solid #999");
+            inner_container.find('div.tabs:first > div').css("border-top", 0);
+            inner_container.find('> div.tabs:first > ul').animate({height: 'toggle'});
+            inner_container.find('> div.tabs:first > ul > li').animate({height: 'toggle'});
+
+            //inner_container.find('div.tabs2:first > ul').animate({width: 'toggle'});
+            inner_container.find('> div.tabs > div > div > div.tabs2 > ul').css("width", '132');
+
+            fullwidth = inner_container.find('div.tabs2:first').width();
+            ulWidth = inner_container.find('div.tabs2:first > ul').width();
+            inner_container.find('> div.tabs > div > div > div.tabs2 > div').css({width:fullwidth - 132});
+
+            inner_container.find('div.tabs2:first > div').css("border-top", "1px solid #999");
+            adjustHeight();
+            $('.inner_container').filter(function(){return $(this).width() > 0;}).each(function(){
+                adjustWidth($(this), false, false);
+            });
+        }
+
+        enableMinimizers()
+
+
+    }
+
+    function setUpSliders(){
+        //Expand/Collapse javascript
+        $(".content").hide();
+        $(".heading").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading").bind("click", function() {
+            $(this).next(".content").slideToggle(1200).scroll();
+        });
+    }
+
+    function cleanUp(pane){
+
+        pane.find('div.tabs, div.tabs2').each(function(){
+           $(this).find('ul:first').tabs($(this).find('div:first > div'));
+        });
+
+        pane.find(".content").hide();                             //toggle the componenet with class msg_body
+        pane.find(".heading").click(function() {
+            $(this).next(".content").slideToggle(1200).scroll();
+        });
+
+
+
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        pane.find(".accordion").accordion();
+        $("html").removeClass("js");
+
+        adjustWidth(pane.find('div.tabs2').find('.inner_container:first'), false, false);
+        adjustHeight();
+
+        enableMinimizers();
+
+
+    }
+
+    function enableMinimizers(){
+
+        minimized_sections = $('h1').filter(function(){return $(this).height() > 0 && $(this).parent().hasClass('tab_title_minimized');});
+        expanded_sections = $('h1').filter(function(){return $(this).height() > 0 && $(this).parent().hasClass('tab_title_expanded');});
+
+
+        minimized_sections.each(function(){
+            $(this).parent().removeClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/plusdisabled.gif");
+        });
+
+        expanded_sections.each(function(){
+            $(this).parent().removeClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/bigminusdisabled.gif");
+        });
+
+
+        minimized_sections.last().each(function(){
+            $(this).parent().addClass('enabled');
+            $(this).find('img').attr("src", "/assets/Accordian/plus.gif");
+        });
+
+
+        if($('h1').filter(function(){return $(this).height() > 0}).length > 1){
+            expanded_sections.first().each(function(){
+                $(this).parent().addClass('enabled');
+                $(this).find('img').attr("src", "/assets/Accordian/bigminus.gif");
+            });
+        }
+
+    }
+
+    function adjustHeight(){
+       $('.inner_container').each(function(){
+           if($(this).css("overflow-y") == "scroll"){
+               $(this).css("height", "630");
+           }
+            else {
+               $(this).css("height","100%");
+           }
+        });
+        $('.container').css({height:862});
+    }
+
+    function adjustWidth(pane, first, minimizing) {
+
+        tabs = pane.closest('div.tabs2');
+        if(tabs == null)
+            return;
+
+        tabwidth = Number(tabs.width());
+        ulWidth = Number(tabs.children('ul').width());
+        if(ulWidth == null)
+            ulWidth = 0;
+
+        //ulWidth = 0;
+        if(first)
+            tabs.find(' > div').width(tabwidth - ulWidth - 15);
+        else if(minimizing){
+            tabs.find(' > div').width(tabwidth - 134);
+            tabs.find(' > div').animate({width: tabwidth});
+        }
+        else
+            tabs.find(' > div').width(tabwidth - ulWidth);
+
+    }
+
+
+
+    function moveULs(){
+
+        $(document).find('div.tabs2 > ul').filter(function(){return $(this).height()>0;}).each(function(){
+
+            offset = $(document).find('.inner_container:first').offset().top + 3;
+            minimized_count = $(document).find('a.tab_title_expanded:first').parents('.inner_container').length;
+            offset += 57 * minimized_count;
+
+            if($(this).height() < $(document).find('a.tab_title_expanded:first').siblings('.inner_container').height() &&  $(this).parent().position().top < offset){
+               $(this).css("top", offset);
+               $(this).css("position", "fixed");
+
+            } else {
+               $(this).css("top", 0);
+               $(this).css("position", "");
+            }
+        });
+
+
+
+
+    }
+</script>
+
 
 

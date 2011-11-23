@@ -105,10 +105,10 @@ lumbarPlusAddOn = Component.create(name: "Chair Lumbar Add-On", description: "Lu
 lumbarPlusNone = Component.create(name: "Chair Lumbar No Add-On", description: "Lumbar Plus no Add-On for chair", group_id: addOnLumbarPlus.id)
 
 #Fluid Basic Stool Components - no group - required components for chair
-btoBasicStool = Component.create(name: "Fluid Basic Stool Back", description: "Back type for the Fluid Basic Stool", group_id: nil, code: "0")
-type82BasicStool = Component.create(name: "Fluid Basic Stool Seat", description: "Seat type for the Fluid Basic Stool", group_id: nil)
-base82BasicStool = Component.create(name: "Fluid Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
-casterBasicStool = Component.create(name: "Fluid Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
+btoBasicStool = Component.create(name: "Basic Stool Back", description: "Back type for the Fluid Basic Stool", group_id: nil, code: "0")
+type82BasicStool = Component.create(name: "Basic Stool Seat", description: "Seat type for the Fluid Basic Stool", group_id: nil)
+base82BasicStool = Component.create(name: "Basic Stool Base", description: "Base type for the Fluid Basic Stool", group_id: nil)
+casterBasicStool = Component.create(name: "Basic Stool Casters", description: "Caster type for the Fluid Basic Stool", group_id: nil)
 basicBackMesh = Component.create(name: "Basic Back Mesh", description: "Chair Basic Back Mesh", group_id: nil, code: "FM-BMESH")
 s810Ring = Component.create(name: "Chair Ring", description: "Ring type for a Chair", group_id: nil, code: "S8")
 chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for the Chair Model", group_id: nil, code: "shadow")
@@ -190,11 +190,11 @@ chairShadowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Se
 chairShadowImage.save!
 
 threedilogo = Image.create()
-threedilogo.picture = File.open("#{Rails.root}/app/assets/images/3di_media_server.png")
+threedilogo.picture = File.open("#{Rails.root}/app/assets/images/Company_Logo.png")
 threedilogo.save!
 
 banner = Image.create()
-banner.picture = File.open("#{Rails.root}/app/assets/images/banner.png")
+banner.picture = File.open("#{Rails.root}/app/assets/images/Company_Banner.png")
 banner.save!
 
 #f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)                   #TODO reenable this

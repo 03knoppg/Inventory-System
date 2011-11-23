@@ -30,7 +30,7 @@ module CategoriesHelper
   #print related category children
   def print_child_categories_table(parent)
     child = []
-    c = "<table><tr><th>Related Child Categories</th></tr>"
+    c = "<table><tr><th>Child Categories</th></tr>"
     #creates an array of children
     for cat in @all_categories
       if(cat.parent_id.eql?(parent.id))
@@ -54,12 +54,12 @@ module CategoriesHelper
   def print_parent_categories_table(parent)
      s="<table class=\"tight_table\">"
      s+="<tr>"
-     s+="<th align=\"left\">Related Categories</th>"
+     s+="<th align=\"left\">Categories</th>"
      s+="  </tr>"
 
      if(!parent.categories.empty?)
        for cat in  parent.categories.sort {|x,y| x.name <=> y.name }
-         s+="    <tr><td>#{link_to cat.name, cat}</td></tr>"
+         s+="    <tr><td>#{link_to cat.name, cat, :target => 'blank'}</td></tr>"
        end
      else
        s+="    <tr><td>No Categories</td></tr>"
@@ -75,7 +75,7 @@ module CategoriesHelper
   #print related products to this category
   def print_related_products_table
     srp = ""
-    srp += "<table><tr><th>Related Products</th>"
+    srp += "<table><tr><th>Products</th>"
     srp += "<th>Description</th></tr>"
     if(@related_products.empty?)
       srp += "<tr><td>No Products Available</td></tr>"

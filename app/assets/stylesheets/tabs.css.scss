@@ -13,6 +13,7 @@ div.tabs > ul {
 	list-style:none;
 	margin:0 !important;
 	padding:0;
+	padding-top:5px;
 	border-bottom:1px solid #666;
 	height:30px;
     //overflow:auto;
@@ -29,7 +30,7 @@ div.tabs > ul > li {
 
 /* link inside the tab. uses a background image */
 div.tabs > ul > li > a {
-	background: url(/assets/blue.png) no-repeat -420px 0;
+	background: url(Tabs/blue.png) no-repeat -420px 0;
 	font-size:11px;
 	display:block;
 	height: 30px;
@@ -42,10 +43,13 @@ div.tabs > ul > li > a {
 	margin:0px;
 	position:relative;
 	top:1px;
+    font-weight: bold;
+    overflow:hidden;
 }
 
 div.tabs > ul > a:active {
 	outline:none;
+    overflow:auto;
 }
 
 div.tabs > div {
@@ -96,9 +100,9 @@ div.tabs > ul > li >  a.xl.current { background-position: 0 -62px; }
 
 /*Tabs 2 */
 div.tabs2{
-    height:500px;
     padding:5px;
-    //overflow:hidden;
+    display: inline-block;
+    width: 99%;
 }
 div.tabs2 > ul{
     float:left;
@@ -106,45 +110,23 @@ div.tabs2 > ul{
     position: relative;
     padding-left:0px;
     margin:0;
-    width:140px;
-    height:100%;
+    width:132px;
+    overflow:hidden;
+    //position:fixed;
+
 }
 
 div.tabs2 > ul > li{
     display: block;
-    width:165;
     height: relative;
     color: #73736b;
 
 }
 
-div.tabs2 > ul > li:last-child{
-    display: block;
-    width:165;
-    height: 100%;
-    color: #73736b;
-    border-right:1px solid #666;
 
-}
-div.tabs2 > ul > li:last-child > a{
-    background: url(/assets/blue_side.png) no-repeat -422px 0;
-	font-size:11px;
-	display:block;
-	height: 30px;
-	line-height:30px;
-	width: 132px;
-	text-align:center;
-	text-decoration:none;
-	color:#333;
-	padding:0px;
-	margin:0px;
-	position:relative;
-    float:right;
-
-}
 
 div.tabs2 > ul > li > a{
-    background: url(/assets/blue_side.png) no-repeat -422px 0;
+    background: url(Tabs/blue_side.png) no-repeat -422px 0;
 	font-size:11px;
 	display:block;
 	height: 30px;
@@ -157,20 +139,19 @@ div.tabs2 > ul > li > a{
 	margin:0px;
 	position:relative;
     border-right:1px solid #666;
-    float:right;
+    font-weight: bold;
+    overflow:hidden;
 }
 
 
 div.tabs2 > div {
-    border:1px solid #999;
-    border-left:0;
+    border-top:1px solid #999;
     float:right;
     height:100%;
-    overflow-y:scroll;
 }
 
 div.tabs2 > div > div{
-padding:0px 5px;
+    padding:5px 5px;
 }
 
 
@@ -185,7 +166,8 @@ div.tabs2 > ul > li > a.current, div.tabs2 > ul > li > a.current:hover, div.tabs
 	background-position: -422px -62px;
 	cursor:defadiv ult !important;
 	color:#000 !important;
-    border-right: 1px solid transparent;
+    border-right: 0;
+    font-weight: bold;
 }
 
 /* Different widths for tabs2: use a class name: s, l, xl */
@@ -208,3 +190,7 @@ div.tabs2 > ul > li >  a.xl:hover 	{ background-position: 0 -31px; }
 
 div.tabs2 > ul > li >  a.xl.current { background-position: 0 -62px; }
 
+
+a.tab_title_expanded, a.tab_title_minimized {
+  text-decoration:none;
+}

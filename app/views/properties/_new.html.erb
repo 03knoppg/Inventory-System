@@ -1,0 +1,47 @@
+<%property = Property.new%>
+
+<%= form_for(property) do |f| %>
+    <% if property.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+          <ul>
+            <% property.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+      <h1 class="tight_h1">Creating New Property</h1>
+      <table class="main_table">
+      <tr>
+        <th align="left">Name&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Description&nbsp;<span style="color: red">*</span></th>
+        <th align="left">Field Type&nbsp;<span style="color: red">*</span></th>
+      </tr>
+      <tr>
+        <td>
+          <div class ="field">
+            <%= f.text_field :name, :required => true %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :description, :required => true %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.text_field :field_type, :required => true %>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+          <div class="right_div">
+        <input type="reset" />
+            <%= f.submit :class => "submit"%>
+          </div>
+<%end%>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
+<br class="clear" />

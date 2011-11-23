@@ -1,0 +1,78 @@
+<div>
+  <table class="tight_table main_table">
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+      <th align="left">Code</th>
+      <th align="left">Actions</th>
+    </tr>
+    <tr>
+      <td valign="top"><%= component.name %></td>
+      <td valign="top"><%= component.description %></td>
+      <td valign="top"><%= component.code %></td>
+      <td>
+        <div>
+
+          <!-- external page is given in the href attribute (as it should be) -->
+            <a href="#" rel="#overlay_component_<%=component.id%>" style="text-decoration:none" id="C<%=component.id%>" class="overlay" value="Edit Component>
+              <!-- remember that you can use any element inside the trigger -->
+              <!--input type="button" value="Edit Component" id="C<%#component.id%>""/-->
+              <%= image_tag "edit-icon.png", :title=>"Edit", :value=>"Edit Component"%>
+            </a>
+
+            <div class="apple_overlay" id="overlay_component_<%=component.id%>">
+              <!--<%#render("components/edit", :component => component) %> -->
+            </div>
+          <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :title=>"Delete", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+              <%# button_to "Delete component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+
+        </div>
+
+      </td>
+    </tr>
+
+  </table>
+  <div class="layer1">
+    <p class="heading">Click Here To Expand/Collapse Detailed component Information</p>
+    <div class="content">
+      <div class="inner_scroll_div">
+        <table class="tight_table">
+          <tr>
+            <td><%= print_products_table(component).html_safe %></td>
+            <td><%= print_component_parents_table(component).html_safe %></td>
+          </tr>
+          <tr>
+            <td><%= print_components_table(component).html_safe %></td>
+            <td><%= print_properties_table(component).html_safe %></td>
+          </tr>
+          <tr>
+            <td><%= print_images_table(component).html_safe %></td>
+            <td><%= print_datafiles_table(component).html_safe %></td>
+          </tr>
+          <tr><td>
+            <% group = component.group %>
+            <table>
+              <tr><th align="left">Related Group</th></tr>
+              <tr><td>
+                <% if(!group.nil?) %>
+                    <%= link_to("#{group.name} ", group) %>
+                <%else%>
+                    No Groups Available
+                    </td></tr><tr><td> <%=my_button_to "New Group", new_group_path, [component]%>
+                <%end%>
+                </td></tr>
+                </table>
+          </td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+   jQuery(function($) {
+  $('a[id="C<%=component.id%>"]').click(function(){
+            $.get("/admin/load_edit_component_page", {component_id: "<%=component.id%>"}, null, 'script');
+        });
+   });
+</script>

@@ -44,19 +44,22 @@ module ApplicationHelper
     return pt
   end
 
-  #Function to fill banner and log portion of web pages
+  #Function to fill banner and logo portion of web pages
   def banner
-    @images = Image.all
-    if(!@images.empty?)
-    for img in @images
-      if(img.picture_file_name == "3di_media_server.png")
-        @imagelogo = img.picture.url
-      end
-      if(img.picture_file_name == "banner.png")
-        @imagebanner = img.picture.url
+    if(@all_images.nil?)
+      @all_images = Image.all
+    end
+
+    if(!@all_images.empty?)
+      for img in @all_images
+        if(img.picture_file_name == "Company_Logo.png")
+          @imagelogo = img.picture.url
+        end
+        if(img.picture_file_name == "Company_Banner.png")
+          @imagebanner = img.picture.url
+        end
       end
     end
-  end
   end
 
 
@@ -77,8 +80,7 @@ module ApplicationHelper
 
     pt = "<ul "
     if(depth == 0)
-      @counter.nil?? @counter = 1 : @counter += 1
-      pt += "id=\"#{@counter}\" class=\"accordion\""
+      pt += "id=\"id#{Time.now.usec}\" class=\"accordion\""
     end
 
     pt+=">"
@@ -92,7 +94,7 @@ module ApplicationHelper
       end
        pt +=">"
 
-      if(item.is_a?(Category))         #not currently used
+      if(item.is_a?(Category))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Product))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label>"
@@ -135,8 +137,7 @@ module ApplicationHelper
 
     pt = "<ul style=\"list-style-type: none\" "
     if(depth == 0)
-      @counter.nil?? @counter = 1 : @counter += 1
-      pt += "id=\"#{@counter}\""
+      pt += "id=\"id#{Time.now.usec}"
       if(!items_hash.keys[0].is_a?(Group))
           pt+=" class=\"accordion\" "
       end
@@ -185,7 +186,210 @@ module ApplicationHelper
 
   end
 
+  #Function to build a checkbox list  - only usable for an array of the same class
+  def checkbox_list(items)
+    cl = "<ul>"
+    if(!items.empty?)
+      item_class = items[0].class.to_s
+      item_class_sub = item_class[0..0].to_s
+      for item in items
+        cl += "<li>#{check_box_tag(item_class +"_ids[]", item.id, @items_to_select.include?(item), :id=>"#{item_class_sub + "" + item.id.to_s}")}"
+        if(item.is_a?(Product))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(DataFile))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.filedata_file_name}</label></li>"
+        elsif(item.is_a?(Image))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.picture_file_name}</label></li>"
+        elsif(item.is_a?(Group))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(Property))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+        elsif(item.is_a?(Validation))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.extension}</label></li>"
+        elsif(item.is_a?(Valuefield))
+          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.fieldvalue}</label></li>"
+        end
+      end
+      cl += "</ul>"
+    end
+      return cl
+  end
 
+  #Recursive function for display categories or components - finds parents and then children and organizes them in this way to display
+  def main_menu_accord(items_hash, show_properties=false, depth=0)
+    if(depth == 0 && items_hash.keys.empty?)
+      return "No Items Available"
+    end
+    if(@items_to_select.nil?)
+      @items_to_select = []
+    end
+    if(items_hash.keys.empty?)
+      return ""
+    end
+    pt = "<ul "
+    if(depth == 0)
+      pt += "id=\"id#{Time.now.usec}\" class=\"accordion\""
+    end
+    pt+=">"
+    expand = true
+    for item in items_hash.keys
+      pt += "<li"
+      if(depth == 0 && expand && (!item.is_a?(Property) || !item.valuefields.empty?))
+        pt += " class=\"expand\""
+        expand = false
+      end
+       pt +=">"
+      if(item.is_a?(Category))
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+      elsif(item.is_a?(Component))
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+      end
+      pt += main_menu_accord(items_hash[item], show_properties, depth+1)
+      pt += "</li>"
+    end
+    pt += "</ul>"
+    return pt
+  end
+
+  #Prints a list of links for the Main Menu
+  def print_link_list(items)
+    linkString = ""
+    if(!items.empty?  && items[0].is_a?(Category))
+      linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
+    elsif(!items.empty?  && items[0].is_a?(Component))
+      linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
+    elsif(!items.empty?)
+      for item in items
+        if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
+          linkString += "<tr><td>#{link_to(item.name, 'tabs/' + item.id.to_s)}</td></tr>"
+        elsif(item.is_a?(DataFile))
+          linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Image))
+          linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Validation))
+          linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
+        elsif(item.is_a?(Valuefield))
+          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+        end
+      end
+    else
+      linkString += "<tr><td>None Available.</td></tr>"
+    end
+    return linkString
+  end
+
+   #Creates a hash for all categories
+   def all_category_hash(item=nil)
+     hash = {}
+     items = []
+     if(!item.nil?)
+        for cat in @all_categories
+          if(cat.parent_id.eql?(item.id))
+            items.push(cat)
+          end
+        end
+     else
+       for cat in @all_categories
+          if(cat.parent_id.nil?)
+            items.push(cat)
+          end
+        end
+     end
+     for cat in items
+       hash[cat] = all_category_hash(cat)
+     end
+     return hash
+   end
+
+  #Creates a hash for all groups
+  def all_group_hash
+    hash = {}
+    for group in @all_groups
+      hash[group] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all properties
+  def all_property_hash
+     hash = {}
+     items = @all_properties
+     for prop in items
+       hash[prop] = {}
+     end
+     return hash
+  end
+
+  #Creates a hash for all products
+  def all_product_hash
+    hash = {}
+    items = @all_products
+    for prod in items
+      hash[prod] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all components
+  def all_component_hash(item=nil)
+    hash = {}
+    items = []
+    if(!item.nil?)
+      items = item.components
+    else
+      for comp in @all_components
+        if(comp.component_parents.empty?)
+           items.push(comp)
+        end
+      end
+    end
+    for comp in items
+      hash[comp] = all_component_hash(comp)
+    end
+    return hash
+  end
+
+  #Creates a hash for all valuefields
+  def all_valuefield_hash
+    hash = {}
+    items = @all_valuefields
+    for vf in items
+      hash[vf] = {}
+    end
+    return hash
+  end
+
+   #Creates a hash for all images
+  def all_image_hash
+    hash = {}
+    items = @all_images
+    for img in items
+      hash[img] = {}
+    end
+    return hash
+  end
+
+   #Creates a hash for all images
+  def all_datafile_hash
+    hash = {}
+    items = @all_datafiles
+    for df in items
+      hash[df] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all images
+  def all_validation_hash
+    hash = {}
+    items = @all_validations
+    for vd in items
+      hash[vd] = {}
+    end
+    return hash
+  end
+
+  #Creates a hash for all products and components
   def all_prod_comp_hash(item=nil)
 
      hash = {}
@@ -193,7 +397,7 @@ module ApplicationHelper
      if(!item.nil?)
        items = item.components
      else
-       items = Product.all
+       items = @all_products
      end
 
      for comp in items
@@ -211,7 +415,7 @@ module ApplicationHelper
   def all_prop_vf_hash
 
      hash = {}
-     items = Property.all
+     items = @all_properties
 
      for prop in items
 
@@ -227,57 +431,9 @@ module ApplicationHelper
 
   end
 
-  def all_prop_hash
 
-     hash = {}
-     items = Property.all
 
-     for prop in items
 
-       hash[prop] = {}
-
-     end
-
-     return hash
-
-  end
-
-  def all_category_hash(item=nil)
-
-     hash = {}
-     items = []
-
-     if(!item.nil?)
-        for cat in @all_categories
-          if(cat.parent_id.eql?(item.id))
-            items.push(cat)
-          end
-        end
-     else
-       for cat in @all_categories
-          if(cat.parent_id.nil?)
-            items.push(cat)
-          end
-        end
-     end
-
-     for cat in items
-
-       hash[cat] = all_category_hash(cat)
-
-     end
-
-     return hash
-
-   end
-
-  def all_group_hash
-    hash = {}
-    for group in Group.all
-      hash[group] = {}
-    end
-    return hash
-  end
 
 
 

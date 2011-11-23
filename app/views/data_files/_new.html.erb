@@ -1,0 +1,69 @@
+<%data_file = DataFile.new%>
+<%= form_for(data_file, :html => { :multipart => true }) do |f| %>
+    <% if data_file.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this data file from being saved:</h2>
+
+          <ul>
+            <% data_file.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+   <h1 class="tight_h1">Creating New Data File</h1>
+    <table class="main_table">
+      <tr>
+        <th align="left">Data File&nbsp;<span style="color: red">*</span></th>
+      </tr>
+      <tr>
+        <td style="width: 325px">
+          <div class ="field" style="padding-bottom: 10px">
+            <%= f.file_field(:filedata, :id => "fd") %>
+          </div>
+          <%if(!data_file.id.nil?)%>
+              <div class align="field">
+                <%=text_field_tag("", data_file.filedata_file_name, :id => "fn", :size => 30) %>
+              </div>
+          <%end%>
+        </td>
+
+</tr>
+</table>
+   <table>
+     <tr>
+        <th align="left">Products / Components</th>
+        <th align="left">Valuefields</th>
+     </tr>
+     <tr>
+       <td>
+          <div class="field">
+            <%= checkbox_accord(all_prod_comp_hash).html_safe%>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= checkbox_accord(all_prop_vf_hash).html_safe%>
+          </div>
+        </td>
+     </tr>
+   </table>
+<br class="clear" />
+    <div class="right_div">
+        <input type="reset" />
+            <%= f.submit :class => "submit"%>
+          </div>
+<% end %>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
+
+<!--Script used to remove current image from edit page when user file_field input changes -->
+<script type="text/javascript">
+    jQuery(function($){
+                $('#fd').change(
+                        function(){
+                            $('#fn').remove();
+                        }
+                )
+            }
+    )
+</script>

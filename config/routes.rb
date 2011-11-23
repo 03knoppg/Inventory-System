@@ -50,6 +50,13 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "admin/home"
   get "admin/addvalue"
+  get "admin/load_component_tab"
+  get "admin/load_new_vf_page"
+  get "admin/load_new_image_page"
+  get "admin/load_new_df_page"
+  get "admin/load_edit_product_page"
+  get "admin/load_new_component_page"
+  get "admin/load_edit_component_page"
   get "admin/updatecategory"
   post "admin/addvalue"
   get "admin/writefile"
@@ -66,11 +73,11 @@ TestDBRubymineProject::Application.routes.draw do
 
   match 'admin', :to => 'admin#home'
   match 'tabs/:id', :to => 'admin#tabs'
-
   match 'admin_addvalue', :to => 'admin#addvalue'
 
-
-
+  match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product
+  match 'tabs/products/edit/:id', :to => 'products#_edit'
+  match 'tabs/components/edit/:id', :to => 'components#_edit'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

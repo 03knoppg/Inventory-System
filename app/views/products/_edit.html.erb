@@ -1,61 +1,136 @@
+<% @items_to_select = (@product_categories + @product_components + @product_valuefields + @product_images + @product_datafiles) %>
 <div class="pop_container">
-<%= form_for(@product) do |f| %>
-    <% if @product.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-          <ul>
-            <% @product.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-     <div>
-    <table>
-      <tr>
-        <th align="left">Name&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Description&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Code</th>
-      </tr>
-      <tr>
-        <td>
-          <div class ="field">
-            <%= f.text_field :name, :required => true %>
+  <h1>Editing Product: <%=@product.name%></h1>
+  <%= form_for(@product, :remote => true) do |f| %>
+      <% if @product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <ul>
+              <% @product.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
           </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :description, :required => true %>
-          </div>
-        </td>
-        <td>
-          <div class="field">
-            <%= f.text_field :code %>
-          </div>
-        </td>
+      <% end %>
+      <div class="inner_pop_container">
+        <table>
+          <tr>
+            <th align="left">Name</th>
+            <th align="left">Description</th>
+            <th align="left">Code</th>
+          </tr>
+          <tr>
+            <td>
+              <div class ="field">
+                <%= f.text_field :name, :required => true, :size=>20 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :description, :required => true, :size=>20 %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= f.text_field :code, :size=>20 %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <h2>Click Below to Expand/Collapse links and Select Check Box to Add or Remove from <%=@product.name %></h2>
+        <table>
+          <tr>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Categories</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                      <%= checkbox_accord(all_category_hash).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Components</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                      <%= checkbox_accord(all_component_hash).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Value Fields</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                      <%= checkbox_accord(all_prop_vf_hash).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="layer1">
+                <p class="heading_main_menu">Images</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table">
+                      <%= checkbox_list(@all_images).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="layer1">
+                <p class="heading_main_menu">Data File</p>
+                <div class="content_main_menu">
+                  <div>
+                    <table class="tight_table" style="display: inline">
+                      <%= checkbox_list(@all_datafiles).html_safe %>
+                    </table>
+                  </div>
+                </div>
+              </div>
 
-</tr>
-</table>
-       <table>
-         <tr>
-        <th align="left">Categories&nbsp;<span style="color: red">*</span></th>
-             </tr>
-         <tr>
-           <td>
-          <div class="field">
-                <%= checkbox_accord(all_category_hash).html_safe %>
-
-
-          </div>
-        </td>
-         </tr>
-       </table>
-</div>
-<div class="right_div">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="right_div">
         <input type="reset" />
-            <%= f.submit :class => "submit"%>
-          </div>
-<% end %>
-<h5>Required fields are marked with <span style="color: red">*</span></h5>
-<br class="clear" />
-    </div>
+        <%= f.submit :class => "submit"%>
+      </div>
+  <% end %>
+  <br class="clear" />
+</div>
+
+ <script type="text/javascript">
+  jQuery(function($) {
+      //Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
+
+      <!--//--><![CDATA[//><!--
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
+  })
+</script>

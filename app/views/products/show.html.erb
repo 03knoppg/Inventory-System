@@ -1,5 +1,6 @@
 <p id="notice"><%# notice %></p>
 <h1>Viewing Product: <%=@product.name%></h1>
+<div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
   <tr>
@@ -13,23 +14,37 @@
     <td valign="top"><%= @product.code %></td>
   </tr>
 </table>
-
-
-    <%= print_parent_categories_table(@product).html_safe %>
-
-    <%= print_components_table(@product).html_safe %>
-
-    <%= print_properties_table(@product).html_safe %>
-
-    <%= print_images_table(@product).html_safe %>
-
-    <%= print_datafiles_table(@product).html_safe %>
-
-
+  <div class="tabs">
+    <ul>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Components</a></li>
+      <li><a href="#">Value Fields</a></li>
+      <li><a href="#">Images</a></li>
+      <li><a href="#">Data Files</a></li>
+    </ul>
+    <div>
+      <div>
+        <%= print_parent_categories_table(@product).html_safe %>
+    </div>
+      <div>
+        <%= print_components_table(@product).html_safe %>
+    </div>
+      <div>
+        <%= print_properties_table(@product).html_safe %>
+    </div>
+      <div>
+        <%= print_images_table(@product).html_safe %>
+    </div>
+      <div>
+        <%= print_datafiles_table(@product).html_safe %>
+      </div>
+  </div>
+    </div>
   <br/>
 </div>
+</div>
 <div class="right_div">
-  <%= button_to "Edit Product", edit_product_path(@product), :method => :get %>
+  <%= button_to "Edit Product", tab_product_path, :product => @product, :method => :get %>
   <%= button_to "Delete Product", {:controller => :products, :action => "destroy", :id => @product.id }, :confirm => "Are You sure?", :method => :delete%>
   <%= button_to "Duplicate Product", new_product_path + "?duplicate_product=#{@product.id}"%>
 </div>

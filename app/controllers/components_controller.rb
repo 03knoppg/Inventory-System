@@ -36,7 +36,7 @@ class ComponentsController < ApplicationController
     #creates a sorted array of all properties
     @all_properties = Property.all.sort {|x,y| x.name <=> y.name }
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # popup_showp_show.html.erb
       format.json { render json: @component }
        format.xml { render :xml => @component }
     end
@@ -159,6 +159,41 @@ class ComponentsController < ApplicationController
       @component.group = Group.find(Integer(params[:new_group_id]))
     end
 
+    #Images
+    if(!@component.images.nil?)
+      @component.images.clear
+    end
+    if(!params[:Image_ids].nil?)
+      for id in params[:Image_ids]
+        @component.images.push(Image.find(id))
+      end
+    end
+
+    #Data Files
+    if(!@component.data_files.nil?)
+      @component.data_files.clear
+    end
+    if(!params[:DataFile_ids].nil?)
+      for id in params[:DataFile_ids]
+        @component.data_files.push(DataFile.find(id))
+      end
+    end
+
+    #Valuefields
+    if(!@component.valuefields.nil?)
+      @component.valuefields.clear
+      @component.properties.clear
+    end
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @component.valuefields.push(Valuefield.find(id))
+      end
+      for vf in @component.valuefields
+        if(!@component.properties.include?(Property.find(vf.property_id)))
+          @component.properties.push(Property.find(vf.property_id))
+        end
+      end
+    end
     #Local variables
     #creates an array of component parents
     component_parents_val = @component.component_parents
@@ -172,6 +207,11 @@ class ComponentsController < ApplicationController
     #Loop to remove products
     for prod in component_products_val
       prod.components.delete(@component)
+    end
+
+    #Loop to remove children
+    for comp in component_children_val
+      comp.components.delete(@component)
     end
 
     if(!params[:new_components_ids].nil?)

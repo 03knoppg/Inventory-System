@@ -54,11 +54,11 @@ module ComponentsHelper
 
     items = parent.component_parents
     part = "<table>"
-    part += "<tr><th align=\"Left\">Related Parent Components</th></tr>"
+    part += "<tr><th align=\"Left\">Parent Components</th></tr>"
 
     if(!items.empty?)
       for comp in items.sort!
-        part += "<tr><td>#{link_to(comp.name, comp)}</td></tr>"
+        part += "<tr><td>#{link_to(comp.name, comp, :target => 'blank')}</td></tr>"
       end
     else
       part += "<tr><td>No Parents Available</td></tr>"
@@ -68,19 +68,21 @@ module ComponentsHelper
   end
 
   #Function to print children of component
-  def print_components_table (parent)
+  def print_components_table (parent, button=true)
 
     children = parent.components
     ch = "<table class=\"tight_table\">"
-    ch +="<tr><th align=\"Left\">Related Components</th></tr>"
+    ch +="<tr><th align=\"Left\">Components</th></tr>"
     if(!children.empty?)
       for child in children.sort!
-        ch+= "<tr><td>#{link_to(child.name, child)}</td></tr>"
+        ch+= "<tr><td>#{link_to(child.name, child, :target => 'blank')}</td></tr>"
       end
     else
       ch+= "<tr><td>No Components Available</td></tr>"
     end
-    ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td></tr>"
+    if(button)
+      ch += "<tr><td>#{my_button_to( "New Child Component", "/components/new", [parent])}</td></tr>"
+    end
     ch += "</table>"
     return ch
 

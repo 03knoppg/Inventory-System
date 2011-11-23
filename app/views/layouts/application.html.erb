@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TestDBRubymineProject</title>
+  <title>3Di Media Server</title>
   <%= stylesheet_link_tag 'application', :media => 'screen'%>
-   <%= javascript_include_tag "application"%>
-
-
+  <%= javascript_include_tag "application"%>
   <!-- include the Tools -->
   <%= csrf_meta_tags %>
-
 </head>
 <body>
 <div class="container">
@@ -45,7 +42,7 @@
     // setup ul.tabs to work as tabs for each div directly under div.panes
 
     $('div.tabs').each(function(){
-       $(this).find('ul:first').tabs($(this).find('div:first > div'), {effect: 'fade', fadeOutSpeed: 400});
+       $(this).find('ul:first').tabs($(this).find('div:first > div'));
     });
 
     $('div.tabs2').each(function(){
@@ -77,7 +74,7 @@ $(function() {
   $(".accordion").accordion();
 
 
-  $("html").removeClass("js");
+  //$("html").removeClass("js");
 });
 //--><!]]>
 

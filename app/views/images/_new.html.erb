@@ -1,0 +1,70 @@
+<%image = Image.new%>
+<%= form_for(image, :html => { :multipart => true }) do |f| %>
+    <% if image.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+          <ul>
+            <% image.errors.full_messages.each do |msg| %>
+                <li><h2><%= msg %></h2></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+   <h1 class="tight_h1">Creating New Image</h1>
+    <table class="main_table">
+      <tr>
+        <th align="left">Image&nbsp;<span style="color: red">*</span></th>
+      </tr>
+      <tr>
+         <td style="width: 325px">
+          <div class ="field" style="padding-bottom: 10px">
+            <%= f.file_field(:picture, :id => "pic", :required => true) %>
+          </div>
+          <div class align="field">
+            <%if(!image.picture_file_name.nil?)%>
+                <%=image_tag(image.picture(:small), :id => "img", :alt=>"") %>
+            <%end%>
+          </div>
+        </td>
+
+</tr>
+</table>
+   <table>
+     <tr>
+        <th align="left">Products / Components</th>
+        <th align="left">Valuefields</th>
+     </tr>
+     <tr>
+       <td>
+          <div class="field">
+            <%= checkbox_accord(all_prod_comp_hash).html_safe%>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= checkbox_accord(all_prop_vf_hash).html_safe%>
+          </div>
+        </td>
+     </tr>
+   </table>
+          <div class="right_div">
+        <input type="reset" />
+            <%= f.submit :class => "submit"%>
+          </div>
+<% end %>
+<h5>Required fields are marked with</h5>
+<br class="clear" />
+
+<!--Script used to remove current image from edit page when user file_field input changes -->
+<script type="text/javascript">
+    jQuery(function($){
+                $('#pic').change(
+                        function(){
+                            $('#img').remove();
+                            $('#img').change($('#pic').value)
+                        }
+                )
+            }
+    )
+</script>

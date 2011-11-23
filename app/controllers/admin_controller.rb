@@ -9,35 +9,112 @@ class AdminController < ApplicationController
     @product_properties = @product.properties
     @product_images = @product.images
     @product_datafiles = @product.data_files
-    @groups = Group.all
-    @properties = Property.all
 
-    @reset_component = Component.new
-  end
-
-  #Update category for tabs page
-  def updatecategory
-    @all_categories = Category.all
-    @category = Category.new(params[:category])
-    @category.name = "name"
-
-    if @category.save
-      respond_to do |format|
-        format.js
-      end
-     #
-     # else
-     #   format.html { render action: "categories/new", :controller => :categories }
-     #   format.json { render json: @category.errors, status: :unprocessable_entity }
-    end
   end
 
   def home
+     @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
   end
 
   def writefile
     path = params[:path]    #the permuted path
   end
+
+  def load_edit_product_page
+
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+
+    @product = Product.find(params[:product_id])
+
+    @product_components = @product.components
+    @product_valuefields = @product.valuefields
+    @product_properties = @product.properties
+    @product_images = @product.images
+    @product_datafiles = @product.data_files
+    @product_categories = @product.categories
+
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_edit_component_page
+    @all_groups = Group.all
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+    @component = Component.find(params[:component_id])
+
+    @component_components = @component.components
+    @component_valuefields = @component.valuefields
+    @component_properties = @component.properties
+    @component_images = @component.images
+    @component_datafiles = @component.data_files
+    @component_products = @component.products
+    @component_group = @component.group
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_vf_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_image_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_df_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_new_component_page
+    @all_properties = Property.all
+    @all_products = Product.all
+    @all_groups = Group.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def load_component_tab
+
+    @item_id = params[:item]
+
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
 
   def addvalue
     @tmp_array = []
@@ -263,7 +340,6 @@ class AdminController < ApplicationController
   end
 
   def debug_hash(hash)
-    logger.info("\n\n\n\n\n\n\nHASH:\n\n")
     for key in hash.keys
       logger.info("#{key.inspect}\n")
       for val in hash[key]

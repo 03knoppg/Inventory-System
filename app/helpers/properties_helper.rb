@@ -31,27 +31,30 @@ module PropertiesHelper
   end
 
   #Function to print properties table
-  def print_properties_table(parent)
+  def print_properties_table(parent, button=true)
     s = "<table class=\"tight_table\">"
     s +=" <tr>"
-    s +="  <th align=\"left\">Related Properties</th>"
-    s +="    <th align=\"left\">Related Values</th>"
+    s +="  <th align=\"left\">Properties</th>"
+    s +="    <th align=\"left\">Values</th>"
     s +="  </tr>"
     properties = parent.properties.sort {|x,y| x.name <=> y.name }
 
     if(!properties.empty?)
       for prop in properties
         valuefields = prop.valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue }
-        s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop)} </td>"
+        s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop, :target => 'blank')} </td>"
 
         if(!valuefields.empty?)
           s +=      "<td><table>"
                 for val in valuefields
 
-          s +=        "<tr><td> #{link_to(val.fieldvalue, val)} </td></tr>"
+                  s +=        "<tr><td> #{link_to(val.fieldvalue, val)} </td></tr>"
 
+                end
+          if(button)
+            s +=       "<tr><td> #{my_button_to "New #{prop.name} Valuefield", new_valuefield_path, [parent, prop]} </td></tr>"
           end
-          s +=       "<tr><td> #{my_button_to "New #{prop.name} Valuefield", new_valuefield_path, [parent, prop]} </td></tr>"
+
           s +=        "</table></td>"
         else
           s +=        "<td>No valuefields</td>"
@@ -62,8 +65,9 @@ module PropertiesHelper
     else
       s +=  "<tr><td>No properties</td><td>No values</td></tr>"
     end
-
-    s +=       "<tr><td> #{my_button_to "New Property", new_property_path, [parent]} </td><td>#{my_button_to "New Valuefield", new_valuefield_path, [parent]}</td></tr>"
+    if(button)
+      s +=       "<tr><td> #{my_button_to "New Property", new_property_path, [parent]} </td><td>#{my_button_to "New Valuefield", new_valuefield_path, [parent]}</td></tr>"
+    end
     s += "</table>"
 
     return s
@@ -72,7 +76,7 @@ module PropertiesHelper
    def print_property_table(parent)
     s = "<table style=\"padding-top: 15px\">"
     s +=" <tr>"
-    s +="  <th align=\"left\">Related Property</th>"
+    s +="  <th align=\"left\">Property</th>"
     s +="  </tr>"
     prop = parent.property
 
