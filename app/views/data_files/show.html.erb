@@ -7,32 +7,73 @@
   <tr>
     <th align="left">Data File</th>
     <th align="left">Preview</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= @data_file.filedata_file_name %></td>
     <td><%= link_to("Preview Data File", @data_file.filedata.url, {:target => "blank"})%></td>
+    <td>
+      <%= link_to image_tag("duplicate.png"), new_data_file_path + "?duplicate_data_file=#{@data_file.id}", :title=>"Duplicate"%>
+         &nbsp
+         <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
+
+
+         <div class="apple_overlay" id="overlay">
+           <h1>Editing Category: <%=@data_file.filedata_file_name%></h1>
+           <%= render 'form' %>
+         </div>
+       &nbsp
+      <%= link_to image_tag("delete-icon.png"), {:controller => :data_files, :action => "destroy",  :id => @group.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+    </td>
   </tr>
 </table>
+  <div  class="tabs">
     <!-- the tabs -->
-<ul class="tabs">
-	<li><a href="#">Associations</a></li>
+<ul>
+	<li><a href="#">Products</a></li>
+	<li><a href="#">Components</a></li>
+	<li><a href="#">Value Fields</a></li>
 </ul>
 <!-- tab "panes" -->
-<div class="panes">
+<div>
   <div>
 <%= print_products_table(@data_file).html_safe%>
-
+   </div><div>
 <%= print_components_table(@data_file).html_safe%>
-
+</div><div>
 <%= print_valuefields_table(@data_file).html_safe %>
 
   </div>
   </div>
   </div>
   </div>
-<div class="right_div">
-    <%= button_to "Edit Data File", edit_data_file_path(@data_file), :method => :get %>
-    <%=button_to "Delete Data File", {:controller => :data_files, :action => "destroy", :id => @data_file.id }, :confirm => "Are You sure?", :method => :delete%>
 </div>
 
+<script>
+    // What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+    $(document).ready(function() {
 
+        $("img[rel]").overlay({
+        			// common configuration for each overlay
+        			oneInstance: false,
+        			closeOnClick: true,
+
+        			// setup custom finish position
+        			//top: positions[i][0],
+        			//left: positions[i][1],
+
+        			// use apple effect
+        			mask: 'lightblue',
+                    effect: 'apple',
+
+        		onBeforeLoad: function() {
+
+        			// grab wrapper element inside content
+        			var wrap = this.getOverlay().find(".contentWrap");
+
+        			// load the page specified in the trigger
+        			wrap.load(this.getTrigger().attr("href"));
+        		}
+        });
+    });
+</script>

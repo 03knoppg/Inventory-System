@@ -6,12 +6,24 @@
   <tr>
     <th align="left">Name</th>
     <th align="left">Description</th>
-    <th align="left">field type</th>
+    <th align="left">Type</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @property.name %></td>
     <td><%= @property.description %></td>
     <td><%= @property.field_type %></td>
+    <td>
+      <%= link_to image_tag("duplicate.png"), new_property_path + "?duplicate_property=#{@property.id}", :title=>"Duplicate"%>
+      &nbsp
+      <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
+      <div class="apple_overlay" id="overlay">
+        <h1>Editing Category: <%=@property.name%></h1>
+        <%= render 'form' %>
+      </div>
+    &nbsp
+    <%= link_to image_tag("delete-icon.png"), {:controller => :properties, :action => "destroy",  :id => @property.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+    </td>
   </tr>
 </table>
 
@@ -43,7 +55,32 @@
             $.get("/valuefields/new", {property_id: "<%=@property.id%>"}, null);
             return false;
         });
-    });
- </script>
+
+
+            $("img[rel]").overlay({
+            			// common configuration for each overlay
+            			oneInstance: false,
+            			closeOnClick: true,
+
+            			// setup custom finish position
+            			//top: positions[i][0],
+            			//left: positions[i][1],
+
+            			// use apple effect
+            			mask: 'lightblue',
+                        effect: 'apple',
+
+            		onBeforeLoad: function() {
+
+            			// grab wrapper element inside content
+            			var wrap = this.getOverlay().find(".contentWrap");
+
+            			// load the page specified in the trigger
+            			wrap.load(this.getTrigger().attr("href"));
+            		}
+            });
+        });
+    </script>
+
 
 

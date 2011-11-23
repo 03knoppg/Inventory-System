@@ -3,17 +3,33 @@ class AdminController < ApplicationController
 
   #Function for tabs page
   def tabs
-    @product = Product.find(params[:id])
-    @product_components = @product.components
-    @product_valuefields = @product.valuefields
-    @product_properties = @product.properties
-    @product_images = @product.images
-    @product_datafiles = @product.data_files
+    if(params[:type] == "product")
+      @product = Product.find(params[:id])
 
+      @product_components = @product.components
+      @product_valuefields = @product.valuefields
+      @product_properties = @product.properties
+      @product_images = @product.images
+      @product_datafiles = @product.data_files
+    else
+      @component = Component.find(params[:id])  
+      @component_components = @component.components
+      @component_valuefields = @component.valuefields
+      @component_properties = @component.properties
+      @component_images = @component.images
+      @component_data_files = @component.data_files
+    end
+
+
+
+    respond_to do |format|
+      format.html
+    end
   end
 
+
   def home
-     @all_properties = Property.all
+    @all_properties = Property.all
     @all_categories = Category.all
     @all_components = Component.all
     @all_products = Product.all

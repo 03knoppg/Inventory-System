@@ -31,6 +31,8 @@ class CategoriesController < ApplicationController
     #creates a sorted array using all related products
     @related_products = @category.products.sort {|x,y| x.name <=> y.name }
 
+    @category_parent = Category.find(@category.parent_id)
+
     respond_to do |format|
       format.html # popup_showp_show.html.erb
       format.json { render json: @category }
@@ -47,9 +49,10 @@ class CategoriesController < ApplicationController
     #if statement for duplicating a record
     if params[:duplicate_category]
         #Assign category to be duplicated
-        category_to_duplicate = [Category.find(params[:duplicate_category])]
+        category_to_duplicate = Category.find(params[:duplicate_category])
         #set @category to duplicated info minus id
         @category = category_to_duplicate.dup
+      @items_to_select = [Category.find(@category.parent_id)]
     else
         #New category
         @category = Category.new

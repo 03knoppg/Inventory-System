@@ -109,7 +109,7 @@
             $('#property_div').show();
             $('#submit_div').show();
             $('#main_div').show();
-        } else if("<%= !@valuefield.products.empty? || !@valuefield.components.empty?  %>" == "true"){
+        } else if("<%= !@items_to_select.empty? || !@valuefield.products.empty? || !@valuefield.components.empty?  %>" == "true"){
             $('#other_div').show();
             $('#property_div').show();
             $('#submit_div').show();

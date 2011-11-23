@@ -242,7 +242,7 @@ module ApplicationHelper
       if(item.is_a?(Category))
         pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
       elsif(item.is_a?(Component))
-        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, 'tabs/component/' + item.id.to_s)}</label>"
       end
       pt += main_menu_accord(items_hash[item], show_properties, depth+1)
       pt += "</li>"
@@ -253,27 +253,38 @@ module ApplicationHelper
 
   #Prints a list of links for the Main Menu
   def print_link_list(items)
-    linkString = ""
-    if(!items.empty?  && items[0].is_a?(Category))
-      linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
-    elsif(!items.empty?  && items[0].is_a?(Component))
-      linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
-    elsif(!items.empty?)
-      for item in items
-        if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
-          linkString += "<tr><td>#{link_to(item.name, 'tabs/' + item.id.to_s)}</td></tr>"
-        elsif(item.is_a?(DataFile))
-          linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
-        elsif(item.is_a?(Image))
-          linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
-        elsif(item.is_a?(Validation))
-          linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
-        elsif(item.is_a?(Valuefield))
-          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+
+    if(!items.empty?)
+      if(items[0].is_a?(Category))
+        linkString = "<tr><td>"
+        linkString += "#{main_menu_accord(all_category_hash)}"
+        linkString +="</td></tr>"
+      elsif(items[0].is_a?(Component))
+        linkString = "<tr><td>"
+        linkString += "#{main_menu_accord(all_component_hash)}"
+        linkString +="</td></tr>"
+      else
+        linkString = ""
+        for item in items
+          linkString += "<tr><td>"
+          if(item.is_a?(Product))
+            linkString += "#{link_to(item.name, 'tabs/product/' + item.id.to_s)}"
+          elsif(item.is_a?(Group) || item.is_a?(Property))   
+            linkString += "#{link_to(item.name, item)}"
+          elsif(item.is_a?(DataFile))
+            linkString += "#{link_to(item.filedata_file_name, item)}"
+          elsif(item.is_a?(Image))
+            linkString += "#{link_to(item.picture_file_name, item)}"
+          elsif(item.is_a?(Validation))
+            linkString += "#{link_to(item.extension, item)}"
+          elsif(item.is_a?(Valuefield))
+            linkString += "#{link_to(item.fieldvalue, item)}"
+          end
+          linkString +="</td></tr>"
         end
       end
     else
-      linkString += "<tr><td>None Available.</td></tr>"
+      linkString += "None Available."
     end
     return linkString
   end

@@ -34,7 +34,17 @@ class GroupsController < ApplicationController
   #Function for new page
   def new
     #create a new group
-    @group = Group.new
+    #if statement for duplicating a record
+    if params[:duplicate_group]
+        #Assign value to be duplicated
+        value_to_duplicate = Group.find params[:duplicate_group]
+        #set value to duplicated info minus id
+        @group = value_to_duplicate.dup
+    else
+        #New category
+        @group = Group.new
+
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }

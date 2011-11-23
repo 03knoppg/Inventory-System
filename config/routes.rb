@@ -72,7 +72,7 @@ TestDBRubymineProject::Application.routes.draw do
   post "valuefields/new"
 
   match 'admin', :to => 'admin#home'
-  match 'tabs/:id', :to => 'admin#tabs'
+  match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'admin_addvalue', :to => 'admin#addvalue'
 
   match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product

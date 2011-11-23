@@ -17,6 +17,8 @@ class ImagesController < ApplicationController
   def show
     #Finds selected image
     @image = Image.find(params[:id])
+    @all_products = Product.all
+    @all_properties = Property.all
 
     respond_to do |format|
       format.html # show.html.erbml.erb
@@ -36,17 +38,27 @@ class ImagesController < ApplicationController
     @all_components = Component.all
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
+    @all_properties = Property.all
 
-    if(!params[:product_id].nil?)
-      @items_to_select = Product.find(params[:product_id])
-    end
+    if params[:duplicate_image]
+       #Assign value to be duplicated
+       value_to_duplicate = Image.find(params[:duplicate_image])
+       #set value to duplicated info minus id
+       @item = value_to_duplicate.dup
+       @items_to_select = value_to_duplicate.components + value_to_duplicate.products + value_to_duplicate.valuefields
+    else
 
-    if(!params[:component_id].nil?)
-      @items_to_select = Component.find(params[:component_id])
-    end
+      if(!params[:product_id].nil?)
+        @items_to_select = Product.find(params[:product_id])
+      end
 
-     if(!params[:valuefield_id].nil?)
-      @items_to_select = Valuefield.find(params[:valuefield_id])
+      if(!params[:component_id].nil?)
+        @items_to_select = Component.find(params[:component_id])
+      end
+
+       if(!params[:valuefield_id].nil?)
+        @items_to_select = Valuefield.find(params[:valuefield_id])
+       end
     end
 
     respond_to do |format|
