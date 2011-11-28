@@ -134,7 +134,6 @@
             enableMinimizers();
         });
 
-
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
          adjustHeight();
@@ -146,7 +145,7 @@
     function setUpPopUp(){
          // setup triggers
 	$("a[rel]").each(function(i) {
-		$(this).overlay({
+        $(this).overlay({
 			// common configuration for each overlay
 			oneInstance: false,
 			closeOnClick: true,
