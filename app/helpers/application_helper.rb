@@ -137,9 +137,9 @@ module ApplicationHelper
 
     pt = "<ul style=\"list-style-type: none\" "
     if(depth == 0)
-      pt += "id=\"id#{Time.now.usec}"
+      pt += "id=\"id#{Time.now.usec}\""
       if(!items_hash.keys[0].is_a?(Group))
-          pt+=" class=\"accordion\" "
+          pt+=' class="accordion"'
       end
 
     end

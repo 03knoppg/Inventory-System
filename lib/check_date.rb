@@ -5,6 +5,10 @@ class CheckDate
 
   def check_date(client_date)
 
+    records = Updaterecord.all(:conditions => ["time > (?)", client_date])
+
+    return records
+=begin
     @needs_update = []
 
     xml_file = File.open("/home/franz2/testXML.xml", "r")
@@ -16,7 +20,7 @@ class CheckDate
     check_need_update(root, client_date)
 
     return @needs_update
-
+=end
   end
 
   def check_need_update(elt, client_date)

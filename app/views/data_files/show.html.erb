@@ -23,7 +23,7 @@
            <%= render 'form' %>
          </div>
        &nbsp
-      <%= link_to image_tag("delete-icon.png"), {:controller => :data_files, :action => "destroy",  :id => @group.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+      <%= link_to image_tag("delete-icon.png"), {:controller => :data_files, :action => "destroy",  :id => @data_file.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
     </td>
   </tr>
 </table>

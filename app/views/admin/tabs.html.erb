@@ -8,24 +8,24 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('.new_vf').live('click', function(){
+        $('a.new_vf').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.vf_container:first');
             container.addClass("new_vf_container");
             $.get("/admin/load_new_vf_page", null, 'script');
         });
-        $('.new_image').live('click', function(){
+        $('a.new_image').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.image_container:first');
             container.addClass("new_image_container");
             $.get("/admin/load_new_image_page", null, 'script');
         });
 
-        $('.new_df').live('click', function(){
+        $('a.new_df').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.df_container:first');
             container.addClass("new_df_container");
             $.get("/admin/load_new_df_page", null, 'script');
         });
 
-        $('.new_component').live('click', function(){
+        $('a.new_component').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.component_container:first');
             container.addClass("new_component_container");
             $.get("/admin/load_new_component_page", null, 'script');

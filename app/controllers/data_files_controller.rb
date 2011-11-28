@@ -40,6 +40,7 @@ class DataFilesController < ApplicationController
     @all_products = Product.all
     #creates an array for all valuefields
     @all_valuefields = Valuefield.all
+    @all_properties = Property.all
 
     if(!params[:product_id].nil?)
       @items_to_select = Product.find(params[:product_id])

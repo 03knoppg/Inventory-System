@@ -138,8 +138,9 @@
             $(this).next(".content_main_menu").slideToggle(500).scroll();
         });
 
-      <!--//--><![CDATA[//><!--
+
         $("html").addClass("js");
+        $('input').filter(function(){return $(this).is(':checked');}).parent().parentsUntil('div','li').addClass("expand");
         $.fn.accordion.defaults.container = false;
         $(function() {
         $(".accordion").accordion();

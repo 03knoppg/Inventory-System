@@ -38,6 +38,7 @@ class Image < ActiveRecord::Base
   has_and_belongs_to_many :products
   has_and_belongs_to_many :components
   has_and_belongs_to_many :valuefields
+  after_save :set_update
 
   #holds the picture information and any sizes defined
   has_attached_file :picture, :styles => { :small => "150x150>" , :medium => "300x300>", :large => "600x600>"},
@@ -51,6 +52,11 @@ class Image < ActiveRecord::Base
   #Custom image extension validator
   validates_with ImageValidator
 
+  def set_update
+    update = Updaterecord.find_or_create_by_table_name_and_entry_id(self.class.name.tableize,id)
+    update.time = updated_at
+    update.save!
+  end
 end
 
 
