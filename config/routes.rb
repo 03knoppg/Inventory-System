@@ -51,6 +51,7 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/home"
   get "admin/addvalue"
   get "admin/load_component_tab"
+  get "admin/component_tab_root"
   get "admin/load_new_vf_page"
   get "admin/load_new_image_page"
   get "admin/load_new_df_page"
@@ -72,7 +73,7 @@ TestDBRubymineProject::Application.routes.draw do
   post "valuefields/new"
 
   match 'admin', :to => 'admin#home'
-  match 'tabs/:id', :to => 'admin#tabs'
+  match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'admin_addvalue', :to => 'admin#addvalue'
 
   match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product

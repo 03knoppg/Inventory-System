@@ -1,0 +1,86 @@
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
+
+<!--Page Container -->
+<div class="inner_container">
+  <div id="products_partial"><%= render "products/popup_show" %></div>
+  <!-- Tabs for directly related objects to the Product -->
+  <div class="tabs">
+    <ul>
+      <li><a class="l" href="">Components</a></li>
+      <li><a class="l" href="">Value Fields</a></li>
+      <li><a class="l" href="">Images</a></li>
+      <li><a class="l" href="">Data Files</a></li>
+    </ul>
+    <div>
+      <div>
+        <%= render "admin/components_tabs", :parent => @product%>
+      </div>
+      <div>
+        <!-- Tabs for directly related ValueFields to the Product -->
+        <div class="tabs2">
+          <ul>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a class="new_vf" href>New Valuefield...</a></li>
+            <% for valuefield in @product_valuefields %>
+                <li><a href=""><%= valuefield.fieldvalue %></a></li>
+            <% end %>
+          </ul>
+          <div>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+            <% for valuefield in @product_valuefields %>
+                <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Tabs for directly related Images to the Product -->
+        <div class="tabs2">
+          <ul>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a href class="new_image">New Image...</a></li>
+            <% for image in @product_images %>
+                <li><a href=""><%= image.picture_file_name %></a></li>
+            <% end %>
+          </ul>
+          <div>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
+            <% for image in @product_images %>
+                <div><%= render("/images/show", :image => image) %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Tabs for directly related Data Files to the Product -->
+        <div class="tabs2">
+          <ul>
+            <li style="display:none"><a>hidden</a></li>
+            <li><a href class="new_df">New Data File...</a></li>
+            <% for datafile in @product_datafiles %>
+                <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
+            <% end %>
+          </ul>
+          <div>
+            <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+            <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
+            <% for data_file in @product_datafiles %>
+                <div><%= render("/data_files/show", :data_file => data_file) %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function($) {
+
+        $('a[value="Edit Product"]').click(function(){
+            $.get("/admin/load_edit_product_page", {product_id: "<%=@product.id%>"},null, 'script');
+        });
+    });
+</script>

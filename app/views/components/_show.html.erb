@@ -13,8 +13,11 @@
       <td valign="top"><%= component.code %></td>
       <td>
         <div>
-          <%= button_to "Edit Component", edit_component_path(component), :method => :get %>
-          <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          <%= link_to image_tag("edit-icon.png"), edit_component_path(component), :title=>"Edit", :method => :get %>
+          &nbsp
+          <%= link_to image_tag("delete-icon.png"), {:controller => :components, :action => "destroy", :id => component.id }, :confirm => "Are You sure?", :method => :delete%>
+          &nbsp
+          <%= link_to image_tag("open_in_new_window.png"),"/tabs/component/#{component.id}", :title => "Open in new window" %>
         </div>
       </td>
     </tr>

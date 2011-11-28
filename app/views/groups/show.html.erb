@@ -5,9 +5,24 @@
 <table class ="main_table">
   <tr>
     <th align="left">Name</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%= @group.name %></td>
+    <td>
+      <%= link_to image_tag("duplicate.png"), new_group_path + "?duplicate_group=#{@group.id}", :title=>"Duplicate"%>
+         &nbsp
+         <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
+
+
+         <div class="apple_overlay" id="overlay">
+           <h1>Editing Category: <%=@group.name%></h1>
+           <%= render 'form' %>
+         </div>
+       &nbsp
+       <%= link_to image_tag("delete-icon.png"), {:controller => :groups, :action => "destroy",  :id => @group.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+      
+    </td>
   </tr>
 </table>
 
@@ -26,9 +41,32 @@
   </div>
 </div>
 </div>
-<div class="right_div">
-  <%= button_to "Edit Group", edit_group_path(@group), :method => :get %>
-  <%=button_to "Delete Group", {:controller => :groups, :action => "destroy", :id => @group.id }, :confirm => "Are You sure?", :method => :delete%>
 
-</div>
-<br class="clear" />
+<script>
+    // What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+    $(document).ready(function() {
+
+        $("img[rel]").overlay({
+        			// common configuration for each overlay
+        			oneInstance: false,
+        			closeOnClick: true,
+
+        			// setup custom finish position
+        			//top: positions[i][0],
+        			//left: positions[i][1],
+
+        			// use apple effect
+        			mask: 'lightblue',
+                    effect: 'apple',
+
+        		onBeforeLoad: function() {
+
+        			// grab wrapper element inside content
+        			var wrap = this.getOverlay().find(".contentWrap");
+
+        			// load the page specified in the trigger
+        			wrap.load(this.getTrigger().attr("href"));
+        		}
+        });
+    });
+</script>

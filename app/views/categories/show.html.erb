@@ -6,23 +6,36 @@
     <tr>
       <th align="left">Category Name</th>
       <th align="left">Parent</th>
+      <th align="left">Actions</th>
     </tr>
     <tr>
       <td class="td_two_col"><%= @category.name %></td>
       <td><%if(!@parent.nil?)%><%= link_to @parent.name, @parent %><%end%></td>
+      <td>
+        <%= link_to image_tag("duplicate.png"), new_category_path + "?duplicate_category=#{@category.id}", :title=>"Duplicate"%>
+        &nbsp
+        <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
+        <div class="apple_overlay" id="overlay">
+          <h1>Editing Category: <%=@category.name%></h1>
+          <%= render 'form' %>
+        </div>
+      &nbsp
+      <%= link_to image_tag("delete-icon.png"), {:controller => :categories, :action => "destroy",  :id => @category.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+      </td>
     </tr>
+
   </table>
   <h2>Associations</h2>
   <!-- the tabs -->
   <div class="tabs">
       <ul>
-        <li><a href="#">Child Categories</a></li>
+        <li><a href="#">Parent Categories</a></li>
          <li><a href="#">Products</a></li>
       </ul>
       <!-- tab "panes" -->
       <div class="panes">
         <div> <!--pane 1 -->
-          <%= print_child_categories_table(@category).html_safe %>
+          <%= print_parent_category_table.html_safe %>
         </div>
         <div><!--pane 2 -->
           <%= print_products_table(@category).html_safe %>
@@ -31,8 +44,32 @@
       </div>
   </div>
 </div>
-<div class="right_div">
-  <%= button_to "Edit Category", edit_category_path(@category), :method => :get %>
-  <%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
-  <%= button_to "Duplicate Category", new_category_path + "?duplicate_category=#{@category.id}"%>
-</div>
+
+<script>
+    // What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+    $(document).ready(function() {
+
+        $("img[rel]").overlay({
+        			// common configuration for each overlay
+        			oneInstance: false,
+        			closeOnClick: true,
+
+        			// setup custom finish position
+        			//top: positions[i][0],
+        			//left: positions[i][1],
+
+        			// use apple effect
+        			mask: 'lightblue',
+                    effect: 'apple',
+
+        		onBeforeLoad: function() {
+
+        			// grab wrapper element inside content
+        			var wrap = this.getOverlay().find(".contentWrap");
+
+        			// load the page specified in the trigger
+        			wrap.load(this.getTrigger().attr("href"));
+        		}
+        });
+    });
+</script>

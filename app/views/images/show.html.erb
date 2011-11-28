@@ -6,10 +6,25 @@
   <tr>
     <th align="left">Image</th>
     <th align="left">Image Name</th>
+    <th align="left">Actions</th>
   </tr>
   <tr>
     <td><%=link_to(image_tag(@image.picture.url(:original)), @image.picture.url(:original), {:target => "blank"})%></td>
     <td><%=link_to(@image.picture_file_name, @image.picture.url(:original), {:target => "blank"})%></td>
+    <td>
+      <%= link_to image_tag("duplicate.png"), new_image_path + "?duplicate_image=#{@image.id}", :title=>"Duplicate"%>
+             &nbsp
+             <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
+
+
+             <div class="apple_overlay" id="overlay">
+               <h1>Editing Category: <%=@image.picture_file_name%></h1>
+               <%= render 'form' %>
+             </div>
+           &nbsp
+           <%= link_to image_tag("delete-icon.png"), {:controller => :images, :action => "destroy",  :id => @image.id }, :title=>"Delete", :confirm => "Are You sure?", :method => :delete%>
+
+    </td>
   </tr>
 </table>
 
@@ -38,7 +53,33 @@
   </div>
 </div>
 
-<div class="right_div">
-<%= button_to "Edit Image", edit_image_path(@image), :method => :get %>
-    <%=button_to "Delete Image", {:controller => :images, :action => "destroy", :id => @image.id }, :confirm => "Are You sure?", :method => :delete%>
-</div>
+
+<script>
+    // What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+    $(document).ready(function() {
+
+        $("img[rel]").overlay({
+        			// common configuration for each overlay
+        			oneInstance: false,
+        			closeOnClick: true,
+
+        			// setup custom finish position
+        			//top: positions[i][0],
+        			//left: positions[i][1],
+
+        			// use apple effect
+        			mask: 'lightblue',
+                    effect: 'apple',
+
+        		onBeforeLoad: function() {
+
+        			// grab wrapper element inside content
+        			var wrap = this.getOverlay().find(".contentWrap");
+
+        			// load the page specified in the trigger
+        			wrap.load(this.getTrigger().attr("href"));
+        		}
+        });
+    });
+</script>
+

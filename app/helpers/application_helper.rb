@@ -242,7 +242,7 @@ module ApplicationHelper
       if(item.is_a?(Category))
         pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
       elsif(item.is_a?(Component))
-        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, 'tabs/component/' + item.id.to_s)}</label>"
       end
       pt += main_menu_accord(items_hash[item], show_properties, depth+1)
       pt += "</li>"
@@ -253,6 +253,7 @@ module ApplicationHelper
 
   #Prints a list of links for the Main Menu
   def print_link_list(items)
+
     linkString = ""
     if(!items.empty?  && items[0].is_a?(Category))
       linkString += "<tr><td>#{button_to("New Category", new_category_url)}</td></tr>"
@@ -291,11 +292,13 @@ module ApplicationHelper
              linkString += "<tr><td>#{button_to("New Valuefield", new_valuefield_url)}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+
         end
       end
     else
-      linkString += "<tr><td>None Available.</td></tr>"
+      linkString += "None Available."
     end
+
     return linkString
   end
 
