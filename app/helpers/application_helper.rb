@@ -266,12 +266,14 @@ module ApplicationHelper
         if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
           if(item.is_a?(Product) && item == items[0])
             linkString += "<tr><td>#{button_to("New Product", new_product_url)}</td></tr>"
+            linkString += "<tr><td>#{link_to(item.name, 'tabs/product/' + item.id.to_s)}</td></tr>"
           elsif(item.is_a?(Group) && item == items[0])
             linkString += "<tr><td>#{button_to("New Group", new_group_url)}</td></tr>"
+            linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
           elsif(item.is_a?(Property) && item == items[0])
             linkString += "<tr><td>#{button_to("New Property", new_property_url)}</td></tr>"
+            linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
           end
-          linkString += "<tr><td>#{link_to(item.name, 'tabs/' + item.id.to_s)}</td></tr>"
         elsif(item.is_a?(DataFile))
           if(item == items[0])
              linkString += "<tr><td>#{button_to("New Data File", new_data_file_url)}</td></tr>"

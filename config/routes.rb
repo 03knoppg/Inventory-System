@@ -73,10 +73,10 @@ TestDBRubymineProject::Application.routes.draw do
   post "valuefields/new"
 
   match 'admin', :to => 'admin#home'
-  match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'admin_addvalue', :to => 'admin#addvalue'
 
-  match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product
+  #match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product
+  match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'tabs/products/edit/:id', :to => 'products#_edit'
   match 'tabs/components/edit/:id', :to => 'components#_edit'
   # The priority is based upon order of creation:
