@@ -1,13 +1,9 @@
-
-
 <div id="button_div" align="center">
    <button id="other_button" style="width:350px">Create by Component or Product</button>
   <%=button_to 'Create by Incremental Path', admin_addvalue_path, :style => "width:350px", :method => :get%>
 </div>
 
 <%= form_for(@valuefield) do |f| %>
-
-
     <% if @valuefield.errors.any? %>
 
         <div id="error_explanation">
@@ -65,9 +61,6 @@
       </tr>
   </table>
 </div>
-
-
-
 <div id="other_div">
   <table>
       <tr>
@@ -87,12 +80,9 @@
         <input type="reset" />
      <%= f.submit :class => "submit"%>
   </div>
-
-
 <%end%>
 <h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />
-
 
 <script type="text/javascript">
     jQuery(function($) {
@@ -109,7 +99,7 @@
             $('#property_div').show();
             $('#submit_div').show();
             $('#main_div').show();
-        } else if("<%= !@valuefield.products.empty? || !@valuefield.components.empty?  %>" == "true"){
+        } else if("<%= !@items_to_select.empty? || !@valuefield.products.empty? || !@valuefield.components.empty?  %>" == "true"){
             $('#other_div').show();
             $('#property_div').show();
             $('#submit_div').show();
@@ -126,7 +116,6 @@
             $('#property_div').show();
             $('#submit_div').show();
             $('#main_div').show();
-
         });
         $('#other_button').click(function () {
             $('#other_div').show();
@@ -136,7 +125,5 @@
             $('#main_div').show();
         });
     });
-
-
 
 </script>

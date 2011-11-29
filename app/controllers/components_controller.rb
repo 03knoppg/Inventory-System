@@ -39,6 +39,7 @@ class ComponentsController < ApplicationController
       format.html # popup_showp_show.html.erb
       format.json { render json: @component }
        format.xml { render :xml => @component }
+      format.js
     end
   end
 
@@ -152,11 +153,37 @@ class ComponentsController < ApplicationController
   def update
     #Find selected component
     @component = Component.find(params[:id])
-    #sets @component.group to nil
-    @component.group = nil
 
-    if(!params[:new_group_id].nil?)
-      @component.group = Group.find(Integer(params[:new_group_id]))
+    #Set Component Group to nil
+    if(!@component.group_id.nil?)
+      @component.group_id = nil
+    end
+    #Sets Component Group with new params
+    if(!params[:group_ids].nil?)
+      for id in params[:group_ids]
+        @component.group_id = id
+      end
+    end
+
+    #Products
+    if(!@component.products.nil?)
+      @component.products.clear
+    end
+    #Sets the Component to the Product
+    if(!params{:Product_ids}.nil?)
+      for prod in params[:Product_ids]
+        @component.products.push(Product.find(prod))
+      end
+    end
+
+    #Parent Components
+    if(!@component.component_parents.nil?)
+      @component.component_parents.clear
+    end
+    if(!params[:component_parent_ids].nil?)
+      for cp in params[:component_parent_ids]
+        @component.component_parents.push(Component.find(cp))
+      end
     end
 
     #Images
@@ -194,47 +221,7 @@ class ComponentsController < ApplicationController
         end
       end
     end
-    #Local variables
-    #creates an array of component parents
-    component_parents_val = @component.component_parents
-    #creates an array of component products
-    component_products_val = @component.products
 
-    #Loop to remove parents
-    for comp in component_parents_val
-      comp.components.delete(@component)
-    end
-    #Loop to remove products
-    for prod in component_products_val
-      prod.components.delete(@component)
-    end
-
-    #Loop to remove children
-    for comp in component_children_val
-      comp.components.delete(@component)
-    end
-
-    if(!params[:new_components_ids].nil?)
-      for id in params[:new_components_ids]
-         id = Integer(id)
-         if(id < 0) #Component ids are set to negative values to differentiate from Product ids
-           c = Component.find((id + 1) * -1)
-           component_parents_val.push(c)
-         else
-           p = Product.find(id)
-           component_products_val.push(p)
-         end
-      end
-    end
-
-    if(!@component.valuefields.nil?)
-      @component.valuefields.clear
-    end
-    if(!params[:new_ValueFields].nil?)
-      for id in params[:new_ValueFields]
-        @component.valuefields.push(Valuefield.find(id))
-      end
-    end
     respond_to do |format|
       if @component.update_attributes(params[:component])
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }

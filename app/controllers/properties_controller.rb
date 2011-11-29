@@ -35,7 +35,17 @@ class PropertiesController < ApplicationController
   #Function for new page
   def new
     #create a property
-    @property = Property.new
+    #if statement for duplicating a record
+    if params[:duplicate_property]
+        #Assign value to be duplicated
+        value_to_duplicate = Property.find params[:duplicate_property]
+        #set value to duplicated info minus id
+        @property = value_to_duplicate.dup
+    else
+        #New category
+        @property = Property.new
+
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @property }

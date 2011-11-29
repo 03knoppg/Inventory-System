@@ -51,14 +51,14 @@ module CategoriesHelper
   end
 
   #print related parent categories
-  def print_parent_categories_table(parent)
+  def print_parent_categories_table(component)
      s="<table class=\"tight_table\">"
      s+="<tr>"
      s+="<th align=\"left\">Categories</th>"
      s+="  </tr>"
 
-     if(!parent.categories.empty?)
-       for cat in  parent.categories.sort {|x,y| x.name <=> y.name }
+     if(!component.categories.empty?)
+       for cat in  component.categories.sort {|x,y| x.name <=> y.name }
          s+="    <tr><td>#{link_to cat.name, cat, :target => 'blank'}</td></tr>"
        end
      else
@@ -70,6 +70,23 @@ module CategoriesHelper
      return s
    end
 
+  def print_parent_category_table
+    s="<table class=\"tight_table\">"
+    s+="<tr>"
+    s+="<th align=\"left\">Parent Category</th>"
+    s+="  </tr>"
+
+    if(!@category_parent.nil?)
+       s+="    <tr><td>#{link_to @category_parent.name, @category_parent, :target => 'blank'}</td></tr>"
+    else
+     s+="    <tr><td>No Parent</td></tr>"
+    end
+
+    s+="</table>"
+
+    return s
+
+  end
 
 
   #print related products to this category

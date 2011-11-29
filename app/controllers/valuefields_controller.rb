@@ -26,6 +26,9 @@ class ValuefieldsController < ApplicationController
     @valuefield = Valuefield.find(params[:id])
     #creates an array of all images
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
+    @all_properties = Property.all
+    @all_products = Product.all
+
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @valuefield }
@@ -39,13 +42,16 @@ class ValuefieldsController < ApplicationController
   def new
     @all_properties = Property.all.sort!{|x,y| x.name <=> y.name}
     @all_prods_comps = (Product.all + Component.all).sort!{|x,y| x.name <=> y.name}
+    @all_products = Product.all
     @components = []
     @products = []
+    @all_products = Product.all
+    @all_components = Component.all
 
     #if statement for duplicating a record
-    if params[:duplicate_value]
+    if params[:duplicate_valuefield]
         #Assign value to be duplicated
-        value_to_duplicate = Valuefield.find params[:duplicate_value]
+        value_to_duplicate = Valuefield.find params[:duplicate_valuefield]
         #set value to duplicated info minus id
         @valuefield = value_to_duplicate.dup
         #Global Variables for duplicate

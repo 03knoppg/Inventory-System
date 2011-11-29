@@ -17,8 +17,11 @@ class DataFilesController < ApplicationController
   # GET /data_files/1.json
   #Function for show page
   def show
-    #Finds selected data file
     @data_file = DataFile.find(params[:id])
+    @all_products = Product.all
+    @all_components = Component.all
+    @all_valuefields = Valuefield.all
+    @all_properties = Property.all
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @data_file }
@@ -37,6 +40,7 @@ class DataFilesController < ApplicationController
     @all_products = Product.all
     #creates an array for all valuefields
     @all_valuefields = Valuefield.all
+    @all_properties = Property.all
 
     if(!params[:product_id].nil?)
       @items_to_select = Product.find(params[:product_id])
