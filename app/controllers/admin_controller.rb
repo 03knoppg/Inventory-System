@@ -1,16 +1,15 @@
 class AdminController < ApplicationController
 
-
   #Function for tabs page
   def tabs
     if(params[:type] == "product")
       @product = Product.find(params[:id])
-
       @product_components = @product.components
       @product_valuefields = @product.valuefields
       @product_properties = @product.properties
       @product_images = @product.images
       @product_datafiles = @product.data_files
+      current_path
     else
       @component = Component.find(params[:id])  
       @component_components = @component.components
@@ -18,15 +17,13 @@ class AdminController < ApplicationController
       @component_properties = @component.properties
       @component_images = @component.images
       @component_data_files = @component.data_files
+      current_path
     end
-
-
 
     respond_to do |format|
       format.html
     end
   end
-
 
   def home
     @all_properties = Property.all
@@ -87,13 +84,67 @@ class AdminController < ApplicationController
     end
   end
 
-  def load_new_vf_page
+  #function when loading new component page
+   def load_new_component_page
+     if(params[:parent_id][0]=='P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+       @items_to_select = [@parent]
+     else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+     end
     @all_properties = Property.all
     @all_products = Product.all
+    @all_groups = Group.all
     respond_to do |format|
       format.js
     end
-  end
+   end
+
+  #function when loading add/remove component page
+   def load_add_component_page
+     #Checks if parent_id is a Product or Component based on a string value
+    if(params[:parent_id][0] == 'P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.components
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.components
+    end
+
+    @all_components = Component.all
+
+    respond_to do |format|
+      format.js
+    end
+   end
+
+   def add_components
+     if(params[:parent_id][0] == 'P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+     else
+       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+     end
+
+    #Components to Add
+    if(!@parent.components.nil?)
+      @parent.components.clear
+    end
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @parent.components.push(Component.find(id))
+      end
+    end
+    respond_to do |format|
+      if @parent.save
+        format.html { redirect_to session[:rq], notice: 'Component was successfully added.' }
+        format.json { render json: @parent, status: :created, location: @parent }
+      else
+        format.html { render action: "" }
+        format.json { render json: @parent.errors, status: :unprocessable_entity }
+      end
+    end
+   end
 
   def load_new_image_page
     @all_properties = Property.all
@@ -111,14 +162,7 @@ class AdminController < ApplicationController
     end
   end
 
-  def load_new_component_page
-    @all_properties = Property.all
-    @all_products = Product.all
-    @all_groups = Group.all
-    respond_to do |format|
-      format.js
-    end
-  end
+
 
   def load_component_tab
 

@@ -154,7 +154,7 @@ class ImagesController < ApplicationController
     #destroy image
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

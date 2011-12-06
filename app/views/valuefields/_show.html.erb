@@ -1,15 +1,34 @@
 <h1 class="tight_h1">Value Field: Show</h1>
 <div>
-<table class="tight_table main_table">
-  <tr>
-    <th align="left">Value</th>
-    <th align="left">Code</th>
-    <th align="left">Property</th>
-  </tr>
-  <tr>
-    <td><%= valuefield.fieldvalue %></td>
-    <td><%= valuefield.code %></td>
-    <td><%= valuefield.property.name %></td>
-  </tr>
-</table>
-    </div>
+  <table class="tight_table main_table">
+    <tr>
+      <th align="left">Value</th>
+      <th align="left">Code</th>
+      <th align="left">Property</th>
+    </tr>
+    <tr>
+      <td><%= valuefield.fieldvalue %></td>
+      <td><%= valuefield.code %></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+<script type="text/javascript">
+  jQuery(function($) {
+      //Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
+
+      <!--//--><![CDATA[//><!--
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
+  })
+</script>

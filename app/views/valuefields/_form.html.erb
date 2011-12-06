@@ -3,7 +3,7 @@
   <%=button_to 'Create by Incremental Path', admin_addvalue_path, :style => "width:350px", :method => :get%>
 </div>
 
-<%= form_for(@valuefield) do |f| %>
+<%= form_for(@valuefield, :html => { :multipart => true }) do |f| %>
     <% if @valuefield.errors.any? %>
 
         <div id="error_explanation">
@@ -33,12 +33,12 @@
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :fieldvalue, :required => true %>
+            <%= f.text_field :fieldvalue, :required => true, :size=>20 %>
           </div>
         </td>
         <td>
           <div class="field">
-            <%= f.text_field :code %>
+            <%= f.text_field :code, :size=>20 %>
           </div>
         </td>
       </tr>
@@ -64,12 +64,18 @@
 <div id="other_div">
   <table>
       <tr>
-        <th align="left" colspan="3">Product or Component</th>
+        <th align="left">Product</th>
+        <th align="left">Component</th>
       </tr>
       <tr>
         <td>
           <div class ="field">
-            <%= checkbox_accord(all_prod_comp_hash).html_safe  %>
+            <%= checkbox_list(@all_products).html_safe  %>
+          </div>
+        </td>
+        <td>
+          <div class ="field">
+            <%= checkbox_accord(all_component_hash).html_safe  %>
           </div>
         </td>
       </tr>

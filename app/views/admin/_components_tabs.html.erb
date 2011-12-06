@@ -3,6 +3,7 @@
         <ul>
           <li style="display:none"><a>hidden</a></li>
           <li><a class="new_component" href="">New Component...</a></li>
+          <li><a class="add_component" href="">Add Component...</a> </li>
           <% for component in parent.components %>
               <li><a href="<%=component.id%>"><%= component.name %></a></li>
           <% end %>
@@ -12,8 +13,8 @@
         <div>
 
           <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-
-          <div><div class="inner_container component_container"><%# render("components/new") %></div></div>
+          <div><div class="inner_container new_component_container"><%# render("components/new") %></div></div>
+          <div><div class="inner_container add_component_container"></div></div>
 
           <% for component in parent.components %>
               <%
@@ -26,7 +27,7 @@
                   <h1 class="tight_h1"><%=image_tag "Accordian/bigminus.gif"%>&nbspComponent: <%=component.name%></h1>
                 </a>
 
-                <div class="inner_container">
+                <div class="inner_container" id="C<%=component.id%>">
                 <div id="components_partial"><%= render "components/popup_show", :component => component %></div>
                 <!-- Tabs for directly related objects to the Components -->
                 <div class="tabs">
@@ -52,7 +53,7 @@
                         </ul>
                         <div>
                           <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                          <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+                          <div><div class="inner_container new_vf_container"><%# render("valuefields/new") %></div></div>
                           <% for valuefield in component_valuefields %>
                               <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
                           <% end %>

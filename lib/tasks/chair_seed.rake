@@ -51,9 +51,10 @@ txt = Validation.create(extension: ".txt", kind: "Data File")
 #Categories                                                                                                    #
 ################################################################################################################
 
-all = Category.create(name: "All")
-chair = Category.create(name: "Chair", parent_id: all.id)
+#all = Category.create(name: "All")
+chair = Category.create(name: "Chair")
 fluid = Category.create(name: "Fluid", parent_id: chair.id)
+
 
 
 ################################################################################################################

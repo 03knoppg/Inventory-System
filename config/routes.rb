@@ -52,7 +52,8 @@ TestDBRubymineProject::Application.routes.draw do
   get "admin/addvalue"
   get "admin/load_component_tab"
   get "admin/component_tab_root"
-  get "admin/load_new_vf_page"
+  get "admin/load_new_vfproduct_page"
+  get "admin/load_new_vf_component_page"
   get "admin/load_new_image_page"
   get "admin/load_new_df_page"
   get "admin/load_edit_product_page"
@@ -62,6 +63,20 @@ TestDBRubymineProject::Application.routes.draw do
   post "admin/addvalue"
   get "admin/writefile"
   post "admin/writefile"
+
+  #For Tabs Page to Add objects
+  #Product - Add Components
+  get "admin/load_add_component_page"
+  post "admin/add_components"
+  put "admin/add_components"
+  #Product - Add Valuefields
+  get "admin/load_add_vf_product_page"
+  post "admin/add_vf_product"
+  put "admin/add_vf_product"
+  #Component - Add Valuefields
+  get "admin/load_add_vf_component_page"
+  post "admin/add_vf_component"
+  put "admin/add_vf_component"
 
   #test scale
   get "admin/testscale"
@@ -73,9 +88,9 @@ TestDBRubymineProject::Application.routes.draw do
   post "valuefields/new"
 
   match 'admin', :to => 'admin#home'
+  match 'admin2', :to => 'admin#home2'
   match 'admin_addvalue', :to => 'admin#addvalue'
 
-  #match 'products/admin/tabs/:id', :to => 'admin#tabs', :as => :tab_product
   match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'tabs/products/edit/:id', :to => 'products#_edit'
   match 'tabs/components/edit/:id', :to => 'components#_edit'
