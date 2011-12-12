@@ -5,7 +5,12 @@ class CheckDate
 
   def check_date(client_date)
 
+    if(client_date >= Updaterecord.maximum)
+      return #up to date
+    end
+
     records = Updaterecord.all(:conditions => ["time > (?)", client_date])
+
 
     return records
 =begin
