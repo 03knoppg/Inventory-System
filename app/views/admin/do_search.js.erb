@@ -6,29 +6,55 @@
 
     <%for result in @results%>
 
-        result_table += '<tr class="<%=result.class.to_s%>">';
-
+        result_table += '<tr id="<%=result.id%>" class="<%=result.class.to_s%>">';
 
         <%if(result.is_a?(Category))%>
-            result_table += "<td><%=result.class.to_s%></td>";
+
+            result_table += "<td><div hidden=\"true\">";
+            <%for prod in Product.all
+                if(prod.categories.include?(result))%>
+                    result_table += " Product";
+                    <%break
+                end
+            end%>
+
+
+            result_table += "</div>";
+            result_table += "<%=result.class.to_s%></td>";
             result_table += "<td><%=result.name%></td>";
             result_table += "<td>N/A</td>";
             result_table += "<td><%=result.code_category%></td>";
             result_table += '<td><%= link_to image_tag("open_in_new_window.png"),category_path(result), :title => "Open in new window" %></td>'
         <%elsif(result.is_a?(Product))%>
-            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><div hidden = \"true\">";
+            result_table += "<%=result.valuefields.empty?? "":"Value Field"%>";
+            result_table += "<%=result.components.empty?? "":"Component"%>";
+            result_table += "<%=result.images.empty?? "":"Image"%>";
+            result_table += "<%=result.data_files.empty?? "":"Data File"%>";
+            result_table += "</div>";
+            result_table += "<%=result.class.to_s%></td>";
             result_table += "<td><%=result.name%></td>";
             result_table += "<td><%=result.description%></td>";
             result_table += "<td><%=result.code%></td>";
             result_table += '<td><%= link_to image_tag("open_in_new_window.png"),"/tabs/product/#{result.id}", :title => "Open in new window" %></td>'
         <%elsif(result.is_a?(Component))%>
-            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><div hidden=\"true\">";
+            result_table += "<%=result.valuefields.empty?? "":"Value Field"%>";
+            result_table += "<%=result.components.empty?? "":"Component"%>";
+            result_table += "<%=result.images.empty?? "":"Image"%>";
+            result_table += "<%=result.data_files.empty?? "":"Data File"%>";
+            result_table += "</div>";
+            result_table += "<%=result.class.to_s%></td>";
             result_table += "<td><%=result.name%></td>";
             result_table += "<td><%=result.description%></td>";
             result_table += "<td><%=result.code%></td>";
             result_table += '<td><%= link_to image_tag("open_in_new_window.png"),"/tabs/component/#{result.id}", :title => "Open in new window" %></td>'
         <%elsif(result.is_a?(Valuefield))%>
-            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><div hidden=\"true\">";
+            result_table += "<%=result.images.empty?? "":"Image"%>";
+            result_table += "<%=result.data_files.empty?? "":"Data File"%>";
+            result_table += "</div>";
+            result_table += "<%=result.class.to_s%></td>";
             result_table += "<td><%=result.fieldvalue%></td>";
             result_table += "<td>N/A</td>";
             result_table += "<td><%=result.code%></td>";
@@ -41,6 +67,11 @@
 
 
     $('.results').html(result_table);
+
+    
+
+
+
     applyFilter();
 
 <%end%>

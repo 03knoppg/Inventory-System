@@ -10,7 +10,7 @@ class CreateUpdaterecords < ActiveRecord::Migration
     end
 
     add_index :updaterecords, [:table_name, :entry_id], :unique=> true
-    add_index :time
+    add_index :updaterecords, :time
   end
 
 end
