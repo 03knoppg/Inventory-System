@@ -1,5 +1,7 @@
 TestDBRubymineProject::Application.routes.draw do
 
+  resources :table_aliases
+
   resources :validations
 
   resources :data_files
@@ -63,6 +65,8 @@ TestDBRubymineProject::Application.routes.draw do
   post "admin/addvalue"
   get "admin/writefile"
   post "admin/writefile"
+  get "admin/search"
+  get "admin/do_search"
 
   #For Tabs Page to Add objects
   #Product - Add Components
@@ -88,12 +92,13 @@ TestDBRubymineProject::Application.routes.draw do
   post "valuefields/new"
 
   match 'admin', :to => 'admin#home'
-  match 'admin2', :to => 'admin#home2'
+  match 'admin2', :to => 'admin#home_dock'
   match 'admin_addvalue', :to => 'admin#addvalue'
 
   match 'tabs/:type/:id', :to => 'admin#tabs'
   match 'tabs/products/edit/:id', :to => 'products#_edit'
   match 'tabs/components/edit/:id', :to => 'components#_edit'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,23 @@
+<%= form_for(parent, :url => {:controller => 'admin', :action => 'add_images', :parent_id => @parent.class.to_s[0] + @parent.id.to_s}, :html => { :multipart => true }) do |f| %>
+    <div>
+      <h1>Add/Remove Existing Image to <%=parent.name%></h1>
+      <div>
+        <table class="tight_table">
+          <%= checkbox_list(@all_images).html_safe %>
+        </table>
+      </div>
+    </div>
+    <div class="right_div">
+      <%= f.submit %>
+    </div>
+<%end %>
+
+<script type="text/javascript">
+    jQuery(function($) {
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+            $(".accordion").accordion();
+        });
+    });
+</script>

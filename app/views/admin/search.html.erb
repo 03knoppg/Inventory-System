@@ -1,0 +1,61 @@
+
+
+
+<h1>Search</h1>
+
+<label>Search <input class="query" type=text /></label>
+<label> <input class="go" type="button" value="Go"/> </label>
+
+<br/>
+<%= radio_button_tag "filter_type", "All", true %> All
+<%= radio_button_tag "filter_type", "Category", false %> Categories
+<%= radio_button_tag "filter_type", "Product" , false %> Products
+<%= radio_button_tag "filter_type", "Component" , false %> Components
+<%= radio_button_tag "filter_type", "Value Field", false %> ValueFields
+<br/>
+<%= radio_button_tag "filter_field", "All", true %> All
+<%= radio_button_tag "filter_field", "Type", false %> Categories
+<%= radio_button_tag "filter_field", "Name" , false %> Products
+<%= radio_button_tag "filter_field", "Description" , false %> Components
+<%= radio_button_tag "filter_field", "Code", false %> ValueFields
+
+ <br/><br/>
+
+
+<h2>Results</h2>
+<table class="results">
+  <tr>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Code</th>
+  </tr>
+
+
+</table>
+
+<script type="text/javascript">
+
+    jQuery(function($) {
+
+      $('.go').click(function(){
+         $.get("/admin/do_search", {query: $('.query').val()}, null, 'script');
+
+      });
+
+      $('input[type="radio"]').click(applyFilter);
+    });
+
+    function applyFilter(){
+        $('.results tr').show();
+
+        filter_type = $('input.filter_type:checked').val();
+
+
+        if(filter_type != "All")
+
+            $('.results tr').not('.'+filter_type).hide();
+        }
+
+
+</script>

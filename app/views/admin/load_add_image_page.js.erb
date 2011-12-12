@@ -1,0 +1,4 @@
+container = $('.add_image_container');
+container.html("<%= j render("admin/add_image", :parent => @parent)%>");
+container.removeClass("add_image_container");
+enableMinimizers();

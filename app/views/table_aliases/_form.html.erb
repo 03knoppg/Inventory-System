@@ -1,0 +1,28 @@
+<%= form_for(@table_alias) do |f| %>
+  <% if @table_alias.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@table_alias.errors.count, "error") %> prohibited this table_alias from being saved:</h2>
+
+      <ul>
+      <% @table_alias.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table>
+      <tr>
+        <th>Original Name</th>
+        <th>Alias Name</th>
+      </tr>
+      <tr>
+        <td><%= @table_alias.tableName %></td>
+        <td><%= f.text_field :aliasName, :placeholder => @table_alias.aliasName %></td>
+      </tr>
+    </table>
+   <% #text_field_tag 'table_alias[aliasName]', @table_alias.aliasName, :placeholder => @table_alias.aliasName %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

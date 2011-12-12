@@ -134,8 +134,6 @@ class ComponentsController < ApplicationController
       end
 
     end
-
-
     respond_to do |format|
       if @component.save
         format.html { redirect_to session[:rq], notice: 'Component was successfully created.' }

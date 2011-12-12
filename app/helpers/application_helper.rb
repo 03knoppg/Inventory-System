@@ -353,7 +353,13 @@ module ApplicationHelper
              linkString += "<tr><td>#{link_to "New Value Filed", new_valuefield_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
-
+         elsif(item.is_a?(TableAlias))
+          if(item == items[0])
+             linkString += "<tr><th>Original Name</th>"
+             linkString += "<th>Current Name</th></tr>"
+          end
+          linkString += "<tr><td>#{item.tableName}</td>"
+          linkString += "<td>#{link_to(item.aliasName, item)}</td></tr>"
         end
       end
     else

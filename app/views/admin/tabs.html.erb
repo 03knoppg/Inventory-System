@@ -8,24 +8,62 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        //Valuefields
+        /*
+        Begin Javascript to control clicking on new/add tabs
+        */
+        //Components - New
+        //Sets the click function based on "a" tag with class "new_component"
+        $('a.new_component').live('click', function(){
+            //Sets container to the closest "div" with class "tabs2"
+            container = $(this).closest('div.tabs2').find('div.new_component_container:first');
+            //adds a class to the container
+            container.addClass("new_component_container");
+            //Sets the parent based on the closest "div" with class "inner_container" using the "id" attribute
+            parent_id = $(this).closest('.inner_container').attr('id');
+            //gets the js file matching "load_new_component_page" and passes the parent
+            $.get("/admin/load_new_component_page", {parent_id: parent_id}, null, 'script');
+        });
+
+        //Components - Add
+        //Sets the click function based on "a" tag with class "add_component"
+        $('a.add_component').live('click', function(){
+           //Sets container to the closes "div" with class "tabs2"
+           container = $(this).closest('div.tabs2').find('div.add_component_container:first');
+           //adds a class to the container
+           container.addClass("add_component_container2");
+           //Sets the parent based on the closest "div" with class "inner_container" using the "id" attribute
+           parent_id = $(this).closest('.inner_container').attr('id');
+           //gets the js file matching "load_add_component_page" and passes the parent
+           $.get("/admin/load_add_component_page", {parent_id: parent_id}, null, 'script');
+        });
+
+        //Images - New
+        $('a.new_image').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.new_image_container:first');
+            container.addClass("new_image_container");
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_new_image_page", {parent_id: parent_id}, null, 'script');
+        });
+
+        //Images - Add
+        $('a.add_image').live('click', function(){
+           container = $(this).closest('div.tabs2').find('div.add_image_container:first');
+           container.addClass("add_image_container");
+           parent_id = $(this).closest('.inner_container').attr('id');
+           $.get("/admin/load_add_image_page", {parent_id: parent_id}, null, 'script');
+        });
+
+        //Valuefields - New
         $('.new_vf').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.new_vf_container:first');
             container.addClass("new_vf_container2");
             $.get("/admin/load_new_vf_page", null, 'script');
         });
-
+         //Valuefields - Add
          $('a.add_vf').live('click', function(){
            container = $(this).closest('div.tabs2').find('div.add_vf_container:first');
             container.addClass("add_vf_container2");
             $.get("/admin/load_add_vf_page", {product: "<%= @product.id %>"}, null, 'script');
-        });
-
-        //Images
-        $('.new_image').live('click', function(){
-            container = $(this).closest('div.tabs2').find('div.image_container:first');
-            container.addClass("new_image_container");
-            $.get("/admin/load_new_image_page", null, 'script');
         });
 
         //Data Files
@@ -34,21 +72,10 @@
             container.addClass("new_df_container");
             $.get("/admin/load_new_df_page", null, 'script');
         });
+        /*
+        End Javascript to control clicking on new/add tabs
+        */
 
-        //Components
-        $('a.new_component').live('click', function(){
-            container = $(this).closest('div.tabs2').find('div.new_component_container:first');
-            container.addClass("new_component_container");
-            parent_id = $(this).closest('.inner_container').attr('id');
-            $.get("/admin/load_new_component_page", {parent_id: parent_id}, null, 'script');
-        });
-
-        $('a.add_component').live('click', function(){
-           container = $(this).closest('div.tabs2').find('div.add_component_container:first');
-           container.addClass("add_component_container2");
-            parent_id = $(this).closest('.inner_container').attr('id');
-            $.get("/admin/load_add_component_page", {parent_id: parent_id}, null, 'script');
-        });
 
         $('.inner_container:first').css("overflow-x" ,"hidden");
         $('.inner_container:first').css("overflow-y", "scroll");

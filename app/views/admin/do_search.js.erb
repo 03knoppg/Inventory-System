@@ -1,0 +1,46 @@
+
+<%if(@results.empty?)%>
+    $('.results').html("No Results");
+<%else%>
+    result_table = "<tr><th>Type</th><th>Name</th><th>Description</th><th>Code</th><th>Link</th></tr>";
+
+    <%for result in @results%>
+
+        result_table += '<tr class="<%=result.class.to_s%>">';
+
+
+        <%if(result.is_a?(Category))%>
+            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><%=result.name%></td>";
+            result_table += "<td>N/A</td>";
+            result_table += "<td><%=result.code_category%></td>";
+            result_table += '<td><%= link_to image_tag("open_in_new_window.png"),category_path(result), :title => "Open in new window" %></td>'
+        <%elsif(result.is_a?(Product))%>
+            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><%=result.name%></td>";
+            result_table += "<td><%=result.description%></td>";
+            result_table += "<td><%=result.code%></td>";
+            result_table += '<td><%= link_to image_tag("open_in_new_window.png"),"/tabs/product/#{result.id}", :title => "Open in new window" %></td>'
+        <%elsif(result.is_a?(Component))%>
+            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><%=result.name%></td>";
+            result_table += "<td><%=result.description%></td>";
+            result_table += "<td><%=result.code%></td>";
+            result_table += '<td><%= link_to image_tag("open_in_new_window.png"),"/tabs/component/#{result.id}", :title => "Open in new window" %></td>'
+        <%elsif(result.is_a?(Valuefield))%>
+            result_table += "<td><%=result.class.to_s%></td>";
+            result_table += "<td><%=result.fieldvalue%></td>";
+            result_table += "<td>N/A</td>";
+            result_table += "<td><%=result.code%></td>";
+            result_table += '<td><%= link_to image_tag("open_in_new_window.png"),valuefield_path(result), :title => "Open in new window" %></td>'
+        <%end%>
+
+        result_table += "</tr>";
+
+    <%end%>
+
+
+    $('.results').html(result_table);
+    applyFilter();
+
+<%end%>

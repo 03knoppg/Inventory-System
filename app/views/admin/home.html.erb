@@ -7,7 +7,6 @@
 </head>
 <body>
 <div>
-  <% menu = ["Categories", "Products", "Groups", "Components", "Properties", "Value Fields", "Validations", "Images", "Data Files"] %>
   <h1>Main Menu</h1>
   <div class="container_main_menu">
   <table class="main_table">
@@ -15,7 +14,7 @@
       <!-- Categories expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[0] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[0].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -29,7 +28,7 @@
       <!-- Groups expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[2] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[3].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -42,7 +41,7 @@
       <!-- Properties expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[4] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[6].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -58,7 +57,7 @@
       <!-- Products expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[1] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[5].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -71,7 +70,7 @@
       <!-- Components expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[3] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[1].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -85,7 +84,7 @@
       <!-- Value Fields expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[5] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[8].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -101,7 +100,7 @@
       <!-- Images expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[7] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[4].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -114,7 +113,7 @@
       <!-- Data Files expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[8] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[2].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
@@ -127,11 +126,25 @@
       <!-- Validations expand for link list -->
       <td>
         <div class="layer1">
-          <p class="heading_main_menu"><%= menu[6] %></p>
+          <p class="heading_main_menu"><%= @all_aliases[7].aliasName %></p>
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
                 <%= print_link_list(Validation.all.sort {|x,y| x.extension <=> y.extension }).html_safe %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="layer1">
+          <p class="heading_main_menu">Table Alias</p>
+          <div class="content_main_menu">
+            <div>
+              <table class="tight_table">
+                <%= print_link_list(TableAlias.all.sort {|x,y| x.tableName <=> y.tableName }).html_safe %>
               </table>
             </div>
           </div>

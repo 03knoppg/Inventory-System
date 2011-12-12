@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027165309) do
+ActiveRecord::Schema.define(:version => 20111207201044) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -131,6 +131,13 @@ ActiveRecord::Schema.define(:version => 20111027165309) do
     t.string   "field_type"
     t.string   "description"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "table_aliases", :force => true do |t|
+    t.string   "tableName"
+    t.string   "aliasName"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

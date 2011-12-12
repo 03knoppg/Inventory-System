@@ -1,5 +1,33 @@
 class AdminController < ApplicationController
 
+  def do_search
+    match = params[:query]
+    match = '%'+match+'%' #find anything that contains match string
+
+    @results = []
+
+    @results += Category.all(
+      :conditions => ["name LIKE ? OR code_category LIKE ?",
+                        match, match])
+
+    @results += Product.all(
+      :conditions => ["name LIKE ? OR description LIKE ? OR code LIKE ?",
+                        match, match, match])
+
+    @results += Component.all(
+      :conditions => ["name LIKE ? OR description LIKE ? OR code LIKE ?",
+                        match, match, match])
+
+    @results += Valuefield.all(
+      :conditions => ["fieldvalue LIKE ? OR code LIKE ?",
+                        match, match])
+
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   #Function for tabs page
   def tabs
     if(params[:type] == "product")
@@ -32,6 +60,7 @@ class AdminController < ApplicationController
     @all_products = Product.all
     @all_images = Image.all
     @all_datafiles = DataFile.all
+    @all_aliases = TableAlias.all.sort {|x,y| x.tableName <=> y.tableName }
   end
 
   def writefile
@@ -84,6 +113,7 @@ class AdminController < ApplicationController
     end
   end
 
+  #Begin Components
   #function when loading new component page
    def load_new_component_page
      if(params[:parent_id][0]=='P')
@@ -111,21 +141,19 @@ class AdminController < ApplicationController
       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
       @items_to_select = @parent.components
     end
-
     @all_components = Component.all
-
     respond_to do |format|
       format.js
     end
    end
 
+   #Function when submitting added objects
    def add_components
      if(params[:parent_id][0] == 'P')
        @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
      else
        @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
      end
-
     #Components to Add
     if(!@parent.components.nil?)
       @parent.components.clear
@@ -145,14 +173,71 @@ class AdminController < ApplicationController
       end
     end
    end
+   #End Components
 
+  #Begin Images
   def load_new_image_page
     @all_properties = Property.all
     @all_products = Product.all
+    @all_components = Component.all
+
+    if(params[:parent_id][0]=='P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+       @items_to_select = [@parent]
+     else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+     end
+
     respond_to do |format|
       format.js
     end
   end
+
+  def load_add_image_page
+    #Checks if parent_id is a Product or Component based on a string value
+    if(params[:parent_id][0] == 'P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.components
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.components
+    end
+    @all_components = Component.all
+    @all_images = Image.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  #Function when submitting added objects
+   def add_images
+     if(params[:parent_id][0] == 'P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+     else
+       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+     end
+    #Images to Add
+    if(!@parent.images.nil?)
+      @parent.images.clear
+    end
+    if(!params[:Image_ids].nil?)
+      for id in params[:Image_ids]
+        @parent.images.push(Image.find(id))
+      end
+    end
+    respond_to do |format|
+      if @parent.save
+        format.html { redirect_to session[:rq], notice: 'Image(s) successfully added.' }
+        format.json { render json: @parent, status: :created, location: @parent }
+      else
+        format.html { render action: "" }
+        format.json { render json: @parent.errors, status: :unprocessable_entity }
+      end
+    end
+   end
+  #End Images
+
 
   def load_new_df_page
     @all_properties = Property.all

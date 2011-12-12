@@ -42,13 +42,15 @@
           <ul>
             <li style="display:none"><a>hidden</a></li>
             <li><a href class="new_image">New Image...</a></li>
+            <li><a class="add_image" href="" >Add Image...</a></li>
             <% for image in @product_images %>
                 <li><a href=""><%= image.picture_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
+            <div><div class="inner_container new_image_container"></div></div>
+            <div><div class="inner_container add_image_container"></div></div>
             <% for image in @product_images %>
                 <div><%= render("/images/show", :image => image) %></div>
             <% end %>
