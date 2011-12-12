@@ -1,4 +1,5 @@
 container = $('.new_df_container');
 container.html("<%= j render("data_files/new")%>");
 container.removeClass("new_df_container");
-enableMinimizers();
+
+cleanUp(container);

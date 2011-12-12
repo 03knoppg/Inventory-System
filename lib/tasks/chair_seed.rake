@@ -27,6 +27,7 @@ Image.destroy_all
 DataFile.destroy_all
 Validation.destroy_all
 TableAlias.destroy_all
+Updaterecord.destroy_all
 
 
 ################################################################################################################

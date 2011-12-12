@@ -68,17 +68,17 @@
 
 
 
-<!--//--><![CDATA[//><!--
 $("html").addClass("js");
 $.fn.accordion.defaults.container = false;
 $(function() {
-  $(".accordion").accordion();
+  $(".accordion").each(function(){
 
 
-  //$("html").removeClass("js");
+      $(this).find('input').filter(function(){return $(this).is(':checked');}).parent().parentsUntil('div','li').addClass("expand");
+      $(this).accordion();
+    });
+
 });
-//--><!]]>
-
 </script>
 
 

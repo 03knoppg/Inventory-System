@@ -38,6 +38,7 @@ class DataFile < ActiveRecord::Base
   has_and_belongs_to_many :products
   has_and_belongs_to_many :components
   has_and_belongs_to_many :valuefields
+  after_save :set_update
 
   has_attached_file :filedata,
                     :path => ":rails_root/public/:class/:id/:basename.:extension",
@@ -48,4 +49,10 @@ class DataFile < ActiveRecord::Base
    validates_attachment_size :filedata, :less_than => 5.megabytes,  :message => 'must be less than 5 MegaBytes'
    #Custom data file extension validator
    validates_with DataFileValidator
+
+  def set_update
+    update = Updaterecord.find_or_create_by_table_name_and_entry_id(self.class.name.tableize,id)
+    update.time = updated_at
+    update.save!
+  end
 end

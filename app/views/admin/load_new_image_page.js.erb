@@ -1,4 +1,5 @@
 container = $('.new_image_container');
 container.html("<%= j render("images/new", :parent => @parent)%>");
 container.removeClass("new_image_container");
-enableMinimizers();
+
+cleanUp(container);

@@ -1,4 +1,5 @@
 container = $('.new_component_container');
 container.html("<%= j render("components/new", :parent => @parent)%>");
 container.removeClass("new_component_container");
-enableMinimizers();
+
+cleanUp(container);
