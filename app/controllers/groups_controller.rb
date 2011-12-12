@@ -101,7 +101,7 @@ class GroupsController < ApplicationController
     #destroys selected group
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

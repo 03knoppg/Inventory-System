@@ -47,7 +47,7 @@
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-                        <%= checkbox_list(component.products).html_safe %>
+                        <%= checkbox_list(@all_products).html_safe %>
                     </table>
                   </div>
                 </div>
@@ -73,7 +73,13 @@
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-                       <%= checkbox_accord(all_component_hash).html_safe %>
+                      <% new_hash = all_component_hash
+                         for c in new_hash.keys
+                            if(c == component)
+                               new_hash.delete(c)
+                            end
+                        end %>
+                       <%= checkbox_accord(new_hash).html_safe %>
                     </table>
                   </div>
                 </div>
@@ -85,7 +91,7 @@
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
-                       <%= checkbox_accord(all_group_hash).html_safe %>
+                       <%= radio_accord(all_group_hash, "component").html_safe %>
                     </table>
                   </div>
                 </div>
@@ -122,7 +128,7 @@
       </div>
       <div class="right_div">
         <input type="reset" />
-        <%= f.submit :class => "submit"%>
+        <%= f.submit :class => "submit" %>
       </div>
   <% end %>
   <br class="clear" />

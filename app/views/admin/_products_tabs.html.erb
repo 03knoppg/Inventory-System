@@ -1,7 +1,7 @@
 <a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
 
 <!--Page Container -->
-<div class="inner_container">
+<div class="inner_container" id="P<%=@product.id%>">
   <div id="products_partial"><%= render "products/popup_show" %></div>
   <!-- Tabs for directly related objects to the Product -->
   <div class="tabs">
@@ -20,14 +20,16 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a class="new_vf" href>New Valuefield...</a></li>
+            <li><a class="new_vf" href="">New Value Field...</a></li>
+            <li><a class="add_vf" href="">Add Value Field</a></li>
             <% for valuefield in @product_valuefields %>
                 <li><a href=""><%= valuefield.fieldvalue %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+            <div><div class="inner_container new_vf_container"><%# render("valuefields/new") %></div></div>
+            <div><div class="inner_container add_vf_container"></div></div>
             <% for valuefield in @product_valuefields %>
                 <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
             <% end %>

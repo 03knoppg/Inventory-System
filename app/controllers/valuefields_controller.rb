@@ -28,10 +28,17 @@ class ValuefieldsController < ApplicationController
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
     @all_properties = Property.all
     @all_products = Product.all
+    if(!@valuefield.property_id.nil?)
+      @property = Property.find(@valuefield.property_id)
+    else
+      @property = nil
+    end
+
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @valuefield }
       format.xml { render :xml => @valuefield }
+      format.js
     end
   end
 
@@ -44,6 +51,8 @@ class ValuefieldsController < ApplicationController
     @all_products = Product.all
     @components = []
     @products = []
+    @all_products = Product.all
+    @all_components = Component.all
 
     #if statement for duplicating a record
     if params[:duplicate_valuefield]
@@ -92,8 +101,6 @@ class ValuefieldsController < ApplicationController
   def create
     @valuefield = Valuefield.new(params[:valuefield])
 
-    #logger.info("\n\n\n PATH#{params.inspect}")
-
     path = params[:valuefield_path_hidden]
 
     if(!params[:prod_comp_id].nil? && !params[:prod_comp_id].empty?)
@@ -102,6 +109,18 @@ class ValuefieldsController < ApplicationController
          prod_comp.push(Integer(ids))
       end
     end
+
+     if(!params[:product_ids].nil?)
+       for prod in params[:product_ids]
+        @valuefield.products.push(Product.find(prod))
+       end
+     end
+
+     if(!params[:component_parent_ids].nil?)
+       for comp in params[:component_parent_ids]
+          @valuefield.components.push(Component.find(comp))
+       end
+     end
 
     if(!params[:property_id].nil?)
       property =  Property.find(Integer(params[:property_id]))
@@ -127,7 +146,7 @@ class ValuefieldsController < ApplicationController
 
     respond_to do |format|
       if @valuefield.save
-        format.html { redirect_to @valuefield, notice: 'Valuefield was successfully created.' }
+        format.html { redirect_to session[:rq], notice: 'Valuefield was successfully created.' }
         format.json { render json: @valuefield, status: :created, location: @valuefield }
       else
         format.html { render action: "new" }
@@ -180,7 +199,7 @@ class ValuefieldsController < ApplicationController
     @valuefield.destroy
 
     respond_to do |format|
-      format.html { redirect_to valuefields_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

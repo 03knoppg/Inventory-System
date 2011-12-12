@@ -31,7 +31,11 @@ class CategoriesController < ApplicationController
     #creates a sorted array using all related products
     @related_products = @category.products.sort {|x,y| x.name <=> y.name }
 
-    @category_parent = Category.find(@category.parent_id)
+    if(!@category.parent_id.nil?)
+      @category_parent = Category.find(@category.parent_id)
+    else
+      @category_parent = nil
+    end
 
     respond_to do |format|
       format.html # popup_showp_show.html.erb
@@ -52,7 +56,12 @@ class CategoriesController < ApplicationController
         category_to_duplicate = Category.find(params[:duplicate_category])
         #set @category to duplicated info minus id
         @category = category_to_duplicate.dup
-      @items_to_select = [Category.find(@category.parent_id)]
+        if(!@category.parent_id.nil?)
+          @items_to_select = [Category.find(@category.parent_id)]
+        else
+          @item_to_select = nil
+        end
+
     else
         #New category
         @category = Category.new
@@ -62,7 +71,7 @@ class CategoriesController < ApplicationController
         else
           for ac in @all_categories
             if(ac.parent_id.nil?)
-               @items_to_select = [ac]
+              # @items_to_select = [ac]
             end
           end
         end
@@ -88,7 +97,12 @@ class CategoriesController < ApplicationController
     #re-assigns the array minus the categories children
     @all_categories = @all_categories - @child_categories
 
-    @items_to_select = [Category.find(@category.parent_id)]
+    if(!@category.parent_id.nil?)
+      @items_to_select = [Category.find(@category.parent_id)]
+    else
+      @items_to_select = nil
+    end
+
   end
 
   # POST /categories
@@ -98,6 +112,17 @@ class CategoriesController < ApplicationController
     #Creates the category to be saved in the db
     @category = Category.new(params[:category])
     @all_categories = Category.all
+
+     #Set Component Group to nil
+    if(!@category.parent_id.nil?)
+      @category.parent_id = nil
+    end
+    #Sets Component Group with new params
+    if(!params[:parent_ids].nil?)
+      for id in params[:parent_ids]
+        @category.parent_id = id
+      end
+    end
 
     respond_to do |format|
       if @category.save
@@ -145,7 +170,7 @@ class CategoriesController < ApplicationController
     destroy_category(@category)
 
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

@@ -183,7 +183,6 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :ok }
       else
@@ -202,7 +201,7 @@ class ProductsController < ApplicationController
     #destroy product
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

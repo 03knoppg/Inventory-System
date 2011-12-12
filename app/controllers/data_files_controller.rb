@@ -124,7 +124,7 @@ class DataFilesController < ApplicationController
     #destroys data file
     @data_file.destroy
     respond_to do |format|
-      format.html { redirect_to data_files_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

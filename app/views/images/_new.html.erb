@@ -64,7 +64,21 @@
                             $('#img').remove();
                             $('#img').change($('#pic').value)
                         }
-                )
+                );
+                //Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
+
+      <!--//--><![CDATA[//><!--
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
             }
     )
 </script>

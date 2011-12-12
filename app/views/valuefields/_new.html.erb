@@ -47,12 +47,17 @@
 
   <table>
       <tr>
-        <th align="left" colspan="3">Product or Component</th>
+        <th align="left">Product</th>
+        <th align="left">Component</th>
       </tr>
       <tr>
+        <td><div class ="field">
+            <%= checkbox_list(@all_products).html_safe  %>
+          </div>
+        </td>
         <td>
           <div class ="field">
-            <%= checkbox_accord(all_prod_comp_hash).html_safe  %>
+            <%= checkbox_accord(all_component_hash).html_safe  %>
           </div>
         </td>
       </tr>
@@ -67,5 +72,20 @@
 <%end%>
 <h5>Required fields are marked with <span style="color: red">*</span></h5>
 <br class="clear" />
+<script type="text/javascript">
+        jQuery(function($){//Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind('click');
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
 
-
+      <!--//--><![CDATA[//><!--
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
+        })
+  </script>

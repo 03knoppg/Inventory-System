@@ -8,29 +8,49 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('a.new_vf').live('click', function(){
-            container = $(this).closest('div.tabs2').find('div.vf_container:first');
-            container.addClass("new_vf_container");
+
+        //Valuefields
+        $('.new_vf').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.new_vf_container:first');
+            container.addClass("new_vf_container2");
             $.get("/admin/load_new_vf_page", null, 'script');
         });
-        $('a.new_image').live('click', function(){
+
+         $('a.add_vf').live('click', function(){
+           container = $(this).closest('div.tabs2').find('div.add_vf_container:first');
+            container.addClass("add_vf_container2");
+            $.get("/admin/load_add_vf_page", {product: "<%= @product.id %>"}, null, 'script');
+        });
+
+        //Images
+        $('.new_image').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.image_container:first');
             container.addClass("new_image_container");
             $.get("/admin/load_new_image_page", null, 'script');
         });
 
-        $('a.new_df').live('click', function(){
+        //Data Files
+        $('.new_df').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.df_container:first');
             container.addClass("new_df_container");
             $.get("/admin/load_new_df_page", null, 'script');
         });
 
+
+        //Components
         $('a.new_component').live('click', function(){
-            container = $(this).closest('div.tabs2').find('div.component_container:first');
+            container = $(this).closest('div.tabs2').find('div.new_component_container:first');
             container.addClass("new_component_container");
-            $.get("/admin/load_new_component_page", null, 'script');
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_new_component_page", {parent_id: parent_id}, null, 'script');
         });
 
+        $('a.add_component').live('click', function(){
+           container = $(this).closest('div.tabs2').find('div.add_component_container:first');
+           container.addClass("add_component_container2");
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_add_component_page", {parent_id: parent_id}, null, 'script');
+        });
 
         $('.inner_container:first').css("overflow-x" ,"hidden");
         $('.inner_container:first').css("overflow-y", "scroll");
@@ -59,7 +79,6 @@
             enableMinimizers();
         });
 
-
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
         setUpPopUp();
@@ -69,6 +88,7 @@
     //sets up the pop up overlay for each edit button
     function setUpPopUp(){
          // setup triggers
+
 	$("a.overlay").each(function(i) {
 		$(this).overlay({
 			// common configuration for each overlay
