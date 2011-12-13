@@ -1,5 +1,4 @@
-container = $('.new_image_container');
+container = $('.new_image_container2');
 container.html("<%= j render("images/new", :parent => @parent)%>");
-container.removeClass("new_image_container");
-
+container.removeClass("new_image_container2");
 cleanUp(container);

@@ -299,15 +299,15 @@ chairShadowImage.components = [chairShadow]
 #Table Alias                                                                                                   #
 ################################################################################################################
 
-catAlias = TableAlias.create(tableName: "categories", aliasName: "File Structure")
-grpAlias = TableAlias.create(tableName: "groups", aliasName: "Gang")
-propAlias = TableAlias.create(tableName: "properties", aliasName: "Type")
-prodAlias = TableAlias.create(tableName: "products", aliasName: "Item")
-compAlias = TableAlias.create(tableName: "components", aliasName: "Part")
-vfAlias = TableAlias.create(tableName: "valuefields", aliasName: "Attribute")
-imgAlias = TableAlias.create(tableName: "images", aliasName: "Picture")
-dfAlias = TableAlias.create(tableName: "data_files", aliasName: "File Data")
-valAlias = TableAlias.create(tableName: "validations", aliasName: "Extension")
+catAlias = TableAlias.create(tableName: "categories", aliasName: "Categories")
+grpAlias = TableAlias.create(tableName: "groups", aliasName: "Groups")
+propAlias = TableAlias.create(tableName: "properties", aliasName: "Properties")
+prodAlias = TableAlias.create(tableName: "products", aliasName: "Products")
+compAlias = TableAlias.create(tableName: "components", aliasName: "Components")
+vfAlias = TableAlias.create(tableName: "valuefields", aliasName: "Value Fields")
+imgAlias = TableAlias.create(tableName: "images", aliasName: "Images")
+dfAlias = TableAlias.create(tableName: "data_files", aliasName: "Data Files")
+valAlias = TableAlias.create(tableName: "validations", aliasName: "Validations")
 
 ################################################################################################################
 #All Seating Test                                                                                              #

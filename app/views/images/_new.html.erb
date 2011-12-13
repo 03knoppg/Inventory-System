@@ -11,13 +11,13 @@
           </ul>
         </div>
     <% end %>
-   <h1 class="tight_h1">Image: Create</h1>
+    <h1 class="tight_h1">Image: Create</h1>
     <table class="main_table">
       <tr>
         <th align="left">Image&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
-         <td style="width: 325px">
+        <td style="width: 325px">
           <div class ="field" style="padding-bottom: 10px">
             <%= f.file_field(:picture, :id => "pic", :required => true) %>
           </div>
@@ -28,23 +28,17 @@
           </div>
         </td>
 
-</tr>
-</table>
-   <table>
-     <tr>
+      </tr>
+    </table>
+    <table>
+      <tr>
         <th align="left">Products</th>
-       <th align="left">Components</th>
         <th align="left">Valuefields</th>
-     </tr>
-     <tr>
-       <td>
+      </tr>
+      <tr>
+        <td>
           <div class="field">
-            <%= checkbox_accord(all_product_hash).html_safe%>
-          </div>
-        </td>
-       <td>
-          <div class="field">
-            <%= checkbox_accord(all_component_hash).html_safe%>
+            <%= checkbox_accord(all_prod_comp_hash).html_safe%>
           </div>
         </td>
         <td>
@@ -52,39 +46,13 @@
             <%= checkbox_accord(all_prop_vf_hash).html_safe%>
           </div>
         </td>
-     </tr>
-   </table>
-          <div class="right_div">
-        <input type="reset" />
-            <%= f.submit %>
-          </div>
+      </tr>
+    </table>
+    <div class="right_div">
+      <input type="reset" />
+      <%= f.submit %>
+    </div>
 <% end %>
 <h5>Required fields are marked with</h5>
 <br class="clear" />
 
-<!--Script used to remove current image from edit page when user file_field input changes -->
-<script type="text/javascript">
-    jQuery(function($){
-                $('#pic').change(
-                        function(){
-                            $('#img').remove();
-                            $('#img').change($('#pic').value)
-                        }
-                );
-                //Expand/Collapse javascript
-        $(".content_main_menu").hide();
-        $(".heading_main_menu").unbind('click');
-        //toggle the componenet with class msg_body
-        $(".heading_main_menu").click(function() {
-            $(this).next(".content_main_menu").slideToggle(500).scroll();
-        });
-
-      <!--//--><![CDATA[//><!--
-        $("html").addClass("js");
-        $.fn.accordion.defaults.container = false;
-        $(function() {
-        $(".accordion").accordion();
-        });
-            }
-    )
-</script>

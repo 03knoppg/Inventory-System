@@ -4,12 +4,9 @@
     <%= render("admin/component_tab_root") %>
 <%end%>
 
-
 <script type="text/javascript">
     jQuery(function($) {
-        /*
-        Begin Javascript to control clicking on new/add tabs
-        */
+        /* Begin Javascript to control clicking on new/add tabs */
         //Components - New
         //Sets the click function based on "a" tag with class "new_component"
         $('a.new_component').live('click', function(){
@@ -22,7 +19,6 @@
             //gets the js file matching "load_new_component_page" and passes the parent
             $.get("/admin/load_new_component_page", {parent_id: parent_id}, null, 'script');
         });
-
         //Components - Add
         //Sets the click function based on "a" tag with class "add_component"
         $('a.add_component').live('click', function(){
@@ -39,41 +35,48 @@
         //Images - New
         $('a.new_image').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.new_image_container:first');
-            container.addClass("new_image_container");
+            container.addClass("new_image_container2");
             parent_id = $(this).closest('.inner_container').attr('id');
             $.get("/admin/load_new_image_page", {parent_id: parent_id}, null, 'script');
         });
-
         //Images - Add
         $('a.add_image').live('click', function(){
            container = $(this).closest('div.tabs2').find('div.add_image_container:first');
-           container.addClass("add_image_container");
+           container.addClass("add_image_container2");
            parent_id = $(this).closest('.inner_container').attr('id');
            $.get("/admin/load_add_image_page", {parent_id: parent_id}, null, 'script');
         });
 
         //Valuefields - New
-        $('.new_vf').live('click', function(){
+        $('a.new_vf').live('click', function(){
             container = $(this).closest('div.tabs2').find('div.new_vf_container:first');
             container.addClass("new_vf_container2");
-            $.get("/admin/load_new_vf_page", null, 'script');
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_new_vf_page", {parent_id: parent_id}, null, 'script');
         });
-         //Valuefields - Add
-         $('a.add_vf').live('click', function(){
-           container = $(this).closest('div.tabs2').find('div.add_vf_container:first');
+        //Valuefields - Add
+        $('a.add_vf').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.add_vf_container:first');
             container.addClass("add_vf_container2");
-            $.get("/admin/load_add_vf_page", {product: "<%= @product.id %>"}, null, 'script');
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_add_vf_page", {parent_id: parent_id}, null, 'script');
         });
 
-        //Data Files
-        $('.new_df').live('click', function(){
-            container = $(this).closest('div.tabs2').find('div.df_container:first');
-            container.addClass("new_df_container");
-            $.get("/admin/load_new_df_page", null, 'script');
+        //Data Files - New
+        $('a.new_df').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.new_df_container:first');
+            container.addClass("new_df_container2");
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_new_df_page", {parent_id: parent_id}, null, 'script');
         });
-        /*
-        End Javascript to control clicking on new/add tabs
-        */
+        //Data Files - Add
+        $('a.add_df').live('click', function(){
+            container = $(this).closest('div.tabs2').find('div.add_df_container:first');
+            container.addClass("add_df_container2");
+            parent_id = $(this).closest('.inner_container').attr('id');
+            $.get("/admin/load_add_df_page", {parent_id: parent_id}, null, 'script');
+        });
+        /* End Javascript to control clicking on new/add tabs */
 
 
         $('.inner_container:first').css("overflow-x" ,"hidden");

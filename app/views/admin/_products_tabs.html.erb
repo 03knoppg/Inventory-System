@@ -28,7 +28,7 @@
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container new_vf_container"><%# render("valuefields/new") %></div></div>
+            <div><div class="inner_container new_vf_container"></div></div>
             <div><div class="inner_container add_vf_container"></div></div>
             <% for valuefield in @product_valuefields %>
                 <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
@@ -63,13 +63,15 @@
           <ul>
             <li style="display:none"><a>hidden</a></li>
             <li><a href class="new_df">New Data File...</a></li>
+            <li><a href class="add_df">Add Data File...</a></li>
             <% for datafile in @product_datafiles %>
                 <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
+            <div><div class="inner_container new_df_container"></div></div>
+            <div><div class="inner_container add_df_container"></div></div>
             <% for data_file in @product_datafiles %>
                 <div><%= render("/data_files/show", :data_file => data_file) %></div>
             <% end %>

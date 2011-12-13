@@ -53,6 +53,7 @@ class AdminController < ApplicationController
     end
   end
 
+  #Function for home page
   def home
     @all_properties = Property.all
     @all_categories = Category.all
@@ -67,7 +68,9 @@ class AdminController < ApplicationController
     path = params[:path]    #the permuted path
   end
 
+  #Function for products tab
   def load_edit_product_page
+    @product = Product.find(params[:product_id])
 
     @all_properties = Property.all
     @all_categories = Category.all
@@ -76,8 +79,6 @@ class AdminController < ApplicationController
     @all_images = Image.all
     @all_datafiles = DataFile.all
 
-    @product = Product.find(params[:product_id])
-
     @product_components = @product.components
     @product_valuefields = @product.valuefields
     @product_properties = @product.properties
@@ -85,12 +86,39 @@ class AdminController < ApplicationController
     @product_datafiles = @product.data_files
     @product_categories = @product.categories
 
-
     respond_to do |format|
       format.js
     end
   end
 
+#Begin Components
+#Function for loading component tab
+  def load_component_tab
+    @item_id = params[:item]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  #function when loading new component page
+  def load_new_component_page
+    if(params[:parent_id][0]=='P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+    end
+    @all_properties = Property.all
+    @all_products = Product.all
+    @all_groups = Group.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  #Function when loading edit component page
   def load_edit_component_page
     @all_groups = Group.all
     @all_properties = Property.all
@@ -113,27 +141,9 @@ class AdminController < ApplicationController
     end
   end
 
-  #Begin Components
-  #function when loading new component page
-   def load_new_component_page
-     if(params[:parent_id][0]=='P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-       @items_to_select = [@parent]
-     else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-     end
-    @all_properties = Property.all
-    @all_products = Product.all
-    @all_groups = Group.all
-    respond_to do |format|
-      format.js
-    end
-   end
-
   #function when loading add/remove component page
-   def load_add_component_page
-     #Checks if parent_id is a Product or Component based on a string value
+  def load_add_component_page
+    #Checks if parent_id is a Product or Component based on a string value
     if(params[:parent_id][0] == 'P')
       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
       @items_to_select = @parent.components
@@ -145,15 +155,16 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.js
     end
-   end
+  end
 
-   #Function when submitting added objects
-   def add_components
-     if(params[:parent_id][0] == 'P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-     else
-       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-     end
+  #Function when submitting added components
+  def add_components
+    #Checks if parent_id is a Product or Component based on a string value
+    if(params[:parent_id][0] == 'P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+    end
     #Components to Add
     if(!@parent.components.nil?)
       @parent.components.clear
@@ -172,15 +183,12 @@ class AdminController < ApplicationController
         format.json { render json: @parent.errors, status: :unprocessable_entity }
       end
     end
-   end
-   #End Components
+  end
+#End Components
 
-  #Begin Images
+#Begin Images
+  #function when loading new image page
   def load_new_image_page
-    @all_properties = Property.all
-    @all_products = Product.all
-    @all_components = Component.all
-
     if(params[:parent_id][0]=='P')
        @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
        @items_to_select = [@parent]
@@ -189,19 +197,24 @@ class AdminController < ApplicationController
       @items_to_select = [@parent]
      end
 
+    @all_properties = Property.all
+    @all_products = Product.all
+    @all_components = Component.all
+
     respond_to do |format|
       format.js
     end
   end
 
+  #function when loading add image page
   def load_add_image_page
     #Checks if parent_id is a Product or Component based on a string value
     if(params[:parent_id][0] == 'P')
       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.components
+      @items_to_select = @parent.images
     else
       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.components
+      @items_to_select = @parent.images
     end
     @all_components = Component.all
     @all_images = Image.all
@@ -210,7 +223,7 @@ class AdminController < ApplicationController
     end
   end
 
-  #Function when submitting added objects
+  #Function when submitting added images
    def add_images
      if(params[:parent_id][0] == 'P')
        @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
@@ -228,6 +241,7 @@ class AdminController < ApplicationController
     end
     respond_to do |format|
       if @parent.save
+        #Uses a session variable for reloading the current page assigned to the variable
         format.html { redirect_to session[:rq], notice: 'Image(s) successfully added.' }
         format.json { render json: @parent, status: :created, location: @parent }
       else
@@ -236,30 +250,142 @@ class AdminController < ApplicationController
       end
     end
    end
-  #End Images
+#End Images
 
+#Begin Valuefields
+  #Function when loading new valuefield page
+  def load_new_vf_page
+     if(params[:parent_id][0]=='P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+       @items_to_select = [@parent]
+     else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+     end
 
-  def load_new_df_page
     @all_properties = Property.all
     @all_products = Product.all
+    @all_components = Component.all
+
     respond_to do |format|
       format.js
     end
   end
 
-
-
-  def load_component_tab
-
-    @item_id = params[:item]
-
-
+  #Function when loading add valuefield page
+  def load_add_vf_page
+  #Checks if parent_id is a Product or Component based on a string value
+    if(params[:parent_id][0] == 'P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.valuefields
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.valuefields
+    end
+    @all_properties = Property.all
     respond_to do |format|
-      format.html
       format.js
     end
   end
 
+  #Function when submitting added value fields
+   def add_vfs
+     if(params[:parent_id][0] == 'P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+     else
+       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+     end
+    #Images to Add
+    if(!@parent.valuefields.nil?)
+      @parent.valuefields.clear
+      @parent.properties.clear
+    end
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @parent.valuefields.push(Valuefield.find(id))
+        for prop in Property.all
+          if(Valuefield.find(id).property_id.eql?(prop.id))
+            @parent.properties.push(Property.find(prop))
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      if @parent.save
+        #Uses a session variable for reloading the current page assigned to the variable
+        format.html { redirect_to session[:rq], notice: 'Value(s) successfully added.' }
+        format.json { render json: @parent, status: :created, location: @parent }
+      else
+        format.html { render action: "" }
+        format.json { render json: @parent.errors, status: :unprocessable_entity }
+      end
+    end
+   end
+#End Valuefields
+
+#Begin Data Files
+  #Function when loading new data file page
+  def load_new_df_page
+    if(params[:parent_id][0]=='P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+       @items_to_select = [@parent]
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = [@parent]
+    end
+    @all_datafiles = DataFile.all
+    @all_properties = Property.all
+    @all_products = Product.all
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  #Function when loading add data file page
+  def load_add_df_page
+     #Checks if parent_id is a Product or Component based on a string value
+    if(params[:parent_id][0] == 'P')
+      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.data_files
+    else
+      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+      @items_to_select = @parent.data_files
+    end
+    @all_datafiles = DataFile.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  #Function when submitting added data files
+  def add_dfs
+    if(params[:parent_id][0] == 'P')
+       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
+     else
+       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
+     end
+    #Images to Add
+    if(!@parent.data_files.nil?)
+      @parent.data_files.clear
+    end
+    if(!params[:DataFile_ids].nil?)
+      for id in params[:DataFile_ids]
+        @parent.data_files.push(DataFile.find(id))
+      end
+    end
+    respond_to do |format|
+      if @parent.save
+        #Uses a session variable for reloading the current page assigned to the variable
+        format.html { redirect_to session[:rq], notice: 'Data Files(s) successfully added.' }
+        format.json { render json: @parent, status: :created, location: @parent }
+      else
+        format.html { render action: "" }
+        format.json { render json: @parent.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+#End Data Files
 
   def addvalue
     @tmp_array = []

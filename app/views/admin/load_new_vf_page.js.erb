@@ -1,0 +1,4 @@
+container = $('.new_vf_container2');
+container.html("<%= j render("valuefields/new", :parent => @parent)%>");
+container.removeClass("new_vf_container2");
+cleanUp(container);

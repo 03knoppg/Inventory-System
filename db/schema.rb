@@ -138,7 +138,9 @@ ActiveRecord::Schema.define(:version => 20111207201044) do
   create_table "table_aliases", :force => true do |t|
     t.string   "tableName"
     t.string   "aliasName"
-    end
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "updaterecords", :force => true do |t|
     t.string   "table_name"

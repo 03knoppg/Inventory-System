@@ -9,26 +9,7 @@
     <tr>
       <td><%= valuefield.fieldvalue %></td>
       <td><%= valuefield.code %></td>
-      <td></td>
+      <td><%= Property.find(valuefield.property_id).name %></td>
     </tr>
   </table>
 </div>
-
-<script type="text/javascript">
-  jQuery(function($) {
-      //Expand/Collapse javascript
-        $(".content_main_menu").hide();
-        $(".heading_main_menu").unbind('click');
-        //toggle the componenet with class msg_body
-        $(".heading_main_menu").click(function() {
-            $(this).next(".content_main_menu").slideToggle(500).scroll();
-        });
-
-      <!--//--><![CDATA[//><!--
-        $("html").addClass("js");
-        $.fn.accordion.defaults.container = false;
-        $(function() {
-        $(".accordion").accordion();
-        });
-  })
-</script>
