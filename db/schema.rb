@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20111207201044) do
   end
 
   add_index "updaterecords", ["table_name", "entry_id"], :name => "index_updaterecords_on_table_name_and_entry_id", :unique => true
+  add_index "updaterecords", ["time"], :name => "index_updaterecords_on_time"
 
   create_table "users", :force => true do |t|
     t.string   "username",                                       :null => false

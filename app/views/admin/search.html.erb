@@ -3,22 +3,44 @@
 
 <h1>Search</h1>
 
-<label>Search <input class="query" type=text /></label>
-<label> <input class="go" type="button" value="Go"/> </label>
+
+<label>Search <input class="query" type=text onkeydown="if (event.keyCode == 13) document.getElementById('gobtn').click()"/></label>
+<label> <input class="go" type="button" value="Go" id="gobtn" /> </label>
+
 
 <br/>
-<%= radio_button_tag "filter_type", "All", true %> All
+<br/>
+<br/>
+Include results that are of this type
+<div>
+<%= radio_button_tag "filter_type", "All_type", true %> All
 <%= radio_button_tag "filter_type", "Category", false %> Categories
 <%= radio_button_tag "filter_type", "Product" , false %> Products
 <%= radio_button_tag "filter_type", "Component" , false %> Components
 <%= radio_button_tag "filter_type", "Value Field", false %> ValueFields
-<br/>
-<%= radio_button_tag "filter_field", "All", true %> All
-<%= radio_button_tag "filter_field", "Type", false %> Categories
-<%= radio_button_tag "filter_field", "Name" , false %> Products
-<%= radio_button_tag "filter_field", "Description" , false %> Components
-<%= radio_button_tag "filter_field", "Code", false %> ValueFields
+</div>
+  <br/>
 
+Include results that are contained in this field
+<div>
+<%= radio_button_tag "filter_field", "All_field", true %> All
+<%= radio_button_tag "filter_field", "Type", false %> Type
+<%= radio_button_tag "filter_field", "Name", false %> Name
+<%= radio_button_tag "filter_field", "Description" , false %> Description
+<%= radio_button_tag "filter_field", "Code" , false %> Code
+</div>
+
+
+<br/>
+Include results that contain a child of this type
+<div>
+<%= radio_button_tag "filter_attached", "Any_attached", true %> Any Attachment
+<%= radio_button_tag "filter_attached", "Product", false %> Product
+<%= radio_button_tag "filter_attached", "Component", false %> Component
+<%= radio_button_tag "filter_attached", "Data File" , false %> Data File
+<%= radio_button_tag "filter_attached", "Image" , false %> Image
+<%= radio_button_tag "filter_attached", "Value Field" , false %> Value Field
+</div>
  <br/><br/>
 
 
@@ -49,13 +71,36 @@
     function applyFilter(){
         $('.results tr').show();
 
-        filter_type = $('input.filter_type:checked').val();
+        filter_type = $('input[name="filter_type"]:checked').val();
+        filter_field = $('input[name="filter_field"]:checked').index();
+        filter_attached = $('input[name="filter_attached"]:checked').val();
 
 
-        if(filter_type != "All")
+        if(filter_type != "All_type"){
 
-            $('.results tr').not('.'+filter_type).hide();
+            $('.results tr').filter(
+                function(){
+                    return $(this).find("> td:first").text() != filter_type;
+                }).hide();
+        }
+        if(filter_field != 0){
+
+            $('.results tr').filter(
+                function(){
+                    return $(this).find("> td:nth-child(" + filter_field +")").text().indexOf($('.query').val()) == -1;
+                }).hide();
         }
 
+        if(filter_attached != "Any_attached"){
+            $('.results tr').filter(
+                function(){
+                    return $(this).find("> td:first > div").text().indexOf(filter_attached) == -1;
+                }).hide();
+
+
+        }
+
+        $('.results tr:first').show();
+    }
 
 </script>
