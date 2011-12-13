@@ -1,6 +1,9 @@
 class AllSeatingHelper
 
-  def all_seating_expand_hash(hash)
+  require "rexml/document"
+  include REXML
+
+  def self.all_seating_expand_hash(hash)
 
     root = hash.keys[0]
     children = []
@@ -10,7 +13,7 @@ class AllSeatingHelper
     end
 
     if(root.is_a?(Product))
-      children = root.all_components
+      children = root.components
     elsif(root.is_a?(Component))
       children = root.components + root.valuefields
     end
@@ -30,7 +33,7 @@ class AllSeatingHelper
   end
 
 
-  def find(ary, obj)
+  def self.find(ary, obj)
     for hash in ary
       if(hash.keys[0].class != obj.class)
         next
@@ -48,7 +51,7 @@ class AllSeatingHelper
   end
 
 
-  def all_seating_path_translator(php_args)
+  def self.all_seating_path_translator(php_args)
 
 
     for arg in php_args
@@ -81,7 +84,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_build_partial_hash(path,node,partials)
+  def self.all_seating_build_partial_hash(path,node,partials)
 
     hash = {node=>[]}
     partials.push(hash)
@@ -120,7 +123,7 @@ class AllSeatingHelper
 
 
 
-  #def all_seating_path_to_hash(path)
+  #def self.all_seating_path_to_hash(path)
   #  path = path.split("|")
   #  hash = {}
   #
@@ -177,7 +180,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_xml_from_hash(node, hash)
+  def self.all_seating_xml_from_hash(node, hash)
 
     xml = all_seating_to_xml_string(node)
     if(hash.key?(node))
@@ -201,7 +204,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_to_xml_string(element)
+  def self.all_seating_to_xml_string(element)
 
     if(element == nil)
       return
@@ -266,7 +269,7 @@ class AllSeatingHelper
   end
 
 
-  def all_seating_texture(generic_xml_path, destination_path)
+  def self.all_seating_texture(generic_xml_path, destination_path)
 
     file = File.new(generic_xml_path)
     doc = Document.new file
@@ -274,7 +277,7 @@ class AllSeatingHelper
 
   end
 
-  def all_seating_copy_textures(elt, destination_path)
+  def self.all_seating_copy_textures(elt, destination_path)
     if(!elt.is_a?(Element))
       return ""
     end
@@ -297,7 +300,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_texture_xml(generic_xml_path, destination_path)
+  def self.all_seating_texture_xml(generic_xml_path, destination_path)
 
     file = File.new(generic_xml_path)
     doc = Document.new file
@@ -317,7 +320,7 @@ class AllSeatingHelper
   end
 
 
-  def all_seating_dae(generic_xml_path, destination_path)
+  def self.all_seating_dae(generic_xml_path, destination_path)
     file = File.new(generic_xml_path)
     doc = Document.new file
     result = all_seating_find_dae_element(doc.root)
@@ -331,7 +334,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_find_dae_element(elt)
+  def self.all_seating_find_dae_element(elt)
 
     if(!elt.is_a?(Element))
       return nil
@@ -353,7 +356,7 @@ class AllSeatingHelper
 
 
 
-  def all_seating_find_texture_elements(elt)
+  def self.all_seating_find_texture_elements(elt)
 
     if(!elt.is_a?(Element))
       return ""
@@ -384,7 +387,7 @@ class AllSeatingHelper
   end
 
 
-  def all_seating_get_child_text(elt, name)
+  def self.all_seating_get_child_text(elt, name)
     for child in elt.elements
       if child.name == name
         return child.text
@@ -392,18 +395,18 @@ class AllSeatingHelper
     end
   end
 
-  def all_seating_id_of(part)
+  def self.all_seating_id_of(part)
     return part[1..part.length]
   end
 
-  def all_seating_write_to_file(path,text)
+  def self.all_seating_write_to_file(path,text)
 
     File.open(path, 'w') {|f| f.write(text) }
 
   end
 
 
-  def all_seating_copy_file(source_path, destination_path)
+  def self.all_seating_copy_file(source_path, destination_path)
 
     #read
     image_source = File.open(source_path, "r")
