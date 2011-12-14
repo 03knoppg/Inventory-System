@@ -8,6 +8,12 @@ class Property < ActiveRecord::Base
   #Validations
   validates_presence_of :name, :description, :field_type
 
+  def valuefields
+
+    return Valuefield.find_all_by_property_id(id)
+
+  end
+
   def to_s   #for debug
     return "#{id}:#{name}"
   end

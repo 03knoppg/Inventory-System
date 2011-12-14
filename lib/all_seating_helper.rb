@@ -368,10 +368,15 @@ class AllSeatingHelper
       valuefield =  elt.elements["Valuefields"].elements["Valuefield"]
       type = all_seating_get_child_text(valuefield, "fieldvalue")                #name of component
 
-      texture = all_seating_get_child_text(elt.elements["Image"], "picture_file_name")       #path to texture  TODO: might need to change to static path
-      code = texture.split(".")[0]                #code_path
+      for image_elt in elt.get_elements("Image")
 
-      result +=  "\n\t<item type=\"#{type}\" name=\"#{code}\">\n\t\t<![CDATA[#{texture}]]></item>\n"
+        texture = all_seating_get_child_text(image_elt, "picture_file_name")       #path to texture  TODO: might need to change to static path
+        code = texture.split(".")[0]                #code_path
+
+        result +=  "\n\t<item type=\"#{type}\" name=\"#{code}\">\n\t\t<![CDATA[#{texture}]]></item>\n"
+        #image_elt = image_elt.next_element
+
+      end
 
 
     end

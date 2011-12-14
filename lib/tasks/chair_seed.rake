@@ -135,10 +135,36 @@ backType = Valuefield.create(fieldvalue: "back", property_id: type.id, code: "")
 controlType = Valuefield.create(fieldvalue: "control", property_id: type.id, code: "")
 optionType = Valuefield.create(fieldvalue: "option", property_id: type.id, code: "")
 
+fabricGrey = Valuefield.create(fieldvalue: "Grey", property_id: fabrics.id, code: "GREY")
+fabricYellow = Valuefield.create(fieldvalue: "Yellow", property_id: fabrics.id, code: "YELLOW")
+fabricGreen = Valuefield.create(fieldvalue: "Green", property_id: fabrics.id, code: "GREEN")
+fabricBrown = Valuefield.create(fieldvalue: "Brown", property_id: fabrics.id, code: "BROWN")
+fabricOrange = Valuefield.create(fieldvalue: "Orange", property_id: fabrics.id, code: "ORANGE")
+
 
 ################################################################################################################
 #Images                                                                                                        #
 ################################################################################################################
+
+fabricGreyImage = Image.create()
+fabricGreyImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/grey_sm.jpg")
+fabricGreyImage.save!
+
+fabricYellowImage = Image.create()
+fabricYellowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/yellow_sm.jpg")
+fabricYellowImage.save!
+
+fabricGreenImage = Image.create()
+fabricGreenImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/green_sm.jpg")
+fabricGreenImage.save!
+
+fabricBrownImage = Image.create()
+fabricBrownImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/brown_sm.jpg")
+fabricBrownImage.save!
+
+fabricOrangeImage = Image.create()
+fabricOrangeImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/orange_sm.jpg")
+fabricOrangeImage.save!
 
 btoBasicStoolImage = Image.create()
 btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
@@ -243,9 +269,13 @@ casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
 
 
 ################################################################################################################
-#Products_Valuefields - association table                                                                       #
+#Images_Valuefields - association table                                                                       #
 ################################################################################################################
-
+fabricGrey.images = [fabricGreyImage]
+fabricYellow.images = [fabricYellowImage]
+fabricGreen.images = [fabricGreenImage]
+fabricBrown.images = [fabricBrownImage]
+fabricOrange.images = [fabricOrangeImage]
 
 
 ################################################################################################################
@@ -281,7 +311,7 @@ testDAE.products = [fluidBasicStool]
 #Images_Components - association table                                                                         #
 ################################################################################################################
 
-btoBasicStoolImage.components = [btoBasicStool, basicStoolControl]
+btoBasicStoolImage.components = [btoBasicStool]
 basicControlImage.components = [basicStoolControl]
 task2ArmImage.components = [task2Arm]
 multiFunctionalArmImage.components = [multiFunctionalArm]
