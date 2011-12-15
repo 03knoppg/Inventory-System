@@ -147,23 +147,23 @@ fabricOrange = Valuefield.create(fieldvalue: "Orange", property_id: fabrics.id, 
 ################################################################################################################
 
 fabricGreyImage = Image.create()
-fabricGreyImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/grey_sm.jpg")
+fabricGreyImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/grey_sm.png")
 fabricGreyImage.save!
 
 fabricYellowImage = Image.create()
-fabricYellowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/yellow_sm.jpg")
+fabricYellowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/yellow_sm.png")
 fabricYellowImage.save!
 
 fabricGreenImage = Image.create()
-fabricGreenImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/green_sm.jpg")
+fabricGreenImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/green_sm.png")
 fabricGreenImage.save!
 
 fabricBrownImage = Image.create()
-fabricBrownImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/brown_sm.jpg")
+fabricBrownImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/brown_sm.png")
 fabricBrownImage.save!
 
 fabricOrangeImage = Image.create()
-fabricOrangeImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/orange_sm.jpg")
+fabricOrangeImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/orange_sm.png")
 fabricOrangeImage.save!
 
 btoBasicStoolImage = Image.create()
@@ -289,9 +289,9 @@ base82BasicStool.valuefields = [backType]
 casterBasicStool.valuefields = [backType]
 ssControlAddOn.valuefields = [backType]
 type82BasicStool.valuefields = [backType]
-multiFunctionalArm.valuefields = [backType]
-twisterArm.valuefields = [backType]
-task2Arm.valuefields = [backType]
+multiFunctionalArm.valuefields = [optionType]
+twisterArm.valuefields = [optionType]
+task2Arm.valuefields = [optionType]
 
 basicStoolControl.valuefields = [controlType]
 s810Ring.valuefields = [controlType]
