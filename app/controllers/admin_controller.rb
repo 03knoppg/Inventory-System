@@ -250,6 +250,21 @@ class AdminController < ApplicationController
       end
     end
    end
+
+  def load_edit_image_page
+    @all_groups = Group.all
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+    @image = Image.find(params[:image_id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
 #End Images
 
 #Begin Valuefields
@@ -321,6 +336,24 @@ class AdminController < ApplicationController
       end
     end
    end
+
+  #Function when loading valuefield edit page
+  def load_edit_vf_page
+    @all_groups = Group.all
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+
+    @valuefield = Valuefield.find(params[:valuefield_id])
+    @property = Property.find(@valuefield.property_id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
 #End Valuefields
 
 #Begin Data Files
@@ -383,6 +416,22 @@ class AdminController < ApplicationController
         format.html { render action: "" }
         format.json { render json: @parent.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  #Function when loading edit data file page
+  def load_edit_datafile_page
+    @all_groups = Group.all
+    @all_properties = Property.all
+    @all_categories = Category.all
+    @all_components = Component.all
+    @all_products = Product.all
+    @all_images = Image.all
+    @all_datafiles = DataFile.all
+    @data_file = DataFile.find(params[:datafile_id])
+
+    respond_to do |format|
+      format.js
     end
   end
 #End Data Files

@@ -127,8 +127,44 @@ class ImagesController < ApplicationController
   # PUT /images/1.json
   #Function to update image
   def update
-    #Finds selected image
+    #Finds selected data file
     @image = Image.find(params[:id])
+
+    #Components
+    #Checks if the data file is attached to any components - if so clears them
+    if(!@image.components.nil?)
+      @image.components.clear
+    end
+    #Sets Data Files Components
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @image.components.push(Component.find(id))
+      end
+    end
+
+    #Products
+    #Checks if the data file is attached to any products - if so clears them
+    if(!@image.products.nil?)
+      @image.products.clear
+    end
+    #Sets Data Files Products
+    if(!params[:product_ids].nil?)
+      for id in params[:product_ids]
+        @image.products.push(Product.find(id))
+      end
+    end
+
+    #Valuefields
+    #Checks if the data file is attached to any valuefields - if so clears them
+    if(!@image.valuefields.nil?)
+      @image.valuefields.clear
+    end
+    #Sets Data Files Valuefields
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @image.valuefields.push(Valuefield.find(id))
+      end
+    end
     #creates an array of products
     @all_products = Product.all
     #creates an array of components

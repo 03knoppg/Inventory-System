@@ -78,6 +78,8 @@ TestDBRubymineProject::Application.routes.draw do
     get "admin/load_add_df_page"
     post "admin/add_dfs"
     put "admin/add_dfs"
+  #Edit Data File
+    get "admin/load_edit_datafile_page"
 #End - For Tabs Page
 
 

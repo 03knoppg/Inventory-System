@@ -1,0 +1,85 @@
+<% @items_to_select = (@valuefield.products + @valuefield.components + [@property]) %>
+<div class="pop_container">
+  <%valuefield = @valuefield%>
+  <h1>Editing Value Field: <%=valuefield.fieldvalue %></h1>
+  <%= form_for(valuefield, :remote => true) do |f| %>
+      <% if valuefield.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(valuefield.errors.count, "error") %> prohibited this value field from being saved:</h2>
+            <ul>
+              <% valuefield.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="inner_pop_container">
+        <table>
+          <tr>
+            <th align="left">Name</th>
+            <th align="left">Code</th>
+          </tr>
+          <tr>
+            <td style="width: 325px">
+              <div class ="field" style="padding-bottom: 10px">
+                <%= f.text_field :fieldvalue, :required => true, :size=>20 %>
+              </div>
+              </td>
+            <td>
+              <div class align="field">
+                <%= f.text_field :code, :size=>20 %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th align="left">Products / Components</th>
+            <th align="left">Properties</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="field">
+                <%= checkbox_accord(all_prod_comp_hash).html_safe%>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <%= radio_list(@all_properties).html_safe  %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br class="clear" />
+      <div class="right_div">
+        <input type="reset" />
+        <%= f.submit :class => "submit"%>
+      </div>
+  <% end %>
+</div>
+<h5>Required fields are marked with <span style="color: red">*</span></h5>
+
+<!--Script used to remove current image from edit page when user file_field input changes -->
+<script type="text/javascript">
+    jQuery(function($){
+        $("#fd").change(function(){
+            $("#fn").remove();
+        });
+
+        //Expand/Collapse javascript
+        $(".content_main_menu").hide();
+        $(".heading_main_menu").unbind("click");
+        //toggle the componenet with class msg_body
+        $(".heading_main_menu").click(function() {
+            $(this).next(".content_main_menu").slideToggle(500).scroll();
+        });
+
+        $("html").addClass("js");
+        $("input").filter(function(){return $(this).is(":checked");}).parent().parentsUntil("div","li").addClass("expand");
+        $.fn.accordion.defaults.container = false;
+        $(function() {
+        $(".accordion").accordion();
+        });
+    })
+</script>

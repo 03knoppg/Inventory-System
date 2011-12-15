@@ -76,6 +76,13 @@
             parent_id = $(this).closest('.inner_container').attr('id');
             $.get("/admin/load_add_df_page", {parent_id: parent_id}, null, 'script');
         });
+
+        //EDIT CLICK FUNCTIONS
+        $("a.edit_vf").click(function(){
+            $(this).siblings('#overlay_vf').addClass('VFClass');
+            $.get("/admin/load_edit_vf_page", {valuefield_id: $(this).attr("id")}, null, 'script');
+        });
+
         /* End Javascript to control clicking on new/add tabs */
 
 
@@ -109,7 +116,7 @@
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
         setUpPopUp();
-        cleanUp($('.inner_container:first'))
+        cleanUp($('.inner_container:first'));
     });
 
     //sets up the pop up overlay for each edit button
@@ -345,10 +352,6 @@
                $(this).css("position", "");
             }
         });
-
-
-
-
     }
 </script>
 

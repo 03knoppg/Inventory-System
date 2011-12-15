@@ -31,7 +31,7 @@
             <div><div class="inner_container new_vf_container"></div></div>
             <div><div class="inner_container add_vf_container"></div></div>
             <% for valuefield in @product_valuefields %>
-                <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+                <div><%= render("/valuefields/popup_show", :valuefield => valuefield) %></div>
             <% end %>
           </div>
         </div>
@@ -52,7 +52,7 @@
             <div><div class="inner_container new_image_container"></div></div>
             <div><div class="inner_container add_image_container"></div></div>
             <% for image in @product_images %>
-                <div><%= render("/images/show", :image => image) %></div>
+                <div><%= render("/images/popup_show", :image => image) %></div>
             <% end %>
           </div>
         </div>
@@ -73,7 +73,7 @@
             <div><div class="inner_container new_df_container"></div></div>
             <div><div class="inner_container add_df_container"></div></div>
             <% for data_file in @product_datafiles %>
-                <div><%= render("/data_files/show", :data_file => data_file) %></div>
+                <div><%= render("/data_files/popup_show", :data_file => data_file) %></div>
             <% end %>
           </div>
         </div>

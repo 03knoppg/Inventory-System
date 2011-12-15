@@ -241,6 +241,31 @@ module ApplicationHelper
 
   end
 
+  #Function to build a radio button list
+  def radio_list(items)
+    rl = "<ul>"
+    if(!items.empty?)
+      for item in items
+          if(item.is_a?(Category))         #not currently used
+            rl += "#{radio_button_tag "category_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Product))
+            rl += "#{radio_button_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label><br />"
+            #{item.name}</label>"
+          elsif(item.is_a?(Component))
+            rl += "#{radio_button_tag "component_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Valuefield))
+            rl += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label><br />"
+          elsif(item.is_a?(Group))         #not currently used
+            rl += "#{radio_button_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Property))
+            rl += "#{radio_button_tag "property_ids[]", item.id, @items_to_select.include?(item), :id=>"o#{item.id}"}"   +  "<label for=\"o#{item.id}\">#{item.name}</label><br />"
+        end
+      end
+      rl += "</ul>"
+    end
+    return rl
+  end
+
   #Function to build a checkbox list  - only usable for an array of the same class
   def checkbox_list(items)
     cl = "<ul>"
