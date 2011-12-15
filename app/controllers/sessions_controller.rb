@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   require "all_seating_helper.rb"
   require "xml_dump.rb"
+  require "unity_helper.rb"
 
   skip_before_filter :require_login, :except => [:destroy]
 
@@ -14,6 +15,10 @@ class SessionsController < ApplicationController
   end
 
   def new
+
+    if(!params[:unity].nil?)
+      UnityHelper.gui_xml
+    end
 
     #chcek for updates to inventory
     if(!params[:checkupdate].nil?)
