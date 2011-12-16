@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
     session[:rq] = request.path_parameters
     #@jumpto = session[:rq]
   end
+
+  def assign_alias
+  for ta in TableAlias.all
+      if(ta.tableName.eq())
+      end
+  end
+  end
 end
