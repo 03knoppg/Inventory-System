@@ -3,7 +3,6 @@
     <% if data_file.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this data file from being saved:</h2>
-
           <ul>
             <% data_file.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -11,7 +10,7 @@
           </ul>
         </div>
     <% end %>
-   <h1 class="tight_h1">Data File: Create</h1>
+    <h1 class="tight_h1">Data File: Create</h1>
     <table class="main_table">
       <tr>
         <th align="left">Data File&nbsp;<span style="color: red">*</span></th>
@@ -27,16 +26,15 @@
               </div>
           <%end%>
         </td>
-
-</tr>
-</table>
-   <table>
-     <tr>
+      </tr>
+    </table>
+    <table>
+      <tr>
         <th align="left">Products / Components</th>
-        <th align="left">Valuefields</th>
-     </tr>
-     <tr>
-       <td>
+        <th align="left">Value Fields</th>
+      </tr>
+      <tr>
+        <td>
           <div class="field">
             <%= checkbox_accord(all_prod_comp_hash).html_safe%>
           </div>
@@ -46,24 +44,12 @@
             <%= checkbox_accord(all_prop_vf_hash).html_safe%>
           </div>
         </td>
-     </tr>
-   </table>
-<br class="clear" />
+      </tr>
+    </table>
+    <br class="clear" />
     <div class="right_div">
-        <input type="reset" />
-            <%= f.submit :class => "submit"%>
-          </div>
+      <input type="reset" />
+      <%= f.submit %>
+    </div>
 <% end %>
 <h5>Required fields are marked with <span style="color: red">*</span></h5>
-
-<!--Script used to remove current image from edit page when user file_field input changes -->
-<script type="text/javascript">
-    jQuery(function($){
-                $('#fd').change(
-                        function(){
-                            $('#fn').remove();
-                        }
-                )
-            }
-    )
-</script>

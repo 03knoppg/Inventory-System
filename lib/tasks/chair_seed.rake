@@ -26,6 +26,8 @@ User.destroy_all
 Image.destroy_all
 DataFile.destroy_all
 Validation.destroy_all
+TableAlias.destroy_all
+Updaterecord.destroy_all
 
 
 ################################################################################################################
@@ -51,9 +53,10 @@ txt = Validation.create(extension: ".txt", kind: "Data File")
 #Categories                                                                                                    #
 ################################################################################################################
 
-all = Category.create(name: "All")
-chair = Category.create(name: "Chair", parent_id: all.id)
+#all = Category.create(name: "All")
+chair = Category.create(name: "Chair")
 fluid = Category.create(name: "Fluid", parent_id: chair.id)
+
 
 
 ################################################################################################################
@@ -132,10 +135,36 @@ backType = Valuefield.create(fieldvalue: "back", property_id: type.id, code: "")
 controlType = Valuefield.create(fieldvalue: "control", property_id: type.id, code: "")
 optionType = Valuefield.create(fieldvalue: "option", property_id: type.id, code: "")
 
+fabricGrey = Valuefield.create(fieldvalue: "Grey", property_id: fabrics.id, code: "GREY")
+fabricYellow = Valuefield.create(fieldvalue: "Yellow", property_id: fabrics.id, code: "YELLOW")
+fabricGreen = Valuefield.create(fieldvalue: "Green", property_id: fabrics.id, code: "GREEN")
+fabricBrown = Valuefield.create(fieldvalue: "Brown", property_id: fabrics.id, code: "BROWN")
+fabricOrange = Valuefield.create(fieldvalue: "Orange", property_id: fabrics.id, code: "ORANGE")
+
 
 ################################################################################################################
 #Images                                                                                                        #
 ################################################################################################################
+
+fabricGreyImage = Image.create()
+fabricGreyImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/grey_sm.png")
+fabricGreyImage.save!
+
+fabricYellowImage = Image.create()
+fabricYellowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/yellow_sm.png")
+fabricYellowImage.save!
+
+fabricGreenImage = Image.create()
+fabricGreenImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/green_sm.png")
+fabricGreenImage.save!
+
+fabricBrownImage = Image.create()
+fabricBrownImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/brown_sm.png")
+fabricBrownImage.save!
+
+fabricOrangeImage = Image.create()
+fabricOrangeImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/orange_sm.png")
+fabricOrangeImage.save!
 
 btoBasicStoolImage = Image.create()
 btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
@@ -240,9 +269,13 @@ casterBasicStool,ssControlAddOn,lumbarPlusAddOn,type82BasicStool]
 
 
 ################################################################################################################
-#Products_Valuefields - association table                                                                       #
+#Images_Valuefields - association table                                                                       #
 ################################################################################################################
-
+fabricGrey.images = [fabricGreyImage]
+fabricYellow.images = [fabricYellowImage]
+fabricGreen.images = [fabricGreenImage]
+fabricBrown.images = [fabricBrownImage]
+fabricOrange.images = [fabricOrangeImage]
 
 
 ################################################################################################################
@@ -256,9 +289,9 @@ base82BasicStool.valuefields = [backType]
 casterBasicStool.valuefields = [backType]
 ssControlAddOn.valuefields = [backType]
 type82BasicStool.valuefields = [backType]
-multiFunctionalArm.valuefields = [backType]
-twisterArm.valuefields = [backType]
-task2Arm.valuefields = [backType]
+multiFunctionalArm.valuefields = [optionType]
+twisterArm.valuefields = [optionType]
+task2Arm.valuefields = [optionType]
 
 basicStoolControl.valuefields = [controlType]
 s810Ring.valuefields = [controlType]
@@ -278,7 +311,7 @@ testDAE.products = [fluidBasicStool]
 #Images_Components - association table                                                                         #
 ################################################################################################################
 
-btoBasicStoolImage.components = [btoBasicStool, basicStoolControl]
+btoBasicStoolImage.components = [btoBasicStool]
 basicControlImage.components = [basicStoolControl]
 task2ArmImage.components = [task2Arm]
 multiFunctionalArmImage.components = [multiFunctionalArm]
@@ -292,7 +325,19 @@ basicBackMeshImage.components = [basicBackMesh]
 s810RingImage.components = [s810Ring]
 chairShadowImage.components = [chairShadow]
 
+################################################################################################################
+#Table Alias                                                                                                   #
+################################################################################################################
 
+catAlias = TableAlias.create(tableName: "categories", aliasName: "Categories")
+grpAlias = TableAlias.create(tableName: "groups", aliasName: "Groups")
+propAlias = TableAlias.create(tableName: "properties", aliasName: "Properties")
+prodAlias = TableAlias.create(tableName: "products", aliasName: "Products")
+compAlias = TableAlias.create(tableName: "components", aliasName: "Components")
+vfAlias = TableAlias.create(tableName: "valuefields", aliasName: "Value Fields")
+imgAlias = TableAlias.create(tableName: "images", aliasName: "Images")
+dfAlias = TableAlias.create(tableName: "data_files", aliasName: "Data Files")
+valAlias = TableAlias.create(tableName: "validations", aliasName: "Validations")
 
 ################################################################################################################
 #All Seating Test                                                                                              #

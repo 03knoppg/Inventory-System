@@ -29,10 +29,17 @@ class ValuefieldsController < ApplicationController
     @all_properties = Property.all
     @all_products = Product.all
 
+    if(!@valuefield.property_id.nil?)
+      @property = Property.find(@valuefield.property_id)
+    else
+      @property = nil
+    end
+
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @valuefield }
       format.xml { render :xml => @valuefield }
+      format.js
     end
   end
 
@@ -95,8 +102,6 @@ class ValuefieldsController < ApplicationController
   def create
     @valuefield = Valuefield.new(params[:valuefield])
 
-    #logger.info("\n\n\n PATH#{params.inspect}")
-
     path = params[:valuefield_path_hidden]
 
     if(!params[:prod_comp_id].nil? && !params[:prod_comp_id].empty?)
@@ -105,6 +110,18 @@ class ValuefieldsController < ApplicationController
          prod_comp.push(Integer(ids))
       end
     end
+
+     if(!params[:product_ids].nil?)
+       for prod in params[:product_ids]
+        @valuefield.products.push(Product.find(prod))
+       end
+     end
+
+     if(!params[:component_parent_ids].nil?)
+       for comp in params[:component_parent_ids]
+          @valuefield.components.push(Component.find(comp))
+       end
+     end
 
     if(!params[:property_id].nil?)
       property =  Property.find(Integer(params[:property_id]))
@@ -130,7 +147,7 @@ class ValuefieldsController < ApplicationController
 
     respond_to do |format|
       if @valuefield.save
-        format.html { redirect_to @valuefield, notice: 'Valuefield was successfully created.' }
+        format.html { redirect_to session[:rq], notice: 'Valuefield was successfully created.' }
         format.json { render json: @valuefield, status: :created, location: @valuefield }
       else
         format.html { render action: "new" }
@@ -144,26 +161,66 @@ class ValuefieldsController < ApplicationController
   def update
     @valuefield = Valuefield.find(params[:id])
 
-    prod_comp_id = Integer(params[:prod_comp_id])
-    @valuefield.product = nil
-    @valuefield.component = nil
-
-    #logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
-    if(prod_comp_id < 0)       #Product id is negative to differentiate from component
-      @valuefield.product = Product.find(-(prod_comp_id+1))
-      product = Product.find(-(prod_comp_id+1))
-       property =  Property.find(Integer(params[:property_id][0]))
-      @valuefield.property = property
-      product.properties.push(property)
-    elsif
-      @valuefield.component = Component.find(prod_comp_id)
-      property =  Property.find(Integer(params[:property_id][0]))
-      component = Component.find(prod_comp_id)
-      @valuefield.property = property
-      component.properties.push(property)
+    #Components
+    #Checks if the valuefield is attached to any components - if so clears them
+    if(!@valuefield.components.nil?)
+      @valuefield.components.clear
+    end
+    #Sets Data Files Components
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @valuefield.components.push(Component.find(id))
+      end
     end
 
-    @valuefield.property = Property.find(Integer(params[:property_id][0]))
+    #Products
+    #Checks if the valuefield is attached to any products - if so clears them
+    if(!@valuefield.products.nil?)
+      @valuefield.products.clear
+    end
+    #Sets Data Files Products
+    if(!params[:product_ids].nil?)
+      for id in params[:product_ids]
+        @valuefield.products.push(Product.find(id))
+      end
+    end
+
+    #Property
+    #Sets valuefield property id
+    if(!params[:property_ids].nil?)
+      for id in params[:property_ids]
+        @valuefield.property_id = id
+      end
+    end
+
+    if(!params[:prod_comp_id].nil?)
+      prod_comp_id = Integer(params[:prod_comp_id])
+      @valuefield.product = nil
+      @valuefield.component = nil
+    else
+      prod_comp_id = nil
+    end
+
+    #logger.info("\n\nPROD_COMP: " + prod_comp.inspect + " \n\n\n")
+    if(!prod_comp_id.nil?)
+      if(prod_comp_id < 0)       #Product id is negative to differentiate from component
+        @valuefield.product = Product.find(-(prod_comp_id+1))
+        product = Product.find(-(prod_comp_id+1))
+         property =  Property.find(Integer(params[:property_id][0]))
+        @valuefield.property = property
+        product.properties.push(property)
+      elsif
+        @valuefield.component = Component.find(prod_comp_id)
+        property =  Property.find(Integer(params[:property_id][0]))
+        component = Component.find(prod_comp_id)
+        @valuefield.property = property
+        component.properties.push(property)
+      end
+    end
+
+    if(!params[:property_id].nil?)
+      @valuefield.property = Property.find(Integer(params[:property_id][0]))
+    end
 
     respond_to do |format|
       if @valuefield.update_attributes(params[:valuefield])
@@ -183,7 +240,7 @@ class ValuefieldsController < ApplicationController
     @valuefield.destroy
 
     respond_to do |format|
-      format.html { redirect_to valuefields_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

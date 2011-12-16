@@ -106,7 +106,7 @@ class PropertiesController < ApplicationController
     #destroys property
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

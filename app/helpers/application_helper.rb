@@ -93,7 +93,7 @@ module ApplicationHelper
         expand = false
       end
        pt +=">"
-
+      #Checks what class the item is
       if(item.is_a?(Category))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Product))
@@ -124,6 +124,61 @@ module ApplicationHelper
 
   end
 
+  #Recursive function for display components - finds parents and then children and organizes them in this way to display
+  #Used to disable parent in list so you cannot remove or add it to itself
+  def checkbox_accord2(items_hash, show_properties=false, depth=0)
+    if(depth == 0 && items_hash.keys.empty?)
+      return "No Items Available"
+    end
+    if(@items_to_select.nil?)
+      @items_to_select = []
+    end
+    if(items_hash.keys.empty?)
+      return ""
+    end
+    pt = "<ul "
+    if(depth == 0)
+      pt += "id=\"id#{Time.now.usec}\" class=\"accordion\""
+    end
+    pt+=">"
+    expand = true
+    for item in items_hash.keys
+      pt += "<li"
+      if(depth == 0 && expand && (!item.is_a?(Property) || !item.valuefields.empty?))
+        pt += " class=\"expand\""
+        expand = false
+      end
+       pt +=">"
+      #Checks what class the item is
+      if(item.is_a?(Category))
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "parent_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label>"
+      elsif(item.is_a?(Product))
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label>"
+      elsif(item.is_a?(Component))
+        #Checks to see if the current component is the parent so you cannot select it
+        if(item.eql?(@parent))
+          pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}", :disabled => true}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
+        else
+          pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
+        end
+      elsif(item.is_a?(Valuefield))
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
+      elsif(item.is_a?(Group))         #not currently used
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
+      elsif(item.is_a?(Property))
+        if(show_properties)
+          pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "#{parent}[property_id]", item.id, @items_to_select.include?(item), :id=>"o#{item.id}"}"   +  "<label for=\"o#{item.id}\">#{item.name}</label>"
+        elsif(!item.valuefields.empty?)
+          pt += "<div class=\"inline\">&nbsp</div><b>#{item.name}</b>"
+        end
+      end
+      pt += checkbox_accord2(items_hash[item], show_properties, depth+1)
+      pt += "</li>"
+    end
+    pt += "</ul>"
+    return pt
+  end
+
   #Radio button accordion
   def radio_accord(items_hash, parent, show_properties = false, depth=0)
 
@@ -137,9 +192,9 @@ module ApplicationHelper
 
     pt = "<ul style=\"list-style-type: none\" "
     if(depth == 0)
-      pt += "id=\"id#{Time.now.usec}"
+      pt += "id=\"id#{Time.now.usec}\""
       if(!items_hash.keys[0].is_a?(Group))
-          pt+=" class=\"accordion\" "
+          pt+=' class="accordion"'
       end
 
     end
@@ -184,6 +239,31 @@ module ApplicationHelper
 
     return pt
 
+  end
+
+  #Function to build a radio button list
+  def radio_list(items)
+    rl = "<ul>"
+    if(!items.empty?)
+      for item in items
+          if(item.is_a?(Category))         #not currently used
+            rl += "#{radio_button_tag "category_ids[]", item.id, @items_to_select.include?(item), :id=>"a#{item.id}"}"     +  "<label for=\"a#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Product))
+            rl += "#{radio_button_tag "product_ids[]", item.id, @items_to_select.include?(item), :id=>"p#{item.id}"}"  +  "<label for=\"p#{item.id}\">#{item.name}</label><br />"
+            #{item.name}</label>"
+          elsif(item.is_a?(Component))
+            rl += "#{radio_button_tag "component_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Valuefield))
+            rl += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label><br />"
+          elsif(item.is_a?(Group))         #not currently used
+            rl += "#{radio_button_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label><br />"
+          elsif(item.is_a?(Property))
+            rl += "#{radio_button_tag "property_ids[]", item.id, @items_to_select.include?(item), :id=>"o#{item.id}"}"   +  "<label for=\"o#{item.id}\">#{item.name}</label><br />"
+        end
+      end
+      rl += "</ul>"
+    end
+    return rl
   end
 
   #Function to build a checkbox list  - only usable for an array of the same class
@@ -240,7 +320,7 @@ module ApplicationHelper
       end
        pt +=">"
       if(item.is_a?(Category))
-        pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
+          pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, item)}</label>"
       elsif(item.is_a?(Component))
         pt += "<div class=\"inline\">&nbsp&nbsp&nbsp</div><label class=\"label_main_menu\">#{link_to(item.name, 'tabs/component/' + item.id.to_s)}</label>"
       end
@@ -256,42 +336,109 @@ module ApplicationHelper
 
     linkString = ""
     if(!items.empty?  && items[0].is_a?(Category))
-      linkString += "<tr><td>#{button_to("New Category", new_category_url)}</td></tr>"
+      linkString += "<tr><td>#{link_to "New Category", new_category_url, {:style=>'color:#FF8000'}}</td></tr>"
       linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
     elsif(!items.empty?  && items[0].is_a?(Component))
-      linkString += "<tr><td>#{button_to("New Component", new_component_url)}</td></tr>"
+      linkString += "<tr><td>#{link_to "New Component", new_component_url, {:style=>'color:#FF8000'}}</td></tr>"
       linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
     elsif(!items.empty?)
       for item in items
-        if(item.is_a?(Product) || item.is_a?(Group) || item.is_a?(Property))
-          if(item.is_a?(Product) && item == items[0])
-            linkString += "<tr><td>#{button_to("New Product", new_product_url)}</td></tr>"
-            linkString += "<tr><td>#{link_to(item.name, 'tabs/product/' + item.id.to_s)}</td></tr>"
-          elsif(item.is_a?(Group) && item == items[0])
-            linkString += "<tr><td>#{button_to("New Group", new_group_url)}</td></tr>"
-            linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
-          elsif(item.is_a?(Property) && item == items[0])
-            linkString += "<tr><td>#{button_to("New Property", new_property_url)}</td></tr>"
-            linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+        if(item.is_a?(Product))
+          if(item == items[0])
+            linkString += "<tr><td>#{link_to "New Product", new_product_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
+          linkString += "<tr><td>#{link_to(item.name, 'tabs/product/' + item.id.to_s)}</td></tr>"
+        elsif(item.is_a?(Group))
+          if(item == items[0])
+            linkString += "<tr><td>#{link_to "New Group", new_group_url, {:style=>'color:#FF8000'}}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+        elsif(item.is_a?(Property))
+          if(item == items[0])
+            linkString += "<tr><td>#{link_to "New Property", new_property_url, {:style=>'color:#FF8000'}}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
         elsif(item.is_a?(DataFile))
           if(item == items[0])
-             linkString += "<tr><td>#{button_to("New Data File", new_data_file_url)}</td></tr>"
+             linkString += "<tr><td>#{link_to "New Data File", new_data_file_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
         elsif(item.is_a?(Image))
           if(item == items[0])
-             linkString += "<tr><td>#{button_to("New Image", new_image_url)}</td></tr>"
+             linkString += "<tr><td>#{link_to "New Image", new_image_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
         elsif(item.is_a?(Validation))
           if(item == items[0])
-             linkString += "<tr><td>#{button_to("New Validation", new_validation_url)}</td></tr>"
+             linkString += "<tr><td>#{link_to "New Validation", new_validation_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
         elsif(item.is_a?(Valuefield))
           if(item == items[0])
-             linkString += "<tr><td>#{button_to("New Valuefield", new_valuefield_url)}</td></tr>"
+             linkString += "<tr><td>#{link_to "New Value Filed", new_valuefield_url, {:style=>'color:#FF8000'}}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+         elsif(item.is_a?(TableAlias))
+          if(item == items[0])
+             linkString += "<tr><th>Original Name</th>"
+             linkString += "<th>Current Name</th></tr>"
+          end
+          linkString += "<tr><td>#{item.tableName}</td>"
+          linkString += "<td>#{link_to(item.aliasName, item)}</td></tr>"
+        end
+      end
+    else
+      linkString += "None Available."
+    end
+
+    return linkString
+  end
+
+  #Prints a list of links for the Main Menu
+  def print_menu_link_list(items)
+
+    linkString = ""
+    if(!items.empty?  && items[0].is_a?(Category))
+      #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_category_url}</td></tr>"
+      linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
+    elsif(!items.empty?  && items[0].is_a?(Component))
+      #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_component_url}</td></tr>"
+      linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
+    elsif(!items.empty?)
+      for item in items
+        if(item.is_a?(Product))
+          if(item == items[0])
+            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_product_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.name, 'tabs/product/' + item.id.to_s)}</td></tr>"
+        elsif(item.is_a?(Group))
+          if(item == items[0])
+            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_group_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+        elsif(item.is_a?(Property))
+          if(item == items[0])
+            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_property_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
+        elsif(item.is_a?(DataFile))
+          if(item == items[0])
+             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_data_file_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Image))
+          if(item == items[0])
+             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_image_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
+        elsif(item.is_a?(Validation))
+          if(item == items[0])
+             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_validation_url}</td></tr>"
+          end
+          linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
+        elsif(item.is_a?(Valuefield))
+          if(item == items[0])
+             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_valuefield_url}</td></tr>"
           end
           linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
 

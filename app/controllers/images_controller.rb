@@ -23,6 +23,7 @@ class ImagesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @image }
+      format.js
     end
   end
 
@@ -97,37 +98,73 @@ class ImagesController < ApplicationController
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
 
-    if(!params[:new_products_ids].nil?)
-      @image.products = Product.find(params[:new_products_ids])
+    if(!params[:product_ids].nil?)
+      @image.products = Product.find(params[:product_ids])
     end
 
-    if(!params[:new_components_ids].nil?)
-      @image.components = Component.find(params[:new_components_ids])
+    if(!params[:component_parent_ids].nil?)
+      @image.components = Component.find(params[:component_parent_ids])
     end
 
-    if(!params[:new_valuefields_ids].nil?)
-      @image.valuefields = Valuefield.find(params[:new_valuefields_ids])
+    if(!params[:valuefield_ids].nil?)
+     @image.valuefields = Valuefield.find(params[:valuefield_ids])
     end
 
     @items_to_select = @image.products +  @image.components + @image.valuefields
 
-    respond_to do |format|
+     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to session[:rq], notice: 'Image was successfully created.' }
         format.json { render json: @image, status: :created, location: @image }
       else
         format.html { render action: "new" }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
-    end
+     end
   end
 
   # PUT /images/1
   # PUT /images/1.json
   #Function to update image
   def update
-    #Finds selected image
+    #Finds selected data file
     @image = Image.find(params[:id])
+
+    #Components
+    #Checks if the data file is attached to any components - if so clears them
+    if(!@image.components.nil?)
+      @image.components.clear
+    end
+    #Sets Data Files Components
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @image.components.push(Component.find(id))
+      end
+    end
+
+    #Products
+    #Checks if the data file is attached to any products - if so clears them
+    if(!@image.products.nil?)
+      @image.products.clear
+    end
+    #Sets Data Files Products
+    if(!params[:product_ids].nil?)
+      for id in params[:product_ids]
+        @image.products.push(Product.find(id))
+      end
+    end
+
+    #Valuefields
+    #Checks if the data file is attached to any valuefields - if so clears them
+    if(!@image.valuefields.nil?)
+      @image.valuefields.clear
+    end
+    #Sets Data Files Valuefields
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @image.valuefields.push(Valuefield.find(id))
+      end
+    end
     #creates an array of products
     @all_products = Product.all
     #creates an array of components
@@ -154,7 +191,7 @@ class ImagesController < ApplicationController
     #destroy image
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

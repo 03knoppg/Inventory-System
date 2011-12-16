@@ -18,12 +18,12 @@
         <tr>
           <td class="td_two_col">
             <div class ="field">
-              <%= radio_accord(all_category_hash, "category").html_safe  %>
+              <%= checkbox_accord(all_category_hash, "category").html_safe  %>
             </div>
           </td>
           <td>
             <div class="field">
-              <%= f.text_field :name, :required => true %>
+              <%= f.text_field :name, :required => true, :size=>20 %>
             </div>
           </td>
         </tr>

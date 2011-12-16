@@ -25,6 +25,7 @@ class DataFilesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erbml.erb
       format.json { render json: @data_file }
+      format.js
     end
   end
 
@@ -71,6 +72,7 @@ class DataFilesController < ApplicationController
     @all_components = Component.all
     #creates an array of all valuefields
     @all_valuefields = Valuefield.all
+    @all_properties = Property.all
 
     @items_to_select = @data_file.products + @data_file.components + @data_file.valuefields
   end
@@ -104,10 +106,48 @@ class DataFilesController < ApplicationController
   def update
     #Finds selected data file
     @data_file = DataFile.find(params[:id])
+
+    #Components
+    #Checks if the data file is attached to any components - if so clears them
+    if(!@data_file.components.nil?)
+      @data_file.components.clear
+    end
+    #Sets Data Files Components
+    if(!params[:component_parent_ids].nil?)
+      for id in params[:component_parent_ids]
+        @data_file.components.push(Component.find(id))
+      end
+    end
+
+    #Products
+    #Checks if the data file is attached to any products - if so clears them
+    if(!@data_file.products.nil?)
+      @data_file.products.clear
+    end
+    #Sets Data Files Products
+    if(!params[:product_ids].nil?)
+      for id in params[:product_ids]
+        @data_file.products.push(Product.find(id))
+      end
+    end
+
+    #Valuefields
+    #Checks if the data file is attached to any valuefields - if so clears them
+    if(!@data_file.valuefields.nil?)
+      @data_file.valuefields.clear
+    end
+    #Sets Data Files Valuefields
+    if(!params[:valuefield_ids].nil?)
+      for id in params[:valuefield_ids]
+        @data_file.valuefields.push(Valuefield.find(id))
+      end
+    end
+
     respond_to do |format|
       if @data_file.update_attributes(params[:data_file])
         format.html { redirect_to @data_file, notice: 'Data file was successfully updated.' }
         format.json { head :ok }
+
       else
         format.html { render action: "edit" }
         format.json { render json: @data_file.errors, status: :unprocessable_entity }
@@ -124,7 +164,7 @@ class DataFilesController < ApplicationController
     #destroys data file
     @data_file.destroy
     respond_to do |format|
-      format.html { redirect_to data_files_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

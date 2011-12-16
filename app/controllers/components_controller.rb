@@ -134,11 +134,9 @@ class ComponentsController < ApplicationController
       end
 
     end
-
-
     respond_to do |format|
       if @component.save
-        format.html { redirect_to @component, notice: 'Component was successfully created.' }
+        format.html { redirect_to session[:rq], notice: 'Component was successfully created.' }
         format.json { render json: @component, status: :created, location: @component }
       else
         format.html { render action: "new" }
@@ -170,7 +168,7 @@ class ComponentsController < ApplicationController
       @component.products.clear
     end
     #Sets the Component to the Product
-    if(!params{:Product_ids}.nil?)
+    if(!params[:Product_ids].nil?)
       for prod in params[:Product_ids]
         @component.products.push(Product.find(prod))
       end
@@ -246,7 +244,7 @@ class ComponentsController < ApplicationController
     #call to function to destroy component
     destroy_component(@component)
     respond_to do |format|
-      format.html { redirect_to components_url }
+      format.html { redirect_to '/admin' }
       format.json { head :ok }
     end
   end

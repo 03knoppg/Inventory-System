@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027165309) do
+ActiveRecord::Schema.define(:version => 20111207201044) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -134,6 +134,24 @@ ActiveRecord::Schema.define(:version => 20111027165309) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "table_aliases", :force => true do |t|
+    t.string   "tableName"
+    t.string   "aliasName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "updaterecords", :force => true do |t|
+    t.string   "table_name"
+    t.integer  "entry_id"
+    t.datetime "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "updaterecords", ["table_name", "entry_id"], :name => "index_updaterecords_on_table_name_and_entry_id", :unique => true
+  add_index "updaterecords", ["time"], :name => "index_updaterecords_on_time"
 
   create_table "users", :force => true do |t|
     t.string   "username",                                       :null => false

@@ -1,0 +1,34 @@
+<h1 class="tight_h1">Data File: Show</h1>
+<div>
+<table class="tight_table main_table">
+  <tr>
+    <th align="left">Data File</th>
+    <th align="left">Preview</th>
+    <th align="left">Actions</th>
+  </tr>
+  <tr>
+    <td valign="top"><%= data_file.filedata_file_name %></td>
+    <td><%= link_to("Preview Data File", data_file.filedata.url, {:target => "blank"})%></td>
+    <td>
+        <div>
+           <!-- external page is given in the href attribute (as it should be) -->
+            <a href="#" rel="#overlay_datafile_<%=data_file.id%>" style="text-decoration:none" id="DF<%=data_file.id%>" class="overlay" value="Edit Data File">
+              <!-- remember that you can use any element inside the trigger -->
+              <%= image_tag "edit-icon.png", :title=>"Edit", :value=>"Edit Data File"%>
+            </a>
+            <div class="apple_overlay" id="overlay_datafile_<%=data_file.id%>"></div>
+          <%= link_to image_tag("delete-icon.png"), {:controller => :data_files, :action => "destroy", :id => data_file.id }, :confirm => "Are You sure?", :method => :delete%>
+        </div>
+      </td>
+  </tr>
+</table>
+</div>
+
+<!-- Javascript for edit button click function - triggers overlay with edit page -->
+<script type="text/javascript">
+   jQuery(function($) {
+  $('a[id="DF<%=data_file.id%>"]').click(function(){
+            $.get("/admin/load_edit_datafile_page", {datafile_id: "<%=data_file.id%>"}, null, 'script');
+        });
+   });
+</script>

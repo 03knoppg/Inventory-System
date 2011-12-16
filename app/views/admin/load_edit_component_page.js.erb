@@ -1,1 +1,1 @@
-$('#overlay_component_<%=@component.id%>').html("<%= j render("components/edit", :id => @component.id) %>");
+$('#overlay_component_<%=@component.id.to_s%>').html("<%= j render("components/edit", :id => @component.id) %>");

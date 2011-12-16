@@ -1,0 +1,2 @@
+module TableAliasesHelper
+end

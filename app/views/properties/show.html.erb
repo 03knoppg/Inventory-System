@@ -18,7 +18,7 @@
       &nbsp
       <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
       <div class="apple_overlay" id="overlay">
-        <h1>Editing Category: <%=@property.name%></h1>
+        <h1>Editing Property: <%=@property.name%></h1>
         <%= render 'form' %>
       </div>
     &nbsp
@@ -42,11 +42,6 @@
    </div>
    </div>
 
-   <div class="right_div">
-     <%= button_to "Edit Property", edit_property_path(@property), :method => :get %>
-     <%=button_to "Delete Property", {:controller => :properties, :action => "destroy", :id => @property.id }, :confirm => "Are You sure?", :method => :delete%>
-   </div>
-<br class="clear" />
 
  <script type="text/javascript">
 

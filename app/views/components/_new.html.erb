@@ -22,17 +22,17 @@
         <tr>
           <td>
             <div class ="field">
-              <%= f.text_field :name, :required => true %>
+              <%= f.text_field :name, :required => true, :size => 20 %>
             </div>
           </td>
           <td>
             <div class="field">
-              <%= f.text_field :description, :required => true%>
+              <%= f.text_field :description, :required => true, :size => 20%>
             </div>
           </td>
           <td>
             <div class="field">
-              <%= f.text_field :code%>
+              <%= f.text_field :code, :size => 20%>
             </div>
           </td>
         </tr>
@@ -47,11 +47,6 @@
           <td>
             <div class="field">
                 <%= checkbox_accord(all_prod_comp_hash,  0).html_safe  %>
-
-
-              <!--ul id=5 class="accordion">
-                <li>abc</li><%#check_box_tag "parent_ids[]", Product.all[0].id%>
-              </ul-->
             </div>
           </td>
           <td>

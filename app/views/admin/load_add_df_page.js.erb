@@ -1,0 +1,5 @@
+container = $('.add_df_container2');
+container.html("<%= j render("admin/add_df", :parent => @parent)%>");
+container.removeClass("add_df_container2");
+cleanUp(container);
+enableMinimizers();

@@ -5,4 +5,16 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_url, :alert => "First log in to view this page."
   end
+
+  def current_path
+    session[:rq] = request.path_parameters
+    #@jumpto = session[:rq]
+  end
+
+  def assign_alias
+  for ta in TableAlias.all
+      if(ta.tableName.eq())
+      end
+  end
+  end
 end

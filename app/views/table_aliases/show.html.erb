@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<h1>Viewing Table Alias: <%=@table_alias.tableName%></h1>
+<div class="inner_container_show">
+  <div class="main_div">
+    <table class="main_table">
+      <tr>
+        <th align="left">Table Name</th>
+        <th align="left">Alias Name</th>
+        <th align="left">Actions</th>
+      </tr>
+      <tr>
+        <td valign="top"><%= @table_alias.tableName %></td>
+        <td valign="top"><%= @table_alias.aliasName %></td>
+        <td valign="top"><%= button_to "Edit Table Alias", edit_table_alias_path, :table_alias => @table_alias, :method => :get %></td>
+      </tr>
+    </table>
+  </div>
+  <br/>
+</div>

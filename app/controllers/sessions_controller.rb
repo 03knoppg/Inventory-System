@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   require "all_seating_helper.rb"
   require "xml_dump.rb"
+  require "unity_helper.rb"
 
   skip_before_filter :require_login, :except => [:destroy]
 
@@ -14,6 +15,10 @@ class SessionsController < ApplicationController
   end
 
   def new
+
+    if(!params[:unity].nil?)
+      UnityHelper.gui_xml
+    end
 
     #chcek for updates to inventory
     if(!params[:checkupdate].nil?)
@@ -60,25 +65,25 @@ class SessionsController < ApplicationController
       php_args.push(params[:OPTIONS])
       php_args.push(params[:FABRIC])
 
-      hash = all_seating_path_translator(php_args)
-      hash = all_seating_expand_hash(hash)
+      hash = AllSeatingHelper.all_seating_path_translator(php_args)
+      hash = AllSeatingHelper.all_seating_expand_hash(hash)
 
       test_dir = "/var/www/allseating/bin/chairs/textures/Series82_0_19/"
       generic_xml_path = test_dir + "testFile.xml"
 
-      generic_xml = all_seating_xml_from_hash(hash.keys[0], hash)
-      all_seating_write_to_file(generic_xml_path, generic_xml)
+      generic_xml = AllSeatingHelper.all_seating_xml_from_hash(hash.keys[0], hash)
+      AllSeatingHelper.all_seating_write_to_file(generic_xml_path, generic_xml)
 
       #get textures
-      all_seating_texture_xml(generic_xml_path, test_dir)
+      AllSeatingHelper.all_seating_texture_xml(generic_xml_path, test_dir)
 
       #get dae
-      all_seating_dae(generic_xml_path, test_dir)
+      AllSeatingHelper.all_seating_dae(generic_xml_path, test_dir)
 
       #get models
-      all_seating_texture(generic_xml_path, test_dir)
+      AllSeatingHelper.all_seating_texture(generic_xml_path, test_dir)
 
-      all_seating_copy_file("/home/hans2/public_html/Inventory-System/public/images/14/original/original_F4-PCABER.jpg",test_dir + "F4-PCABER.jpg")
+      AllSeatingHelper.all_seating_copy_file("/home/hans2/public_html/Inventory-System/public/images/14/original/original_F4-PCABER.jpg",test_dir + "F4-PCABER.jpg")
 
     end
 

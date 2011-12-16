@@ -4,11 +4,6 @@ class CategoriesProducts < ActiveRecord::Migration
       cp.column "category_id", :integer
       cp.column "product_id", :integer
     end
-    Category.new do |category|
-      category.name = "All"
-      Product.find(:all).each {|product| category.products << product}
-      category.save
-    end
   end
 
   def self.down

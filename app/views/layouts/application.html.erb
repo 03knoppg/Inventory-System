@@ -16,9 +16,10 @@
   <div class="containerLinks">
     <nav class="round">
       <ul>
+        <%= link_to "Search", "/admin/search" %> |
         <%= link_to "Main Menu", "/admin"%> |
         <% if current_user %>
-            Logged in as <%= current_user.username %>.
+            Logged in as <%= current_user.username %>. |
             <%= link_to "Log out", logout_path %>
         <% else %>
             <%= link_to "Sign up", signup_path %> |
@@ -67,17 +68,17 @@
 
 
 
-<!--//--><![CDATA[//><!--
 $("html").addClass("js");
 $.fn.accordion.defaults.container = false;
 $(function() {
-  $(".accordion").accordion();
+  $(".accordion").each(function(){
 
 
-  //$("html").removeClass("js");
+      $(this).find('input').filter(function(){return $(this).is(':checked');}).parent().parentsUntil('div','li').addClass("expand");
+      $(this).accordion();
+    });
+
 });
-//--><!]]>
-
 </script>
 
 

@@ -1,7 +1,7 @@
 <a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
 
 <!--Page Container -->
-<div class="inner_container">
+<div class="inner_container" id="P<%=@product.id%>">
   <div id="products_partial"><%= render "products/popup_show" %></div>
   <!-- Tabs for directly related objects to the Product -->
   <div class="tabs">
@@ -20,16 +20,18 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a class="new_vf" href>New Valuefield...</a></li>
+            <li><a class="new_vf" href="">New Value Field...</a></li>
+            <li><a class="add_vf" href="">Add Value Field</a></li>
             <% for valuefield in @product_valuefields %>
                 <li><a href=""><%= valuefield.fieldvalue %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+            <div><div class="inner_container new_vf_container"></div></div>
+            <div><div class="inner_container add_vf_container"></div></div>
             <% for valuefield in @product_valuefields %>
-                <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+                <div><%= render("/valuefields/popup_show", :valuefield => valuefield) %></div>
             <% end %>
           </div>
         </div>
@@ -40,15 +42,17 @@
           <ul>
             <li style="display:none"><a>hidden</a></li>
             <li><a href class="new_image">New Image...</a></li>
+            <li><a class="add_image" href="" >Add Image...</a></li>
             <% for image in @product_images %>
                 <li><a href=""><%= image.picture_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
+            <div><div class="inner_container new_image_container"></div></div>
+            <div><div class="inner_container add_image_container"></div></div>
             <% for image in @product_images %>
-                <div><%= render("/images/show", :image => image) %></div>
+                <div><%= render("/images/popup_show", :image => image) %></div>
             <% end %>
           </div>
         </div>
@@ -59,15 +63,17 @@
           <ul>
             <li style="display:none"><a>hidden</a></li>
             <li><a href class="new_df">New Data File...</a></li>
+            <li><a href class="add_df">Add Data File...</a></li>
             <% for datafile in @product_datafiles %>
                 <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
             <% end %>
           </ul>
           <div>
             <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-            <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
+            <div><div class="inner_container new_df_container"></div></div>
+            <div><div class="inner_container add_df_container"></div></div>
             <% for data_file in @product_datafiles %>
-                <div><%= render("/data_files/show", :data_file => data_file) %></div>
+                <div><%= render("/data_files/popup_show", :data_file => data_file) %></div>
             <% end %>
           </div>
         </div>
