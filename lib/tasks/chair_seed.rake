@@ -5,6 +5,8 @@ namespace :app do
   DESC
   task :chair_seed => [:environment] do
 
+AppRoot = File.expand_path("~/public_html/3didata")
+    
   # Only data not required in production should be here.
   # If it needs to be there in production, it belongs in seeds.rb.
 
@@ -71,7 +73,7 @@ fluidBasicStool = Product.create(name: "Basic Stool Chair", description: "Fluid 
 ################################################################################################################
 
 testDAE = DataFile.create()
-testDAE.filedata = File.open("/var/www/allseating/bin/chairs/dae/No_Textures_version_Series82_0_19.DAE")
+testDAE.filedata = File.open(File.join(AppRoot,"allseating/bin/chairs/dae/No_Textures_version_Series82_0_19.DAE"))
 testDAE.save!
 
 
@@ -147,75 +149,75 @@ fabricOrange = Valuefield.create(fieldvalue: "Orange", property_id: fabrics.id, 
 ################################################################################################################
 
 fabricGreyImage = Image.create()
-fabricGreyImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/grey_sm.png")
+fabricGreyImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/grey_sm.png"))
 fabricGreyImage.save!
 
 fabricYellowImage = Image.create()
-fabricYellowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/yellow_sm.png")
+fabricYellowImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/yellow_sm.png"))
 fabricYellowImage.save!
 
 fabricGreenImage = Image.create()
-fabricGreenImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/green_sm.png")
+fabricGreenImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/green_sm.png"))
 fabricGreenImage.save!
 
 fabricBrownImage = Image.create()
-fabricBrownImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/brown_sm.png")
+fabricBrownImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/brown_sm.png"))
 fabricBrownImage.save!
 
 fabricOrangeImage = Image.create()
-fabricOrangeImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/orange_sm.png")
+fabricOrangeImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/orange_sm.png"))
 fabricOrangeImage.save!
 
 btoBasicStoolImage = Image.create()
-btoBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/BT0.png")
+btoBasicStoolImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/BT0.png"))
 btoBasicStoolImage.save!
 
 basicControlImage = Image.create()
-basicControlImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/C19.png")
+basicControlImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/C19.png"))
 basicControlImage.save!
 
 task2ArmImage = Image.create()
-task2ArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/T2.png")
+task2ArmImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/T2.png"))
 task2ArmImage.save!
 
 multiFunctionalArmImage = Image.create()
-multiFunctionalArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/MF.png")
+multiFunctionalArmImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/MF.png"))
 multiFunctionalArmImage.save!
 
 twisterArmImage = Image.create()
-twisterArmImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/TW.png")
+twisterArmImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/TW.png"))
 twisterArmImage.save!
 
 ssControlAddOnImage = Image.create()
-ssControlAddOnImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/SS.png")
+ssControlAddOnImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/SS.png"))
 ssControlAddOnImage.save!
 
 lumbarPlusAddOnImage = Image.create()
-lumbarPlusAddOnImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/LP.png")
+lumbarPlusAddOnImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/LP.png"))
 lumbarPlusAddOnImage.save!
 
 type82BasicStoolImage = Image.create()
-type82BasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Type82.png")
+type82BasicStoolImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/Type82.png"))
 type82BasicStoolImage.save!
 
 base82BasicStoolImage = Image.create()
-base82BasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Base82.png")
+base82BasicStoolImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/Base82.png"))
 base82BasicStoolImage.save!
 
 casterBasicStoolImage = Image.create()
-casterBasicStoolImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/Casters.png")
+casterBasicStoolImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/Casters.png"))
 casterBasicStoolImage.save!
 
 basicBackMeshImage = Image.create()
-basicBackMeshImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/FM-BMESH.png")
+basicBackMeshImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/FM-BMESH.png"))
 basicBackMeshImage.save!
 
 s810RingImage = Image.create()
-s810RingImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/S8.png")
+s810RingImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/S8.png"))
 s810RingImage.save!
 
 chairShadowImage = Image.create()
-chairShadowImage.picture = File.open("/var/www/allseating/bin/chairs/textures/Series82_0_19/shadow.png")
+chairShadowImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/Series82_0_19/shadow.png"))
 chairShadowImage.save!
 
 threedilogo = Image.create()
@@ -227,7 +229,7 @@ banner.picture = File.open("#{Rails.root}/app/assets/images/Company_Banner.png")
 banner.save!
 
 #f4_pcaberImage = Image.create(valuefield_id: f4_pcaber.id)                   #TODO reenable this
-#f4_pcaberImage.picture = File.open("/var/www/allseating/bin/chairs/textures/F4-PCABER.jpg")
+#f4_pcaberImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/F4-PCABER.jpg"))
 #f4_pcaberImage.save!
 
 
