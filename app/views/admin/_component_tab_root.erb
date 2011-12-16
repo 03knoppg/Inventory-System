@@ -4,7 +4,7 @@
           <h1 class="tight_h1"><%=image_tag "Accordian/bigminus.gif"%>&nbspComponent: <%=component.name%></h1>
         </a>
 
-        <div class="inner_container">
+        <div class="inner_container" id="C<%=component.id%>">
         <div id="components_partial"><%= render "components/popup_show", :component => component %></div>
         <!-- Tabs for directly related objects to the Components -->
         <div class="tabs">
@@ -19,18 +19,20 @@
               <%= render "admin/components_tabs", :parent => component %>
             </div>
             <div>
-              <!-- Tabs for directly related ValueFields to the Product -->
+              <!-- Tabs for directly related ValueFields to the Component -->
               <div class="tabs2">
                 <ul>
                   <li style="display:none"><a>hidden</a></li>
                   <li><a class="new_vf" href>New Valuefield...</a></li>
+                  <li><a class="add_vf" href>Add Valuefield...</a></li>
                   <% for valuefield in @component_valuefields %>
                       <li><a href=""><%= valuefield.fieldvalue %></a></li>
                   <% end %>
                 </ul>
                 <div>
                   <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                  <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
+                  <div><div class="inner_container new_vf_container"></div></div>
+                  <div><div class="inner_container add_vf_container"></div></div>
                   <% for valuefield in @component_valuefields %>
                       <div><%= render("/valuefields/popup_show", :valuefield => valuefield) %></div>
                   <% end %>
@@ -38,18 +40,20 @@
               </div>
             </div>
             <div>
-              <!-- Tabs for directly related Images to the Product -->
+              <!-- Tabs for directly related Images to the Component -->
               <div class="tabs2">
                 <ul>
                     <li style="display:none"><a>hidden</a></li>
                     <li><a class="new_image" href>New Image...</a></li>
+                  <li><a class="add_image" href="" >Add Image...</a></li>
                   <% for image in @component_images %>
                       <li><a href=""><%= image.picture_file_name %></a></li>
                   <% end %>
                 </ul>
                 <div>
                   <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                  <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
+                  <div><div class="inner_container new_image_container"><%# render("images/new") %></div></div>
+                  <div><div class="inner_container add_image_container"></div></div>
                   <% for image in @component_images %>
                       <div><%= render("/images/popup_show", :image => image) %></div>
                   <% end %>
@@ -57,18 +61,20 @@
               </div>
             </div>
             <div>
-              <!-- Tabs for directly related Data Files to the Product -->
+              <!-- Tabs for directly related Data Files to the Component -->
               <div class="tabs2">
                 <ul>
                     <li style="display:none"><a>hidden</a></li>
                     <li><a class="new_df" href>New Data File...</a></li>
+                  <li><a class="add_df" href>Add Data File...</a></li>
                   <% for datafile in @component_data_files %>
                       <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
                   <% end %>
                 </ul>
                 <div>
                       <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
-                      <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
+                      <div><div class="inner_container new_df_container"></div></div>
+                  <div><div class="inner_container add_df_container"></div></div>
                   <% for data_file in @component_data_files %>
                       <div><%= render("/data_files/popup_show", :data_file => data_file) %></div>
                   <% end %>
@@ -79,3 +85,8 @@
         </div>
         </div>
       </div>
+<script type="text/javascript">
+    jQuery(function($) {
+        setUpPopUp();
+    });
+</script>

@@ -28,7 +28,7 @@
             <td>
               <%if(!image.id.nil?)%>
                   <div class align="field">
-                    <%=text_field_tag("", image.picture_file_name, :size => 30) %>
+                    <%=text_field_tag("", image.picture_file_name, :size => 30, :disabled => true) %>
                   </div>
               <%end%>
             </td>
