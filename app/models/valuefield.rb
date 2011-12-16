@@ -14,6 +14,10 @@ class Valuefield < ActiveRecord::Base
     return "#{id}:#{fieldvalue}"
     end
 
+  def name
+    return fieldvalue
+  end
+
   def set_update
     update = Updaterecord.find_or_create_by_table_name_and_entry_id(self.class.name.tableize,id)
     update.time = updated_at

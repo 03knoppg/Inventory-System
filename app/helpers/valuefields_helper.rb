@@ -8,7 +8,7 @@ module ValuefieldsHelper
     sfv = ""
     for val in @all_valuefields
      sfv+= "<tr>\n"
-        sfv+= "<td> #{val.fieldvalue} </td>\n"
+        sfv+= "<td> #{val.name} </td>\n"
         if(!val.property.nil?)
           sfv+= "<td> #{link_to val.property.name, val.property} </td>\n"
         else
@@ -34,7 +34,7 @@ module ValuefieldsHelper
     if(!parent.valuefields.empty?)
       for vf in parent.valuefields
         s+="<tr>"
-        s+="<td> #{link_to vf.fieldvalue, vf} </td>"
+        s+="<td> #{link_to vf.name, vf} </td>"
         s+="</tr>"
       end
 
@@ -201,7 +201,7 @@ module ValuefieldsHelper
     val_group = value_group_hash[value_group_hash.keys[value_depth]]
 
     for val in val_group  #go to next valuefield
-      print_valuefields(component, value_group_hash, path + val.fieldvalue + "|", value_depth+1, component_group_hash, comp_depth)
+      print_valuefields(component, value_group_hash, path + val.name + "|", value_depth+1, component_group_hash, comp_depth)
     end
 
   end
@@ -314,7 +314,7 @@ module ValuefieldsHelper
       elsif(id[0] == 'c')
         name_path += "<br/><b>#{Component.find(id[1..(id.length)]).name}</b>"
       elsif(id[0] == "v")
-        name_path += "  #{Valuefield.find(id[1..(id.length)]).fieldvalue}"
+        name_path += "  #{Valuefield.find(id[1..(id.length)]).name}"
       end
     end
 

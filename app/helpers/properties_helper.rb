@@ -17,18 +17,19 @@ module PropertiesHelper
   end
 
   #Function for displaying Field Values belonging to properties
-  def properties_field_values_print(property)
+=begin def properties_field_values_print(property)
     sgc= "<table>"
     if(property.valuefields.empty?)
       sgc+= "<tr><td>No Field Values Available </td></tr>"
     else
-      for vf in property.valuefields.sort!{|x,y| x.fieldvalue <=> y.fieldvalue}
-        sgc+= "<tr><td>#{link_to vf.fieldvalue, vf}</td></tr>"
+      for vf in property.valuefields.sort!{|x,y| x.name <=> y.name}
+        sgc+= "<tr><td>#{link_to vf.name, vf}</td></tr>"
       end
     end
     sgc+= "</table>"
     return sgc
   end
+=end
 
   #Function to print properties table
   def print_properties_table(parent, button=true)
@@ -41,14 +42,14 @@ module PropertiesHelper
 
     if(!properties.empty?)
       for prop in properties
-        valuefields = prop.valuefields.sort {|x,y| x.fieldvalue <=> y.fieldvalue }
+        valuefields = prop.valuefields.sort {|x,y| x.name <=> y.name }
         s +="  <tr><td> #{link_to("#{prop.name} (#{prop.field_type})", prop, :target => 'blank')} </td>"
 
         if(!valuefields.empty?)
           s +=      "<td><table>"
                 for val in valuefields
 
-                  s +=        "<tr><td> #{link_to(val.fieldvalue, val)} </td></tr>"
+                  s +=        "<tr><td> #{link_to(val.name, val)} </td></tr>"
 
                 end
           if(button)

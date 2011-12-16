@@ -1,5 +1,5 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Value Field: <%=@valuefield.fieldvalue%></h1>
+ <h1>Viewing Value Field: <%=@valuefield.name%></h1>
 <div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
@@ -9,14 +9,14 @@
     <th align="left">Actions</th>
   </tr>
   <tr>
-    <td><%= @valuefield.fieldvalue %></td>
+    <td><%= @valuefield.name %></td>
     <td><%= @valuefield.code %></td>
     <td>
       <%= link_to image_tag("duplicate.png"), new_valuefield_path + "?duplicate_valuefield=#{@valuefield.id}", :title=>"Duplicate"%>
       &nbsp
       <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
       <div class="apple_overlay" id="overlay">
-        <h1>Editing Value Field: <%=@valuefield.fieldvalue%></h1>
+        <h1>Editing Value Field: <%=@valuefield.name%></h1>
         <%= render 'form' %>
       </div>
     &nbsp

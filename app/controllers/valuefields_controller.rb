@@ -28,6 +28,7 @@ class ValuefieldsController < ApplicationController
     @all_images = Image.all.sort!{|x,y| x.picture_file_name <=> y.picture_file_name}
     @all_properties = Property.all
     @all_products = Product.all
+    @all_components = Component.all
 
     if(!@valuefield.property_id.nil?)
       @property = Property.find(@valuefield.property_id)

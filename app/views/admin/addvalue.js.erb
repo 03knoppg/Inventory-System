@@ -43,12 +43,7 @@ function make_table(where){
         o += "<select style='width: 100%; border: 2px solid red' size=\"5\" id = \""+"\">";
         <%for item in @items%>
           o += "<option value=\"<%= @type %><%= item.id %>\">";
-              <%if(@type != "v")%>
-                o += "<%=item.name%>"
-              <%else%>
-                o += "<%=item.fieldvalue%>"
-              <%end%>
-
+            o += "<%=item.name%>";
           o += "</option>";
         <%end%>
         o += "</select>";

@@ -101,7 +101,7 @@ module ApplicationHelper
       elsif(item.is_a?(Component))
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Valuefield))
-        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Group))         #not currently used
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Property))
@@ -162,7 +162,7 @@ module ApplicationHelper
           pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
         end
       elsif(item.is_a?(Valuefield))
-        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
+        pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Group))         #not currently used
         pt += "<div class=\"inline\">&nbsp</div>#{check_box_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Property))
@@ -218,7 +218,7 @@ module ApplicationHelper
       elsif(item.is_a?(Component))
         pt += "#{radio_button_tag "component_parent_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Valuefield))
-        pt += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label>"
+        pt += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Group))         #not currently used
         pt += "#{radio_button_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label>"
       elsif(item.is_a?(Property))
@@ -254,7 +254,7 @@ module ApplicationHelper
           elsif(item.is_a?(Component))
             rl += "#{radio_button_tag "component_ids[]", item.id, @items_to_select.include?(item), :id=>"c#{item.id}"}"  +  "<label for=\"c#{item.id}\">#{item.name}</label><br />"
           elsif(item.is_a?(Valuefield))
-            rl += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.fieldvalue}</label><br />"
+            rl += "#{radio_button_tag "valuefield_ids[]", item.id, @items_to_select.include?(item), :id=>"v#{item.id}"}"   +  "<label for=\"v#{item.id}\">#{item.name}</label><br />"
           elsif(item.is_a?(Group))         #not currently used
             rl += "#{radio_button_tag "group_ids[]", item.id, @items_to_select.include?(item), :id=>"g#{item.id}"}"  +  "<label for=\"g#{item.id}\">#{item.name}</label><br />"
           elsif(item.is_a?(Property))
@@ -274,21 +274,9 @@ module ApplicationHelper
       item_class_sub = item_class[0..0].to_s
       for item in items
         cl += "<li>#{check_box_tag(item_class +"_ids[]", item.id, @items_to_select.include?(item), :id=>"#{item_class_sub + "" + item.id.to_s}")}"
-        if(item.is_a?(Product))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
-        elsif(item.is_a?(DataFile))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.filedata_file_name}</label></li>"
-        elsif(item.is_a?(Image))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.picture_file_name}</label></li>"
-        elsif(item.is_a?(Group))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
-        elsif(item.is_a?(Property))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
-        elsif(item.is_a?(Validation))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.extension}</label></li>"
-        elsif(item.is_a?(Valuefield))
-          cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.fieldvalue}</label></li>"
-        end
+
+        cl += "<label for=\"#{item_class_sub + "" + item.id.to_s}\">#{item.name}</label></li>"
+
       end
       cl += "</ul>"
     end
@@ -377,7 +365,7 @@ module ApplicationHelper
           if(item == items[0])
              linkString += "<tr><td>#{link_to "New Value Filed", new_valuefield_url, {:style=>'color:#FF8000'}}</td></tr>"
           end
-          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
+          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
          elsif(item.is_a?(TableAlias))
           if(item == items[0])
              linkString += "<tr><th>Original Name</th>"
@@ -394,62 +382,7 @@ module ApplicationHelper
     return linkString
   end
 
-  #Prints a list of links for the Main Menu
-  def print_menu_link_list(items)
 
-    linkString = ""
-    if(!items.empty?  && items[0].is_a?(Category))
-      #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_category_url}</td></tr>"
-      linkString += "<tr><td>#{main_menu_accord(all_category_hash)}</td></tr>"
-    elsif(!items.empty?  && items[0].is_a?(Component))
-      #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_component_url}</td></tr>"
-      linkString += "<tr><td>#{main_menu_accord(all_component_hash)}</td></tr>"
-    elsif(!items.empty?)
-      for item in items
-        if(item.is_a?(Product))
-          if(item == items[0])
-            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_product_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.name, 'tabs/product/' + item.id.to_s)}</td></tr>"
-        elsif(item.is_a?(Group))
-          if(item == items[0])
-            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_group_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
-        elsif(item.is_a?(Property))
-          if(item == items[0])
-            #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_property_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.name, item)}</td></tr>"
-        elsif(item.is_a?(DataFile))
-          if(item == items[0])
-             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_data_file_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.filedata_file_name, item)}</td></tr>"
-        elsif(item.is_a?(Image))
-          if(item == items[0])
-             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_image_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.picture_file_name, item)}</td></tr>"
-        elsif(item.is_a?(Validation))
-          if(item == items[0])
-             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_validation_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.extension, item)}</td></tr>"
-        elsif(item.is_a?(Valuefield))
-          if(item == items[0])
-             #linkString += "<tr><td>#{link_to image_tag("Button-Add-icon.png"), new_valuefield_url}</td></tr>"
-          end
-          linkString += "<tr><td>#{link_to(item.fieldvalue, item)}</td></tr>"
-
-        end
-      end
-    else
-      linkString += "None Available."
-    end
-
-    return linkString
-  end
 
    #Creates a hash for all categories
    def all_category_hash(item=nil)
@@ -603,10 +536,6 @@ module ApplicationHelper
      return hash
 
   end
-
-
-
-
 
 
 

@@ -1,7 +1,7 @@
 <% @items_to_select = (@valuefield.products + @valuefield.components + [@property]) %>
 <div class="pop_container">
   <%valuefield = @valuefield%>
-  <h1>Editing Value Field: <%=valuefield.fieldvalue %></h1>
+  <h1>Editing Value Field: <%=valuefield.name %></h1>
   <%= form_for(valuefield, :remote => true) do |f| %>
       <% if valuefield.errors.any? %>
           <div id="error_explanation">

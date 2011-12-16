@@ -113,6 +113,12 @@
             });
             enableMinimizers();
         });
+        $('.tabs2 > ul > li > a').live('click', function(){
+
+            index = $(this).parents('li').index();
+            div = $(this).closest('.tabs2').find(' > div > div:nth-child(' + (index + 1) +')');
+            adjustWidth(div.find('.inner_container:first').find('.inner_container:first'), false, false);
+        });
 
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);

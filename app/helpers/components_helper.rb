@@ -94,7 +94,7 @@ module ComponentsHelper
     pp= ""
     if(!values.empty?)
       for vf in values
-        pp+= "<tr><td>#{link_to(vf.fieldvalue, vf)}</td><td>#{link_to(vf.property.name, vf.property)}</td></tr>"
+        pp+= "<tr><td>#{link_to(vf.name, vf)}</td><td>#{link_to(vf.property.name, vf.property)}</td></tr>"
       end
     else
       pp+="<tr><td>No Values Available</td><td></td></tr>"
@@ -120,7 +120,7 @@ module ComponentsHelper
         if selected_valuefields.include?(valuefield)
           s+= " selected=\"true\""
         end
-        s+=">---#{valuefield.fieldvalue}</option>"
+        s+=">---#{valuefield.name}</option>"
       end
     end
     return s
