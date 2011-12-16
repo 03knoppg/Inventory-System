@@ -1,4 +1,4 @@
-<% property_vf = Property.find(valuefield.property_id).name %>
+
 <h1 class="tight_h1">Value Field: Show</h1>
 <div>
 <table class="tight_table main_table">
@@ -11,15 +11,15 @@
   <tr>
     <td><%= valuefield.fieldvalue %></td>
     <td><%= valuefield.code %></td>
-    <td><%= property_vf %></td>
+    <td><%= valuefield.property_id.nil?? "" : Property.find(valuefield.property_id).name %></td>
     <td>
         <div>
            <!-- external page is given in the href attribute (as it should be) -->
-            <a href="#" rel="#overlay_vf" style="text-decoration:none" id="<%=valuefield.id%>" class="overlay edit_vf">
+            <a href="#" rel="#overlay" style="text-decoration:none" id="<%=valuefield.id%>" class="overlay edit_vf">
               <!-- remember that you can use any element inside the trigger -->
               <%= image_tag "edit-icon.png", :title=>"Edit", :value=>"Edit Value Field"%>
             </a>
-            <div class="apple_overlay" id="overlay_vf"></div>
+
           <%= link_to image_tag("delete-icon.png"), {:controller => :valuefields, :action => "destroy", :id => valuefield.id }, :confirm => "Are You sure?", :method => :delete%>
         </div>
       </td>

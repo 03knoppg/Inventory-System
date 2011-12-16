@@ -32,7 +32,7 @@
                   <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
                   <div><div class="inner_container vf_container"><%# render("valuefields/new") %></div></div>
                   <% for valuefield in @component_valuefields %>
-                      <div><%= render("/valuefields/show", :valuefield => valuefield) %></div>
+                      <div><%= render("/valuefields/popup_show", :valuefield => valuefield) %></div>
                   <% end %>
                 </div>
               </div>
@@ -51,7 +51,7 @@
                   <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
                   <div><div class="inner_container image_container"><%# render("images/new") %></div></div>
                   <% for image in @component_images %>
-                      <div><%= render("/images/show", :image => image) %></div>
+                      <div><%= render("/images/popup_show", :image => image) %></div>
                   <% end %>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                       <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
                       <div><div class="inner_container df_container"><%# render("data_files/new") %></div></div>
                   <% for data_file in @component_data_files %>
-                      <div><%= render("/data_files/show", :data_file => data_file) %></div>
+                      <div><%= render("/data_files/popup_show", :data_file => data_file) %></div>
                   <% end %>
                 </div>
               </div>

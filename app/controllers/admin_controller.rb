@@ -348,7 +348,10 @@ class AdminController < ApplicationController
     @all_datafiles = DataFile.all
 
     @valuefield = Valuefield.find(params[:valuefield_id])
-    @property = Property.find(@valuefield.property_id)
+    if(!@valuefield.property_id.nil?)
+      @property = Property.find(@valuefield.property_id)
+    end
+
 
     respond_to do |format|
       format.js

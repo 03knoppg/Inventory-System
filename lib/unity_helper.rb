@@ -16,8 +16,8 @@ class UnityHelper
 
       xml += "<code>#{fabric.code}</code>"
       xml += "<displaname>#{fabric.fieldvalue}</displaname>"
-      xml += "<thumbnail>#{fabric.images[0].picture_file_name}<thumbnail>"
-      xml += "<description><description>"
+      xml += "<thumbnail>#{fabric.images[0].picture_file_name}</thumbnail>"
+      xml += "<description></description>"
 
       xml += "</fabric>"
     end
