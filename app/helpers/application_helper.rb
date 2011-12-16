@@ -1,5 +1,30 @@
 module ApplicationHelper
 
+  #Function to assign global variables for table alias names usable by the entire application
+   def assign_alias
+    for ta in TableAlias.all
+        if(ta.tableName.eql?("categories"))
+          @category_alias = ta.aliasName
+        elsif(ta.tableName.eql?("products"))
+          @product_alias = ta.aliasName
+        elsif(ta.tableName.eql?("components"))
+          @component_alias = ta.aliasName
+        elsif(ta.tableName.eql?("data_files"))
+          @df_alias = ta.aliasName
+        elsif(ta.tableName.eql?("groups"))
+          @group_alias = ta.aliasName
+        elsif(ta.tableName.eql?("images"))
+          @image_alias = ta.aliasName
+        elsif(ta.tableName.eql?("properties"))
+          @property_alias = ta.aliasName
+        elsif(ta.tableName.eql?("valuefields"))
+          @vf_alias = ta.aliasName
+        elsif(ta.tableName.eql?("validations"))
+          @validation_alias = ta.aliasName
+        end
+    end
+   end
+
   #Function for displaying customer message - used for deleting parents that contain children
   def confirmation_message(value, value_hash)
       if(value_hash[value.id] == nil)

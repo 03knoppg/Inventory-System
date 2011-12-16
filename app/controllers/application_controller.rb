@@ -11,10 +11,5 @@ class ApplicationController < ActionController::Base
     #@jumpto = session[:rq]
   end
 
-  def assign_alias
-  for ta in TableAlias.all
-      if(ta.tableName.eq())
-      end
-  end
-  end
+
 end
