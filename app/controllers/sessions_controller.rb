@@ -17,8 +17,22 @@ class SessionsController < ApplicationController
   def new
 
     if(!params[:unity].nil?)
-      UnityHelper.gui_xml
+      if(params[:unity] == "getUI")
+        ui_xml = UnityHelper.gui_xml
+
+        respond_to do |format|
+          format.html { render :xml => ui_xml }
+        end
+
+
+      else
+
+        redirect_to Image.find_by_picture_file_name(params[:unity]).picture.url(:original)
+
+      end
     end
+
+
 
     #chcek for updates to inventory
     if(!params[:checkupdate].nil?)
