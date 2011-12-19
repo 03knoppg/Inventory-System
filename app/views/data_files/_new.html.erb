@@ -2,7 +2,7 @@
 <%= form_for(data_file, :html => { :multipart => true }) do |f| %>
     <% if data_file.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this data file from being saved:</h2>
+          <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this <%= @df_alias %> from being saved:</h2>
           <ul>
             <% data_file.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -10,10 +10,10 @@
           </ul>
         </div>
     <% end %>
-    <h1 class="tight_h1">Data File: Create</h1>
+    <h1 class="tight_h1"><%= @df_alias %>: Create</h1>
     <table class="main_table">
       <tr>
-        <th align="left">Data File&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @df_alias %>&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
         <td style="width: 325px">
@@ -30,8 +30,8 @@
     </table>
     <table>
       <tr>
-        <th align="left">Products / Components</th>
-        <th align="left">Value Fields</th>
+        <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
+        <th align="left"><%= @vf_alias %></th>
       </tr>
       <tr>
         <td>
@@ -49,7 +49,7 @@
     <br class="clear" />
     <div class="right_div">
       <input type="reset" />
-      <%= f.submit %>
+      <%= f.submit "Create #{@df_alias}"%>
     </div>
 <% end %>
 <h5>Required fields are marked with <span style="color: red">*</span></h5>

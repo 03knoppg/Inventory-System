@@ -1,9 +1,9 @@
 <p id="notice"><%# notice %></p>
-<h1>Viewing Category: <%=@category.name%></h1>
+<h1>Viewing <%= @category_alias %>: <%=@category.name%></h1>
 <div class="main_div">
   <table class="main_table">
     <tr>
-      <th align="left">Category Name</th>
+      <th align="left">Name</th>
       <th align="left">Parent</th>
     </tr>
     <tr>
@@ -14,8 +14,8 @@
   <h2>Associations</h2>
   <!-- the tabs -->
   <ul class="tabs2">
-    <li><a href="#">Child Components</a></li>
-     <li><a href="#">Products</a></li>
+    <li><a href="#">Child <%= @category_alias %></a></li>
+     <li><a href="#"><%= @product_alias %></a></li>
   </ul>
   <!-- tab "panes" -->
   <div class="panes2">
@@ -30,9 +30,9 @@
 
 
     <div class="right_div">
-  <%= button_to "Edit Category", "categories/edit", :object => @category,:controller => :categories, :method => :get %>
-  <%= button_to "Delete Category", {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
-  <%= button_to "Duplicate Category", new_category_path + "?duplicate_category=#{@category.id}"%>
+  <%= button_to "Edit " + @category_alias, "categories/edit", :object => @category,:controller => :categories, :method => :get %>
+  <%= button_to "Delete " + @category_alias, {:controller => :categories, :action => "destroy", :id => @category.id, :style=>"display:inline"},  :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Duplicate "+ @category_alias, new_category_path + "?duplicate_category=#{@category.id}"%>
 
 </div>
 

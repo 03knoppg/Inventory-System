@@ -1,6 +1,6 @@
 <!--Products Index Page - uses application.html.erb for template. -->
-<%= button_to "New Product", new_product_path, :method => :get %> <br /><br /><br />
-<h1>Listing Products</h1>
+<%= button_to "New #{@product_alias}", new_product_path, :method => :get %> <br /><br /><br />
+<h1>Listing <%= @product_alias %></h1>
 <!--Button to create a new product -->
  <!--if length > 0 print groups -->
 <div class="main_div">
@@ -15,7 +15,7 @@
         </tr>
         <%= print_products.html_safe %>
 <%else%>
-        <tr><td><h4>No Products Available</h4></td></tr>
+        <tr><td><h4>No <%= @product_alias %> Available</h4></td></tr>
 <%end%>
 </table>
   </div>

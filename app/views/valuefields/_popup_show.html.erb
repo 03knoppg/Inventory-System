@@ -1,11 +1,11 @@
-
-<h1 class="tight_h1">Value Field: Show</h1>
+<% property_vf = Property.find(valuefield.property_id).name %>
+<h1 class="tight_h1"><%= @vf_alias %>: Show</h1>
 <div>
 <table class="tight_table main_table">
   <tr>
     <th align="left">Field Value</th>
     <th align="left">Code</th>
-    <th align="left">Property</th>
+    <th align="left"><%= @property_alias %></th>
     <th align="left">Actions</th>
   </tr>
   <tr>

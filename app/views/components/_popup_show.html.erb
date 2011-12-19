@@ -33,7 +33,7 @@
 
   </table>
   <div class="layer1">
-    <p class="heading">Click Here To Expand/Collapse Detailed component Information</p>
+    <p class="heading">Click Here To Expand/Collapse Detailed <%= @component_alias %> Information</p>
     <div class="content">
       <div class="inner_scroll_div">
         <table class="tight_table">
@@ -52,13 +52,13 @@
           <tr><td>
             <% group = component.group %>
             <table>
-              <tr><th align="left">Related Group</th></tr>
+              <tr><th align="left">Related <%= @group_alias %></th></tr>
               <tr><td>
                 <% if(!group.nil?) %>
                     <%= link_to("#{group.name} ", group) %>
                 <%else%>
-                    No Groups Available
-                    </td></tr><tr><td> <%=my_button_to "New Group", new_group_path, [component]%>
+                    No <%= @group_alias %> Available
+                    </td></tr><tr><td> <%=my_button_to "New " + @group_alias, new_group_path, [component]%>
                 <%end%>
                 </td></tr>
                 </table>

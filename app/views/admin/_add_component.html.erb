@@ -1,6 +1,6 @@
 <%= form_for(parent, :url => {:controller => 'admin', :action => 'add_components', :parent_id => @parent.class.to_s[0] + @parent.id.to_s}, :html => { :multipart => true }) do |f| %>
     <div>
-      <h1>Add/Remove Existing Component to <%=parent.name%></h1>
+      <h1>Add/Remove Existing <%= @component_alias %> to <%=parent.name%></h1>
       <div>
         <table class="tight_table">
           <%= checkbox_accord2(all_component_hash).html_safe %>

@@ -1,5 +1,5 @@
  <p id="notice"><%# notice %></p>
- <h1>Viewing Property: <%=@property.name%></h1>
+ <h1>Viewing <%= @property_alias %>: <%=@property.name%></h1>
  <div class="inner_container_show">
  <div class="main_div">
 <table class="main_table">
@@ -18,7 +18,7 @@
       &nbsp
       <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
       <div class="apple_overlay" id="overlay">
-        <h1>Editing Property: <%=@property.name%></h1>
+        <h1>Editing <%= @property_alias %>: <%=@property.name%></h1>
         <%= render 'form' %>
       </div>
     &nbsp
@@ -30,7 +30,7 @@
    <!-- the tabs -->
 <div class="tabs">
 <ul>
-	<li><a href="#">Value Fields</a></li>
+	<li><a href="#"><%= @vf_alias %></a></li>
 </ul>
 <!-- tab "panes" -->
 <div>

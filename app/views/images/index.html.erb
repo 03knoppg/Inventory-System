@@ -1,18 +1,18 @@
 <!--Button to create a new Image -->
-<%= button_to "New Image", new_image_path, :method => :get %><br /><br /><br />
-<h1>Listing Images</h1>
+<%= button_to "New #{@image_alias}", new_image_path, :method => :get %><br /><br /><br />
+<h1>Listing <%= @image_alias %></h1>
 
 <div class="main_div">
 <table>
   <%if(!@all_images.empty?)    %>
       <tr>
-        <th align="left">Image</th>
-        <th align="left">Image Name</th>
+        <th align="left"><%= @image_alias %></th>
+        <th align="left"><%= @image_alias %> Name</th>
         <th align="left">Actions</th>
       </tr>
       <%= print_images.html_safe %>
   <%else%>
-      <tr><td><h4>No Images Available</h4></td></tr>
+      <tr><td><h4>No <%= @image_alias %> Available</h4></td></tr>
   <%end%>
 </table>
   </div>

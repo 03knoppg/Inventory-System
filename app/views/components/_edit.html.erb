@@ -1,11 +1,11 @@
 <% @items_to_select = (@component.products + @component.component_parents + @component.valuefields + @component.images + @component.data_files + [@component.group]) %>
 <div class="pop_container">
   <%component = @component%>
-  <h1>Editing Component: <%=component.name%></h1>
+  <h1>Editing <%= @component_alias %>: <%=component.name%></h1>
   <%= form_for(component, :remote => true) do |f| %>
       <% if component.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+            <h2><%= pluralize(component.errors.count, "error") %> prohibited this <%= @component_alias %> from being saved:</h2>
             <ul>
               <% component.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -43,7 +43,7 @@
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Products</p>
+                <p class="heading_main_menu"><%= @product_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -55,7 +55,7 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Value Fields</p>
+                <p class="heading_main_menu"><%= @vf_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -69,7 +69,7 @@
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Parent Components</p>
+                <p class="heading_main_menu">Parent <%= @component_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -87,7 +87,7 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Groups</p>
+                <p class="heading_main_menu"><%= @group_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -101,7 +101,7 @@
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Images</p>
+                <p class="heading_main_menu"><%= @image_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -113,7 +113,7 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Data File</p>
+                <p class="heading_main_menu"><%= @df_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table" style="display: inline">

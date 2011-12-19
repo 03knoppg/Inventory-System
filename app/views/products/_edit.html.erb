@@ -1,10 +1,10 @@
 <% @items_to_select = (@product_categories + @product_components + @product_valuefields + @product_images + @product_datafiles) %>
 <div class="pop_container">
-  <h1>Editing Product: <%=@product.name%></h1>
+  <h1>Editing <%= @product_alias %>: <%=@product.name%></h1>
   <%= form_for(@product, :remote => true) do |f| %>
       <% if @product.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this <%= @product_alias %> from being saved:</h2>
             <ul>
               <% @product.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -42,7 +42,7 @@
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Categories</p>
+                <p class="heading_main_menu"><%= @category_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -54,7 +54,7 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Components</p>
+                <p class="heading_main_menu"><%= @component_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -68,7 +68,7 @@
           <tr>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Value Fields</p>
+                <p class="heading_main_menu"><%= @vf_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -80,7 +80,7 @@
             </td>
             <td>
               <div class="layer1">
-                <p class="heading_main_menu">Images</p>
+                <p class="heading_main_menu"><%= @image_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table">
@@ -94,7 +94,7 @@
           <tr>
             <td colspan="2">
               <div class="layer1">
-                <p class="heading_main_menu">Data File</p>
+                <p class="heading_main_menu"><%= @df_alias %></p>
                 <div class="content_main_menu">
                   <div>
                     <table class="tight_table" style="display: inline">
@@ -110,7 +110,7 @@
       </div>
       <div class="right_div">
         <input type="reset" />
-        <%= f.submit :class => "submit"%>
+        <%= f.submit "Edit #{@product_alias}", :class => "submit"%>
       </div>
   <% end %>
   <br class="clear" />

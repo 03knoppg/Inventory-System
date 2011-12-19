@@ -2,7 +2,7 @@
 <%= form_for(component, :html => { :multipart => true }) do |f| %>
     <% if component.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+          <h2><%= pluralize(component.errors.count, "error") %> prohibited this <%= @component_alias %> from being saved:</h2>
 
           <ul>
             <% component.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
         </div>
     <% end %>
     <div>
-      <h1 class="tight_h1">Component: Create</h1>
+      <h1 class="tight_h1"><%= @component_alias %>: Create</h1>
       <table class="main_table">
         <tr>
           <th align="left">Name&nbsp;<span style="color: red">*</span></th>
@@ -40,8 +40,8 @@
       <table>
         <tr>
           <th align="left">Parents&nbsp;<span style="color: red">*</span></th>
-          <th align="left">Groups</th>
-          <th align="left">ValueFields</th>
+          <th align="left"><%= @group_alias %></th>
+          <th align="left"><%= @vf_alias %></th>
         </tr>
         <tr>
           <td>

@@ -1,5 +1,5 @@
 <div id="button_div" align="center">
-   <button id="other_button" style="width:350px">Create by Component or Product</button>
+   <button id="other_button" style="width:350px">Create by <%= @component_alias %> or <%= @product_alias %></button>
   <%=button_to 'Create by Incremental Path', admin_addvalue_path, :style => "width:350px", :method => :get%>
 </div>
 
@@ -7,7 +7,7 @@
     <% if @valuefield.errors.any? %>
 
         <div id="error_explanation">
-          <h2><%= pluralize(@valuefield.errors.count, "error") %> prohibited this valuefield from being saved:</h2>
+          <h2><%= pluralize(@valuefield.errors.count, "error") %> prohibited this <%= @vf_alias %> from being saved:</h2>
 
           <ul>
             <% @valuefield.errors.full_messages.each do |msg| %>
@@ -21,8 +21,8 @@
 <div id="property_div">
     <table class="main_table">
       <tr>
-        <th align="left">Property&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Value&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @property_alias %>&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @vf_alias %>&nbsp;<span style="color: red">*</span></th>
         <th align="left">Code</th>
       </tr>
       <tr>
@@ -47,7 +47,7 @@
 <div id="path_div">
     <table>
       <tr>
-        <th align="left" colspan="3">Product Path</th>
+        <th align="left" colspan="3"><%= @product_alias %> Path</th>
       </tr>
       <tr>
         <td colspan="3">
@@ -64,8 +64,8 @@
 <div id="other_div">
   <table>
       <tr>
-        <th align="left">Product</th>
-        <th align="left">Component</th>
+        <th align="left"><%= @product_alias %></th>
+        <th align="left"><%= @component_alias %></th>
       </tr>
       <tr>
         <td>

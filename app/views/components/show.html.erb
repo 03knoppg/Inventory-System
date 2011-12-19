@@ -1,7 +1,6 @@
-
 <!--Component Show Page -->
 <p id="notice"><%# notice %></p>
-<h1>Viewing Component: <%=@component.name%></h1>
+<h1>Viewing <%= @component_alias %>: <%=@component.name%></h1>
 <div class="inner_container_show">
 <div class="main_div">
   <table class="main_table">
@@ -21,12 +20,12 @@
  <!-- the tabs -->
   <div  class="tabs">
   <ul>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Components</a></li>
-    <li><a href="#">Value Fields</a></li>
-    <li><a href="#">Images</a></li>
-    <li><a href="#">Data Files</a></li>
-    <li><a href="#">Group</a></li>
+    <li><a href="#"><%= @product_alias %></a></li>
+    <li><a href="#"><%= @component_alias %></a></li>
+    <li><a href="#"><%= @vf_alias %></a></li>
+    <li><a href="#"><%= @image_alias %></a></li>
+    <li><a href="#"><%= @df_alias %></a></li>
+    <li><a href="#"><%= @group_alias %></a></li>
   </ul>
 
   <!-- tab "panes" -->
@@ -52,13 +51,13 @@
     <div>
       <% group = @component.group %>
       <table>
-        <tr><th align="left">Group</th></tr>
+        <tr><th align="left"><%= @group_alias %></th></tr>
         <tr><td>
           <% if(!group.nil?) %>
               <%= link_to("#{group.name} ", group) %>
           <%else%>
-              No Groups Available
-                </td></tr><tr><td> <%=my_button_to "New Group", new_group_path, [@component]%>
+              No <%= @group_alias %> Available
+                </td></tr><tr><td> <%=my_button_to "New " + @group_alias, new_group_path, [@component]%>
           <%end%>
         </td></tr>
       </table>
@@ -69,8 +68,8 @@
     </div>
 </div>
 <div class="right_div">
-  <%= button_to "Edit Component", edit_component_path(@component), :method => :get %>
-  <%= button_to "Delete Component", {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
-  <%= button_to "Duplicate Component", new_component_path + "?duplicate_component=#{@component.id}"%>
+  <%= button_to "Edit " + @component_alias, edit_component_path(@component), :method => :get %>
+  <%= button_to "Delete " + @component_alias, {:controller => :components, :action => "destroy", :id => @component.id }, :confirm => "Are You sure?", :method => :delete%>
+  <%= button_to "Duplicate " + @component_alias, new_component_path + "?duplicate_component=#{@component.id}"%>
 </div>
 

@@ -1,10 +1,10 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Value Field: <%=@valuefield.name%></h1>
+<h1>Viewing <%= @vf_alias %>: <%=@valuefield.fieldvalue%></h1>
 <div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
   <tr>
-    <th align="left">Value</th>
+    <th align="left"><%= @vf_alias %></th>
     <th align="left">Code</th>
     <th align="left">Actions</th>
   </tr>
@@ -16,7 +16,7 @@
       &nbsp
       <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
       <div class="apple_overlay" id="overlay">
-        <h1>Editing Value Field: <%=@valuefield.name%></h1>
+        <h1>Editing <%= @vf_alias %>: <%=@valuefield.fieldvalue%></h1>
         <%= render 'form' %>
       </div>
     &nbsp
@@ -28,12 +28,12 @@
   <div class="tabs">
    <!-- the tabs -->
   <ul>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Properties</a></li>
-    <li><a href="#">Components</a></li>
+    <li><a href="#"><%= @product_alias %></a></li>
+    <li><a href="#"><%= @property_alias %></a></li>
+    <li><a href="#"><%= @component_alias %></a></li>
     <li><a href="#">Path</a></li>
-    <li><a href="#">Images</a></li>
-    <li><a href="#">Data Files</a></li>
+    <li><a href="#"><%= @image_alias %></a></li>
+    <li><a href="#"><%= @df_alias %></a></li>
   </ul>
 
   <!-- tab "panes" -->
