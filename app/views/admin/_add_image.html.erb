@@ -1,6 +1,6 @@
 <%= form_for(parent, :url => {:controller => 'admin', :action => 'add_images', :parent_id => @parent.class.to_s[0] + @parent.id.to_s}, :html => { :multipart => true }) do |f| %>
     <div>
-      <h1>Add/Remove Existing Image to <%=parent.name%></h1>
+      <h1>Add/Remove Existing <%= @image_alias %> to <%=parent.name%></h1>
       <div>
         <table class="tight_table">
           <%= checkbox_list(@all_images).html_safe %>

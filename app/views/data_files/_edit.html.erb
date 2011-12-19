@@ -1,11 +1,11 @@
 <% @items_to_select = (@data_file.products + @data_file.components + @data_file.valuefields) %>
 <div class="pop_container">
   <%data_file = @data_file%>
-  <h1>Editing Data File: <%=data_file.filedata_file_name%></h1>
+  <h1>Editing <%= @df_alias %>: <%=data_file.filedata_file_name%></h1>
   <%= form_for(data_file, :remote => true) do |f| %>
       <% if data_file.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this data file from being saved:</h2>
+            <h2><%= pluralize(data_file.errors.count, "error") %> prohibited this <%= @df_alias %> from being saved:</h2>
             <ul>
               <% data_file.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -16,8 +16,8 @@
       <div class="inner_pop_container">
         <table>
           <tr>
-            <th align="left">Data File</th>
-            <th align="left">Change Data File</th>
+            <th align="left"><%= @df_alias %></th>
+            <th align="left">Change <%= @df_alias %></th>
           </tr>
           <tr>
             <td>
@@ -37,8 +37,8 @@
         </table>
         <table>
           <tr>
-            <th align="left">Products / Components</th>
-            <th align="left">Valuefields</th>
+            <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
+            <th align="left"><%= @vf_alias %></th>
           </tr>
           <tr>
             <td>
@@ -57,7 +57,7 @@
       <br class="clear" />
       <div class="right_div">
         <input type="reset" />
-        <%= f.submit :class => "submit"%>
+        <%= f.submit "Update #{@df_alias}", :class => "submit"%>
       </div>
   <% end %>
 </div>

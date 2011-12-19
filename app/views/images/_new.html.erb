@@ -2,7 +2,7 @@
 <%= form_for(image, :html => { :multipart => true }) do |f| %>
     <% if image.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+          <h2><%= pluralize(image.errors.count, "error") %> prohibited this <%= @image_alias %> from being saved:</h2>
 
           <ul>
             <% image.errors.full_messages.each do |msg| %>
@@ -11,10 +11,10 @@
           </ul>
         </div>
     <% end %>
-    <h1 class="tight_h1">Image: Create</h1>
+    <h1 class="tight_h1"><%= @image_alias %>: Create</h1>
     <table class="main_table">
       <tr>
-        <th align="left">Image&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @image_alias %>&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
         <td style="width: 325px">
@@ -32,7 +32,7 @@
     </table>
     <table>
       <tr>
-        <th align="left">Products</th>
+        <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
         <th align="left">Valuefields</th>
       </tr>
       <tr>
@@ -50,7 +50,7 @@
     </table>
     <div class="right_div">
       <input type="reset" />
-      <%= f.submit %>
+      <%= f.submit "Create #{@image_alias}" %>
     </div>
 <% end %>
 <h5>Required fields are marked with</h5>

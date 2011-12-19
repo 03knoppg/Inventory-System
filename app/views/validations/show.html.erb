@@ -1,5 +1,5 @@
 <p id="notice"><%#notice %></p>
-<h1>Viewing Validation: <%=@validation.extension%></h1>
+<h1>Viewing <%= @validation_alias %>: <%=@validation.extension%></h1>
 <div class="inner_container_show">
 <div class="main_div">
   <table class="main_table">
@@ -16,7 +16,7 @@
         &nbsp
         <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
         <div class="apple_overlay" id="overlay">
-          <h1>Editing Validation: <%=@validation.extension%></h1>
+          <h1>Editing <%= @validation_alias %>: <%=@validation.extension%></h1>
           <%= render 'form' %>
         </div>
       &nbsp

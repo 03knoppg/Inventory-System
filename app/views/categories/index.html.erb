@@ -1,6 +1,6 @@
 <!--Categories Index Page -->
-<%= button_to "New Category", new_category_path, :method => :get %><br /><br /><br />
-<h1>Listing Categories</h1>
+<%= button_to "New " + @category_alias, new_category_path, :method => :get %><br /><br /><br />
+<h1>Listing <%= @category_alias %></h1>
 
 <div class="main_div">
   <table class="sortable" id="sortabletable">

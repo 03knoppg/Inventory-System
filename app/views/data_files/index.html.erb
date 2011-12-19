@@ -1,15 +1,15 @@
 <!--Button to create a new Data File -->
-<%= button_to "New Data File", new_data_file_path, :method => :get %><br /><br /><br />
-<h1>Listing Data Files</h1>
+<%= button_to "New #{@df_alias}", new_data_file_path, :method => :get %><br /><br /><br />
+<h1>Listing <%= @df_alias %></h1>
 <table>
   <%if(@data_files.length > 0)    %>
       <tr>
-        <th align="left">Data File</th>
+        <th align="left"><%= @df_alias %></th>
         <th align="left">Actions</th>
       </tr>
       <%= print_data_files.html_safe %>
   <%else%>
-      <tr><td><h4>No Data Files Available</h4></td></tr>
+      <tr><td><h4>No <%= @df_alias %> Available</h4></td></tr>
   <%end%>
 </table>
 <br class="clear" />

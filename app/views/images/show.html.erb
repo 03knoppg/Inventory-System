@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
-<h1>Viewing Image: <%=@image.picture_file_name%></h1>
+<h1>Viewing <%= @image_alias %>: <%=@image.picture_file_name%></h1>
 <div class="inner_container_show">
 <div class="main_div">
 <table class="main_table">
   <tr>
-    <th align="left">Image</th>
-    <th align="left">Image Name</th>
+    <th align="left"><%= @image_alias %></th>
+    <th align="left"><%= @image_alias %> Name</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
@@ -18,7 +18,7 @@
 
 
              <div class="apple_overlay" id="overlay">
-               <h1>Editing Image: <%=@image.picture_file_name%></h1>
+               <h1>Editing <%= @image_alias %>: <%=@image.picture_file_name%></h1>
                <%= render 'form' %>
              </div>
            &nbsp
@@ -31,9 +31,9 @@
   <!-- the tabs -->
   <div class="tabs">
     <ul>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Components</a></li>
-        <li><a href="#">Value Fields</a></li>
+        <li><a href="#"><%= @product_alias %></a></li>
+        <li><a href="#"><%= @component_alias %></a></li>
+        <li><a href="#"><%= @vf_alias %></a></li>
     </ul>
     <!-- tab "panes" -->
     <div>

@@ -1,10 +1,10 @@
 <p id="notice"><%# notice %></p>
-<h1>Viewing Category: <%=@category.name%></h1>
+<h1>Viewing <%= @category_alias %>: <%=@category.name%></h1>
 <div class="inner_container_show">
 <div class="main_div">
   <table class="main_table">
     <tr>
-      <th align="left">Category Name</th>
+      <th align="left">Name</th>
       <th align="left">Parent</th>
       <th align="left">Actions</th>
     </tr>
@@ -16,7 +16,7 @@
         &nbsp
         <%= image_tag "edit-icon.png", :title=>"Edit", :rel=>"#overlay", :style =>"cursor:pointer"%>
         <div class="apple_overlay" id="overlay">
-          <h1>Editing Category: <%=@category.name%></h1>
+          <h1>Editing <%= @category_alias %>: <%=@category.name%></h1>
           <%= render 'form' %>
         </div>
       &nbsp
@@ -29,8 +29,8 @@
   <!-- the tabs -->
   <div class="tabs">
       <ul>
-        <li><a href="#">Parent Categories</a></li>
-         <li><a href="#">Products</a></li>
+        <li><a href="#">Parent <%= @category_alias %></a></li>
+         <li><a href="#"><%= @product_alias %></a></li>
       </ul>
       <!-- tab "panes" -->
       <div class="panes">

@@ -1,9 +1,8 @@
-
 <!--Button to create a new group -->
-<%= button_to 'New Group', new_group_path, :method => :get %>  <br/><br/><br/>
+<%= button_to 'New ' + @group_alias, new_group_path, :method => :get %>  <br/><br/><br/>
 
 <!--Groups Index Page - uses application.html.erb for template. -->
-<h1>Listing Groups</h1>
+<h1>Listing <%= @group_alias %></h1>
 
 <div class="main_div">
 <!--if length > 0 print groups -->
@@ -18,7 +17,7 @@
             <%= print_groups(group).html_safe %>
         <%end%>
 <%else%>
-        <tr><td><h4>No Groups Available</h4></td></tr>
+        <tr><td><h4>No <%= @group_alias %> Available</h4></td></tr>
 <%end%>
 </table>
   </div>

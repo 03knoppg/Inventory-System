@@ -1,4 +1,4 @@
-<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbspProduct: <%= @product.name %></h1></a>
+<a class="tab_title tab_title_expanded" href="#"><h1 class="title_header"><%=image_tag "Accordian/bigminus.gif"%>&nbsp<%= @product_alias %>: <%= @product.name %></h1></a>
 
 <!--Page Container -->
 <div class="inner_container" id="P<%=@product.id%>">
@@ -20,8 +20,8 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a class="new_vf" href="">New Value Field...</a></li>
-            <li><a class="add_vf" href="">Add Value Field</a></li>
+            <li><a class="new_vf" href="">New <%= @vf_alias %>...</a></li>
+            <li><a class="add_vf" href="">Add <%= @vf_alias %>...</a></li>
             <% for valuefield in @product_valuefields %>
                 <li><a href=""><%= valuefield.fieldvalue %></a></li>
             <% end %>
@@ -41,8 +41,8 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a href class="new_image">New Image...</a></li>
-            <li><a class="add_image" href="" >Add Image...</a></li>
+            <li><a href class="new_image">New <%= @image_alias %>...</a></li>
+            <li><a class="add_image" href="" >Add <%= @image_alias %>...</a></li>
             <% for image in @product_images %>
                 <li><a href=""><%= image.picture_file_name %></a></li>
             <% end %>
@@ -62,8 +62,8 @@
         <div class="tabs2">
           <ul>
             <li style="display:none"><a>hidden</a></li>
-            <li><a href class="new_df">New Data File...</a></li>
-            <li><a href class="add_df">Add Data File...</a></li>
+            <li><a href class="new_df">New <%= @df_alias %>...</a></li>
+            <li><a href class="add_df">Add <%= @df_alias %>...</a></li>
             <% for datafile in @product_datafiles %>
                 <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
             <% end %>

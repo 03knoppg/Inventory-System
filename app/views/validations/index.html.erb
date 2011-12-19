@@ -1,7 +1,7 @@
  <!--Button to create a new validation -->
-<%= button_to "New Validation", new_validation_path, :method => :get %><br /><br /><br />
+<%= button_to "New #{@validation_alias}", new_validation_path, :method => :get %><br /><br /><br />
  <!--Validation Index Page - uses application.html.erb for template. -->
-<h1>Listing Validations</h1>
+<h1>Listing <%= @validation_alias %></h1>
  <div class="main_div">
  <!--if length > 0 print groups -->
 <%if(@validations.length > 0)    %>
@@ -13,7 +13,7 @@
         </tr>
         <%= print_validations.html_safe %>
 <%else%>
-        <tr><td><h4>No Validations Available</h4></td></tr>
+        <tr><td><h4>No <%= @validation_alias %> Available</h4></td></tr>
 <%end%>
 </table>
    </div>

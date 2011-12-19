@@ -1,5 +1,5 @@
 <p id="notice"><%# notice %></p>
- <h1>Viewing Groups</h1>
+ <h1>Viewing <%= @group_alias %></h1>
 <div class="inner_container_show">
 <div class="main_div">
 <table class ="main_table">
@@ -16,7 +16,7 @@
 
 
          <div class="apple_overlay" id="overlay">
-           <h1>Editing Group: <%=@group.name%></h1>
+           <h1>Editing <%= @group_alias %>: <%=@group.name%></h1>
            <%= render 'form' %>
          </div>
        &nbsp
@@ -30,7 +30,7 @@
 <!-- the tabs -->
   <div class="tabs">
     <ul>
-        <li><a href="#">Components</a></li>
+        <li><a href="#"><%= @component_alias %></a></li>
     </ul>
     <!-- tab "panes" -->
     <div>

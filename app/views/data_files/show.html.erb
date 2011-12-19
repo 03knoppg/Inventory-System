@@ -1,17 +1,17 @@
 <p id="notice"><%# notice %></p>
-<h1>Viewing Data File: <%=@data_file.filedata_file_name%></h1>
+<h1>Viewing <%= @df_alias %>: <%=@data_file.filedata_file_name%></h1>
 <div class="inner_container_show">
 <div class="main_div">
 
 <table class="main_table">
   <tr>
-    <th align="left">Data File</th>
+    <th align="left"><%= @df_alias %></th>
     <th align="left">Preview</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= @data_file.filedata_file_name %></td>
-    <td><%= link_to("Preview Data File", @data_file.filedata.url, {:target => "blank"})%></td>
+    <td><%= link_to("Preview #{@df_alias}", @data_file.filedata.url, {:target => "blank"})%></td>
     <td>
       <%= link_to image_tag("duplicate.png"), new_data_file_path + "?duplicate_data_file=#{@data_file.id}", :title=>"Duplicate"%>
          &nbsp
@@ -19,7 +19,7 @@
 
 
          <div class="apple_overlay" id="overlay">
-           <h1>Editing Data File: <%=@data_file.filedata_file_name%></h1>
+           <h1>Editing <%= @df_alias %>: <%=@data_file.filedata_file_name%></h1>
            <%= render 'form' %>
          </div>
        &nbsp
@@ -30,9 +30,9 @@
   <div  class="tabs">
     <!-- the tabs -->
 <ul>
-	<li><a href="#">Products</a></li>
-	<li><a href="#">Components</a></li>
-	<li><a href="#">Value Fields</a></li>
+	<li><a href="#"><%= @product_alias %></a></li>
+	<li><a href="#"><%= @component_alias %></a></li>
+	<li><a href="#"><%= @vf_alias %></a></li>
 </ul>
 <!-- tab "panes" -->
 <div>

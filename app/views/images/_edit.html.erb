@@ -1,11 +1,11 @@
 <% @items_to_select = (@image.products + @image.components + @image.valuefields) %>
 <div class="pop_container">
   <%image = @image%>
-  <h1>Editing Data File: <%=image.picture_file_name%></h1>
+  <h1>Editing <%= @image_alias %>: <%=image.picture_file_name%></h1>
   <%= form_for(image, :remote => true) do |f| %>
       <% if image.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+            <h2><%= pluralize(image.errors.count, "error") %> prohibited this <%= @image_alias %> from being saved:</h2>
             <ul>
               <% image.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -16,8 +16,8 @@
       <div class="inner_pop_container">
         <table>
           <tr>
-            <th align="left">Image</th>
-            <th align="left">Image Name</th>
+            <th align="left"><%= @image_alias %></th>
+            <th align="left"><%= @image_alias %> Name</th>
           </tr>
           <tr>
             <td style="width: 325px">
@@ -36,8 +36,8 @@
         </table>
         <table>
           <tr>
-            <th align="left">Products / Components</th>
-            <th align="left">Valuefields</th>
+            <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
+            <th align="left"><%= @vf_alias %></th>
           </tr>
           <tr>
             <td>
@@ -56,7 +56,7 @@
       <br class="clear" />
       <div class="right_div">
         <input type="reset" />
-        <%= f.submit :class => "submit"%>
+        <%= f.submit "Update #{@image_alias}",:class => "submit"%>
       </div>
   <% end %>
 </div>

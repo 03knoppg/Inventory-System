@@ -1,14 +1,14 @@
-<h1 class="tight_h1">Data File: Show</h1>
+<h1 class="tight_h1"><%= @df_alias %>: Show</h1>
 <div>
 <table class="tight_table main_table">
   <tr>
-    <th align="left">Data File</th>
+    <th align="left"><%= @df_alias %></th>
     <th align="left">Preview</th>
     <th align="left">Actions</th>
   </tr>
   <tr>
     <td valign="top"><%= data_file.filedata_file_name %></td>
-    <td><%= link_to("Preview Data File", data_file.filedata.url, {:target => "blank"})%></td>
+    <td><%= link_to("Preview #{@df_alias}", data_file.filedata.url, {:target => "blank"})%></td>
     <td>
         <div>
            <!-- external page is given in the href attribute (as it should be) -->

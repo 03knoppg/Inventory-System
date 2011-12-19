@@ -1,7 +1,7 @@
 <%= form_for(@data_file, :html => { :multipart => true }) do |f| %>
     <% if @data_file.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@data_file.errors.count, "error") %> prohibited this data file from being saved:</h2>
+          <h2><%= pluralize(@data_file.errors.count, "error") %> prohibited this <%= @df_alias %> from being saved:</h2>
 
           <ul>
             <% @data_file.errors.full_messages.each do |msg| %>
@@ -13,7 +13,7 @@
  <div class="main_div">
     <table class="main_table">
       <tr>
-        <th align="left">Data File&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @df_alias %>&nbsp;<span style="color: red">*</span></th>
       </tr>
       <tr>
         <td style="width: 325px">
@@ -31,8 +31,8 @@
 </table>
    <table>
      <tr>
-        <th align="left">Products / Components</th>
-        <th align="left">Valuefields</th>
+        <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
+        <th align="left"><%= @vf_alias %></th>
      </tr>
      <tr>
        <td>

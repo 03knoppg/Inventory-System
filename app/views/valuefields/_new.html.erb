@@ -2,7 +2,7 @@
 <%= form_for(valuefield, :html => { :multipart => true }) do |f|%>
     <% if valuefield.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(valuefield.errors.count, "error") %> prohibited this valuefield from being saved:</h2>
+          <h2><%= pluralize(valuefield.errors.count, "error") %> prohibited this <%= @vf_alias %> from being saved:</h2>
           <ul>
             <% valuefield.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -10,11 +10,11 @@
           </ul>
         </div>
     <% end %>
-    <h1 class="tight_h1">Value Field: New</h1>
+    <h1 class="tight_h1"><%= @vf_alias %>: Create</h1>
     <table class="main_table">
       <tr>
-        <th align="left">Property&nbsp;<span style="color: red">*</span></th>
-        <th align="left">Value&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @property_alias %>&nbsp;<span style="color: red">*</span></th>
+        <th align="left"><%= @vf_alias %>&nbsp;<span style="color: red">*</span></th>
         <th align="left">Code</th>
       </tr>
       <tr>
@@ -37,7 +37,7 @@
     </table>
     <table>
       <tr>
-        <th align="left">Products / Components</th>
+        <th align="left"><%= @product_alias %> / <%= @component_alias %></th>
       </tr>
       <tr>
         <td>
@@ -49,7 +49,7 @@
     </table>
     <div id="submit_div" class="right_div">
       <input type="reset" />
-      <%= f.submit %>
+      <%= f.submit "Create #{@vf_alias}"%>
     </div>
 <%end%>
 <h5>Required fields are marked with <span style="color: red">*</span></h5>
