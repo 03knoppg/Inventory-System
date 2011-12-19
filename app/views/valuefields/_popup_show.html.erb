@@ -9,20 +9,72 @@
     <th align="left">Actions</th>
   </tr>
   <tr>
-    <td><%= valuefield.fieldvalue %></td>
+    <td><%= valuefield.name %></td>
     <td><%= valuefield.code %></td>
-    <td><%= property_vf %></td>
+    <td><%= valuefield.property_id.nil?? "" : Property.find(valuefield.property_id).name %></td>
     <td>
         <div>
            <!-- external page is given in the href attribute (as it should be) -->
-            <a href="#" rel="#overlay_vf" style="text-decoration:none" id="<%=valuefield.id%>" class="overlay edit_vf">
+            <a href="#" rel="#overlay" style="text-decoration:none" id="<%=valuefield.id%>" class="overlay edit_vf">
               <!-- remember that you can use any element inside the trigger -->
               <%= image_tag "edit-icon.png", :title=>"Edit", :value=>"Edit Value Field"%>
             </a>
-            <div class="apple_overlay" id="overlay_vf"></div>
+
           <%= link_to image_tag("delete-icon.png"), {:controller => :valuefields, :action => "destroy", :id => valuefield.id }, :confirm => "Are You sure?", :method => :delete%>
         </div>
       </td>
   </tr>
 </table>
-</div>
+  </div>
+<div class="inner_container" id="V<%=valuefield.id%>">
+  <div class="tabs">
+  <ul>
+    <li><a class="s" href="">Images</a></li>
+    <li><a class="s" href="">Data Files</a></li>
+  </ul>
+      <div>
+        <div>
+          <!-- Tabs for directly related Images to the Component -->
+          <div class="tabs2">
+            <ul>
+                <li style="display:none"><a>hidden</a></li>
+                <li><a class="new_image" href>New Image...</a></li>
+                <li><a class="add_image" href="" >Add Image...</a></li>
+              <% for image in valuefield.images %>
+                  <li><a href=""><%= image.picture_file_name %></a></li>
+              <% end %>
+            </ul>
+            <div>
+              <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+              <div><div class="inner_container new_image_container"></div></div>
+              <div><div class="inner_container add_image_container"></div></div>
+              <% for image in valuefield.images %>
+                  <div><%= render("/images/popup_show", :image => image) %></div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- Tabs for directly related Data Files to the Component -->
+          <div class="tabs2">
+            <ul>
+                <li style="display:none"><a>hidden</a></li>
+                <li><a class="new_df" href>New Data File...</a></li>
+                <li><a class="add_df" href>Add Data File...</a></li>
+              <% for datafile in valuefield.data_files %>
+                  <li><a href="" class="xl"><%= datafile.filedata_file_name %></a></li>
+              <% end %>
+            </ul>
+            <div>
+              <div style="">   <div class="inner_container"><p style="text-align: center">Select a tab from the list to display details</p></div></div>
+              <div><div class="inner_container new_df_container"></div></div>
+              <div><div class="inner_container add_df_container"></div></div>
+              <% for data_file in valuefield.data_files %>
+                  <div><%= render("/data_files/popup_show", :data_file => data_file) %></div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>

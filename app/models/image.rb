@@ -57,6 +57,10 @@ class Image < ActiveRecord::Base
     update.time = updated_at
     update.save!
   end
+
+  def name
+    return picture_file_name
+  end
 end
 
 

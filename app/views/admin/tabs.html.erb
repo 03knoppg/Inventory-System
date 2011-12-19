@@ -1,3 +1,5 @@
+<div class="apple_overlay" id="overlay"></div>
+
 <%if(!@product.nil?)%>
     <%= render("admin/products_tabs") %>
 <%else%>
@@ -79,7 +81,6 @@
 
         //EDIT CLICK FUNCTIONS
         $("a.edit_vf").click(function(){
-            $(this).siblings('#overlay_vf').addClass('VFClass');
             $.get("/admin/load_edit_vf_page", {valuefield_id: $(this).attr("id")}, null, 'script');
         });
 
@@ -112,6 +113,12 @@
             });
             enableMinimizers();
         });
+        $('.tabs2 > ul > li > a').live('click', function(){
+
+            index = $(this).parents('li').index();
+            div = $(this).closest('.tabs2').find(' > div > div:nth-child(' + (index + 1) +')');
+            adjustWidth(div.find('.inner_container:first').find('.inner_container:first'), false, false);
+        });
 
         setUpSliders();
         adjustWidth($('div.tabs2  div.inner_container'), true, false);
@@ -135,16 +142,16 @@
 
 			// use apple effect
 			mask: 'lightblue',
-            effect: 'apple',
+            effect: 'apple'
 
-		onBeforeLoad: function() {
+            /*onBeforeLoad: function() {
 
-			// grab wrapper element inside content
-			var wrap = this.getOverlay().find(".contentWrap");
+                // grab wrapper element inside content
+                var wrap = this.getOverlay().find(".contentWrap");
 
-			// load the page specified in the trigger
-			wrap.load(this.getTrigger().attr("href"));
-		}
+                // load the page specified in the trigger
+                wrap.load(this.getTrigger().attr("href"));
+            } */
 		});
 	});
     }

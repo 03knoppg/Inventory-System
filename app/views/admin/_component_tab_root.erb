@@ -26,7 +26,7 @@
                   <li><a class="new_vf" href>New <%= @vf_alias %>...</a></li>
                   <li><a class="add_vf" href>Add <%= @vf_alias %>...</a></li>
                   <% for valuefield in @component_valuefields %>
-                      <li><a href=""><%= valuefield.fieldvalue %></a></li>
+                      <li><a href=""><%= valuefield.name %></a></li>
                   <% end %>
                 </ul>
                 <div>

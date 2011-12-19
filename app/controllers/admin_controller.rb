@@ -103,13 +103,8 @@ class AdminController < ApplicationController
 
   #function when loading new component page
   def load_new_component_page
-    if(params[:parent_id][0]=='P')
-      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-    end
+     @parent = get_parent(params[:parent_id])
+    @items_to_select = [@parent]
     @all_properties = Property.all
     @all_products = Product.all
     @all_groups = Group.all
@@ -160,11 +155,8 @@ class AdminController < ApplicationController
   #Function when submitting added components
   def add_components
     #Checks if parent_id is a Product or Component based on a string value
-    if(params[:parent_id][0] == 'P')
-      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-    end
+     @parent = get_parent(params[:parent_id])
+
     #Components to Add
     if(!@parent.components.nil?)
       @parent.components.clear
@@ -189,13 +181,9 @@ class AdminController < ApplicationController
 #Begin Images
   #function when loading new image page
   def load_new_image_page
-    if(params[:parent_id][0]=='P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-       @items_to_select = [@parent]
-     else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-     end
+
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = [@parent]
 
     @all_properties = Property.all
     @all_products = Product.all
@@ -208,16 +196,13 @@ class AdminController < ApplicationController
 
   #function when loading add image page
   def load_add_image_page
-    #Checks if parent_id is a Product or Component based on a string value
-    if(params[:parent_id][0] == 'P')
-      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.images
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.images
-    end
+
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = @parent.images
+
     @all_components = Component.all
     @all_images = Image.all
+
     respond_to do |format|
       format.js
     end
@@ -225,11 +210,8 @@ class AdminController < ApplicationController
 
   #Function when submitting added images
    def add_images
-     if(params[:parent_id][0] == 'P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-     else
-       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-     end
+    @parent = get_parent(params[:parent_id])
+
     #Images to Add
     if(!@parent.images.nil?)
       @parent.images.clear
@@ -270,13 +252,8 @@ class AdminController < ApplicationController
 #Begin Valuefields
   #Function when loading new valuefield page
   def load_new_vf_page
-     if(params[:parent_id][0]=='P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-       @items_to_select = [@parent]
-     else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-     end
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = [@parent]
 
     @all_properties = Property.all
     @all_products = Product.all
@@ -290,13 +267,9 @@ class AdminController < ApplicationController
   #Function when loading add valuefield page
   def load_add_vf_page
   #Checks if parent_id is a Product or Component based on a string value
-    if(params[:parent_id][0] == 'P')
-      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.valuefields
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.valuefields
-    end
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = @parent.valuefields
+
     @all_properties = Property.all
     respond_to do |format|
       format.js
@@ -305,11 +278,8 @@ class AdminController < ApplicationController
 
   #Function when submitting added value fields
    def add_vfs
-     if(params[:parent_id][0] == 'P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-     else
-       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-     end
+      @parent = get_parent(params[:parent_id])
+
     #Images to Add
     if(!@parent.valuefields.nil?)
       @parent.valuefields.clear
@@ -348,7 +318,10 @@ class AdminController < ApplicationController
     @all_datafiles = DataFile.all
 
     @valuefield = Valuefield.find(params[:valuefield_id])
-    @property = Property.find(@valuefield.property_id)
+    if(!@valuefield.property_id.nil?)
+      @property = Property.find(@valuefield.property_id)
+    end
+
 
     respond_to do |format|
       format.js
@@ -359,13 +332,9 @@ class AdminController < ApplicationController
 #Begin Data Files
   #Function when loading new data file page
   def load_new_df_page
-    if(params[:parent_id][0]=='P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-       @items_to_select = [@parent]
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = [@parent]
-    end
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = [@parent]
+
     @all_datafiles = DataFile.all
     @all_properties = Property.all
     @all_products = Product.all
@@ -377,14 +346,10 @@ class AdminController < ApplicationController
 
   #Function when loading add data file page
   def load_add_df_page
-     #Checks if parent_id is a Product or Component based on a string value
-    if(params[:parent_id][0] == 'P')
-      @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.data_files
-    else
-      @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-      @items_to_select = @parent.data_files
-    end
+
+    @parent = get_parent(params[:parent_id])
+    @items_to_select = @parent.data_files
+
     @all_datafiles = DataFile.all
     respond_to do |format|
       format.js
@@ -393,11 +358,9 @@ class AdminController < ApplicationController
 
   #Function when submitting added data files
   def add_dfs
-    if(params[:parent_id][0] == 'P')
-       @parent = Product.find(params[:parent_id][1..params[:parent_id].length])
-     else
-       @parent = Component.find(params[:parent_id][1..params[:parent_id].length])
-     end
+
+    @parent = get_parent(params[:parent_id])
+
     #Images to Add
     if(!@parent.data_files.nil?)
       @parent.data_files.clear
@@ -666,5 +629,25 @@ class AdminController < ApplicationController
         logger.info("#{val.inspect}\n")
       end
     end
+  end
+
+  def get_parent(id)
+
+    real_id = params[:parent_id][1..id.length]
+     if(id[0]=='P')
+       return Product.find(real_id)
+
+    elsif(id[0]=='V')
+       return Valuefield.find(real_id)
+
+    elsif(id[0]=='D')
+       return DataFile.find(real_id)
+
+    elsif(id[0]=='C')
+      return Component.find(real_id)
+
+    end
+
+    return nil
   end
 end

@@ -55,4 +55,8 @@ class DataFile < ActiveRecord::Base
     update.time = updated_at
     update.save!
   end
+
+  def name
+    return filedata_file_name
+  end
 end

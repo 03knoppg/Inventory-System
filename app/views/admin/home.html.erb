@@ -89,7 +89,7 @@
           <div class="content_main_menu">
             <div>
               <table class="tight_table">
-                <%= print_link_list(Valuefield.all.sort {|x,y| x.fieldvalue <=> y.fieldvalue }).html_safe %>
+                <%= print_link_list(Valuefield.all.sort {|x,y| x.name <=> y.name }).html_safe %>
               </table>
             </div>
           </div>

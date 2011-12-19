@@ -55,7 +55,7 @@
             result_table += "<%=result.data_files.empty?? "":"Data File"%>";
             result_table += "</div>";
             result_table += "<%=result.class.to_s%></td>";
-            result_table += "<td><%=result.fieldvalue%></td>";
+            result_table += "<td><%=result.name%></td>";
             result_table += "<td>N/A</td>";
             result_table += "<td><%=result.code%></td>";
             result_table += '<td><%= link_to image_tag("open_in_new_window.png"),valuefield_path(result), :title => "Open in new window" %></td>'
