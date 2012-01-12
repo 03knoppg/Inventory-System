@@ -61,8 +61,8 @@ class SessionsController < ApplicationController
 
       data = DataFile.find_by_filedata_file_name(params[:code])
 
-
-      redirect_to(data.filedata.url)
+      send_file '/home/franz2/testXML.xml', :type=>"application/zip"
+      #redirect_to(data.filedata.url)
 
       return
 
