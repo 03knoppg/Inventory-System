@@ -60,9 +60,14 @@ class SessionsController < ApplicationController
       xml = "<Products>"
       for product in products
         if !product.valuefields.empty?
-          xml += "<Product><Available>"
+          xml += "<Product>"
+          xml += "<Name>"
+          xml += product.name
+          xml += "</Name>"
+          xml += "<Available>"
           xml += product.valuefields[0].fieldvalue
-          xml += "</Available></Product>"
+          xml += "</Available>"
+          xml += "</Product>"
         end
 
       end
