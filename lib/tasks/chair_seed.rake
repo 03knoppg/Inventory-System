@@ -66,6 +66,8 @@ fluid = Category.create(name: "Fluid", parent_id: chair.id)
 ################################################################################################################
 
 fluidBasicStool = Product.create(name: "Basic Stool Chair", description: "Fluid Basic Stool Chair", code: "82")
+availableChair = Product.create(name: "availableChair", description: "availableChair", code: "availableChair")
+unavailableChair = Product.create(name: "unavailableChair", description: "unavailableChair", code: "unavailableChair")
 
 
 ################################################################################################################
@@ -125,6 +127,7 @@ chairShadow = Component.create(name: "Chair Shadow", description: "Shadow for th
 
 fabrics = Property.create(name: "Fabric", description: "Product/Component Fabric", field_type: "string")
 type = Property.create(name: "type", description: "type", field_type: "string")
+availability = Property.create(name: "Availability", description: "Is the product for sale?", field_type: "boolean")
 
 
 ################################################################################################################
@@ -142,6 +145,10 @@ fabricYellow = Valuefield.create(fieldvalue: "Yellow", property_id: fabrics.id, 
 fabricGreen = Valuefield.create(fieldvalue: "Green", property_id: fabrics.id, code: "GREEN")
 fabricBrown = Valuefield.create(fieldvalue: "Brown", property_id: fabrics.id, code: "BROWN")
 fabricOrange = Valuefield.create(fieldvalue: "Orange", property_id: fabrics.id, code: "ORANGE")
+
+
+availabilityTrue = Valuefield.create(fieldvalue: "True", property_id: availability.id, code: "TRUE")
+availabilityFalse = Valuefield.create(fieldvalue: "False", property_id: availability.id, code: "FALSE")
 
 
 ################################################################################################################
@@ -232,6 +239,14 @@ banner.save!
 #f4_pcaberImage.picture = File.open(File.join(AppRoot,"allseating/bin/chairs/textures/F4-PCABER.jpg"))
 #f4_pcaberImage.save!
 
+
+
+################################################################################################################
+#Valuefields_Products - association table                                                                       #
+################################################################################################################
+
+availableChair.valuefields = [availabilityTrue]
+unavailableChair.valuefields = [availabilityFalse]
 
 ################################################################################################################
 #Categories_Products - association table                                                                       #

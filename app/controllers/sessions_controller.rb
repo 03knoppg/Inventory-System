@@ -53,6 +53,27 @@ class SessionsController < ApplicationController
 
     end
 
+    if(!params[:available].nil?)
+
+      #productCode = params[:available]
+      products = Product.all
+      xml = "<Products>"
+      for product in products
+        if !product.valuefields.empty?
+          xml += "<Product><Available>"
+          xml += product.valuefields[0].fieldvalue
+          xml += "</Available></Product>"
+        end
+
+      end
+      xml += "</Products>"
+
+      path = File.expand_path("~/available.xml")
+      File.open(path, 'w') {|f| f.write(xml) }
+      send_file path, :type=>"application/zip"
+
+    end
+
     #character model example
     if(!params[:code].nil?)
       code = params[:code].split("_")
@@ -60,8 +81,8 @@ class SessionsController < ApplicationController
       category = Category.find_all_by_name("Characters")
 
       data = DataFile.find_by_filedata_file_name(params[:code])
-
-      send_file '/home/franz2/testXML.xml', :type=>"application/zip"
+      path = File.expand_path("~/testXML.xml")
+      send_file path, :type=>"application/zip"
       #redirect_to(data.filedata.url)
 
       return
