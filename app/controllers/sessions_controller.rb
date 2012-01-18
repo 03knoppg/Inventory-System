@@ -17,8 +17,22 @@ class SessionsController < ApplicationController
   def new
 
     if(!params[:unity].nil?)
-      UnityHelper.gui_xml
+      if(params[:unity] == "getUI")
+        ui_xml = UnityHelper.gui_xml
+
+        respond_to do |format|
+          format.html { render :xml => ui_xml }
+        end
+
+
+      else
+
+        redirect_to Image.find_by_picture_file_name(params[:unity]).picture.url(:original)
+
+      end
     end
+
+
 
     #chcek for updates to inventory
     if(!params[:checkupdate].nil?)
@@ -39,6 +53,32 @@ class SessionsController < ApplicationController
 
     end
 
+    if(!params[:available].nil?)
+
+      #productCode = params[:available]
+      products = Product.all
+      xml = "<Products>"
+      for product in products
+        if !product.valuefields.empty?
+          xml += "<Product>"
+          xml += "<Name>"
+          xml += product.name
+          xml += "</Name>"
+          xml += "<Available>"
+          xml += product.valuefields[0].fieldvalue
+          xml += "</Available>"
+          xml += "</Product>"
+        end
+
+      end
+      xml += "</Products>"
+
+      path = File.expand_path("~/available.xml")
+      File.open(path, 'w') {|f| f.write(xml) }
+      send_file path, :type=>"application/zip"
+
+    end
+
     #character model example
     if(!params[:code].nil?)
       code = params[:code].split("_")
@@ -46,9 +86,9 @@ class SessionsController < ApplicationController
       category = Category.find_all_by_name("Characters")
 
       data = DataFile.find_by_filedata_file_name(params[:code])
-
-
-      redirect_to(data.filedata.url)
+      path = File.expand_path("~/testXML.xml")
+      send_file path, :type=>"application/zip"
+      #redirect_to(data.filedata.url)
 
       return
 

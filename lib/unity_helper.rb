@@ -24,7 +24,9 @@ class UnityHelper
 
     xml+="</fabrics>"
 
-    File.open(path, 'w') {|f| f.write(xml) }
+    #File.open(path, 'w') {|f| f.write(xml) }
+
+    return xml
 
   end
 
