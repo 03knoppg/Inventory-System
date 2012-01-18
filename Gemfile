@@ -41,3 +41,11 @@ gem 'sorcery'
 gem 'paperclip'
 
  gem "remotipart", "~> 1.0"
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+gem 'webrat'
+end

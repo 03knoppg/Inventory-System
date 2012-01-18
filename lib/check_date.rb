@@ -5,7 +5,7 @@ class CheckDate
 
   def check_date(client_date)
 
-    if(client_date >= Updaterecord.maximum)
+    if(client_date >= Updaterecord.maximum(:time))
       return #up to date
     end
 
