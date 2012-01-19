@@ -64,16 +64,12 @@ class SessionsController < ApplicationController
           xml += "<Name>"
           xml += product.name
           xml += "</Name>"
-          xml += "<Valuefields>"
-          xml += "<Valuefield>"
           xml += "<FieldValue>"
           xml += product.valuefields[0].fieldvalue
           xml += "</FieldValue>"
           xml += "<Code>"
           xml += product.valuefields[0].code
           xml += "</Code>"
-          xml += "</Valuefield>"
-          xml += "</Valuefields>"
           xml += "</Product>"
         end
 
