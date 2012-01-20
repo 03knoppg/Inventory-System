@@ -84,11 +84,11 @@ class SessionsController < ApplicationController
     end
 
     #for posting to server from ipad app
-    if(!params[:codeVF].nil? && !params[:availableVF].nil?)
+    if(!params[:codeVF].nil?)
        valuefields = Valuefield.all
       for vf in valuefields
         if(vf.code == params[:codeVF])
-          if(vf.fieldvalue == params[:availableVF] && !params[:availableVF] == "false")
+          if(vf.fieldvalue == "true")
              vf.fieldvalue = "false"
             xml = "<Message>Success</Message>"
           else
