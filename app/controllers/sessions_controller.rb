@@ -90,6 +90,7 @@ class SessionsController < ApplicationController
         if(vf.code == params[:codeVF])
           if(vf.fieldvalue == "true")
              vf.fieldvalue = "false"
+             vf.save!
             xml = "<Message>Success</Message>"
           else
             xml = "<Message>Failure</Message>"
