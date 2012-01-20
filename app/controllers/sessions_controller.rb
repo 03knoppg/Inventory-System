@@ -53,6 +53,7 @@ class SessionsController < ApplicationController
 
     end
 
+    #For retrieving xml file - ipad app
     if(!params[:available].nil?)
 
       #productCode = params[:available]
@@ -80,6 +81,24 @@ class SessionsController < ApplicationController
       File.open(path, 'w') {|f| f.write(xml) }
       send_file path, :type=>"application/zip"
 
+    end
+
+    #for posting to server from ipad app
+    if(!params[:code].nil? && !params[:available].nil?)
+       valuefields = Valufield.all
+      for vf in valuefields
+        if(vf.code == params[:code])
+          if(vf.fieldvalue == params[:available])
+             vf.fieldvalue = "false"
+            xml = "<Message>Success</Message>"
+          else
+            xml = "<Message>Failure</Message>"
+          end
+        end
+      end
+       path = File.expand_path("~/message.xml")
+      File.open(path, 'w') {|f| f.write(xml) }
+      send_file path, :type=>"application/zip"
     end
 
     #character model example
