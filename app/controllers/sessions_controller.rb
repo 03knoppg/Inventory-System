@@ -97,7 +97,7 @@ class SessionsController < ApplicationController
           end
         end
       end
-       path = File.expand_path("~/message.xml")
+       path = File.expand_path("~/test.xml")
       File.open(path, 'w') {|f| f.write(xml) }
       send_file path, :type=>"application/zip"
     end
