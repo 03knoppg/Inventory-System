@@ -58,24 +58,24 @@ class SessionsController < ApplicationController
 
       #productCode = params[:available]
       products = Product.all
-      xml = "<Products>"
+      xml = "<Suites>"
       for product in products
         if !product.valuefields.empty?
-          xml += "<Product>"
-          xml += "<Name>"
+          xml += "<Suite>"
+          xml += "<SuiteNumber>"
           xml += product.name
-          xml += "</Name>"
-          xml += "<FieldValue>"
+          xml += "</SuiteNumber>"
+          xml += "<SuiteAvailability>"
           xml += product.valuefields[0].fieldvalue
-          xml += "</FieldValue>"
-          xml += "<Code>"
-          xml += product.valuefields[0].code
-          xml += "</Code>"
-          xml += "</Product>"
+          xml += "</SuiteAvailability>"
+          xml += "<SuiteCode>"
+          xml += product.code
+          xml += "</SuiteCode>"
+          xml += "</Suite>"
         end
 
       end
-      xml += "</Products>"
+      xml += "</Suites>"
 
       path = File.expand_path("~/available.xml")
       File.open(path, 'w') {|f| f.write(xml) }
