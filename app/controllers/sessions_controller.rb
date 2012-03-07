@@ -76,7 +76,7 @@ class SessionsController < ApplicationController
 
       end
       xml += "</Suites>"
-      send_data xml, :disposition=>'inline'
+      send_data xml, :type => 'text/plain',:disposition=>'inline'
 
       #path = File.expand_path("~/available.xml")
       #File.open(path, 'w') {|f| f.write(xml) }
