@@ -83,16 +83,16 @@ availability = Property.create(name: "Availability", description: "Suite Availab
 #ValueFields                                                                                                   #
 ################################################################################################################
 
-suite501False = Valuefield.create(fieldvalue: "false", property_id: availability.id, code: "FL_5_Bamboo")
+suite501False = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Bamboo")
 suite502True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Burnet")
 suite503True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Cherry")
-suite504False = Valuefield.create(fieldvalue: "false", property_id: availability.id, code: "FL_5_Cypress")
+suite504False = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Cypress")
 suite505True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Ginkgo_A")
 suite506True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Ginkgo_B")
-suite507False = Valuefield.create(fieldvalue: "false", property_id: availability.id, code: "FL_5_Peony")
+suite507False = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Peony")
 suite508True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Plum_A")
 suite509True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Plum_B")
-suite510False = Valuefield.create(fieldvalue: "false", property_id: availability.id, code: "FL_5_Redwood")
+suite510False = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Redwood")
 suite511True = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Spruce")
 
 ################################################################################################################
