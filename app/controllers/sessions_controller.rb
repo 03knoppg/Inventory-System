@@ -73,10 +73,10 @@ class SessionsController < ApplicationController
           xml += "</SuiteCode>"
           xml += "</Suite>"
         end
-
       end
       xml += "</Suites>"
       send_data xml, :type => 'text/plain',:disposition=>'inline'
+      #send_data xml
 
       #path = File.expand_path("~/available.xml")
       #File.open(path, 'w') {|f| f.write(xml) }
@@ -86,7 +86,8 @@ class SessionsController < ApplicationController
 
     #for posting to server from ipad app
     if(!params[:codeVF].nil?)
-       valuefields = Valuefield.all
+      xml = ""
+      valuefields = Valuefield.all
       for vf in valuefields
         if(vf.code == params[:codeVF])
           if(vf.fieldvalue == "true")
@@ -98,9 +99,11 @@ class SessionsController < ApplicationController
           end
         end
       end
-       path = File.expand_path("~/test.xml")
-      File.open(path, 'w') {|f| f.write(xml) }
-      send_file path, :type=>"application/zip"
+      send_data xml, :type => 'text/plain',:disposition=>'inline'
+
+      #path = File.expand_path("~/test.xml")
+      #File.open(path, 'w') {|f| f.write(xml) }
+      #send_file path, :type=>"application/zip"
     end
 
     #character model example
