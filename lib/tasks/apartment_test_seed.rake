@@ -1660,7 +1660,7 @@ buildingA.products = [suite501, suite502, suite503, suite504, suite505, suite506
                       suite1601, suite1602, suite1603, suite1604, suite1605, suite1606, suite1607, suite1608, suite1609, suite1610, suite1611,
                       suite1701, suite1702, suite1703, suite1704, suite1705, suite1706, suite1707, suite1708, suite1709, suite1710, suite1711,
                       suite1801, suite1802, suite1803, suite1804, suite1805, suite1806, suite1807, suite1808, suite1809, suite1810, suite1811,
-                      suite1901, suite1902, suite1903, suite1904, suite19019, suite1906, suite1907, suite1908, suite1909, suite1910, suite1911,
+                      suite1901, suite1902, suite1903, suite1904, suite1905, suite1906, suite1907, suite1908, suite1909, suite1910, suite1911,
                       suite2001, suite2002, suite2003, suite2004, suite2005, suite2006, suite2007, suite2008, suite2009, suite2010, suite2011,
                       suite2101, suite2102, suite2103, suite2104, suite2105, suite2106, suite2107, suite2108, suite2109, suite2110, suite2111,
                       suite2201, suite2202, suite2203, suite2204, suite2205, suite2206, suite2207, suite2208, suite2209, suite2210, suite2211,
