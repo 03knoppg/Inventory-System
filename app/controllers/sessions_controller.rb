@@ -106,6 +106,15 @@ class SessionsController < ApplicationController
       #send_file path, :type=>"application/zip"
     end
 
+    #Minto availability site
+    if(!params[:Minto].nil?)
+
+
+      redirect_to("/sessions/Minto/")
+
+
+    end
+
     #character model example
     if(!params[:code].nil?)
       code = params[:code].split("_")
@@ -174,7 +183,11 @@ class SessionsController < ApplicationController
   end
 
 
+  def update_minto
 
+      p = Product.find_by_name(params[:id])
+      p.valuefields[0].update_attribute(:fieldvalue,   params[:checked])
+  end
 
 
 
