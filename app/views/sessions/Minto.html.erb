@@ -4,6 +4,7 @@
 <div hidden=true>
    <%for s in Category.all
         for suite in s.products%>
+          <%=suite.name%>,
            <%if(suite.valuefields[0].fieldvalue == "true")%>
               true,
            <%else%>
