@@ -18,6 +18,8 @@
 
 <%i = 0
 for s in Category.all
+
+       if(s.name == "Minto")
    for suite in s.products
     if( i % 5 == 0)%>
         </br>
@@ -25,7 +27,8 @@ for s in Category.all
 
         i = i + 1%>
         <%= check_box_tag suite.name, suite.name, suite.valuefields[0].fieldvalue == "true" ? true : false%>  <%=suite.name%>
-        <%end%>
+        <%end
+        end%>
 <%end%>
 
 <script type="text/javascript">
