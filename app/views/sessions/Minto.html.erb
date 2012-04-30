@@ -3,14 +3,17 @@
 
 <div hidden=true>
    <%for s in Category.all
+       if(s.name == "Minto")
         for suite in s.products%>
           <%=suite.name%>,
            <%if(suite.valuefields[0].fieldvalue == "true")%>
               true,
            <%else%>
               false,
-            <%end%>
-   <%end end%>
+            <%end
+           end
+        end
+   end%>
           </div>
 
 <%i = 0

@@ -56,10 +56,126 @@ txt = Validation.create(extension: ".txt", kind: "Data File")
 ################################################################################################################
 
 buildingA = Category.create(name: "Building A")
+Minto = Category.create(name: "Minto")
 
 ################################################################################################################
 #Products                                                                                                      #
 ################################################################################################################
+
+    
+    ###Minto
+    
+    ##Block1
+    
+    #Front
+    
+B1_3D_1F = Product.create(name: "B1_3D_1F", description: "B1_3D_1F", code: "B1_3D_1F")
+B1_2B_1F = Product.create(name: "B1_2B_1F", description: "B1_2B_1F", code: "B1_2B_1F")
+B1_2B_2F = Product.create(name: "B1_2B_2F", description: "B1_2B_2F", code: "B1_2B_2F")
+B1_2B_3F = Product.create(name: "B1_2B_3F", description: "B1_2B_3F", code: "B1_2B_3F")
+B1_3C_1F = Product.create(name: "B1_3C_1F", description: "B1_3C_1F", code: "B1_3C_1F")
+B1_2E_1F = Product.create(name: "B1_2E_1F", description: "B1_2E_1F", code: "B1_2E_1F")
+B1_2F_1F = Product.create(name: "B1_2F_1F", description: "B1_2F_1F", code: "B1_2F_1F")
+B1_2A_1F = Product.create(name: "B1_2A_1F", description: "B1_2A_1F", code: "B1_2A_1F")
+   
+    
+    #Back
+B1_3D_1B = Product.create(name: "B1_3D_1B", description: "B1_3D_1B", code: "B1_3D_1B")
+B1_2B_1B = Product.create(name: "B1_2B_1B", description: "B1_2B_1B", code: "B1_2B_1B")
+B1_2B_2B = Product.create(name: "B1_2B_2B", description: "B1_2B_2B", code: "B1_2B_2B")
+B1_2B_3B = Product.create(name: "B1_2B_3B", description: "B1_2B_3B", code: "B1_2B_3B")
+B1_3C_1B = Product.create(name: "B1_3C_1B", description: "B1_3C_1B", code: "B1_3C_1B")
+B1_2E_1B = Product.create(name: "B1_2E_1B", description: "B1_2E_1B", code: "B1_2E_1B")
+B1_2F_1B = Product.create(name: "B1_2F_1B", description: "B1_2F_1B", code: "B1_2F_1B")
+B1_2A_1B = Product.create(name: "B1_2A_1B", description: "B1_2A_1B", code: "B1_2A_1B")
+    
+    
+    ##Block2
+    
+    #Front
+B2_2B_1F = Product.create(name: "B2_2B_1F", description: "B2_2B_1F", code: "B2_2B_1F")
+B2_2B_2F = Product.create(name: "B2_2B_2F", description: "B2_2B_2F", code: "B2_2B_2F")
+B2_2B_3F = Product.create(name: "B2_2B_3F", description: "B2_2B_3F", code: "B2_2B_3F")
+B2_2B_4F = Product.create(name: "B2_2B_4F", description: "B2_2B_4F", code: "B2_2B_4F")
+B2_3B_1F = Product.create(name: "B2_3B_1F", description: "B2_3B_1F", code: "B2_3B_1F")
+B2_2A_1F = Product.create(name: "B2_2A_1F", description: "B2_2A_1F", code: "B2_2A_1F")
+B2_2E_1F = Product.create(name: "B2_2E_1F", description: "B2_2E_1F", code: "B2_2E_1F")
+B2_2F_1F = Product.create(name: "B2_2F_1F", description: "B2_2F_1F", code: "B2_2F_1F")  
+B2_2A_2F = Product.create(name: "B2_2A_2F", description: "B2_2A_2F", code: "B2_2A_2F")       
+B2_3C_1F = Product.create(name: "B2_3C_1F", description: "B2_3C_1F", code: "B2_3C_1F")
+   
+    
+    #Back
+B2_2B_1B = Product.create(name: "B2_2B_1B", description: "B2_2B_1B", code: "B2_2B_1B")
+B2_2B_2B = Product.create(name: "B2_2B_2B", description: "B2_2B_2B", code: "B2_2B_2B")
+B2_2B_3B = Product.create(name: "B2_2B_3B", description: "B2_2B_3B", code: "B2_2B_3B")
+B2_2B_4B = Product.create(name: "B2_2B_4B", description: "B2_2B_4B", code: "B2_2B_4B")
+B2_3B_1B = Product.create(name: "B2_3B_1B", description: "B2_3B_1B", code: "B2_3B_1B")
+B2_2A_1B = Product.create(name: "B2_2A_1B", description: "B2_2A_1B", code: "B2_2A_1B")
+B2_2E_1B = Product.create(name: "B2_2E_1B", description: "B2_2E_1B", code: "B2_2E_1B")
+B2_2F_1B = Product.create(name: "B2_2F_1B", description: "B2_2F_1B", code: "B2_2F_1B")  
+B2_2A_2B = Product.create(name: "B2_2A_2B", description: "B2_2A_2B", code: "B2_2A_2B")       
+B2_3C_1B = Product.create(name: "B2_3C_1B", description: "B2_3C_1B", code: "B2_3C_1B")
+        
+    
+    
+    ##Block3
+    
+    #Front
+B3_2B_1F = Product.create(name: "B3_2B_1F", description: "B3_2B_1F", code: "B3_2B_1F")
+B3_2B_2F = Product.create(name: "B3_2B_2F", description: "B3_2B_2F", code: "B3_2B_2F")
+B3_2B_3F = Product.create(name: "B3_2B_3F", description: "B3_2B_3F", code: "B3_2B_3F")
+B3_2B_4F = Product.create(name: "B3_2B_4F", description: "B3_2B_4F", code: "B3_2B_4F")
+B3_2A_1F = Product.create(name: "B3_2A_1F", description: "B3_2A_1F", code: "B3_2A_1F")
+B3_2E_1F = Product.create(name: "B3_2E_1F", description: "B3_2E_1F", code: "B3_2E_1F")
+B3_2F_1F = Product.create(name: "B3_2F_1F", description: "B3_2F_1F", code: "B3_2F_1F")  
+B3_2A_2F = Product.create(name: "B3_2A_2F", description: "B3_2A_2F", code: "B3_2A_2F")    
+   
+    
+    #Back
+B3_2B_1B = Product.create(name: "B3_2B_1B", description: "B3_2B_1B", code: "B3_2B_1B")
+B3_2B_2B = Product.create(name: "B3_2B_2B", description: "B3_2B_2B", code: "B3_2B_2B")
+B3_2B_3B = Product.create(name: "B3_2B_3B", description: "B3_2B_3B", code: "B3_2B_3B")
+B3_2B_4B = Product.create(name: "B3_2B_4B", description: "B3_2B_4B", code: "B3_2B_4B")
+B3_2A_1B = Product.create(name: "B3_2A_1B", description: "B3_2A_1B", code: "B3_2A_1B")
+B3_2E_1B = Product.create(name: "B3_2E_1B", description: "B3_2E_1B", code: "B3_2E_1B")
+B3_2F_1B = Product.create(name: "B3_2F_1B", description: "B3_2F_1B", code: "B3_2F_1B")  
+B3_2A_2B = Product.create(name: "B3_2A_2B", description: "B3_2A_2B", code: "B3_2A_2B") 
+    
+
+    
+    ##Block4
+    
+    #Front
+B4_2B_1F = Product.create(name: "B4_2B_1F", description: "B4_2B_1F", code: "B4_2B_1F")
+B4_2B_2F = Product.create(name: "B4_2B_2F", description: "B4_2B_2F", code: "B4_2B_2F")
+B4_2B_3F = Product.create(name: "B4_2B_3F", description: "B4_2B_3F", code: "B4_2B_3F")
+B4_2B_4F = Product.create(name: "B4_2B_4F", description: "B4_2B_4F", code: "B4_2B_4F")
+B4_3B_1F = Product.create(name: "B4_3B_1F", description: "B4_3B_1F", code: "B4_3B_1F")
+B4_2A_1F = Product.create(name: "B4_2A_1F", description: "B4_2A_1F", code: "B4_2A_1F")
+B4_2E_1F = Product.create(name: "B4_2E_1F", description: "B4_2E_1F", code: "B4_2E_1F")
+B4_2F_1F = Product.create(name: "B4_2F_1F", description: "B4_2F_1F", code: "B4_2F_1F")  
+B4_2A_2F = Product.create(name: "B4_2A_2F", description: "B4_2A_2F", code: "B4_2A_2F")       
+B4_3C_1F = Product.create(name: "B4_3C_1F", description: "B4_3C_1F", code: "B4_3C_1F")
+   
+    
+    #Back
+B4_2B_1B = Product.create(name: "B4_2B_1B", description: "B4_2B_1B", code: "B4_2B_1B")
+B4_2B_2B = Product.create(name: "B4_2B_2B", description: "B4_2B_2B", code: "B4_2B_2B")
+B4_2B_3B = Product.create(name: "B4_2B_3B", description: "B4_2B_3B", code: "B4_2B_3B")
+B4_2B_4B = Product.create(name: "B4_2B_4B", description: "B4_2B_4B", code: "B4_2B_4B")
+B4_3B_1B = Product.create(name: "B4_3B_1B", description: "B4_3B_1B", code: "B4_3B_1B")
+B4_2A_1B = Product.create(name: "B4_2A_1B", description: "B4_2A_1B", code: "B4_2A_1B")
+B4_2E_1B = Product.create(name: "B4_2E_1B", description: "B4_2E_1B", code: "B4_2E_1B")
+B4_2F_1B = Product.create(name: "B4_2F_1B", description: "B4_2F_1B", code: "B4_2F_1B")  
+B4_2A_2B = Product.create(name: "B4_2A_2B", description: "B4_2A_2B", code: "B4_2A_2B")       
+B4_3C_1B = Product.create(name: "B4_3C_1B", description: "B4_3C_1B", code: "B4_3C_1B")
+    
+    ###/Minto
+
+
+
+
 
 ###Floor 5
 suite501 = Product.create(name: "Suite 501", description: "Building A 5th Floor Suite", code: "FL_5_Bamboo")
@@ -460,6 +576,124 @@ availability = Property.create(name: "Availability", description: "Suite Availab
 ################################################################################################################
 #ValueFields                                                                                                   #
 ################################################################################################################
+            
+
+            B1_3D_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_3FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_3C_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2E_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2F_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2A_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+           
+            
+            #Back
+            
+            B1_3D_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2B_3BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_3C_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2E_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2F_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B1_2A_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            
+            
+            ##Block2
+            
+            #Front
+            
+            B2_2B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_3FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_4FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_3B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2A_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2E_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2F_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2A_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_3C_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+           
+            
+            #Back
+            
+            
+            B2_2B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_3BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2B_4BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_3B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2A_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2E_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2F_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_2A_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B2_3C_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+                
+            
+            
+            ##Block3
+            
+            #Front
+            
+            B3_2B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_3FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_4FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2A_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2E_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2F_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2A_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+           
+            
+            #Back
+            
+            
+            
+            B3_2B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_3BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2B_4BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2A_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2E_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2F_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B3_2A_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            
+        
+            
+            ##Block4
+            
+            #Front
+            
+            B4_2B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_3FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_4FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_3B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2A_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2E_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2F_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2A_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_3C_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+           
+            
+            #Back
+            
+            
+            B4_2B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_3BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2B_4BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_3B_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2A_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2E_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2F_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_2A_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            B4_3C_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+    
+    
+    
+    
 
 ###Floor 5
 suite501VF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "FL_5_Bamboo")
@@ -855,6 +1089,126 @@ suite3411VF = Valuefield.create(fieldvalue: "true", property_id: availability.id
 ################################################################################################################
 #Properties_Products - association table                                                                       #
 ################################################################################################################
+   
+
+
+    B1_3D_1F.properties = [availability]
+    B1_2B_1F.properties = [availability]
+    B1_2B_2F.properties = [availability]
+    B1_2B_3F.properties = [availability]
+    B1_3C_1F.properties = [availability]
+    B1_2E_1F.properties = [availability]
+    B1_2F_1F.properties = [availability]
+    B1_2A_1F.properties = [availability]
+   
+    
+    #Back
+    
+    B1_3D_1B.properties = [availability]
+    B1_2B_1B.properties = [availability]
+    B1_2B_2B.properties = [availability]
+    B1_2B_3B.properties = [availability]
+    B1_3C_1B.properties = [availability]
+    B1_2E_1B.properties = [availability]
+    B1_2F_1B.properties = [availability]
+    B1_2A_1B.properties = [availability]
+    
+    
+    ##Block2
+    
+    #Front
+    
+    B2_2B_1F.properties = [availability]
+    B2_2B_2F.properties = [availability]
+    B2_2B_3F.properties = [availability]
+    B2_2B_4F.properties = [availability]
+    B2_3B_1F.properties = [availability]
+    B2_2A_1F.properties = [availability]
+    B2_2E_1F.properties = [availability]
+    B2_2F_1F.properties = [availability]
+    B2_2A_2F.properties = [availability]
+    B2_3C_1F.properties = [availability]
+   
+    
+    #Back
+    
+    
+    B2_2B_1B.properties = [availability]
+    B2_2B_2B.properties = [availability]
+    B2_2B_3B.properties = [availability]
+    B2_2B_4B.properties = [availability]
+    B2_3B_1B.properties = [availability]
+    B2_2A_1B.properties = [availability]
+    B2_2E_1B.properties = [availability]
+    B2_2F_1B.properties = [availability]
+    B2_2A_2B.properties = [availability]
+    B2_3C_1B.properties = [availability]
+        
+    
+    
+    ##Block3
+    
+    #Front
+    
+    B3_2B_1F.properties = [availability]
+    B3_2B_2F.properties = [availability]
+    B3_2B_3F.properties = [availability]
+    B3_2B_4F.properties = [availability]
+    B3_2A_1F.properties = [availability]
+    B3_2E_1F.properties = [availability]
+    B3_2F_1F.properties = [availability]
+    B3_2A_2F.properties = [availability]
+   
+    
+    #Back
+    
+    
+    
+    B3_2B_1B.properties = [availability]
+    B3_2B_2B.properties = [availability]
+    B3_2B_3B.properties = [availability]
+    B3_2B_4B.properties = [availability]
+    B3_2A_1B.properties = [availability]
+    B3_2E_1B.properties = [availability]
+    B3_2F_1B.properties = [availability]
+    B3_2A_2B.properties = [availability]
+    
+
+    
+    ##Block4
+    
+    #Front
+    
+    B4_2B_1F.properties = [availability]
+    B4_2B_2F.properties = [availability]
+    B4_2B_3F.properties = [availability]
+    B4_2B_4F.properties = [availability]
+    B4_3B_1F.properties = [availability]
+    B4_2A_1F.properties = [availability]
+    B4_2E_1F.properties = [availability]
+    B4_2F_1F.properties = [availability]
+    B4_2A_2F.properties = [availability]
+    B4_3C_1F.properties = [availability]
+   
+    
+    #Back
+    
+    
+    B4_2B_1B.properties = [availability]
+    B4_2B_2B.properties = [availability]
+    B4_2B_3B.properties = [availability]
+    B4_2B_4B.properties = [availability]
+    B4_3B_1B.properties = [availability]
+    B4_2A_1B.properties = [availability]
+    B4_2E_1B.properties = [availability]
+    B4_2F_1B.properties = [availability]
+    B4_2A_2B.properties = [availability]
+    B4_3C_1B.properties = [availability]
+    
+    
+    
+    
+    
 
 ###Floor 5
 suite501.properties = [availability]
@@ -1251,6 +1605,123 @@ suite3411.properties = [availability]
 #Valuefields_Products - association table                                                                      #
 ################################################################################################################
 
+
+     B1_3D_1F.valuefields = [B1_3D_1FVF]
+    B1_2B_1F.valuefields = [B1_2B_1FVF]
+    B1_2B_2F.valuefields = [B1_2B_2FVF]
+    B1_2B_3F.valuefields = [B1_2B_3FVF]
+    B1_3C_1F.valuefields = [B1_3C_1FVF]
+    B1_2E_1F.valuefields = [B1_2E_1FVF]
+    B1_2F_1F.valuefields = [B1_2F_1FVF]
+    B1_2A_1F.valuefields = [B1_2A_1FVF]
+   
+    
+    #Back
+    
+    B1_3D_1B.valuefields = [B1_3D_1BVF]
+    B1_2B_1B.valuefields = [B1_2B_1BVF]
+    B1_2B_2B.valuefields = [B1_2B_2BVF]
+    B1_2B_3B.valuefields = [B1_2B_3BVF]
+    B1_3C_1B.valuefields = [B1_3C_1BVF]
+    B1_2E_1B.valuefields = [B1_2E_1BVF]
+    B1_2F_1B.valuefields = [B1_2F_1BVF]
+    B1_2A_1B.valuefields = [B1_2A_1BVF]
+    
+    
+    ##Block2
+    
+    #Front
+    
+    B2_2B_1F.valuefields = [B2_2B_1FVF]
+    B2_2B_2F.valuefields = [B2_2B_2FVF]
+    B2_2B_3F.valuefields = [B2_2B_3FVF]
+    B2_2B_4F.valuefields = [B2_2B_4FVF]
+    B2_3B_1F.valuefields = [B2_3B_1FVF]
+    B2_2A_1F.valuefields = [B2_2A_1FVF]
+    B2_2E_1F.valuefields = [B2_2E_1FVF]
+    B2_2F_1F.valuefields = [B2_2F_1FVF]
+    B2_2A_2F.valuefields = [B2_2A_2FVF]
+    B2_3C_1F.valuefields = [B2_3C_1FVF]
+   
+    
+    #Back
+    
+    
+    B2_2B_1B.valuefields = [B2_2B_1BVF]
+    B2_2B_2B.valuefields = [B2_2B_2BVF]
+    B2_2B_3B.valuefields = [B2_2B_3BVF]
+    B2_2B_4B.valuefields = [B2_2B_4BVF]
+    B2_3B_1B.valuefields = [B2_3B_1BVF]
+    B2_2A_1B.valuefields = [B2_2A_1BVF]
+    B2_2E_1B.valuefields = [B2_2E_1BVF]
+    B2_2F_1B.valuefields = [B2_2F_1BVF]
+    B2_2A_2B.valuefields = [B2_2A_2BVF]
+    B2_3C_1B.valuefields = [B2_3C_1BVF]
+        
+    
+    
+    ##Block3
+    
+    #Front
+    
+    B3_2B_1F.valuefields = [B3_2B_1FVF]
+    B3_2B_2F.valuefields = [B3_2B_2FVF]
+    B3_2B_3F.valuefields = [B3_2B_3FVF]
+    B3_2B_4F.valuefields = [B3_2B_4FVF]
+    B3_2A_1F.valuefields = [B3_2A_1FVF]
+    B3_2E_1F.valuefields = [B3_2E_1FVF]
+    B3_2F_1F.valuefields = [B3_2F_1FVF]
+    B3_2A_2F.valuefields = [B3_2A_2FVF]
+   
+    
+    #Back
+    
+    
+    
+    B3_2B_1B.valuefields = [B3_2B_1BVF]
+    B3_2B_2B.valuefields = [B3_2B_2BVF]
+    B3_2B_3B.valuefields = [B3_2B_3BVF]
+    B3_2B_4B.valuefields = [B3_2B_4BVF]
+    B3_2A_1B.valuefields = [B3_2A_1BVF]
+    B3_2E_1B.valuefields = [B3_2E_1BVF]
+    B3_2F_1B.valuefields = [B3_2F_1BVF]
+    B3_2A_2B.valuefields = [B3_2A_2BVF]
+    
+
+    
+    ##Block4
+    
+    #Front
+    
+    B4_2B_1F.valuefields = [B4_2B_1FVF]
+    B4_2B_2F.valuefields = [B4_2B_2FVF]
+    B4_2B_3F.valuefields = [B4_2B_3FVF]
+    B4_2B_4F.valuefields = [B4_2B_4FVF]
+    B4_3B_1F.valuefields = [B4_3B_1FVF]
+    B4_2A_1F.valuefields = [B4_2A_1FVF]
+    B4_2E_1F.valuefields = [B4_2E_1FVF]
+    B4_2F_1F.valuefields = [B4_2F_1FVF]
+    B4_2A_2F.valuefields = [B4_2A_2FVF]
+    B4_3C_1F.valuefields = [B4_3C_1FVF]
+   
+    
+    #Back
+    
+    
+    B4_2B_1B.valuefields = [B4_2B_1BVF]
+    B4_2B_2B.valuefields = [B4_2B_2BVF]
+    B4_2B_3B.valuefields = [B4_2B_3BVF]
+    B4_2B_4B.valuefields = [B4_2B_4BVF]
+    B4_3B_1B.valuefields = [B4_3B_1BVF]
+    B4_2A_1B.valuefields = [B4_2A_1BVF]
+    B4_2E_1B.valuefields = [B4_2E_1BVF]
+    B4_2F_1B.valuefields = [B4_2F_1BVF]
+    B4_2A_2B.valuefields = [B4_2A_2BVF]
+    B4_3C_1B.valuefields = [B4_3C_1BVF]
+    
+    
+    
+
 ###Floor 5
 suite501.valuefields = [suite501VF]
 suite502.valuefields = [suite502VF]
@@ -1644,6 +2115,124 @@ suite3411.valuefields = [suite3411VF]
 ################################################################################################################
 #Categories_Products - association table                                                                       #
 ################################################################################################################
+                 
+
+
+    Minto.products = [
+            B1_3D_1F,
+            B1_2B_1F,
+            B1_2B_2F,
+            B1_2B_3F,
+            B1_3C_1F,
+            B1_2E_1F,
+            B1_2F_1F,
+            B1_2A_1F,
+
+            
+            #Back
+            
+            B1_3D_1B,
+            B1_2B_1B,
+            B1_2B_2B,
+            B1_2B_3B,
+            B1_3C_1B,
+            B1_2E_1B,
+            B1_2F_1B,
+            B1_2A_1B,
+            
+            
+            ##Block2
+            
+            #Front
+            
+            B2_2B_1F,
+            B2_2B_2F,
+            B2_2B_3F,
+            B2_2B_4F,
+            B2_3B_1F,
+            B2_2A_1F,
+            B2_2E_1F,
+            B2_2F_1F,
+            B2_2A_2F,
+            B2_3C_1F,
+           
+            
+            #Back
+            
+            
+            B2_2B_1B,
+            B2_2B_2B,
+            B2_2B_3B,
+            B2_2B_4B,
+            B2_3B_1B,
+            B2_2A_1B,
+            B2_2E_1B,
+            B2_2F_1B,
+            B2_2A_2B,
+            B2_3C_1B,
+                
+            
+            
+            ##Block3
+            
+            #Front
+            
+            B3_2B_1F,
+            B3_2B_2F,
+            B3_2B_3F,
+            B3_2B_4F,
+            B3_2A_1F,
+            B3_2E_1F,
+            B3_2F_1F,
+            B3_2A_2F,
+           
+            
+            #Back
+            
+            
+            
+            B3_2B_1B,
+            B3_2B_2B,
+            B3_2B_3B,
+            B3_2B_4B,
+            B3_2A_1B,
+            B3_2E_1B,
+            B3_2F_1B,
+            B3_2A_2B,
+            
+        
+            
+            ##Block4
+            
+            #Front
+            
+            B4_2B_1F,
+            B4_2B_2F,
+            B4_2B_3F,
+            B4_2B_4F,
+            B4_3B_1F,
+            B4_2A_1F,
+            B4_2E_1F,
+            B4_2F_1F,
+            B4_2A_2F,
+            B4_3C_1F,
+           
+            
+            #Back
+            
+            
+            B4_2B_1B,
+            B4_2B_2B,
+            B4_2B_3B,
+            B4_2B_4B,
+            B4_3B_1B,
+            B4_2A_1B,
+            B4_2E_1B,
+            B4_2F_1B,
+            B4_2A_2B,
+            B4_3C_1B]
+        
+
 
 buildingA.products = [suite501, suite502, suite503, suite504, suite505, suite506, suite507, suite508, suite509, suite510, suite511, 
                       suite601, suite602, suite603, suite604, suite605, suite606, suite607, suite608, suite609, suite610, suite611,
@@ -1695,5 +2284,6 @@ valAlias = TableAlias.create(tableName: "validations", aliasName: "Validations")
 #All Seating Test                                                                                              #
 #End of Seed                                                                                                   #
 ################################################################################################################
+
   end
 end

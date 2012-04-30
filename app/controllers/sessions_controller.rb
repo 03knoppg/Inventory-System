@@ -56,31 +56,37 @@ class SessionsController < ApplicationController
     #For retrieving xml file - ipad app
     if(!params[:available].nil?)
 
-      #productCode = params[:available]
-      products = Product.all
-      xml = "<Suites>"
-      for product in products
-        if !product.valuefields.empty?
-          xml += "<Suite>"
-          xml += "<SuiteNumber>"
-          xml += product.name
-          xml += "</SuiteNumber>"
-          xml += "<SuiteAvailability>"
-          xml += product.valuefields[0].fieldvalue
-          xml += "</SuiteAvailability>"
-          xml += "<SuiteCode>"
-          xml += product.code
-          xml += "</SuiteCode>"
-          xml += "</Suite>"
+      for cat in Category.All
+        if(cat.name = "Building A")
+          #productCode = params[:available]
+          products = cat.products
+          xml = "<Suites>"
+          for product in products
+            if !product.valuefields.empty?
+              xml += "<Suite>"
+              xml += "<SuiteNumber>"
+              xml += product.name
+              xml += "</SuiteNumber>"
+              xml += "<SuiteAvailability>"
+              xml += product.valuefields[0].fieldvalue
+              xml += "</SuiteAvailability>"
+              xml += "<SuiteCode>"
+              xml += product.code
+              xml += "</SuiteCode>"
+              xml += "</Suite>"
+            end
+          end
+          xml += "</Suites>"
+          send_data xml, :type => 'text/plain',:disposition=>'inline'
+          #send_data xml
+
+          #path = File.expand_path("~/available.xml")
+          #File.open(path, 'w') {|f| f.write(xml) }
+          #send_file path, :type=>"application/zip"
         end
       end
-      xml += "</Suites>"
-      send_data xml, :type => 'text/plain',:disposition=>'inline'
-      #send_data xml
 
-      #path = File.expand_path("~/available.xml")
-      #File.open(path, 'w') {|f| f.write(xml) }
-      #send_file path, :type=>"application/zip"
+
 
     end
 
@@ -91,8 +97,9 @@ class SessionsController < ApplicationController
       for vf in valuefields
         if(vf.code == params[:codeVF])
           if(vf.fieldvalue == "true")
-             vf.fieldvalue = "false"
-             vf.save!
+            vf.update_attributes(:fieldvalue, "false")
+             #vf.fieldvalue = "false"
+             #vf.save!
             xml = "<Message>Success</Message>"
           else
             xml = "<Message>Failure</Message>"
