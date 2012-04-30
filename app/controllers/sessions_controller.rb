@@ -56,8 +56,8 @@ class SessionsController < ApplicationController
     #For retrieving xml file - ipad app
     if(!params[:available].nil?)
 
-      for cat in Category.All
-        if(cat.name = "Building A")
+      for cat in Category.all
+        if(cat.name == "Building A")
           #productCode = params[:available]
           products = cat.products
           xml = "<Suites>"
