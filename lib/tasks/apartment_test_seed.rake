@@ -2237,8 +2237,6 @@ suite3411.valuefields = [suite3411VF]
 buildingA.products = [suite501, suite502, suite503, suite504, suite505, suite506, suite507, suite508, suite509, suite510, suite511, 
                       suite601, suite602, suite603, suite604, suite605, suite606, suite607, suite608, suite609, suite610, suite611,
                       suite701, suite702, suite703, suite704, suite705, suite706, suite707, suite708, suite709, suite710, suite711,
-                      suite601, suite602, suite603, suite604, suite605, suite606, suite607, suite608, suite609, suite610, suite611,
-                      suite701, suite702, suite703, suite704, suite705, suite706, suite707, suite708, suite709, suite710, suite711, 
                       suite801, suite802, suite803, suite804, suite805, suite806, suite807, suite808, suite809, suite810, suite811,
                       suite901, suite902, suite903, suite904, suite909, suite906, suite907, suite908, suite909, suite910, suite911,
                       suite1001, suite1002, suite1003, suite1004, suite1005, suite1006, suite1007, suite1008, suite1009, suite1010, suite1011,
