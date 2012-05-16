@@ -97,9 +97,9 @@ class SessionsController < ApplicationController
       for vf in valuefields
         if(vf.code == params[:codeVF])
           if(vf.fieldvalue == "true")
-            vf.update_attributes(:fieldvalue, "false")
-             #vf.fieldvalue = "false"
-             #vf.save!
+            #vf.update_attributes(:fieldvalue, "false")
+             vf.fieldvalue = "false"
+             vf.save!
             xml = "<Message>Success</Message>"
           else
             xml = "<Message>Failure</Message>"
