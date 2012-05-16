@@ -116,9 +116,12 @@ class SessionsController < ApplicationController
     #Minto availability site
     if(!params[:Minto].nil?)
 
+      if(params[:Minto] == "Update")
 
-      redirect_to("/sessions/Minto/")
-
+        redirect_to("/sessions/Minto/")
+      else
+        redirect_to("/sessions/MintoCheck")
+      end
 
     end
 
@@ -196,7 +199,11 @@ class SessionsController < ApplicationController
       p.valuefields[0].update_attribute(:fieldvalue,   params[:checked])
   end
 
+   def update_minto_price
 
+      p = Product.find_by_name(params[:id])
+      p.valuefields[1].update_attribute(:fieldvalue,   params[:price])
+  end
 
 
 end
