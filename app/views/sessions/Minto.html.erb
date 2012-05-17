@@ -3,7 +3,7 @@
 
 <Table>
 
-          <tr><th>Block</th><th>Unit Type</th><th>Number</th><th>Price</th><th>Available</th></tr>
+          <tr><th>Block</th><th>Unit Type</th><th>Number</th><th>Price</th><th>Available</th><th>Premium</th></tr>
 
 <%i = 0
 for s in Category.all
@@ -27,12 +27,14 @@ for s in Category.all
                      <%= suite.name[6..7] %>
                    </td>
                    <td>
-                     <%= text_field_tag suite.name, suite.valuefields[1].fieldvalue.to_s, :id=>"Text"%>
+                     <%= text_field_tag "Text", suite.valuefields[1].fieldvalue.to_s, :id=>suite.name%>
                    </td>
                    <td>
-                     <%= check_box_tag suite.name, suite.name, suite.valuefields[0].fieldvalue == "true" ? true : false, :id=>"CheckBox"%>
+                     <%= check_box_tag "CheckBox", suite.name, suite.valuefields[0].fieldvalue == "true" ? true : false, :id=>suite.name%>
                    </td>
-
+                   <td>
+                      <%= text_field_tag "Premium", suite.valuefields[3].fieldvalue.to_s, :id=>suite.name%>
+                   </td>
 
 
               </tr>
@@ -47,22 +49,29 @@ for s in Category.all
 
 
         $('#CheckBox').click(function(){
-            $.get("/sessions/update_minto", {id: $(this)[0].name, checked: $(this)[0].checked}, null, 'script');
-           $('.button').removeAttr("disabled");
+            $.get("/sessions/update_minto", {id: $(this)[0].id, checked: $(this)[0].checked}, null, 'script');
+           $('button').removeAttr("disabled");
 
         });
 
-        $('#Text').change(function(){
-           $.get("/sessions/update_minto_price", {id: $(this)[0].name, price: $(this)[0].value}, null, 'script');
+        $('input[name="Text"]').change(function(){
+           $.get("/sessions/update_minto_price", {id: $(this)[0].id, price: $(this)[0].value}, null, 'script');
 
         });
 
-        $('#Text').click(function(){
-            $('.button').removeAttr("disabled");
+        $('input[name="Premium"]').change(function(){
+           $.get("/sessions/update_minto_premium", {id: $(this)[0].id, premium: $(this)[0].value}, null, 'script');
 
         });
 
-        $('.button').click(function(){ $(this).addAttr("disabled")});
+        $('input').click(function(){
+           $('button').removeAttr("disabled");
+
+        });
+
+        $('button').click(function(){
+            $(this)[0].disabled = "true";
+        });
     });
 
 

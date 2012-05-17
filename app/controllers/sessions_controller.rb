@@ -203,6 +203,12 @@ class SessionsController < ApplicationController
 
       p = Product.find_by_name(params[:id])
       p.valuefields[1].update_attribute(:fieldvalue,   params[:price])
+   end
+
+   def update_minto_premium
+
+      p = Product.find_by_name(params[:id])
+      p.valuefields[3].update_attribute(:fieldvalue,   params[:premium])
   end
 
 
