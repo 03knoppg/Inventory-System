@@ -572,12 +572,40 @@ suite3411 = Product.create(name: "Suite 3411", description: "Building A 34th Flo
 ################################################################################################################
 
 availability = Property.create(name: "Availability", description: "Suite Availability", field_type: "boolean")
+price = Property.create(name: "Price", description: "Suite Price", field_type: "integer")
+size = Property.create(name: "Size", description: "Square Foot", field_type: "integer")
 
 ################################################################################################################
 #ValueFields                                                                                                   #
 ################################################################################################################
-            
+                                                                                     
+            MintoAvailble = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
+            MintoUnavailable = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
 
+            Minto2APrice = Valuefield.create(fieldvalue: "325080", property_id: price.id, code: "")
+            Minto2BPrice = Valuefield.create(fieldvalue: "340200", property_id: price.id, code: "")
+            Minto2CPrice = Valuefield.create(fieldvalue: "337050", property_id: price.id, code: "")
+            Minto2DPrice = Valuefield.create(fieldvalue: "350595", property_id: price.id, code: "")
+            Minto2EPrice = Valuefield.create(fieldvalue: "299250", property_id: price.id, code: "")
+            Minto2FPrice = Valuefield.create(fieldvalue: "323505", property_id: price.id, code: "")
+            Minto3APrice = Valuefield.create(fieldvalue: "478800", property_id: price.id, code: "")
+            Minto3BPrice = Valuefield.create(fieldvalue: "482895", property_id: price.id, code: "")
+            Minto3CPrice = Valuefield.create(fieldvalue: "457695", property_id: price.id, code: "")
+            Minto3DPrice = Valuefield.create(fieldvalue: "478800", property_id: price.id, code: "")
+    
+    
+            Minto2ASize = Valuefield.create(fieldvalue: "1032", property_id: size.id, code: "")
+            Minto2BSize = Valuefield.create(fieldvalue: "1080", property_id: size.id, code: "")
+            Minto2CSize = Valuefield.create(fieldvalue: "1070", property_id: size.id, code: "")
+            Minto2DSize = Valuefield.create(fieldvalue: "1113", property_id: size.id, code: "")
+            Minto2ESize = Valuefield.create(fieldvalue: "950",  property_id: size.id, code: "")
+            Minto2FSize = Valuefield.create(fieldvalue: "1027", property_id: size.id, code: "")
+            Minto3ASize = Valuefield.create(fieldvalue: "1520", property_id: size.id, code: "")
+            Minto3BSize = Valuefield.create(fieldvalue: "1533", property_id: size.id, code: "")
+            Minto3CSize = Valuefield.create(fieldvalue: "1453", property_id: size.id, code: "")
+            Minto3DSize = Valuefield.create(fieldvalue: "1520", property_id: size.id, code: "")
+    
+=begin
             B1_3D_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
             B1_2B_1FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
             B1_2B_2FVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
@@ -691,7 +719,7 @@ availability = Property.create(name: "Availability", description: "Suite Availab
             B4_2A_2BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
             B4_3C_1BVF = Valuefield.create(fieldvalue: "true", property_id: availability.id, code: "")
     
-    
+=end    
     
     
 
@@ -1092,57 +1120,57 @@ suite3411VF = Valuefield.create(fieldvalue: "true", property_id: availability.id
    
 
 
-    B1_3D_1F.properties = [availability]
-    B1_2B_1F.properties = [availability]
-    B1_2B_2F.properties = [availability]
-    B1_2B_3F.properties = [availability]
-    B1_3C_1F.properties = [availability]
-    B1_2E_1F.properties = [availability]
-    B1_2F_1F.properties = [availability]
-    B1_2A_1F.properties = [availability]
+    B1_3D_1F.properties = [availability, price, size]
+    B1_2B_1F.properties = [availability, price, size]
+    B1_2B_2F.properties = [availability, price, size]
+    B1_2B_3F.properties = [availability, price, size]
+    B1_3C_1F.properties = [availability, price, size]
+    B1_2E_1F.properties = [availability, price, size]
+    B1_2F_1F.properties = [availability, price, size]
+    B1_2A_1F.properties = [availability, price, size]
    
     
     #Back
     
-    B1_3D_1B.properties = [availability]
-    B1_2B_1B.properties = [availability]
-    B1_2B_2B.properties = [availability]
-    B1_2B_3B.properties = [availability]
-    B1_3C_1B.properties = [availability]
-    B1_2E_1B.properties = [availability]
-    B1_2F_1B.properties = [availability]
-    B1_2A_1B.properties = [availability]
+    B1_3D_1B.properties = [availability, price, size]
+    B1_2B_1B.properties = [availability, price, size]
+    B1_2B_2B.properties = [availability, price, size]
+    B1_2B_3B.properties = [availability, price, size]
+    B1_3C_1B.properties = [availability, price, size]
+    B1_2E_1B.properties = [availability, price, size]
+    B1_2F_1B.properties = [availability, price, size]
+    B1_2A_1B.properties = [availability, price, size]
     
     
     ##Block2
     
     #Front
     
-    B2_2B_1F.properties = [availability]
-    B2_2B_2F.properties = [availability]
-    B2_2B_3F.properties = [availability]
-    B2_2B_4F.properties = [availability]
-    B2_3B_1F.properties = [availability]
-    B2_2A_1F.properties = [availability]
-    B2_2E_1F.properties = [availability]
-    B2_2F_1F.properties = [availability]
-    B2_2A_2F.properties = [availability]
-    B2_3C_1F.properties = [availability]
+    B2_2B_1F.properties = [availability, price, size]
+    B2_2B_2F.properties = [availability, price, size]
+    B2_2B_3F.properties = [availability, price, size]
+    B2_2B_4F.properties = [availability, price, size]
+    B2_3B_1F.properties = [availability, price, size]
+    B2_2A_1F.properties = [availability, price, size]
+    B2_2E_1F.properties = [availability, price, size]
+    B2_2F_1F.properties = [availability, price, size]
+    B2_2A_2F.properties = [availability, price, size]
+    B2_3C_1F.properties = [availability, price, size]
    
     
     #Back
     
     
-    B2_2B_1B.properties = [availability]
-    B2_2B_2B.properties = [availability]
-    B2_2B_3B.properties = [availability]
-    B2_2B_4B.properties = [availability]
-    B2_3B_1B.properties = [availability]
-    B2_2A_1B.properties = [availability]
-    B2_2E_1B.properties = [availability]
-    B2_2F_1B.properties = [availability]
-    B2_2A_2B.properties = [availability]
-    B2_3C_1B.properties = [availability]
+    B2_2B_1B.properties = [availability, price, size]
+    B2_2B_2B.properties = [availability, price, size]
+    B2_2B_3B.properties = [availability, price, size]
+    B2_2B_4B.properties = [availability, price, size]
+    B2_3B_1B.properties = [availability, price, size]
+    B2_2A_1B.properties = [availability, price, size]
+    B2_2E_1B.properties = [availability, price, size]
+    B2_2F_1B.properties = [availability, price, size]
+    B2_2A_2B.properties = [availability, price, size]
+    B2_3C_1B.properties = [availability, price, size]
         
     
     
@@ -1150,28 +1178,28 @@ suite3411VF = Valuefield.create(fieldvalue: "true", property_id: availability.id
     
     #Front
     
-    B3_2B_1F.properties = [availability]
-    B3_2B_2F.properties = [availability]
-    B3_2B_3F.properties = [availability]
-    B3_2B_4F.properties = [availability]
-    B3_2A_1F.properties = [availability]
-    B3_2E_1F.properties = [availability]
-    B3_2F_1F.properties = [availability]
-    B3_2A_2F.properties = [availability]
+    B3_2B_1F.properties = [availability, price, size]
+    B3_2B_2F.properties = [availability, price, size]
+    B3_2B_3F.properties = [availability, price, size]
+    B3_2B_4F.properties = [availability, price, size]
+    B3_2A_1F.properties = [availability, price, size]
+    B3_2E_1F.properties = [availability, price, size]
+    B3_2F_1F.properties = [availability, price, size]
+    B3_2A_2F.properties = [availability, price, size]
    
     
     #Back
     
     
     
-    B3_2B_1B.properties = [availability]
-    B3_2B_2B.properties = [availability]
-    B3_2B_3B.properties = [availability]
-    B3_2B_4B.properties = [availability]
-    B3_2A_1B.properties = [availability]
-    B3_2E_1B.properties = [availability]
-    B3_2F_1B.properties = [availability]
-    B3_2A_2B.properties = [availability]
+    B3_2B_1B.properties = [availability, price, size]
+    B3_2B_2B.properties = [availability, price, size]
+    B3_2B_3B.properties = [availability, price, size]
+    B3_2B_4B.properties = [availability, price, size]
+    B3_2A_1B.properties = [availability, price, size]
+    B3_2E_1B.properties = [availability, price, size]
+    B3_2F_1B.properties = [availability, price, size]
+    B3_2A_2B.properties = [availability, price, size]
     
 
     
@@ -1179,31 +1207,31 @@ suite3411VF = Valuefield.create(fieldvalue: "true", property_id: availability.id
     
     #Front
     
-    B4_2B_1F.properties = [availability]
-    B4_2B_2F.properties = [availability]
-    B4_2B_3F.properties = [availability]
-    B4_2B_4F.properties = [availability]
-    B4_3B_1F.properties = [availability]
-    B4_2A_1F.properties = [availability]
-    B4_2E_1F.properties = [availability]
-    B4_2F_1F.properties = [availability]
-    B4_2A_2F.properties = [availability]
-    B4_3C_1F.properties = [availability]
+    B4_2B_1F.properties = [availability, price, size]
+    B4_2B_2F.properties = [availability, price, size]
+    B4_2B_3F.properties = [availability, price, size]
+    B4_2B_4F.properties = [availability, price, size]
+    B4_3B_1F.properties = [availability, price, size]
+    B4_2A_1F.properties = [availability, price, size]
+    B4_2E_1F.properties = [availability, price, size]
+    B4_2F_1F.properties = [availability, price, size]
+    B4_2A_2F.properties = [availability, price, size]
+    B4_3C_1F.properties = [availability, price, size]
    
     
     #Back
     
     
-    B4_2B_1B.properties = [availability]
-    B4_2B_2B.properties = [availability]
-    B4_2B_3B.properties = [availability]
-    B4_2B_4B.properties = [availability]
-    B4_3B_1B.properties = [availability]
-    B4_2A_1B.properties = [availability]
-    B4_2E_1B.properties = [availability]
-    B4_2F_1B.properties = [availability]
-    B4_2A_2B.properties = [availability]
-    B4_3C_1B.properties = [availability]
+    B4_2B_1B.properties = [availability, price, size]
+    B4_2B_2B.properties = [availability, price, size]
+    B4_2B_3B.properties = [availability, price, size]
+    B4_2B_4B.properties = [availability, price, size]
+    B4_3B_1B.properties = [availability, price, size]
+    B4_2A_1B.properties = [availability, price, size]
+    B4_2E_1B.properties = [availability, price, size]
+    B4_2F_1B.properties = [availability, price, size]
+    B4_2A_2B.properties = [availability, price, size]
+    B4_3C_1B.properties = [availability, price, size]
     
     
     
@@ -1605,7 +1633,123 @@ suite3411.properties = [availability]
 #Valuefields_Products - association table                                                                      #
 ################################################################################################################
 
+    
+    B1_3D_1F.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize]
+    B1_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+    B1_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B1_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B1_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+   
+    
+    #Back
+    
+    B1_3D_1B.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize]
+    B1_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B1_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+    B1_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B1_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B1_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    
+    
+    ##Block2
+    
+    #Front
+    
+    B2_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_3B_1F.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize]
+    B2_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B2_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B2_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B2_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B2_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+   
+    
+    #Back
+    
+    
+    B2_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B2_3B_1B.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize]
+    B2_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B2_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B2_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B2_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B2_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+        
+    
+    
+    ##Block3
+    
+    #Front
+    
+    B3_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B3_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B3_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B3_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+   
+    
+    #Back
+    
+    
+    
+    B3_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B3_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B3_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B3_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B3_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    
 
+    
+    ##Block4
+    
+    #Front
+    
+    B4_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_3B_1F.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize]
+    B4_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B4_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B4_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B4_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B4_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+   
+    
+    #Back
+    
+    
+    B4_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize]
+    B4_3B_1B.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize]
+    B4_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B4_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize]
+    B4_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize]
+    B4_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize]
+    B4_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize]
+    
+    
+    
+=begin
      B1_3D_1F.valuefields = [B1_3D_1FVF]
     B1_2B_1F.valuefields = [B1_2B_1FVF]
     B1_2B_2F.valuefields = [B1_2B_2FVF]
@@ -1719,7 +1863,7 @@ suite3411.properties = [availability]
     B4_2A_2B.valuefields = [B4_2A_2BVF]
     B4_3C_1B.valuefields = [B4_3C_1BVF]
     
-    
+=end    
     
 
 ###Floor 5

@@ -15,7 +15,10 @@ TestDBRubymineProject::Application.routes.draw do
 
   get "sessions/forgotpass"
   get "sessions/Minto"
+  get "sessions/MintoCheck"
   get "sessions/update_minto"
+  get "sessions/update_minto_price"
+  get "sessions/update_minto_premium"
 
   resources :images
   resources :users
