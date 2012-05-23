@@ -7,6 +7,7 @@ gem 'rails', '3.1.1'
 
 #gem 'sqlite3'
 gem 'mysql'
+gem 'rubyrep'
 
 
 # Gems used only for assets and not required
