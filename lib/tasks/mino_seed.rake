@@ -68,107 +68,108 @@ Minto = Category.create(name: "Minto")
 
     #Front
 
-B1_3D_1F = Product.create(name: "B1_3D_1F", description: "B1_3D_1F", code: "B1_3D_1F")
-B1_2B_1F = Product.create(name: "B1_2B_1F", description: "B1_2B_1F", code: "B1_2B_1F")
-B1_2B_2F = Product.create(name: "B1_2B_2F", description: "B1_2B_2F", code: "B1_2B_2F")
-B1_2B_3F = Product.create(name: "B1_2B_3F", description: "B1_2B_3F", code: "B1_2B_3F")
-B1_3C_1F = Product.create(name: "B1_3C_1F", description: "B1_3C_1F", code: "B1_3C_1F")
-B1_2E_1F = Product.create(name: "B1_2E_1F", description: "B1_2E_1F", code: "B1_2E_1F")
-B1_2F_1F = Product.create(name: "B1_2F_1F", description: "B1_2F_1F", code: "B1_2F_1F")
-B1_2A_1F = Product.create(name: "B1_2A_1F", description: "B1_2A_1F", code: "B1_2A_1F")
+
+B1_3D_1F_7 = Product.create(name: "B1_3D_1F_7", description: "B1_3D_1F_7", code: "B1_3D_1F_7")
+B1_2B_1F_2 = Product.create(name: "B1_2B_1F_2", description: "B1_2B_1F_2", code: "B1_2B_1F_2")
+B1_2B_2F_3 = Product.create(name: "B1_2B_2F_3", description: "B1_2B_2F_3", code: "B1_2B_2F_3")
+B1_2B_3F_6 = Product.create(name: "B1_2B_3F_6", description: "B1_2B_3F_6", code: "B1_2B_3F_6")
+B1_3C_1F_8 = Product.create(name: "B1_3C_1F_8", description: "B1_3C_1F_8", code: "B1_3C_1F_8")
+B1_2E_1F_5 = Product.create(name: "B1_2E_1F_5", description: "B1_2E_1F_5", code: "B1_2E_1F_5")
+B1_2F_1F_4 = Product.create(name: "B1_2F_1F_4", description: "B1_2F_1F_4", code: "B1_2F_1F_4")
+B1_2A_1F_1 = Product.create(name: "B1_2A_1F_1", description: "B1_2A_1F_1", code: "B1_2A_1F_1")
 
 
     #Back
-B1_3D_1B = Product.create(name: "B1_3D_1B", description: "B1_3D_1B", code: "B1_3D_1B")
-B1_2B_1B = Product.create(name: "B1_2B_1B", description: "B1_2B_1B", code: "B1_2B_1B")
-B1_2B_2B = Product.create(name: "B1_2B_2B", description: "B1_2B_2B", code: "B1_2B_2B")
-B1_2B_3B = Product.create(name: "B1_2B_3B", description: "B1_2B_3B", code: "B1_2B_3B")
-B1_3C_1B = Product.create(name: "B1_3C_1B", description: "B1_3C_1B", code: "B1_3C_1B")
-B1_2E_1B = Product.create(name: "B1_2E_1B", description: "B1_2E_1B", code: "B1_2E_1B")
-B1_2F_1B = Product.create(name: "B1_2F_1B", description: "B1_2F_1B", code: "B1_2F_1B")
-B1_2A_1B = Product.create(name: "B1_2A_1B", description: "B1_2A_1B", code: "B1_2A_1B")
+B1_3D_1B_10 = Product.create(name: "B1_3D_1B_10", description: "B1_3D_1B_10", code: "B1_3D_1B_10")
+B1_2B_1B_11 = Product.create(name: "B1_2B_1B_11", description: "B1_2B_1B_11", code: "B1_2B_1B_11")
+B1_2B_2B_14 = Product.create(name: "B1_2B_2B_14", description: "B1_2B_2B_14", code: "B1_2B_2B_14")
+B1_2B_3B_15 = Product.create(name: "B1_2B_3B_15", description: "B1_2B_3B_15", code: "B1_2B_3B_15")
+B1_3C_1B_9 = Product.create(name: "B1_3C_1B_9", description: "B1_3C_1B_9", code: "B1_3C_1B_9")
+B1_2E_1B_12 = Product.create(name: "B1_2E_1B_12", description: "B1_2E_1B_12", code: "B1_2E_1B_12")
+B1_2F_1B_13 = Product.create(name: "B1_2F_1B_13", description: "B1_2F_1B_13", code: "B1_2F_1B_13")
+B1_2A_1B_16 = Product.create(name: "B1_2A_1B_16", description: "B1_2A_1B_16", code: "B1_2A_1B_16")
 
 
     ##Block2
 
     #Front
-B2_2B_1F = Product.create(name: "B2_2B_1F", description: "B2_2B_1F", code: "B2_2B_1F")
-B2_2B_2F = Product.create(name: "B2_2B_2F", description: "B2_2B_2F", code: "B2_2B_2F")
-B2_2B_3F = Product.create(name: "B2_2B_3F", description: "B2_2B_3F", code: "B2_2B_3F")
-B2_2B_4F = Product.create(name: "B2_2B_4F", description: "B2_2B_4F", code: "B2_2B_4F")
-B2_3B_1F = Product.create(name: "B2_3B_1F", description: "B2_3B_1F", code: "B2_3B_1F")
-B2_2A_1F = Product.create(name: "B2_2A_1F", description: "B2_2A_1F", code: "B2_2A_1F")
-B2_2E_1F = Product.create(name: "B2_2E_1F", description: "B2_2E_1F", code: "B2_2E_1F")
-B2_2F_1F = Product.create(name: "B2_2F_1F", description: "B2_2F_1F", code: "B2_2F_1F")
-B2_2A_2F = Product.create(name: "B2_2A_2F", description: "B2_2A_2F", code: "B2_2A_2F")
-B2_3C_1F = Product.create(name: "B2_3C_1F", description: "B2_3C_1F", code: "B2_3C_1F")
+B2_2B_1F_6 = Product.create(name: "B2_2B_1F_6", description: "B2_2B_1F_6", code: "B2_2B_1F_6")
+B2_2B_2F_7 = Product.create(name: "B2_2B_2F_7", description: "B2_2B_2F_7", code: "B2_2B_2F_7")
+B2_2B_3F_10 = Product.create(name: "B2_2B_3F_10", description: "B2_2B_3F_10", code: "B2_2B_3F_10")
+B2_2B_4F_11 = Product.create(name: "B2_2B_4F_11", description: "B2_2B_4F_11", code: "B2_2B_4F_11")
+B2_3B_1F_2 = Product.create(name: "B2_3B_1F_2", description: "B2_3B_1F_2", code: "B2_3B_1F_2")
+B2_2A_1F_5 = Product.create(name: "B2_2A_1F_5", description: "B2_2A_1F_5", code: "B2_2A_1F_5")
+B2_2E_1F_9 = Product.create(name: "B2_2E_1F_9", description: "B2_2E_1F_9", code: "B2_2E_1F_9")
+B2_2F_1F_8 = Product.create(name: "B2_2F_1F_8", description: "B2_2F_1F_8", code: "B2_2F_1F_8")
+B2_2A_2F_12 = Product.create(name: "B2_2A_2F_12", description: "B2_2A_2F_12", code: "B2_2A_2F_12")
+B2_3A_1F_1 = Product.create(name: "B2_3C_1F_1", description: "B2_3C_1F_1", code: "B2_3C_1F_1")
 
 
     #Back
-B2_2B_1B = Product.create(name: "B2_2B_1B", description: "B2_2B_1B", code: "B2_2B_1B")
-B2_2B_2B = Product.create(name: "B2_2B_2B", description: "B2_2B_2B", code: "B2_2B_2B")
-B2_2B_3B = Product.create(name: "B2_2B_3B", description: "B2_2B_3B", code: "B2_2B_3B")
-B2_2B_4B = Product.create(name: "B2_2B_4B", description: "B2_2B_4B", code: "B2_2B_4B")
-B2_3B_1B = Product.create(name: "B2_3B_1B", description: "B2_3B_1B", code: "B2_3B_1B")
-B2_2A_1B = Product.create(name: "B2_2A_1B", description: "B2_2A_1B", code: "B2_2A_1B")
-B2_2E_1B = Product.create(name: "B2_2E_1B", description: "B2_2E_1B", code: "B2_2E_1B")
-B2_2F_1B = Product.create(name: "B2_2F_1B", description: "B2_2F_1B", code: "B2_2F_1B")
-B2_2A_2B = Product.create(name: "B2_2A_2B", description: "B2_2A_2B", code: "B2_2A_2B")
-B2_3C_1B = Product.create(name: "B2_3C_1B", description: "B2_3C_1B", code: "B2_3C_1B")
+B2_2B_1B_14 = Product.create(name: "B2_2B_1B_14", description: "B2_2B_1B_14", code: "B2_2B_1B_14")
+B2_2B_2B_15 = Product.create(name: "B2_2B_2B_15", description: "B2_2B_2B_15", code: "B2_2B_2B_15")
+B2_2B_3B_18 = Product.create(name: "B2_2B_3B_18", description: "B2_2B_3B_18", code: "B2_2B_3B_18")
+B2_2B_4B_19 = Product.create(name: "B2_2B_4B_19", description: "B2_2B_4B_19", code: "B2_2B_4B_19")
+B2_3B_1B_3 = Product.create(name: "B2_3B_1B_3", description: "B2_3B_1B_3", code: "B2_3B_1B_3")
+B2_2A_1B_13 = Product.create(name: "B2_2A_1B_13", description: "B2_2A_1B_13", code: "B2_2A_1B_13")
+B2_2E_1B_16 = Product.create(name: "B2_2E_1B_16", description: "B2_2E_1B_16", code: "B2_2E_1B_16")
+B2_2F_1B_17 = Product.create(name: "B2_2F_1B_17", description: "B2_2F_1B_17", code: "B2_2F_1B_17")
+B2_2A_2B_20 = Product.create(name: "B2_2A_2B_20", description: "B2_2A_2B_20", code: "B2_2A_2B_20")
+B2_3A_1B_4 = Product.create(name: "B2_3C_1B_4", description: "B2_3C_1B_4", code: "B2_3C_1B_4")
 
 
 
     ##Block3
 
     #Front
-B3_2B_1F = Product.create(name: "B3_2B_1F", description: "B3_2B_1F", code: "B3_2B_1F")
-B3_2B_2F = Product.create(name: "B3_2B_2F", description: "B3_2B_2F", code: "B3_2B_2F")
-B3_2B_3F = Product.create(name: "B3_2B_3F", description: "B3_2B_3F", code: "B3_2B_3F")
-B3_2B_4F = Product.create(name: "B3_2B_4F", description: "B3_2B_4F", code: "B3_2B_4F")
-B3_2A_1F = Product.create(name: "B3_2A_1F", description: "B3_2A_1F", code: "B3_2A_1F")
-B3_2E_1F = Product.create(name: "B3_2E_1F", description: "B3_2E_1F", code: "B3_2E_1F")
-B3_2F_1F = Product.create(name: "B3_2F_1F", description: "B3_2F_1F", code: "B3_2F_1F")
-B3_2A_2F = Product.create(name: "B3_2A_2F", description: "B3_2A_2F", code: "B3_2A_2F")
+B3_2B_1F_2 = Product.create(name: "B3_2B_1F_2", description: "B3_2B_1F_2", code: "B3_2B_1F_2")
+B3_2B_2F_3 = Product.create(name: "B3_2B_2F_3", description: "B3_2B_2F_3", code: "B3_2B_2F_3")
+B3_2B_3F_6 = Product.create(name: "B3_2B_3F_6", description: "B3_2B_3F_6", code: "B3_2B_3F_6")
+B3_2B_4F_7 = Product.create(name: "B3_2B_4F_7", description: "B3_2B_4F_7", code: "B3_2B_4F_7")
+B3_2A_1F_1 = Product.create(name: "B3_2A_1F_1", description: "B3_2A_1F_1", code: "B3_2A_1F_1")
+B3_2E_1F_5 = Product.create(name: "B3_2E_1F_5", description: "B3_2E_1F_5", code: "B3_2E_1F_5")
+B3_2F_1F_4 = Product.create(name: "B3_2F_1F_4", description: "B3_2F_1F_4", code: "B3_2F_1F_4")
+B3_2A_2F_8 = Product.create(name: "B3_2A_2F_8", description: "B3_2A_2F_8", code: "B3_2A_2F_8")
 
 
     #Back
-B3_2B_1B = Product.create(name: "B3_2B_1B", description: "B3_2B_1B", code: "B3_2B_1B")
-B3_2B_2B = Product.create(name: "B3_2B_2B", description: "B3_2B_2B", code: "B3_2B_2B")
-B3_2B_3B = Product.create(name: "B3_2B_3B", description: "B3_2B_3B", code: "B3_2B_3B")
-B3_2B_4B = Product.create(name: "B3_2B_4B", description: "B3_2B_4B", code: "B3_2B_4B")
-B3_2A_1B = Product.create(name: "B3_2A_1B", description: "B3_2A_1B", code: "B3_2A_1B")
-B3_2E_1B = Product.create(name: "B3_2E_1B", description: "B3_2E_1B", code: "B3_2E_1B")
-B3_2F_1B = Product.create(name: "B3_2F_1B", description: "B3_2F_1B", code: "B3_2F_1B")
-B3_2A_2B = Product.create(name: "B3_2A_2B", description: "B3_2A_2B", code: "B3_2A_2B")
+B3_2B_1B_10 = Product.create(name: "B3_2B_1B_10", description: "B3_2B_1B_10", code: "B3_2B_1B_10")
+B3_2B_2B_11 = Product.create(name: "B3_2B_2B_11", description: "B3_2B_2B_11", code: "B3_2B_2B_11")
+B3_2B_3B_14 = Product.create(name: "B3_2B_3B_14", description: "B3_2B_3B_14", code: "B3_2B_3B_14")
+B3_2B_4B_15 = Product.create(name: "B3_2B_4B_15", description: "B3_2B_4B_15", code: "B3_2B_4B_15")
+B3_2A_1B_9 = Product.create(name: "B3_2A_1B_9", description: "B3_2A_1B_9", code: "B3_2A_1B_9")
+B3_2E_1B_12 = Product.create(name: "B3_2E_1B_12", description: "B3_2E_1B_12", code: "B3_2E_1B_12")
+B3_2F_1B_13 = Product.create(name: "B3_2F_1B_13", description: "B3_2F_1B_13", code: "B3_2F_1B_13")
+B3_2A_2B_16 = Product.create(name: "B3_2A_2B_16", description: "B3_2A_2B_16", code: "B3_2A_2B_16")
 
 
 
     ##Block4
 
     #Front
-B4_2B_1F = Product.create(name: "B4_2B_1F", description: "B4_2B_1F", code: "B4_2B_1F")
-B4_2B_2F = Product.create(name: "B4_2B_2F", description: "B4_2B_2F", code: "B4_2B_2F")
-B4_2B_3F = Product.create(name: "B4_2B_3F", description: "B4_2B_3F", code: "B4_2B_3F")
-B4_2B_4F = Product.create(name: "B4_2B_4F", description: "B4_2B_4F", code: "B4_2B_4F")
-B4_3B_1F = Product.create(name: "B4_3B_1F", description: "B4_3B_1F", code: "B4_3B_1F")
-B4_2A_1F = Product.create(name: "B4_2A_1F", description: "B4_2A_1F", code: "B4_2A_1F")
-B4_2E_1F = Product.create(name: "B4_2E_1F", description: "B4_2E_1F", code: "B4_2E_1F")
-B4_2F_1F = Product.create(name: "B4_2F_1F", description: "B4_2F_1F", code: "B4_2F_1F")
-B4_2A_2F = Product.create(name: "B4_2A_2F", description: "B4_2A_2F", code: "B4_2A_2F")
-B4_3C_1F = Product.create(name: "B4_3C_1F", description: "B4_3C_1F", code: "B4_3C_1F")
+B4_2B_1F_6 = Product.create(name: "B4_2B_1F_6", description: "B4_2B_1F_6", code: "B4_2B_1F_6")
+B4_2B_2F_7 = Product.create(name: "B4_2B_2F_7", description: "B4_2B_2F_7", code: "B4_2B_2F_7")
+B4_2B_3F_10 = Product.create(name: "B4_2B_3F_10", description: "B4_2B_3F_10", code: "B4_2B_3F_10")
+B4_2B_4F_11 = Product.create(name: "B4_2B_4F_11", description: "B4_2B_4F_11", code: "B4_2B_4F_11")
+B4_3B_1F_2 = Product.create(name: "B4_3B_1F_2", description: "B4_3B_1F_2", code: "B4_3B_1F_2")
+B4_2A_1F_5 = Product.create(name: "B4_2A_1F_5", description: "B4_2A_1F_5", code: "B4_2A_1F_5")
+B4_2E_1F_9 = Product.create(name: "B4_2E_1F_9", description: "B4_2E_1F_9", code: "B4_2E_1F_9")
+B4_2F_1F_8 = Product.create(name: "B4_2F_1F_8", description: "B4_2F_1F_8", code: "B4_2F_1F_8")
+B4_2A_2F_12 = Product.create(name: "B4_2A_2F_12", description: "B4_2A_2F_12", code: "B4_2A_2F_12")
+B4_3A_1F_1 = Product.create(name: "B4_3C_1F_1", description: "B4_3C_1F_1", code: "B4_3C_1F_1")
 
 
     #Back
-B4_2B_1B = Product.create(name: "B4_2B_1B", description: "B4_2B_1B", code: "B4_2B_1B")
-B4_2B_2B = Product.create(name: "B4_2B_2B", description: "B4_2B_2B", code: "B4_2B_2B")
-B4_2B_3B = Product.create(name: "B4_2B_3B", description: "B4_2B_3B", code: "B4_2B_3B")
-B4_2B_4B = Product.create(name: "B4_2B_4B", description: "B4_2B_4B", code: "B4_2B_4B")
-B4_3B_1B = Product.create(name: "B4_3B_1B", description: "B4_3B_1B", code: "B4_3B_1B")
-B4_2A_1B = Product.create(name: "B4_2A_1B", description: "B4_2A_1B", code: "B4_2A_1B")
-B4_2E_1B = Product.create(name: "B4_2E_1B", description: "B4_2E_1B", code: "B4_2E_1B")
-B4_2F_1B = Product.create(name: "B4_2F_1B", description: "B4_2F_1B", code: "B4_2F_1B")
-B4_2A_2B = Product.create(name: "B4_2A_2B", description: "B4_2A_2B", code: "B4_2A_2B")
-B4_3C_1B = Product.create(name: "B4_3C_1B", description: "B4_3C_1B", code: "B4_3C_1B")
+B4_2B_1B_14 = Product.create(name: "B4_2B_1B_14", description: "B4_2B_1B_14", code: "B4_2B_1B_14")
+B4_2B_2B_15 = Product.create(name: "B4_2B_2B_15", description: "B4_2B_2B_15", code: "B4_2B_2B_15")
+B4_2B_3B_18 = Product.create(name: "B4_2B_3B_18", description: "B4_2B_3B_18", code: "B4_2B_3B_18")
+B4_2B_4B_19 = Product.create(name: "B4_2B_4B_19", description: "B4_2B_4B_19", code: "B4_2B_4B_19")
+B4_3B_1B_3 = Product.create(name: "B4_3B_1B_3", description: "B4_3B_1B_3", code: "B4_3B_1B_3")
+B4_2A_1B_13 = Product.create(name: "B4_2A_1B_13", description: "B4_2A_1B_13", code: "B4_2A_1B_13")
+B4_2E_1B_16 = Product.create(name: "B4_2E_1B_16", description: "B4_2E_1B_16", code: "B4_2E_1B_16")
+B4_2F_1B_17 = Product.create(name: "B4_2F_1B_17", description: "B4_2F_1B_17", code: "B4_2F_1B_17")
+B4_2A_2B_20 = Product.create(name: "B4_2A_2B_20", description: "B4_2A_2B_20", code: "B4_2A_2B_20")
+B4_3A_1B_4 = Product.create(name: "B4_3C_1B_4", description: "B4_3C_1B_4", code: "B4_3C_1B_4")
 
     ###/Minto
 
@@ -233,57 +234,57 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
 
 
-    B1_3D_1F.properties = [availability, price, size, premium]
-    B1_2B_1F.properties = [availability, price, size, premium]
-    B1_2B_2F.properties = [availability, price, size, premium]
-    B1_2B_3F.properties = [availability, price, size, premium]
-    B1_3C_1F.properties = [availability, price, size, premium]
-    B1_2E_1F.properties = [availability, price, size, premium]
-    B1_2F_1F.properties = [availability, price, size, premium]
-    B1_2A_1F.properties = [availability, price, size, premium]
+    B1_3D_1F_7.properties = [availability, price, size, premium]
+    B1_2B_1F_2.properties = [availability, price, size, premium]
+    B1_2B_2F_3.properties = [availability, price, size, premium]
+    B1_2B_3F_6.properties = [availability, price, size, premium]
+    B1_3C_1F_8.properties = [availability, price, size, premium]
+    B1_2E_1F_5.properties = [availability, price, size, premium]
+    B1_2F_1F_4.properties = [availability, price, size, premium]
+    B1_2A_1F_1.properties = [availability, price, size, premium]
 
 
     #Back
 
-    B1_3D_1B.properties = [availability, price, size, premium]
-    B1_2B_1B.properties = [availability, price, size, premium]
-    B1_2B_2B.properties = [availability, price, size, premium]
-    B1_2B_3B.properties = [availability, price, size, premium]
-    B1_3C_1B.properties = [availability, price, size, premium]
-    B1_2E_1B.properties = [availability, price, size, premium]
-    B1_2F_1B.properties = [availability, price, size, premium]
-    B1_2A_1B.properties = [availability, price, size, premium]
+    B1_3D_1B_10.properties = [availability, price, size, premium]
+    B1_2B_1B_11.properties = [availability, price, size, premium]
+    B1_2B_2B_14.properties = [availability, price, size, premium]
+    B1_2B_3B_15.properties = [availability, price, size, premium]
+    B1_3C_1B_9.properties = [availability, price, size, premium]
+    B1_2E_1B_12.properties = [availability, price, size, premium]
+    B1_2F_1B_13.properties = [availability, price, size, premium]
+    B1_2A_1B_16.properties = [availability, price, size, premium]
 
 
     ##Block2
 
     #Front
 
-    B2_2B_1F.properties = [availability, price, size, premium]
-    B2_2B_2F.properties = [availability, price, size, premium]
-    B2_2B_3F.properties = [availability, price, size, premium]
-    B2_2B_4F.properties = [availability, price, size, premium]
-    B2_3B_1F.properties = [availability, price, size, premium]
-    B2_2A_1F.properties = [availability, price, size, premium]
-    B2_2E_1F.properties = [availability, price, size, premium]
-    B2_2F_1F.properties = [availability, price, size, premium]
-    B2_2A_2F.properties = [availability, price, size, premium]
-    B2_3C_1F.properties = [availability, price, size, premium]
+    B2_2B_1F_6.properties = [availability, price, size, premium]
+    B2_2B_2F_7.properties = [availability, price, size, premium]
+    B2_2B_3F_10.properties = [availability, price, size, premium]
+    B2_2B_4F_11.properties = [availability, price, size, premium]
+    B2_3B_1F_2.properties = [availability, price, size, premium]
+    B2_2A_1F_5.properties = [availability, price, size, premium]
+    B2_2E_1F_9.properties = [availability, price, size, premium]
+    B2_2F_1F_8.properties = [availability, price, size, premium]
+    B2_2A_2F_12.properties = [availability, price, size, premium]
+    B2_3A_1F_1.properties = [availability, price, size, premium]
 
 
     #Back
 
 
-    B2_2B_1B.properties = [availability, price, size, premium]
-    B2_2B_2B.properties = [availability, price, size, premium]
-    B2_2B_3B.properties = [availability, price, size, premium]
-    B2_2B_4B.properties = [availability, price, size, premium]
-    B2_3B_1B.properties = [availability, price, size, premium]
-    B2_2A_1B.properties = [availability, price, size, premium]
-    B2_2E_1B.properties = [availability, price, size, premium]
-    B2_2F_1B.properties = [availability, price, size, premium]
-    B2_2A_2B.properties = [availability, price, size, premium]
-    B2_3C_1B.properties = [availability, price, size, premium]
+    B2_2B_1B_14.properties = [availability, price, size, premium]
+    B2_2B_2B_15.properties = [availability, price, size, premium]
+    B2_2B_3B_18.properties = [availability, price, size, premium]
+    B2_2B_4B_19.properties = [availability, price, size, premium]
+    B2_3B_1B_3.properties = [availability, price, size, premium]
+    B2_2A_1B_13.properties = [availability, price, size, premium]
+    B2_2E_1B_16.properties = [availability, price, size, premium]
+    B2_2F_1B_17.properties = [availability, price, size, premium]
+    B2_2A_2B_20.properties = [availability, price, size, premium]
+    B2_3A_1B_4.properties = [availability, price, size, premium]
 
 
 
@@ -291,28 +292,26 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
     #Front
 
-    B3_2B_1F.properties = [availability, price, size, premium]
-    B3_2B_2F.properties = [availability, price, size, premium]
-    B3_2B_3F.properties = [availability, price, size, premium]
-    B3_2B_4F.properties = [availability, price, size, premium]
-    B3_2A_1F.properties = [availability, price, size, premium]
-    B3_2E_1F.properties = [availability, price, size, premium]
-    B3_2F_1F.properties = [availability, price, size, premium]
-    B3_2A_2F.properties = [availability, price, size, premium]
+    B3_2B_1F_2.properties = [availability, price, size, premium]
+    B3_2B_2F_3.properties = [availability, price, size, premium]
+    B3_2B_3F_6.properties = [availability, price, size, premium]
+    B3_2B_4F_7.properties = [availability, price, size, premium]
+    B3_2A_1F_1.properties = [availability, price, size, premium]
+    B3_2E_1F_5.properties = [availability, price, size, premium]
+    B3_2F_1F_4.properties = [availability, price, size, premium]
+    B3_2A_2F_8.properties = [availability, price, size, premium]
 
 
     #Back
 
-
-
-    B3_2B_1B.properties = [availability, price, size, premium]
-    B3_2B_2B.properties = [availability, price, size, premium]
-    B3_2B_3B.properties = [availability, price, size, premium]
-    B3_2B_4B.properties = [availability, price, size, premium]
-    B3_2A_1B.properties = [availability, price, size, premium]
-    B3_2E_1B.properties = [availability, price, size, premium]
-    B3_2F_1B.properties = [availability, price, size, premium]
-    B3_2A_2B.properties = [availability, price, size, premium]
+    B3_2B_1B_10.properties = [availability, price, size, premium]
+    B3_2B_2B_11.properties = [availability, price, size, premium]
+    B3_2B_3B_14.properties = [availability, price, size, premium]
+    B3_2B_4B_15.properties = [availability, price, size, premium]
+    B3_2A_1B_9.properties = [availability, price, size, premium]
+    B3_2E_1B_12.properties = [availability, price, size, premium]
+    B3_2F_1B_13.properties = [availability, price, size, premium]
+    B3_2A_2B_16.properties = [availability, price, size, premium]
 
 
 
@@ -320,31 +319,31 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
     #Front
 
-    B4_2B_1F.properties = [availability, price, size, premium]
-    B4_2B_2F.properties = [availability, price, size, premium]
-    B4_2B_3F.properties = [availability, price, size, premium]
-    B4_2B_4F.properties = [availability, price, size, premium]
-    B4_3B_1F.properties = [availability, price, size, premium]
-    B4_2A_1F.properties = [availability, price, size, premium]
-    B4_2E_1F.properties = [availability, price, size, premium]
-    B4_2F_1F.properties = [availability, price, size, premium]
-    B4_2A_2F.properties = [availability, price, size, premium]
-    B4_3C_1F.properties = [availability, price, size, premium]
+    B4_2B_1F_6.properties = [availability, price, size, premium]
+    B4_2B_2F_7.properties = [availability, price, size, premium]
+    B4_2B_3F_10.properties = [availability, price, size, premium]
+    B4_2B_4F_11.properties = [availability, price, size, premium]
+    B4_3B_1F_2.properties = [availability, price, size, premium]
+    B4_2A_1F_5.properties = [availability, price, size, premium]
+    B4_2E_1F_9.properties = [availability, price, size, premium]
+    B4_2F_1F_8.properties = [availability, price, size, premium]
+    B4_2A_2F_12.properties = [availability, price, size, premium]
+    B4_3A_1F_1.properties = [availability, price, size, premium]
 
 
     #Back
 
 
-    B4_2B_1B.properties = [availability, price, size, premium]
-    B4_2B_2B.properties = [availability, price, size, premium]
-    B4_2B_3B.properties = [availability, price, size, premium]
-    B4_2B_4B.properties = [availability, price, size, premium]
-    B4_3B_1B.properties = [availability, price, size, premium]
-    B4_2A_1B.properties = [availability, price, size, premium]
-    B4_2E_1B.properties = [availability, price, size, premium]
-    B4_2F_1B.properties = [availability, price, size, premium]
-    B4_2A_2B.properties = [availability, price, size, premium]
-    B4_3C_1B.properties = [availability, price, size, premium]
+    B4_2B_1B_14.properties = [availability, price, size, premium]
+    B4_2B_2B_15.properties = [availability, price, size, premium]
+    B4_2B_3B_18.properties = [availability, price, size, premium]
+    B4_2B_4B_19.properties = [availability, price, size, premium]
+    B4_3B_1B_3.properties = [availability, price, size, premium]
+    B4_2A_1B_13.properties = [availability, price, size, premium]
+    B4_2E_1B_16.properties = [availability, price, size, premium]
+    B4_2F_1B_17.properties = [availability, price, size, premium]
+    B4_2A_2B_20.properties = [availability, price, size, premium]
+    B4_3A_1B_4.properties = [availability, price, size, premium]
 
 
 
@@ -358,57 +357,57 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 ################################################################################################################
 
 
-    B1_3D_1F.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize, Minto3DPremium]
-    B1_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
-    B1_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B1_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B1_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B1_3D_1F_7.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize, Minto3DPremium]
+    B1_2B_1F_2.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_2B_2F_3.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_2B_3F_6.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_3C_1F_8.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B1_2E_1F_5.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B1_2F_1F_4.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B1_2A_1F_1.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
 
 
     #Back
 
-    B1_3D_1B.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize, Minto3DPremium]
-    B1_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B1_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
-    B1_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B1_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B1_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B1_3D_1B_10.valuefields = [MintoAvailable,Minto3DPrice, Minto3DSize, Minto3DPremium]
+    B1_2B_1B_11.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_2B_2B_14.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_2B_3B_15.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B1_3C_1B_9.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B1_2E_1B_12.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B1_2F_1B_13.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B1_2A_1B_16.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
 
 
     ##Block2
 
     #Front
 
-    B2_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_3B_1F.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
-    B2_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B2_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B2_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B2_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B2_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B2_2B_1F_6.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_2F_7.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_3F_10.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_4F_11.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_3B_1F_2.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
+    B2_2A_1F_5.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B2_2E_1F_9.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B2_2F_1F_8.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B2_2A_2F_12.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B2_3A_1F_1.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
 
 
     #Back
 
 
-    B2_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B2_3B_1B.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
-    B2_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B2_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B2_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B2_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B2_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B2_2B_1B_14.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_2B_15.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_3B_18.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_2B_4B_19.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B2_3B_1B_3.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
+    B2_2A_1B_13.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B2_2E_1B_16.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B2_2F_1B_17.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B2_2A_2B_20.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B2_3A_1B_4.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
 
 
 
@@ -416,28 +415,28 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
     #Front
 
-    B3_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B3_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B3_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B3_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B3_2B_1F_2.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_2F_3.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_3F_6.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_4F_7.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2A_1F_1.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B3_2E_1F_5.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B3_2F_1F_4.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B3_2A_2F_8.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
 
 
     #Back
 
 
 
-    B3_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B3_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B3_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B3_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B3_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B3_2B_1B_10.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_2B_11.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_3B_14.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2B_4B_15.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B3_2A_1B_9.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B3_2E_1B_12.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B3_2F_1B_13.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B3_2A_2B_16.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
 
 
 
@@ -445,31 +444,31 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
     #Front
 
-    B4_2B_1F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_2F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_3F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_4F.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_3B_1F.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
-    B4_2A_1F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B4_2E_1F.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B4_2F_1F.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B4_2A_2F.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B4_3C_1F.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B4_2B_1F_6.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_2F_7.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_3F_10.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_4F_11.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_3B_1F_2.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
+    B4_2A_1F_5.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B4_2E_1F_9.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B4_2F_1F_8.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B4_2A_2F_12.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B4_3A_1F_1.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
 
 
     #Back
 
 
-    B4_2B_1B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_2B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_3B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_2B_4B.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
-    B4_3B_1B.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
-    B4_2A_1B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B4_2E_1B.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
-    B4_2F_1B.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
-    B4_2A_2B.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
-    B4_3C_1B.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
+    B4_2B_1B_14.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_2B_15.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_3B_18.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_2B_4B_19.valuefields = [MintoAvailable,Minto2BPrice, Minto2BSize, Minto2BPremium]
+    B4_3B_1B_3.valuefields = [MintoAvailable,Minto3BPrice, Minto3BSize, Minto3BPremium]
+    B4_2A_1B_13.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B4_2E_1B_16.valuefields = [MintoAvailable,Minto2EPrice, Minto2ESize, Minto2EPremium]
+    B4_2F_1B_17.valuefields = [MintoAvailable,Minto2FPrice, Minto2FSize, Minto2FPremium]
+    B4_2A_2B_20.valuefields = [MintoAvailable,Minto2APrice, Minto2ASize, Minto2APremium]
+    B4_3A_1B_4.valuefields = [MintoAvailable,Minto3CPrice, Minto3CSize, Minto3CPremium]
 
 
 
@@ -481,57 +480,62 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
 
     Minto.products = [
-            B1_3D_1F,
-            B1_2B_1F,
-            B1_2B_2F,
-            B1_2B_3F,
-            B1_3C_1F,
-            B1_2E_1F,
-            B1_2F_1F,
-            B1_2A_1F,
+
+            ##Block1
+
+            #Front
+
+            B1_3D_1F_7,
+            B1_2B_1F_2,
+            B1_2B_2F_3,
+            B1_2B_3F_6,
+            B1_3C_1F_8,
+            B1_2E_1F_5,
+            B1_2F_1F_4,
+            B1_2A_1F_1,
 
 
             #Back
 
-            B1_3D_1B,
-            B1_2B_1B,
-            B1_2B_2B,
-            B1_2B_3B,
-            B1_3C_1B,
-            B1_2E_1B,
-            B1_2F_1B,
-            B1_2A_1B,
+            B1_3D_1B_10,
+            B1_2B_1B_11,
+            B1_2B_2B_14,
+            B1_2B_3B_15,
+            B1_3C_1B_9,
+            B1_2E_1B_12,
+            B1_2F_1B_13,
+            B1_2A_1B_16,
 
 
             ##Block2
 
             #Front
 
-            B2_2B_1F,
-            B2_2B_2F,
-            B2_2B_3F,
-            B2_2B_4F,
-            B2_3B_1F,
-            B2_2A_1F,
-            B2_2E_1F,
-            B2_2F_1F,
-            B2_2A_2F,
-            B2_3C_1F,
+            B2_2B_1F_6,
+            B2_2B_2F_7,
+            B2_2B_3F_10,
+            B2_2B_4F_11,
+            B2_3B_1F_2,
+            B2_2A_1F_5,
+            B2_2E_1F_9,
+            B2_2F_1F_8,
+            B2_2A_2F_12,
+            B2_3A_1F_1,
 
 
             #Back
 
 
-            B2_2B_1B,
-            B2_2B_2B,
-            B2_2B_3B,
-            B2_2B_4B,
-            B2_3B_1B,
-            B2_2A_1B,
-            B2_2E_1B,
-            B2_2F_1B,
-            B2_2A_2B,
-            B2_3C_1B,
+            B2_2B_1B_14,
+            B2_2B_2B_15,
+            B2_2B_3B_18,
+            B2_2B_4B_19,
+            B2_3B_1B_3,
+            B2_2A_1B_13,
+            B2_2E_1B_16,
+            B2_2F_1B_17,
+            B2_2A_2B_20,
+            B2_3A_1B_4,
 
 
 
@@ -539,28 +543,28 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
             #Front
 
-            B3_2B_1F,
-            B3_2B_2F,
-            B3_2B_3F,
-            B3_2B_4F,
-            B3_2A_1F,
-            B3_2E_1F,
-            B3_2F_1F,
-            B3_2A_2F,
+            B3_2B_1F_2,
+            B3_2B_2F_3,
+            B3_2B_3F_6,
+            B3_2B_4F_7,
+            B3_2A_1F_1,
+            B3_2E_1F_5,
+            B3_2F_1F_4,
+            B3_2A_2F_8,
 
 
             #Back
 
 
 
-            B3_2B_1B,
-            B3_2B_2B,
-            B3_2B_3B,
-            B3_2B_4B,
-            B3_2A_1B,
-            B3_2E_1B,
-            B3_2F_1B,
-            B3_2A_2B,
+            B3_2B_1B_10,
+            B3_2B_2B_11,
+            B3_2B_3B_14,
+            B3_2B_4B_15,
+            B3_2A_1B_9,
+            B3_2E_1B_12,
+            B3_2F_1B_13,
+            B3_2A_2B_16,
 
 
 
@@ -568,31 +572,31 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
             #Front
 
-            B4_2B_1F,
-            B4_2B_2F,
-            B4_2B_3F,
-            B4_2B_4F,
-            B4_3B_1F,
-            B4_2A_1F,
-            B4_2E_1F,
-            B4_2F_1F,
-            B4_2A_2F,
-            B4_3C_1F,
+            B4_2B_1F_6,
+            B4_2B_2F_7,
+            B4_2B_3F_10,
+            B4_2B_4F_11,
+            B4_3B_1F_2,
+            B4_2A_1F_5,
+            B4_2E_1F_9,
+            B4_2F_1F_8,
+            B4_2A_2F_12,
+            B4_3A_1F_1,
 
 
             #Back
 
 
-            B4_2B_1B,
-            B4_2B_2B,
-            B4_2B_3B,
-            B4_2B_4B,
-            B4_3B_1B,
-            B4_2A_1B,
-            B4_2E_1B,
-            B4_2F_1B,
-            B4_2A_2B,
-            B4_3C_1B]
+            B4_2B_1B_14,
+            B4_2B_2B_15,
+            B4_2B_3B_18,
+            B4_2B_4B_19,
+            B4_3B_1B_3,
+            B4_2A_1B_13,
+            B4_2E_1B_16,
+            B4_2F_1B_17,
+            B4_2A_2B_20,
+            B4_3A_1B_4]
 
 
 
