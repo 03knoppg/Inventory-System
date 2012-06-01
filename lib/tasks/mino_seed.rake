@@ -76,7 +76,7 @@ B1_2B_2F_6 = Product.create(name: "B1_2B_2F_6", description: "B1_2B_2F_6", code:
 B1_3C_1F_8 = Product.create(name: "B1_3C_1F_8", description: "B1_3C_1F_8", code: "B1_3C_1F_8")
 B1_2E_1F_5 = Product.create(name: "B1_2E_1F_5", description: "B1_2E_1F_5", code: "B1_2E_1F_5")
 B1_2F_1F_4 = Product.create(name: "B1_2F_1F_4", description: "B1_2F_1F_4", code: "B1_2F_1F_4")
-B1_2Y_1F_1 = Product.create(name: "B1_2A_1F_1", description: "B1_2A_1F_1", code: "B1_2A_1F_1")
+B1_2Y_1F_1 = Product.create(name: "B1_2Y_1F_1", description: "B1_2Y_1F_1", code: "B1_2Y_1F_1")
 
 
     #Back
