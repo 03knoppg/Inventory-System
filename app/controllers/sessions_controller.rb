@@ -196,7 +196,16 @@ class SessionsController < ApplicationController
   def update_minto
 
       p = Product.find_by_name(params[:id])
-      p.valuefields[0].update_attribute(:fieldvalue,   params[:checked])
+
+
+      for i in 0..3
+        if( p.valuefields[i].fieldvalue == "true" ||      p.valuefields[i].fieldvalue == "false")
+            p.valuefields.delete(p.valuefields[i])
+            p.valuefields<<(Valuefield.find_all_by_fieldvalue( params[:checked])[0])
+
+        end
+      end
+
   end
 
    def update_minto_price

@@ -4,14 +4,24 @@
        if(s.name == "Minto")
         for suite in s.products%>
           <%=suite.name%>,
-           <%if(suite.valuefields[0].fieldvalue == "true")%>
-              true,
-           <%else%>
-              false,
-            <%end%>
-             <%= suite.valuefields[1].fieldvalue %>,
-              <%= suite.valuefields[3].fieldvalue %>,
-           <%end
+          <%for vf in suite.valuefields
+              if(vf.property.name == "Availability")%>
+                  <%=vf.fieldvalue%>,
+              <%end
+          end%>
+
+          <%for vf in suite.valuefields
+              if(vf.property.name == "Price")%>
+                  <%=vf.fieldvalue%>,
+              <%end
+          end%>
+
+          <%for vf in suite.valuefields
+              if(vf.property.name == "Premium")%>
+                  <%=vf.fieldvalue%>,
+              <%end
+          end
         end
+       end
    end%>
 </div>
