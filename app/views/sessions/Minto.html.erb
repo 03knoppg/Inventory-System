@@ -26,7 +26,7 @@ for s in Category.all
                    <td>
                      <%for vf in suite.valuefields
                           if(vf.property.name == "Price")%>
-                              <%= text_field_tag "Text", vf.fieldvalue.to_s, :id=>suite.name%>
+                              <%= text_field_tag "Text", vf.fieldvalue.to_s, :id=>suite.name, :disabled=>true%>
                           <%end
                       end%>
 
@@ -34,7 +34,7 @@ for s in Category.all
                    <td>
                      <%for vf in suite.valuefields
                           if(vf.property.name == "Availability")%>
-                              <%= check_box_tag "CheckBox", suite.name, vf.fieldvalue == "true" ? true : false, :id=>suite.name%>
+                              <%= check_box_tag "CheckBox", suite.name, vf.fieldvalue == "true" ? true : false, :id=>suite.name, :disabled=>true%>
                           <%end
                       end%>
 
