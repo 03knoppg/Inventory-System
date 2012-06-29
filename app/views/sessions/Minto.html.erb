@@ -26,7 +26,7 @@ for s in Category.all
                    <td>
                      <%for vf in suite.valuefields
                           if(vf.property.name == "Price")%>
-                              <%= text_field_tag "Text", vf.fieldvalue.to_s, :id=>suite.name%>
+                              <%= text_field_tag "Text", vf.fieldvalue.to_s, :id=>suite.name, :disabled=>true%>
                           <%end
                       end%>
 
@@ -42,7 +42,7 @@ for s in Category.all
                    <td>
                      <%for vf in suite.valuefields
                           if(vf.property.name == "Premium")%>
-                               <%= text_field_tag "Premium", vf.fieldvalue.to_s, :id=>suite.name%>
+                               <%= text_field_tag "Premium", vf.fieldvalue.to_s, :id=>suite.name, :disabled=>true%>
                           <%end
                       end%>
 
@@ -66,15 +66,15 @@ for s in Category.all
 
         });
 
-        $('input[name="Text"]').change(function(){
+        /*$('input[name="Text"]').change(function(){
            $.get("/sessions/update_minto_price", {id: $(this)[0].id, price: $(this)[0].value}, null, 'script');
 
-        });
+        });*/
 
-        $('input[name="Premium"]').change(function(){
+       /* $('input[name="Premium"]').change(function(){
            $.get("/sessions/update_minto_premium", {id: $(this)[0].id, premium: $(this)[0].value}, null, 'script');
 
-        });
+        });*/
 
         $('input').click(function(){
            $('button').removeAttr("disabled");
