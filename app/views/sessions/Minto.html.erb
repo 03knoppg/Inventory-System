@@ -3,7 +3,7 @@
 
 <Table>
 
-          <tr><th>Block</th><th>Suite Number</th><th>Price</th><th>Available</th><th>Premium</th></tr>
+          <tr><!--th>Block</th--><th>Suite Number</th><th>Price</th><th>Available</th><th>Premium</th></tr>
 
 <%i = 0
 for s in Category.all
@@ -17,11 +17,26 @@ for s in Category.all
         i = i + 1%>
 
               <tr>
-                   <td>
+                   <!--td>
                      <%= suite.name[1] %>
-                   </td>
+                   </td-->
                    <td>
-                     <%= suite.name[9..10] %>
+                     <% if(suite.name[1] == "1") %>
+                             <%=suite.name[9..10].to_i + 20%>
+                        <% elsif(suite.name[1] == "2")  %>
+                             <%=suite.name[9..10].to_i + 0%>
+                        <% elsif(suite.name[1] == "3")  %>
+                             <%=suite.name[9..10].to_i + 20 + 16 + 20 %>
+                        <% elsif(suite.name[1] == "4")  %>
+                             <%=suite.name[9..10].to_i + 20 + 16  %>
+                        <% elsif(suite.name[1] == "5")  %>
+                             <%=suite.name[9..10].to_i + 20 + 16 + 20 + 16 %>
+                        <% elsif(suite.name[1] == "6") %>
+                             <%=suite.name[9..10].to_i + 20 + 16 + 20 + 16 + 32 %>
+                        <% elsif(suite.name[1] == "7")  %>
+                             <%=suite.name[9..10].to_i + 20 + 16 + 20 + 16 + 32 + 24 %>
+                        <% end %>
+
                    </td>
                    <td>
                      <%for vf in suite.valuefields
