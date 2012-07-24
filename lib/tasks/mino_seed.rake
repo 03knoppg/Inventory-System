@@ -315,6 +315,8 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
             Minto2APrice = Valuefield.create(fieldvalue: "325080", property_id: price.id, code: "")
             Minto2BPrice = Valuefield.create(fieldvalue: "340200", property_id: price.id, code: "")
+            Minto2YPrice = Valuefield.create(fieldvalue: "340200", property_id: price.id, code: "")
+            Minto2ZPrice = Valuefield.create(fieldvalue: "340200", property_id: price.id, code: "")
             Minto2CPrice = Valuefield.create(fieldvalue: "337050", property_id: price.id, code: "")
             Minto2DPrice = Valuefield.create(fieldvalue: "350595", property_id: price.id, code: "")
             Minto2EPrice = Valuefield.create(fieldvalue: "299250", property_id: price.id, code: "")
@@ -326,7 +328,9 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
 
             Minto2ASize = Valuefield.create(fieldvalue: "1032", property_id: size.id, code: "")
+            Minto2YSize = Valuefield.create(fieldvalue: "1032", property_id: size.id, code: "")
             Minto2BSize = Valuefield.create(fieldvalue: "1080", property_id: size.id, code: "")
+            Minto2ZSize = Valuefield.create(fieldvalue: "1080", property_id: size.id, code: "")
             Minto2CSize = Valuefield.create(fieldvalue: "1070", property_id: size.id, code: "")
             Minto2DSize = Valuefield.create(fieldvalue: "1113", property_id: size.id, code: "")
             Minto2ESize = Valuefield.create(fieldvalue: "950",  property_id: size.id, code: "")
@@ -338,7 +342,9 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
 
     
             Minto2APremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
+            Minto2YPremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
             Minto2BPremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
+            Minto2ZPremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
             Minto2CPremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
             Minto2DPremium = Valuefield.create(fieldvalue: "none", property_id: premium.id, code: "")
             Minto2EPremium = Valuefield.create(fieldvalue: "none",  property_id: premium.id, code: "")
