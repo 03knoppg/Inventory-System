@@ -478,24 +478,24 @@ premium = Property.create(name: "Premium", description: "Special thing", field_t
     ##Block5
 
     #Front
-B5_2Z_1F_3.properties = [availability, price, size, premium]
+B5_2Z_1F_17.properties = [availability, price, size, premium]
 B5_2B_1F_6.properties = [availability, price, size, premium]
 B5_2B_2F_7.properties = [availability, price, size, premium]
 B5_2B_3F_10.properties = [availability, price, size, premium]
 B5_2B_4F_11.properties = [availability, price, size, premium]
 B5_2B_5F_14.properties = [availability, price, size, premium]
 B5_2B_6F_15.properties = [availability, price, size, premium]
-B5_3B_1F_17.properties = [availability, price, size, premium]
+B5_3B_1F_3.properties = [availability, price, size, premium]
     
     
-B5_2Y_1F_4.properties = [availability, price, size, premium]
+B5_2Y_1F_18.properties = [availability, price, size, premium]
 B5_2A_1F_5.properties = [availability, price, size, premium]
 B5_2E_1F_9.properties = [availability, price, size, premium]
 B5_2F_1F_8.properties = [availability, price, size, premium]
 B5_2E_2F_13.properties = [availability, price, size, premium]
 B5_2F_2F_12.properties = [availability, price, size, premium]
 B5_2A_2F_16.properties = [availability, price, size, premium]
-B5_3A_1F_18.properties = [availability, price, size, premium]
+B5_3A_1F_4.properties = [availability, price, size, premium]
     
     
     
@@ -571,7 +571,7 @@ B7_2B_2F_7.properties = [availability, price, size, premium]
 B7_2B_3F_10.properties = [availability, price, size, premium]
 B7_2D_1F_11.properties = [availability, price, size, premium]
     
-B7_2C_1F_1.properties = [availability, price, size, premium]
+B7_2C_1F_4.properties = [availability, price, size, premium]
 B7_2A_1F_5.properties = [availability, price, size, premium]
 B7_2E_1F_9.properties = [availability, price, size, premium]
 B7_2F_1F_8.properties = [availability, price, size, premium]
@@ -590,7 +590,7 @@ B7_2Y_1B_13.properties = [availability, price, size, premium]
 B7_2E_1B_16.properties = [availability, price, size, premium]
 B7_2F_1B_17.properties = [availability, price, size, premium]
 B7_2A_1B_20.properties = [availability, price, size, premium]
-B7_2C_1B_4.properties = [availability, price, size, premium]
+B7_2C_1B_1.properties = [availability, price, size, premium]
 
 
 
@@ -717,24 +717,24 @@ B7_2C_1B_4.properties = [availability, price, size, premium]
     ##Block5
 
     #Front
-B5_2Z_1F_3.valuefields = [MintoAvailable, Minto2ZPrice, Minto2ZSize, Minto2ZPremium]
+B5_2Z_1F_17.valuefields = [MintoAvailable, Minto2ZPrice, Minto2ZSize, Minto2ZPremium]
 B5_2B_1F_6.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B5_2B_2F_7.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B5_2B_3F_10.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B5_2B_4F_11.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B5_2B_5F_14.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B5_2B_6F_15.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
-B5_3B_1F_17.valuefields = [MintoAvailable, Minto3BPrice, Minto3BSize, Minto3BPremium]
+B5_3B_1F_3.valuefields = [MintoAvailable, Minto3BPrice, Minto3BSize, Minto3BPremium]
     
     
-B5_2Y_1F_4.valuefields = [MintoAvailable, Minto2YPrice, Minto2YSize, Minto2YPremium]
+B5_2Y_1F_18.valuefields = [MintoAvailable, Minto2YPrice, Minto2YSize, Minto2YPremium]
 B5_2A_1F_5.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
 B5_2E_1F_9.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
 B5_2F_1F_8.valuefields = [MintoAvailable, Minto2FPrice, Minto2FSize, Minto2FPremium]
 B5_2E_2F_13.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
 B5_2F_2F_12.valuefields = [MintoAvailable, Minto2FPrice, Minto2FSize, Minto2FPremium]
 B5_2A_2F_16.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
-B5_3A_1F_18.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APremium]
+B5_3A_1F_4.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APremium]
     
     
     
@@ -810,7 +810,7 @@ B7_2B_2F_7.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPrem
 B7_2B_3F_10.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B7_2D_1F_11.valuefields = [MintoAvailable, Minto2DPrice, Minto2DSize, Minto2DPremium]
     
-B7_2C_1F_1.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPremium]
+B7_2C_1F_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPremium]
 B7_2A_1F_5.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
 B7_2E_1F_9.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
 B7_2F_1F_8.valuefields = [MintoAvailable, Minto2FPrice, Minto2FSize, Minto2FPremium]
@@ -829,7 +829,7 @@ B7_2Y_1B_13.valuefields = [MintoAvailable, Minto2YPrice, Minto2YSize, Minto2YPre
 B7_2E_1B_16.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
 B7_2F_1B_17.valuefields = [MintoAvailable, Minto2FPrice, Minto2FSize, Minto2FPremium]
 B7_2A_1B_20.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
-B7_2C_1B_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPremium]
+B7_2C_1B_1.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPremium]
 
 
 ################################################################################################################
@@ -958,24 +958,24 @@ B7_2C_1B_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
             B4_3A_1B_4,
     
     
-            B5_2Z_1F_3,
+            B5_2Z_1F_17,
             B5_2B_1F_6,
             B5_2B_2F_7,
             B5_2B_3F_10,
             B5_2B_4F_11,
             B5_2B_5F_14,
             B5_2B_6F_15,
-            B5_3B_1F_17,
+            B5_3B_1F_3,
 
 
-            B5_2Y_1F_4,
+            B5_2Y_1F_18,
             B5_2A_1F_5,
             B5_2E_1F_9,
             B5_2F_1F_8,
             B5_2E_2F_13,
             B5_2F_2F_12,
             B5_2A_2F_16,
-            B5_3A_1F_18,
+            B5_3A_1F_4,
 
 
 
@@ -1051,7 +1051,7 @@ B7_2C_1B_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
             B7_2B_3F_10,
             B7_2D_1F_11,
 
-            B7_2C_1F_1,
+            B7_2C_1F_4,
             B7_2A_1F_5,
             B7_2E_1F_9,
             B7_2F_1F_8,
@@ -1070,7 +1070,7 @@ B7_2C_1B_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
             B7_2E_1B_16,
             B7_2F_1B_17,
             B7_2A_1B_20,
-            B7_2C_1B_4
+            B7_2C_1B_1
     ]
 
 
