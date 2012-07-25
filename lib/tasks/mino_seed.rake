@@ -228,7 +228,7 @@ B5_3A_1B_1 = Product.create(name: "B5_3A_1B_1", description: "B5_3A_1B_1", code:
 
     #Front
     
-B6_3D_1F_3 = Product.create(name: "B1_3D_1F_7", description: "B1_3D_1F_7", code: "B1_3D_1F_7")
+B6_3D_1F_3 = Product.create(name: "B1_3D_1F_3", description: "B1_3D_1F_3", code: "B1_3D_1F_3")
 B6_2B_1F_6 = Product.create(name: "B6_2B_1F_6", description: "B6_2B_1F_6", code: "B6_2B_1F_6")
 B6_2B_2F_7 = Product.create(name: "B6_2B_2F_7", description: "B6_2B_2F_7", code: "B6_2B_2F_7")
 B6_2B_3F_10 = Product.create(name: "B6_2B_3F_10", description: "B6_2B_3F_10", code: "B6_2B_3F_10")
@@ -269,7 +269,7 @@ B7_2Z_1F_2 = Product.create(name: "B7_2Z_1F_2", description: "B7_2Z_1F_2", code:
 B7_2B_1F_6 = Product.create(name: "B7_2B_1F_6", description: "B7_2B_1F_6", code: "B7_2B_1F_6")
 B7_2B_2F_7 = Product.create(name: "B7_2B_2F_7", description: "B7_2B_2F_7", code: "B7_2B_2F_7")
 B7_2B_3F_10 = Product.create(name: "B7_2B_3F_10", description: "B7_2B_3F_10", code: "B7_2B_3F_10")
-B7_2D_1F_11 = Product.create(name: "B7_2D_1_11", description: "B7_2D_1_11", code: "B7_2D_1_11")
+B7_2D_1F_11 = Product.create(name: "B7_2D_1F_11", description: "B7_2D_1F_11", code: "B7_2D_1F_11")
     
 B7_2C_1F_1 = Product.create(name: "B7_2C_1F_1", description: "B7_2C_1F_1", code: "B7_2C_1F_1")
 B7_2A_1F_5 = Product.create(name: "B7_2A_1F_5", description: "B7_2A_1F_5", code: "B7_2A_1F_5")
