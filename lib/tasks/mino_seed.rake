@@ -228,19 +228,19 @@ B5_3A_1B_1 = Product.create(name: "B5_3A_1B_1", description: "B5_3A_1B_1", code:
 
     #Front
     
-B6_3D_1F_3 = Product.create(name: "B6_3D_1F_3", description: "B6_3D_1F_3", code: "B6_3D_1F_3")
+B6_3B_1F_3 = Product.create(name: "B6_3B_1F_3", description: "B6_3B_1F_3", code: "B6_3B_1F_3")
 B6_2B_1F_6 = Product.create(name: "B6_2B_1F_6", description: "B6_2B_1F_6", code: "B6_2B_1F_6")
 B6_2B_2F_7 = Product.create(name: "B6_2B_2F_7", description: "B6_2B_2F_7", code: "B6_2B_2F_7")
 B6_2B_3F_10 = Product.create(name: "B6_2B_3F_10", description: "B6_2B_3F_10", code: "B6_2B_3F_10")
 B6_2B_4F_11 = Product.create(name: "B6_2B_4F_11", description: "B6_2B_4F_11", code: "B6_2B_4F_11")
-B6_3B_1F_13 = Product.create(name: "B6_3B_1F_13", description: "B6_3B_1F_13", code: "B6_3B_1F_13")
+B6_3D_1F_13 = Product.create(name: "B6_3D_1F_13", description: "B6_3D_1F_13", code: "B6_3D_1F_13")
                  
-B6_3C_1F_4 = Product.create(name: "B6_3C_1F_4", description: "B6_3C_1F_4", code: "B6_3C_1F_4")
+B6_3C_1F_14 = Product.create(name: "B6_3C_1F_14", description: "B6_3C_1F_14", code: "B6_3C_1F_14")
 B6_2A_1F_5 = Product.create(name: "B6_2A_1F_5", description: "B6_2A_1F_5", code: "B6_2A_1F_5")
 B6_2E_1F_9 = Product.create(name: "B6_2E_1F_9", description: "B6_2E_1F_9", code: "B6_2E_1F_9")
 B6_2F_1F_8 = Product.create(name: "B6_2F_1F_8", description: "B6_2F_1F_8", code: "B6_2F_1F_8")
 B6_2A_2F_12 = Product.create(name: "B6_2A_2F_12", description: "B6_2A_2F_12", code: "B6_2A_2F_12")
-B6_3A_1F_14 = Product.create(name: "B6_3A_1F_14", description: "B6_3A_1F_14", code: "B6_3A_1F_14")
+B6_3A_1F_4 = Product.create(name: "B6_3A_1F_4", description: "B6_3A_1F_4", code: "B6_3A_1F_4")
     
     
 
@@ -265,11 +265,11 @@ B6_3A_1B_1 = Product.create(name: "B6_3A_1B_1", description: "B6_3A_1B_1", code:
     ##Block7
 
     #Front
-B7_2Z_1F_2 = Product.create(name: "B7_2Z_1F_2", description: "B7_2Z_1F_2", code: "B7_2Z_1F_2")
+B7_2Z_1F_11 = Product.create(name: "B7_2Z_1F_11", description: "B7_2Z_1F_11", code: "B7_2Z_1F_11")
 B7_2B_1F_6 = Product.create(name: "B7_2B_1F_6", description: "B7_2B_1F_6", code: "B7_2B_1F_6")
 B7_2B_2F_7 = Product.create(name: "B7_2B_2F_7", description: "B7_2B_2F_7", code: "B7_2B_2F_7")
 B7_2B_3F_10 = Product.create(name: "B7_2B_3F_10", description: "B7_2B_3F_10", code: "B7_2B_3F_10")
-B7_2D_1F_11 = Product.create(name: "B7_2D_1F_11", description: "B7_2D_1F_11", code: "B7_2D_1F_11")
+B7_2D_1F_3 = Product.create(name: "B7_2D_1F_3", description: "B7_2D_1F_3", code: "B7_2D_1F_3")
     
 B7_2C_1F_4 = Product.create(name: "B7_2C_1F_4", description: "B7_2C_1F_4", code: "B7_2C_1F_4")
 B7_2A_1F_5 = Product.create(name: "B7_2A_1F_5", description: "B7_2A_1F_5", code: "B7_2A_1F_5")
@@ -284,7 +284,7 @@ B7_2Z_1B_14 = Product.create(name: "B7_2Z_1B_14", description: "B7_2Z_1B_14", co
 B7_2B_1B_15 = Product.create(name: "B7_2B_1B_15", description: "B7_2B_1B_15", code: "B7_2B_1B_15")
 B7_2B_2B_18 = Product.create(name: "B7_2B_2B_18", description: "B7_2B_2B_18", code: "B7_2B_2B_18")
 B7_2B_3B_19 = Product.create(name: "B7_2B_3B_19", description: "B7_2B_3B_19", code: "B7_2B_3B_19")
-B7_2D_1B_3 = Product.create(name: "B7_2D_1B_3", description: "B7_2D_1B_3", code: "B7_2D_1B_3")
+B7_2D_1B_2 = Product.create(name: "B7_2D_1B_2", description: "B7_2D_1B_2", code: "B7_2D_1B_2")
     
 B7_2Y_1B_13 = Product.create(name: "B7_2Y_1B_13", description: "B7_2Y_1B_13", code: "B7_2Y_1B_13")
 B7_2E_1B_16 = Product.create(name: "B7_2E_1B_16", description: "B7_2E_1B_16", code: "B7_2E_1B_16")
@@ -528,19 +528,19 @@ B5_3A_1B_1.properties = [availability, price, size, premium]
 
     #Front
     
-B6_3D_1F_3.properties = [availability, price, size, premium]
+B6_3D_1F_13.properties = [availability, price, size, premium]
 B6_2B_1F_6.properties = [availability, price, size, premium]
 B6_2B_2F_7.properties = [availability, price, size, premium]
 B6_2B_3F_10.properties = [availability, price, size, premium]
 B6_2B_4F_11.properties = [availability, price, size, premium]
-B6_3B_1F_13.properties = [availability, price, size, premium]
+B6_3B_1F_3.properties = [availability, price, size, premium]
                  
-B6_3C_1F_4.properties = [availability, price, size, premium]
+B6_3C_1F_14.properties = [availability, price, size, premium]
 B6_2A_1F_5.properties = [availability, price, size, premium]
 B6_2E_1F_9.properties = [availability, price, size, premium]
 B6_2F_1F_8.properties = [availability, price, size, premium]
 B6_2A_2F_12.properties = [availability, price, size, premium]
-B6_3A_1F_14.properties = [availability, price, size, premium]
+B6_3A_1F_4.properties = [availability, price, size, premium]
     
     
 
@@ -565,11 +565,11 @@ B6_3A_1B_1.properties = [availability, price, size, premium]
     ##Block7
 
     #Front
-B7_2Z_1F_2.properties = [availability, price, size, premium]
+B7_2Z_1F_11.properties = [availability, price, size, premium]
 B7_2B_1F_6.properties = [availability, price, size, premium]
 B7_2B_2F_7.properties = [availability, price, size, premium]
 B7_2B_3F_10.properties = [availability, price, size, premium]
-B7_2D_1F_11.properties = [availability, price, size, premium]
+B7_2D_1F_3.properties = [availability, price, size, premium]
     
 B7_2C_1F_4.properties = [availability, price, size, premium]
 B7_2A_1F_5.properties = [availability, price, size, premium]
@@ -584,7 +584,7 @@ B7_2Z_1B_14.properties = [availability, price, size, premium]
 B7_2B_1B_15.properties = [availability, price, size, premium]
 B7_2B_2B_18.properties = [availability, price, size, premium]
 B7_2B_3B_19.properties = [availability, price, size, premium]
-B7_2D_1B_3.properties = [availability, price, size, premium]
+B7_2D_1B_2.properties = [availability, price, size, premium]
     
 B7_2Y_1B_13.properties = [availability, price, size, premium]
 B7_2E_1B_16.properties = [availability, price, size, premium]
@@ -767,19 +767,19 @@ B5_3A_1B_1.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APrem
 
     #Front
     
-B6_3D_1F_3.valuefields = [MintoAvailable, Minto3DPrice, Minto3DSize, Minto3DPremium]
+B6_3D_1F_13.valuefields = [MintoAvailable, Minto3DPrice, Minto3DSize, Minto3DPremium]
 B6_2B_1F_6.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B6_2B_2F_7.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B6_2B_3F_10.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B6_2B_4F_11.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
-B6_3B_1F_13.valuefields = [MintoAvailable, Minto3BPrice, Minto3BSize, Minto3BPremium]
+B6_3B_1F_3.valuefields = [MintoAvailable, Minto3BPrice, Minto3BSize, Minto3BPremium]
                  
-B6_3C_1F_4.valuefields = [MintoAvailable, Minto3CPrice, Minto3CSize, Minto3CPremium]
+B6_3C_1F_14.valuefields = [MintoAvailable, Minto3CPrice, Minto3CSize, Minto3CPremium]
 B6_2A_1F_5.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
 B6_2E_1F_9.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
 B6_2F_1F_8.valuefields = [MintoAvailable, Minto2FPrice, Minto2FSize, Minto2FPremium]
 B6_2A_2F_12.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
-B6_3A_1F_14.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APremium]
+B6_3A_1F_4.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APremium]
     
     
 
@@ -804,11 +804,11 @@ B6_3A_1B_1.valuefields = [MintoAvailable, Minto3APrice, Minto3ASize, Minto3APrem
     ##Block7
 
     #Front
-B7_2Z_1F_2.valuefields = [MintoAvailable, Minto2ZPrice, Minto2ZSize, Minto2ZPremium]
+B7_2Z_1F_11.valuefields = [MintoAvailable, Minto2ZPrice, Minto2ZSize, Minto2ZPremium]
 B7_2B_1F_6.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B7_2B_2F_7.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B7_2B_3F_10.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
-B7_2D_1F_11.valuefields = [MintoAvailable, Minto2DPrice, Minto2DSize, Minto2DPremium]
+B7_2D_1F_3.valuefields = [MintoAvailable, Minto2DPrice, Minto2DSize, Minto2DPremium]
     
 B7_2C_1F_4.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPremium]
 B7_2A_1F_5.valuefields = [MintoAvailable, Minto2APrice, Minto2ASize, Minto2APremium]
@@ -823,7 +823,7 @@ B7_2Z_1B_14.valuefields = [MintoAvailable, Minto2ZPrice, Minto2ZSize, Minto2ZPre
 B7_2B_1B_15.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B7_2B_2B_18.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
 B7_2B_3B_19.valuefields = [MintoAvailable, Minto2BPrice, Minto2BSize, Minto2BPremium]
-B7_2D_1B_3.valuefields = [MintoAvailable, Minto2DPrice, Minto2DSize, Minto2DPremium]
+B7_2D_1B_2.valuefields = [MintoAvailable, Minto2DPrice, Minto2DSize, Minto2DPremium]
     
 B7_2Y_1B_13.valuefields = [MintoAvailable, Minto2YPrice, Minto2YSize, Minto2YPremium]
 B7_2E_1B_16.valuefields = [MintoAvailable, Minto2EPrice, Minto2ESize, Minto2EPremium]
@@ -1008,19 +1008,19 @@ B7_2C_1B_1.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
 
                 #Front
 
-            B6_3D_1F_3,
+            B6_3D_1F_13,
             B6_2B_1F_6,
             B6_2B_2F_7,
             B6_2B_3F_10,
             B6_2B_4F_11,
-            B6_3B_1F_13,
+            B6_3B_1F_3,
 
-            B6_3C_1F_4,
+            B6_3C_1F_14,
             B6_2A_1F_5,
             B6_2E_1F_9,
             B6_2F_1F_8,
             B6_2A_2F_12,
-            B6_3A_1F_14,
+            B6_3A_1F_4,
 
 
 
@@ -1045,11 +1045,11 @@ B7_2C_1B_1.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
                 ##Block7
 
                 #Front
-            B7_2Z_1F_2,
+            B7_2Z_1F_11,
             B7_2B_1F_6,
             B7_2B_2F_7,
             B7_2B_3F_10,
-            B7_2D_1F_11,
+            B7_2D_1F_3,
 
             B7_2C_1F_4,
             B7_2A_1F_5,
@@ -1064,7 +1064,7 @@ B7_2C_1B_1.valuefields = [MintoAvailable, Minto2CPrice, Minto2CSize, Minto2CPrem
             B7_2B_1B_15,
             B7_2B_2B_18,
             B7_2B_3B_19,
-            B7_2D_1B_3,
+            B7_2D_1B_2,
 
             B7_2Y_1B_13,
             B7_2E_1B_16,
