@@ -275,7 +275,7 @@ B7_2C_1F_1 = Product.create(name: "B7_2C_1F_1", description: "B7_2C_1F_1", code:
 B7_2A_1F_5 = Product.create(name: "B7_2A_1F_5", description: "B7_2A_1F_5", code: "B7_2A_1F_5")
 B7_2E_1F_9 = Product.create(name: "B7_2E_1F_9", description: "B7_2E_1F_9", code: "B7_2E_1F_9")
 B7_2F_1F_8 = Product.create(name: "B7_2F_1F_8", description: "B7_2F_1F_8", code: "B7_2F_1F_8")
-B7_2Y_1F_12 = Product.create(name: "B7_2Y_2F_12", description: "B7_2Y_2F_12", code: "B7_2Y_2F_12")
+B7_2Y_1F_12 = Product.create(name: "B7_2Y_1F_12", description: "B7_2Y_1F_12", code: "B7_2Y_1F_12")
     
     
     
