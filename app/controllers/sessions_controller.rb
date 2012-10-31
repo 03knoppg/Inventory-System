@@ -101,7 +101,7 @@ class SessionsController < ApplicationController
              vf.fieldvalue = "false"
              vf.save!
             xml = "<Message>Success</Message>"
-          elsif(vf.fieldvalue == "false")
+          else
             vf.fieldvalue = "true"
             vf.save!
             xml = "<Message>Failure</Message>"
