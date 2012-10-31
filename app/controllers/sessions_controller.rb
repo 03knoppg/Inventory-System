@@ -100,11 +100,11 @@ class SessionsController < ApplicationController
             #vf.update_attributes(:fieldvalue, "false")
              vf.fieldvalue = "false"
              vf.save!
-            xml = "<Message>Success</Message>"
+            xml = "<Message>Changed to False</Message>"
           else
             vf.fieldvalue = "true"
             vf.save!
-            xml = "<Message>Failure</Message>"
+            xml = "<Message>Changed to True</Message>"
           end
         end
       end
